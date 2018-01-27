@@ -52,7 +52,7 @@ class DeparturesController: UIViewController {
     }
 
     @objc func handleRefresh(refreshControl: UIRefreshControl) {
-        if let stop = stop {
+        if let stop = State.shared.stop {
             loadDepartures(forStop: stop)
         }
         refreshControl.endRefreshing()

@@ -12,7 +12,7 @@ extension Date {
     
     func time() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "hh:mm:ss"
+        dateFormatter.dateFormat = "HH:mm:ss"
         let dateString = dateFormatter.string(from: self)
         return dateString
     }

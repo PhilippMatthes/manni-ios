@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE090F50201CD277004C1410 /* DarkBarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE090F4F201CD277004C1410 /* DarkBarNavigationController.swift */; };
 		BE2285D2201A389D00C2A7DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2285D1201A389D00C2A7DF /* AppDelegate.swift */; };
 		BE2285D4201A389D00C2A7DF /* ModularSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2285D3201A389D00C2A7DF /* ModularSearchController.swift */; };
 		BE2285D7201A389D00C2A7DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE2285D5201A389D00C2A7DF /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		1BADA0BE6BDD8E9A8E44701D /* Pods-manni.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni.release.xcconfig"; path = "Pods/Target Support Files/Pods-manni/Pods-manni.release.xcconfig"; sourceTree = "<group>"; };
+		BE090F4F201CD277004C1410 /* DarkBarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkBarNavigationController.swift; sourceTree = "<group>"; };
 		BE2285CE201A389D00C2A7DF /* manni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = manni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2285D1201A389D00C2A7DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE2285D3201A389D00C2A7DF /* ModularSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModularSearchController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				BE59ABEE201B11E2003CA1EF /* DeparturesController.swift */,
 				BE2285D3201A389D00C2A7DF /* ModularSearchController.swift */,
 				BE98601D201B2B15008B4A08 /* RootSearchController.swift */,
+				BE090F4F201CD277004C1410 /* DarkBarNavigationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				BE986020201B2FFB008B4A08 /* UIViewControllerExtension.swift in Sources */,
 				BE59ABE8201A76B1003CA1EF /* DateExtension.swift in Sources */,
 				BE986022201B3463008B4A08 /* TableViewCellExtension.swift in Sources */,
+				BE090F50201CD277004C1410 /* DarkBarNavigationController.swift in Sources */,
 				BE59ABE1201A64FE003CA1EF /* Colors.swift in Sources */,
 				BE986024201B3577008B4A08 /* RandomExtension.swift in Sources */,
 				BE98601E201B2B15008B4A08 /* RootSearchController.swift in Sources */,

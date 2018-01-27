@@ -27,7 +27,7 @@ class Colors {
     ]
     
     static func color(forInt line: Int) -> UIColor {
-        return Colors.colors[line % Colors.colors.count].darker(by: CGFloat.random(min: 0, max: 10))!
+        return Colors.colors[line % Colors.colors.count]
     }
     
     static func standardColor() -> UIColor {

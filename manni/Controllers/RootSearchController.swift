@@ -46,6 +46,10 @@ class RootSearchBarController: UIViewController {
             }
         }
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
+    }
 }
 
 extension RootSearchBarController: SearchBarDelegate {

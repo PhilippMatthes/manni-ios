@@ -16,6 +16,7 @@ class DepartureCell: TableViewCell {
     
     @IBOutlet weak var titleLabel1: UILabel!
     @IBOutlet weak var titleLabel2: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var button: RaisedButton!
 
@@ -41,14 +42,30 @@ class DepartureCell: TableViewCell {
             time = "n/a"
         }
         
-        self.titleLabel1.text = "\(direction) um \(time)"
-        self.titleLabel2.text = "In \(eta) min (\(delay) min Verspätung)"
-        self.detailLabel.text = "Fahrt von Bahnsteig \(platformName)"
+        var changesString = ""
+        if let routeChangeIDs = departure.routeChanges {
+            let routeChanges = State.shared.routeChanges(forChangeIDs: routeChangeIDs)
+            for change in routeChanges {
+                changesString += change
+            }
+        }
+        
+        self.titleLabel1.text = "\(direction)"
+        if delay == 0 {
+            self.titleLabel2.text = "In \(eta) min"
+        } else if delay > 0 {
+            self.titleLabel2.text = "In \(eta) min (\(delay) min Verspätung)"
+        } else {
+            self.titleLabel2.text = "In \(eta) min (\(-delay) min zu früh)"
+        }
+        self.detailLabel.text = "\(changesString) Fahrt von Bahnsteig \(platformName)"
+        self.timeLabel.text = "Vsl. Abfahrt: \(time)"
         self.button.setTitle("\(line)", for: .normal)
         
         self.titleLabel1.textColor = UIColor.white
         self.titleLabel2.textColor = UIColor.white
         self.detailLabel.textColor = UIColor.white
+        self.timeLabel.textColor = UIColor.white
         self.button.titleLabel?.textColor = UIColor.white
         
         var color = Colors.standardColor()

@@ -13,6 +13,7 @@ import Motion
 
 extension TableViewCell {
     func setUp(forStop stop: Stop) {
+        
         if let region = stop.region {
             self.textLabel?.text = "\(stop.name) (\(region))"
         } else {
@@ -27,5 +28,8 @@ extension TableViewCell {
         }
         self.backgroundColor = color
         self.pulseColor = color.lighter()!
+        
+        self.imageView?.image = Icon.cm.menu
+        self.imageView?.tintColor = UIColor.white
     }
 }

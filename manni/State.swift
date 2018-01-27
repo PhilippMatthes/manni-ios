@@ -36,18 +36,26 @@ class State {
                     description = ""
                 }
                 
-                for changeID in change.lineIds {
-                    if var existingChanges = self.routeChanges[changeID] {
-                        existingChanges.append("\(description)\(change.description)")
-                        self.routeChanges[changeID] = existingChanges
-                    }
+                if var existingChanges = self.routeChanges[change.id] {
+                    existingChanges.append("\(description)\(change.description)")
+                    self.routeChanges[change.id] = existingChanges
+                } else {
+                    self.routeChanges[change.id] = ["\(description)\(change.description)"]
                 }
             }
         }
     }
     
-    static func routeChanges(forRouteChangeID id: String) -> [String]? {
-        return State.shared.routeChanges[id]
+    func routeChanges(forChangeIDs changeIDs: [String]) -> [String] {
+        var output = [String]()
+        for changeID in changeIDs {
+            if let routeChanges = routeChanges[changeID] {
+                for changeString in routeChanges {
+                    output.append(changeString)
+                }
+            }
+        }
+        return output
     }
     
 }
