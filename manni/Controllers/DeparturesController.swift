@@ -16,8 +16,6 @@ class DeparturesController: UIViewController {
     
     var previousViewController: UIViewController?
     
-    var stop: Stop?
-    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(self.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
@@ -31,7 +29,7 @@ class DeparturesController: UIViewController {
         view.backgroundColor = Color.blue.lighten5
         configureTableView()
         configureNavigationBar(forStop: State.shared.stop!)
-        loadDepartures(forStop: State.shared.stop!)
+        loadDepartures(forStop: State.shared.stop!) {}
     }
     
     func configureNavigationBar(forStop stop: Stop) {
@@ -53,17 +51,19 @@ class DeparturesController: UIViewController {
 
     @objc func handleRefresh(refreshControl: UIRefreshControl) {
         if let stop = State.shared.stop {
-            loadDepartures(forStop: stop)
+            loadDepartures(forStop: stop) {
+                refreshControl.endRefreshing()
+            }
         }
-        refreshControl.endRefreshing()
     }
     
-    func loadDepartures(forStop stop: Stop) {
+    func loadDepartures(forStop stop: Stop, completion: @escaping () -> Void) {
         Departure.monitor(stopWithName: stop.description) { result in
             guard let response = result.success else { return }
             self.departures = response.departures
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                completion()
             }
         }
     }
@@ -88,6 +88,10 @@ extension DeparturesController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // TODO
     }
     
     func configureTableView() {

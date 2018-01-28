@@ -12,6 +12,7 @@ import DVB
 class State {
     
     static let shared = State()
+    let defaults = UserDefaults.standard
     
     var routeChanges = [String : [String]]()
     

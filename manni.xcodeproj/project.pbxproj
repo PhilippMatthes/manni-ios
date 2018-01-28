@@ -20,6 +20,7 @@
 		BE59ABEF201B11E2003CA1EF /* DeparturesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABEE201B11E2003CA1EF /* DeparturesController.swift */; };
 		BE59ABF2201B144C003CA1EF /* CSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE59ABF3201B144C003CA1EF /* CSV.framework */; };
 		BE59ABF5201B146E003CA1EF /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABF4201B146E003CA1EF /* State.swift */; };
+		BE5BABEE201E885D004C09FB /* Locator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5BABED201E885D004C09FB /* Locator.swift */; };
 		BE650B4C201A41B1005D1F32 /* Pods_manni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B50201A41B1005D1F32 /* Pods_manni.framework */; };
 		BE650B51201A425A005D1F32 /* DVB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B54201A425A005D1F32 /* DVB.framework */; };
 		BE650B52201A425A005D1F32 /* Material.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B55201A425A005D1F32 /* Material.framework */; };
@@ -47,6 +48,7 @@
 		BE59ABEE201B11E2003CA1EF /* DeparturesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesController.swift; sourceTree = "<group>"; };
 		BE59ABF3201B144C003CA1EF /* CSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE59ABF4201B146E003CA1EF /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		BE5BABED201E885D004C09FB /* Locator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locator.swift; sourceTree = "<group>"; };
 		BE650B4D201A41B1005D1F32 /* DVB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DVB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE650B4E201A41B1005D1F32 /* Material.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Material.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE650B4F201A41B1005D1F32 /* Motion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Motion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				BE59ABF4201B146E003CA1EF /* State.swift */,
+				BE5BABED201E885D004C09FB /* Locator.swift */,
 				BE59ABE5201A65D3003CA1EF /* Controllers */,
 				BE59ABE4201A65C2003CA1EF /* Extensions */,
 				BE59ABE6201A65E2003CA1EF /* UI */,
@@ -307,6 +310,7 @@
 				BE986020201B2FFB008B4A08 /* UIViewControllerExtension.swift in Sources */,
 				BE59ABE8201A76B1003CA1EF /* DateExtension.swift in Sources */,
 				BE986022201B3463008B4A08 /* TableViewCellExtension.swift in Sources */,
+				BE5BABEE201E885D004C09FB /* Locator.swift in Sources */,
 				BE090F50201CD277004C1410 /* DarkBarNavigationController.swift in Sources */,
 				BE59ABE1201A64FE003CA1EF /* Colors.swift in Sources */,
 				BE986024201B3577008B4A08 /* RandomExtension.swift in Sources */,

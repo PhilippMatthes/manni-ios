@@ -27,7 +27,7 @@ class RootSearchBarController: UIViewController {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         view.backgroundColor = Color.blue.lighten5
-        loadStops()
+        
         configureSearchBar()
         configureTableView()
     }
