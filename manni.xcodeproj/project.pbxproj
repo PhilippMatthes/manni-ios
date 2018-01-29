@@ -21,6 +21,7 @@
 		BE59ABF2201B144C003CA1EF /* CSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE59ABF3201B144C003CA1EF /* CSV.framework */; };
 		BE59ABF5201B146E003CA1EF /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABF4201B146E003CA1EF /* State.swift */; };
 		BE5BABEE201E885D004C09FB /* Locator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5BABED201E885D004C09FB /* Locator.swift */; };
+		BE5BABF0201F5517004C09FB /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5BABEF201F5517004C09FB /* UserDefaultsExtension.swift */; };
 		BE650B4C201A41B1005D1F32 /* Pods_manni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B50201A41B1005D1F32 /* Pods_manni.framework */; };
 		BE650B51201A425A005D1F32 /* DVB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B54201A425A005D1F32 /* DVB.framework */; };
 		BE650B52201A425A005D1F32 /* Material.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B55201A425A005D1F32 /* Material.framework */; };
@@ -49,6 +50,7 @@
 		BE59ABF3201B144C003CA1EF /* CSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE59ABF4201B146E003CA1EF /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		BE5BABED201E885D004C09FB /* Locator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locator.swift; sourceTree = "<group>"; };
+		BE5BABEF201F5517004C09FB /* UserDefaultsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtension.swift; sourceTree = "<group>"; };
 		BE650B4D201A41B1005D1F32 /* DVB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DVB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE650B4E201A41B1005D1F32 /* Material.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Material.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE650B4F201A41B1005D1F32 /* Motion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Motion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +127,7 @@
 		BE59ABE4201A65C2003CA1EF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BE5BABEF201F5517004C09FB /* UserDefaultsExtension.swift */,
 				BE59ABE7201A76B1003CA1EF /* DateExtension.swift */,
 				BE986023201B3577008B4A08 /* RandomExtension.swift */,
 				BE986021201B3463008B4A08 /* TableViewCellExtension.swift */,
@@ -315,6 +318,7 @@
 				BE59ABE1201A64FE003CA1EF /* Colors.swift in Sources */,
 				BE986024201B3577008B4A08 /* RandomExtension.swift in Sources */,
 				BE98601E201B2B15008B4A08 /* RootSearchController.swift in Sources */,
+				BE5BABF0201F5517004C09FB /* UserDefaultsExtension.swift in Sources */,
 				BE59ABE3201A6528003CA1EF /* UIColorExtension.swift in Sources */,
 				BE2285D4201A389D00C2A7DF /* ModularSearchController.swift in Sources */,
 				BE59ABF5201B146E003CA1EF /* State.swift in Sources */,

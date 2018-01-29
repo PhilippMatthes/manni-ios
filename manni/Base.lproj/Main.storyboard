@@ -43,10 +43,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="SHP-IH-Lqp" firstAttribute="trailing" secondItem="CFE-WJ-Nex" secondAttribute="trailing" id="3dw-j5-7ey"/>
-                            <constraint firstItem="SHP-IH-Lqp" firstAttribute="leading" secondItem="CFE-WJ-Nex" secondAttribute="leading" id="VZc-na-Lsh"/>
-                            <constraint firstItem="SHP-IH-Lqp" firstAttribute="bottom" secondItem="CFE-WJ-Nex" secondAttribute="bottom" id="Xyw-x1-hWM"/>
-                            <constraint firstItem="SHP-IH-Lqp" firstAttribute="top" secondItem="xqQ-Gt-cwK" secondAttribute="top" id="Ztk-vS-6Qg"/>
+                            <constraint firstItem="SHP-IH-Lqp" firstAttribute="bottom" secondItem="CFE-WJ-Nex" secondAttribute="bottom" id="J5X-O3-JeJ"/>
+                            <constraint firstItem="SHP-IH-Lqp" firstAttribute="leading" secondItem="CFE-WJ-Nex" secondAttribute="leading" id="L75-0v-TAa"/>
+                            <constraint firstItem="SHP-IH-Lqp" firstAttribute="trailing" secondItem="CFE-WJ-Nex" secondAttribute="trailing" id="NMD-BJ-FTt"/>
+                            <constraint firstItem="SHP-IH-Lqp" firstAttribute="top" secondItem="xqQ-Gt-cwK" secondAttribute="top" id="jx5-0N-3P9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CFE-WJ-Nex"/>
                     </view>

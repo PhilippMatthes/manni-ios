@@ -16,8 +16,13 @@ import DVB
 class RootSearchBarController: UIViewController {
     
     @IBOutlet weak var tableView: TableView!
+    @IBOutlet weak var otvConstraint: NSLayoutConstraint!
+    
+    let cellHeight: CGFloat = CGFloat(50)
     
     var query: String = "Hauptbahnhof"
+    
+    var otvIsOpen: Bool = true
     
     var requestTimer: Timer?
 
@@ -27,9 +32,8 @@ class RootSearchBarController: UIViewController {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         view.backgroundColor = Color.blue.lighten5
-        
         configureSearchBar()
-        configureTableView()
+        configureTableViews()
     }
     
     func configureSearchBar() {
@@ -58,7 +62,13 @@ extension RootSearchBarController: SearchBarDelegate {
             if let timer = requestTimer {
                 timer.invalidate()
             }
-            requestTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.loadStops), userInfo: nil, repeats: false)
+            requestTimer = Timer.scheduledTimer (
+                timeInterval: 0.5,
+                target: self,
+                selector: #selector(self.loadStops),
+                userInfo: nil,
+                repeats: false
+            )
             query = text
         }
     }
@@ -81,16 +91,17 @@ extension RootSearchBarController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return cellHeight
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dismissKeyboard()
-        State.shared.stop = stops[indexPath.row]
+        let stop = stops[indexPath.row]
+        State.shared.stop = stop
         performSegue(withIdentifier: "showDepartures", sender: self)
     }
     
-    func configureTableView() {
+    func configureTableViews() {
         tableView.delegate = self
         tableView.dataSource = self
     }

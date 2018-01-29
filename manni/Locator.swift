@@ -25,10 +25,10 @@ class Locator {
         }
     }
     
-    static func allstops(forLineName: String,
-                            startPointName: String,
-                            endPointName: String,
-                            completion: @escaping (_ result: [Route.RouteStop]?) -> ()) {
+    static func allstops(forLineName lineName: String,
+                         startPointName: String,
+                         endPointName: String,
+                         completion: @escaping (_ result: [Route.RouteStop]?) -> ()) {
         Route.find(from: startPointName, to: endPointName) { result in
             guard let response = result.success else { return }
             for responseRoute in response.routes {
@@ -36,11 +36,28 @@ class Locator {
                     if let partialRoute = responseRoute.partialRoutes.first {
                         if let regularStops = partialRoute.regularStops {
                             completion(regularStops)
+                            break
                         }
                     }
                 }
             }
             completion(nil)
+        }
+    }
+    
+    static func alloccurences(forLineName lineName: String,
+                              direction: String,
+                              routeStops: [Route.RouteStop],
+                              completion: @escaping (_ stop: String, _ departure: Departure) -> ()) {
+        for stop in routeStops {
+            Departure.monitor(stopWithName: stop.name) { result in
+                guard let response = result.success else { return }
+                for departure in response.departures {
+                    if departure.line == lineName && departure.direction == direction {
+                        print("Abfahrt der Linie \(lineName) \(direction) an \(stop.name): \(departure.scheduledTime)")
+                    }
+                }
+            }
         }
     }
 }

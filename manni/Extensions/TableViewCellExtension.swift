@@ -12,8 +12,7 @@ import Material
 import Motion
 
 extension TableViewCell {
-    func setUp(forStop stop: Stop) {
-        
+    func setUp(forStop stop: Stop) {        
         if let region = stop.region {
             self.textLabel?.text = "\(stop.name) (\(region))"
         } else {

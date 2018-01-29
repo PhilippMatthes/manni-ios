@@ -11,13 +11,13 @@ import UIKit
 import Material
 
 class ModularSearchBarController: SearchBarController {
-    fileprivate var searchButton: IconButton!
     fileprivate var dismissButton: IconButton!
+    fileprivate var listButton: IconButton!
     
     open override func prepare() {
         super.prepare()
-        prepareSearchButton()
         prepareDismissButton()
+        prepareListButton()
         prepareStatusBar()
         prepareSearchBar()
     }
@@ -34,9 +34,9 @@ extension ModularSearchBarController {
         dismissButton.addTarget(self, action: #selector(dismiss(sender:)), for: .touchUpInside)
     }
     
-    func prepareSearchButton() {
-        searchButton = IconButton(image: Icon.cm.search)
-        searchButton.addTarget(self, action: #selector(search(sender:)), for: .touchUpInside)
+    func prepareListButton() {
+        listButton = IconButton(image: Icon.cm.menu)
+        listButton.addTarget(self, action: #selector(list(sender:)), for: .touchUpInside)
     }
     
     func prepareStatusBar() {
@@ -45,7 +45,7 @@ extension ModularSearchBarController {
     
     func prepareSearchBar() {
         searchBar.leftViews = [dismissButton]
-        searchBar.rightViews = [searchButton]
+        searchBar.rightViews = [listButton]
         searchBar.placeholder = "Haltestelle suchen"
     }
     
@@ -53,8 +53,10 @@ extension ModularSearchBarController {
         dismissKeyboard()
     }
     
-    @objc func search(sender: UIButton!) {
-        print("Search")
+    @objc func list(sender: UIButton!) {
+        if let rvc = rootViewController as? RootSearchBarController {
+            
+        }
     }
 }
 
