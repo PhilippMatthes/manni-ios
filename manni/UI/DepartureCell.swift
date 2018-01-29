@@ -68,9 +68,14 @@ class DepartureCell: TableViewCell {
         self.timeLabel.textColor = UIColor.white
         self.button.titleLabel?.textColor = UIColor.white
         
-        var color = Colors.standardColor()
+        self.button.layer.borderWidth = 3.0
+        self.button.layer.borderColor = UIColor.white.cgColor
+
+        var color: UIColor
         if let lineNumber = Int(departure.line) {
             color = Colors.color(forInt: lineNumber)
+        } else {
+            color = Colors.color(forInt: departure.line.count)
         }
         
         self.backgroundColor = color

@@ -22,9 +22,11 @@ extension TableViewCell {
         
         self.textLabel?.textColor = UIColor.white
         
-        var color = Colors.standardColor()
+        var color: UIColor
         if let lineNumber = Int(stop.id) {
             color = Colors.color(forInt: lineNumber)
+        } else {
+            color = Colors.color(forInt: stop.description.count)
         }
         self.backgroundColor = color
         self.pulseColor = color.lighter()!
