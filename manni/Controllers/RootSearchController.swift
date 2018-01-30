@@ -20,7 +20,7 @@ class RootSearchBarController: UIViewController {
     
     let cellHeight: CGFloat = CGFloat(50)
     
-    var query: String = "Hauptbahnhof"
+    var query: String = Config.standardQuery
     
     var otvIsOpen: Bool = true
     
@@ -63,7 +63,7 @@ extension RootSearchBarController: SearchBarDelegate {
                 timer.invalidate()
             }
             requestTimer = Timer.scheduledTimer (
-                timeInterval: 0.5,
+                timeInterval: Config.searchResultsLoadingInterval,
                 target: self,
                 selector: #selector(self.loadStops),
                 userInfo: nil,

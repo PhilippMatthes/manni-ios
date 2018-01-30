@@ -163,11 +163,42 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Mve-EC-h5h" id="KOk-Vp-nKA"/>
+                        <segue destination="DuR-g3-dbM" kind="presentation" identifier="showLocation" id="Tg8-TA-dcO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="925.60000000000002" y="31.934032983508249"/>
+        </scene>
+        <!--Location Controller-->
+        <scene sceneID="s8d-oJ-Mfm">
+            <objects>
+                <viewController id="rMt-30-qXg" customClass="LocationController" customModule="manni" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Miq-ir-4f4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6HX-Ts-N6A">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6HX-Ts-N6A" firstAttribute="leading" secondItem="Pjq-Tv-xdw" secondAttribute="leading" id="89v-is-xb9"/>
+                            <constraint firstItem="6HX-Ts-N6A" firstAttribute="bottom" secondItem="Pjq-Tv-xdw" secondAttribute="bottom" id="NKg-9M-g5D"/>
+                            <constraint firstItem="6HX-Ts-N6A" firstAttribute="top" secondItem="Pjq-Tv-xdw" secondAttribute="top" id="cba-PF-hGr"/>
+                            <constraint firstItem="6HX-Ts-N6A" firstAttribute="trailing" secondItem="Pjq-Tv-xdw" secondAttribute="trailing" id="fHZ-HY-QQX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Pjq-Tv-xdw"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="flX-cg-2mR"/>
+                    <connections>
+                        <outlet property="mapView" destination="6HX-Ts-N6A" id="bC7-kR-Rmh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tVa-w2-faU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2488.8000000000002" y="30.134932533733135"/>
         </scene>
         <!--Dark Bar Navigation Controller-->
         <scene sceneID="DxQ-0D-aIf">
@@ -186,6 +217,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bn3-rS-kDx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="132.80000000000001" y="32.383808095952027"/>
+        </scene>
+        <!--Dark Bar Navigation Controller-->
+        <scene sceneID="01V-4i-xWr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DuR-g3-dbM" customClass="DarkBarNavigationController" customModule="manni" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SEb-bE-cVd">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="rMt-30-qXg" kind="relationship" relationship="rootViewController" id="N2O-ln-zDq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0ak-mb-UIh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1723.2" y="31.484257871064472"/>
         </scene>
     </scenes>
 </document>

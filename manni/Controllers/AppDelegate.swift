@@ -16,15 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        State.shared.loadRouteChanges()
-        
-//        Locator.allstops(forLineName: "12 Leutewitz", startPointName: "Leutewitz", endPointName: "Tharandter Straße") {
-//            (routeStops) in
-//            if let routeStops = routeStops {
-//                Locator.alloccurences(forLineName: "12", direction: "Leutewitz", routeStops: routeStops) {_,_ in}
-//            }
-//        }
-        
+        State.shared.loadRouteChanges()        
         
         window!.rootViewController = ModularSearchBarController(rootViewController: UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RootSearchBarController"))
         window!.makeKeyAndVisible()

@@ -46,7 +46,7 @@ extension ModularSearchBarController {
     func prepareSearchBar() {
         searchBar.leftViews = [dismissButton]
         searchBar.rightViews = [listButton]
-        searchBar.placeholder = "Haltestelle suchen"
+        searchBar.placeholder = Config.searchBarPlaceHolder
     }
     
     @objc func dismiss(sender: UIButton!) {
@@ -54,9 +54,9 @@ extension ModularSearchBarController {
     }
     
     @objc func list(sender: UIButton!) {
-        if let rvc = rootViewController as? RootSearchBarController {
-            
-        }
+//        if let rvc = rootViewController as? RootSearchBarController {
+//
+//        }
     }
 }
 

@@ -18,18 +18,23 @@
 		BE59ABE3201A6528003CA1EF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE2201A6528003CA1EF /* UIColorExtension.swift */; };
 		BE59ABE8201A76B1003CA1EF /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE7201A76B1003CA1EF /* DateExtension.swift */; };
 		BE59ABEF201B11E2003CA1EF /* DeparturesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABEE201B11E2003CA1EF /* DeparturesController.swift */; };
-		BE59ABF2201B144C003CA1EF /* CSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE59ABF3201B144C003CA1EF /* CSV.framework */; };
 		BE59ABF5201B146E003CA1EF /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABF4201B146E003CA1EF /* State.swift */; };
 		BE5BABEE201E885D004C09FB /* Locator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5BABED201E885D004C09FB /* Locator.swift */; };
 		BE5BABF0201F5517004C09FB /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5BABEF201F5517004C09FB /* UserDefaultsExtension.swift */; };
+		BE5BABF4201FA15B004C09FB /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5BABF3201FA15B004C09FB /* LocationController.swift */; };
 		BE650B4C201A41B1005D1F32 /* Pods_manni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B50201A41B1005D1F32 /* Pods_manni.framework */; };
 		BE650B51201A425A005D1F32 /* DVB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B54201A425A005D1F32 /* DVB.framework */; };
 		BE650B52201A425A005D1F32 /* Material.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B55201A425A005D1F32 /* Material.framework */; };
 		BE650B53201A425A005D1F32 /* Motion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B56201A425A005D1F32 /* Motion.framework */; };
+		BE8D5CDD20204E930057740A /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8D5CDC20204E930057740A /* Util.swift */; };
+		BE8D5CDF2020605D0057740A /* RouteStopExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8D5CDE2020605D0057740A /* RouteStopExtension.swift */; };
+		BE8D5CE120206AB80057740A /* MapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8D5CE020206AB80057740A /* MapViewExtension.swift */; };
+		BE8D5CE4202080B60057740A /* BRYXBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE8D5CE5202080B60057740A /* BRYXBanner.framework */; };
+		BE8D5CE7202081CF0057740A /* BannerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8D5CE6202081CF0057740A /* BannerExtension.swift */; };
+		BE8D5CE9202097410057740A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8D5CE8202097410057740A /* Config.swift */; };
 		BE98601E201B2B15008B4A08 /* RootSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE98601D201B2B15008B4A08 /* RootSearchController.swift */; };
 		BE986020201B2FFB008B4A08 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE98601F201B2FFB008B4A08 /* UIViewControllerExtension.swift */; };
 		BE986022201B3463008B4A08 /* TableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE986021201B3463008B4A08 /* TableViewCellExtension.swift */; };
-		BE986024201B3577008B4A08 /* RandomExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE986023201B3577008B4A08 /* RandomExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +56,7 @@
 		BE59ABF4201B146E003CA1EF /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		BE5BABED201E885D004C09FB /* Locator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locator.swift; sourceTree = "<group>"; };
 		BE5BABEF201F5517004C09FB /* UserDefaultsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtension.swift; sourceTree = "<group>"; };
+		BE5BABF3201FA15B004C09FB /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		BE650B4D201A41B1005D1F32 /* DVB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DVB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE650B4E201A41B1005D1F32 /* Material.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Material.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE650B4F201A41B1005D1F32 /* Motion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Motion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,10 +64,15 @@
 		BE650B54201A425A005D1F32 /* DVB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DVB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE650B55201A425A005D1F32 /* Material.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Material.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE650B56201A425A005D1F32 /* Motion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Motion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE8D5CDC20204E930057740A /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		BE8D5CDE2020605D0057740A /* RouteStopExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteStopExtension.swift; sourceTree = "<group>"; };
+		BE8D5CE020206AB80057740A /* MapViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewExtension.swift; sourceTree = "<group>"; };
+		BE8D5CE5202080B60057740A /* BRYXBanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BRYXBanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE8D5CE6202081CF0057740A /* BannerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerExtension.swift; sourceTree = "<group>"; };
+		BE8D5CE8202097410057740A /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		BE98601D201B2B15008B4A08 /* RootSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootSearchController.swift; sourceTree = "<group>"; };
 		BE98601F201B2FFB008B4A08 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		BE986021201B3463008B4A08 /* TableViewCellExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellExtension.swift; sourceTree = "<group>"; };
-		BE986023201B3577008B4A08 /* RandomExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomExtension.swift; sourceTree = "<group>"; };
 		DFB92583DD3E650EAD28A17C /* Pods-manni.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni.debug.xcconfig"; path = "Pods/Target Support Files/Pods-manni/Pods-manni.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,7 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE59ABF2201B144C003CA1EF /* CSV.framework in Frameworks */,
+				BE8D5CE4202080B60057740A /* BRYXBanner.framework in Frameworks */,
 				BE650B51201A425A005D1F32 /* DVB.framework in Frameworks */,
 				BE650B52201A425A005D1F32 /* Material.framework in Frameworks */,
 				BE650B53201A425A005D1F32 /* Motion.framework in Frameworks */,
@@ -111,8 +122,10 @@
 		BE2285D0201A389D00C2A7DF /* manni */ = {
 			isa = PBXGroup;
 			children = (
+				BE8D5CE8202097410057740A /* Config.swift */,
 				BE59ABF4201B146E003CA1EF /* State.swift */,
 				BE5BABED201E885D004C09FB /* Locator.swift */,
+				BE8D5CDC20204E930057740A /* Util.swift */,
 				BE59ABE5201A65D3003CA1EF /* Controllers */,
 				BE59ABE4201A65C2003CA1EF /* Extensions */,
 				BE59ABE6201A65E2003CA1EF /* UI */,
@@ -129,10 +142,12 @@
 			children = (
 				BE5BABEF201F5517004C09FB /* UserDefaultsExtension.swift */,
 				BE59ABE7201A76B1003CA1EF /* DateExtension.swift */,
-				BE986023201B3577008B4A08 /* RandomExtension.swift */,
 				BE986021201B3463008B4A08 /* TableViewCellExtension.swift */,
 				BE59ABE2201A6528003CA1EF /* UIColorExtension.swift */,
 				BE98601F201B2FFB008B4A08 /* UIViewControllerExtension.swift */,
+				BE8D5CDE2020605D0057740A /* RouteStopExtension.swift */,
+				BE8D5CE020206AB80057740A /* MapViewExtension.swift */,
+				BE8D5CE6202081CF0057740A /* BannerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -145,6 +160,7 @@
 				BE2285D3201A389D00C2A7DF /* ModularSearchController.swift */,
 				BE98601D201B2B15008B4A08 /* RootSearchController.swift */,
 				BE090F4F201CD277004C1410 /* DarkBarNavigationController.swift */,
+				BE5BABF3201FA15B004C09FB /* LocationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -161,6 +177,7 @@
 		BE650B48201A41B1005D1F32 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE8D5CE5202080B60057740A /* BRYXBanner.framework */,
 				BE59ABF3201B144C003CA1EF /* CSV.framework */,
 				BE650B54201A425A005D1F32 /* DVB.framework */,
 				BE650B55201A425A005D1F32 /* Material.framework */,
@@ -284,14 +301,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-manni/Pods-manni-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/CSV.swift/CSV.framework",
+				"${BUILT_PRODUCTS_DIR}/BRYXBanner/BRYXBanner.framework",
 				"${BUILT_PRODUCTS_DIR}/DVB/DVB.framework",
 				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
 				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CSV.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BRYXBanner.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DVB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
@@ -308,18 +325,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE5BABF4201FA15B004C09FB /* LocationController.swift in Sources */,
 				BE59ABEF201B11E2003CA1EF /* DeparturesController.swift in Sources */,
 				BE59ABDF201A5CD7003CA1EF /* DepartureCell.swift in Sources */,
 				BE986020201B2FFB008B4A08 /* UIViewControllerExtension.swift in Sources */,
 				BE59ABE8201A76B1003CA1EF /* DateExtension.swift in Sources */,
 				BE986022201B3463008B4A08 /* TableViewCellExtension.swift in Sources */,
+				BE8D5CDD20204E930057740A /* Util.swift in Sources */,
+				BE8D5CE7202081CF0057740A /* BannerExtension.swift in Sources */,
 				BE5BABEE201E885D004C09FB /* Locator.swift in Sources */,
 				BE090F50201CD277004C1410 /* DarkBarNavigationController.swift in Sources */,
+				BE8D5CDF2020605D0057740A /* RouteStopExtension.swift in Sources */,
 				BE59ABE1201A64FE003CA1EF /* Colors.swift in Sources */,
-				BE986024201B3577008B4A08 /* RandomExtension.swift in Sources */,
 				BE98601E201B2B15008B4A08 /* RootSearchController.swift in Sources */,
+				BE8D5CE120206AB80057740A /* MapViewExtension.swift in Sources */,
 				BE5BABF0201F5517004C09FB /* UserDefaultsExtension.swift in Sources */,
 				BE59ABE3201A6528003CA1EF /* UIColorExtension.swift in Sources */,
+				BE8D5CE9202097410057740A /* Config.swift in Sources */,
 				BE2285D4201A389D00C2A7DF /* ModularSearchController.swift in Sources */,
 				BE59ABF5201B146E003CA1EF /* State.swift in Sources */,
 				BE2285D2201A389D00C2A7DF /* AppDelegate.swift in Sources */,

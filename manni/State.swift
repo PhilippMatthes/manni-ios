@@ -17,6 +17,7 @@ class State {
     var routeChanges = [String : [String]]()
     
     var stop: Stop?
+    var departure: Departure?
     
     private init() {}
     

@@ -39,7 +39,7 @@ class DeparturesController: UIViewController {
         backButton.setImage(Icon.cm.arrowBack, for: .normal)
         backButton.tintColor = UIColor.black
         backButton.setTitleColor(UIColor.black, for: .normal)
-        backButton.setTitle("Zurück", for: .normal)
+        backButton.setTitle(Config.backButtonTitle, for: .normal)
         backButton.addTarget(self, action: #selector(self.returnBack), for: .touchUpInside)
         navigationItem.setLeftBarButton(UIBarButtonItem(customView: backButton), animated: true)
         navigationItem.hidesBackButton = false
@@ -87,11 +87,12 @@ extension DeparturesController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0
+        return Config.departuresTableViewCellHeight
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO
+        State.shared.departure = departures[indexPath.row]
+        performSegue(withIdentifier: "showLocation", sender: self)
     }
     
     func configureTableView() {
