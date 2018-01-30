@@ -81,7 +81,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHE-BR-0yV" customClass="RaisedButton" customModule="Material">
                                                     <rect key="frame" x="8" y="8" width="50" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="Kf7-N7-40i"/>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="50" id="Kf7-N7-40i"/>
                                                         <constraint firstAttribute="height" constant="50" id="oOC-Xr-5wx"/>
                                                     </constraints>
                                                     <state key="normal" title="Button">
