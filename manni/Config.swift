@@ -21,6 +21,6 @@ class Config {
     static let zoomDiameter: Double = 2000
     static let circleRadius: Double = 100
     static let dateFormat: String = "HH:mm:ss"
-    static let standardEtaRange: Int = 3
+    static let standardEtaRange: Int = 2
     static let bannerDuration: Double = 10
 }

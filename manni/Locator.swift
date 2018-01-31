@@ -10,49 +10,52 @@ import Foundation
 import DVB
 import MapKit
 
-enum LocatorResponse {
-    case success
-    case linesCouldNotBeLoaded
-    case routeStopsCouldNotBeLoaded
-    case occurencesCouldNotBeLoaded
-    case failure
-}
 
 class Locator {
     static func location(forRouteStop routeStop: Route.RouteStop,
-                        completion: @escaping (_ success: Bool, _ result: CLLocation?) -> ()) {
+                         log: @escaping (_ text: String, _ detail: String) -> (),
+                         completion: @escaping (_ result: CLLocation?) -> ()) {
         Stop.find(routeStop.name) {
             result in
-            guard
-                let response = result.success,
-                let bestStop = response.stops.first,
-                let location = bestStop.location
-                else { completion(false, nil); return }
-            completion(true, CLLocation(latitude: location.latitude, longitude: location.longitude)); return
+            guard let r = result.success, let b = r.stops.first, let l = b.location else { return }
+            completion(CLLocation(latitude: l.latitude, longitude: l.longitude))
         }
     }
     
     static func directions(forLineName lineName: String,
-                           aroundStop stop: Stop,
-                           completion: @escaping (_ success: Bool, _ result: [Line]) -> ()) {
-        Line.get(forStopName: stop.name) {
+                           aroundStop stopName: String,
+                           log: @escaping (_ text: String, _ detail: String?) -> (),
+                           completion: @escaping (_ result: [String]?) -> ()) {
+        log("Finde mögliche Richtungen der linie \(lineName)", nil)
+        Line.get(forStopName: stopName) {
             result in
             if let response = result.success {
-                var filteredLines = [Line]()
+                var filteredLines = [String]()
                 for responseLine in response.lines {
                     if responseLine.name == lineName {
-                        filteredLines.append(responseLine)
+                        for direction in responseLine.directions {
+                            filteredLines.append(direction.name)
+                        }
                     }
                 }
-                completion(true, filteredLines)
-            } else { completion(false, [Line]()); return }
+                if filteredLines.count == 1 {
+                    filteredLines.append(stopName)
+                }
+                log("Es wurden \(filteredLines.count) verschiedene Richtungen gefunden.",
+                    "\(filteredLines)")
+                completion(filteredLines)
+            } else {
+                log("Keine Richtungen für die Linie \(lineName) an der Hst. \(stopName) gefunden", nil)
+            }
         }
     }
     
     static func allstops(forLineName lineName: String,
                          startPointName: String,
                          endPointName: String,
-                         completion: @escaping (_ success: Bool, _ result: [Route.RouteStop]?) -> ()) {
+                         log: @escaping (_ text: String, _ detail: String?) -> (),
+                         completion: @escaping (_ result: [Route.RouteStop]?) -> ()) {
+        log("Suche alle Haltestellen der Linie \(lineName)", "Zwischen \(startPointName) und \(endPointName)")
         Route.find(from: startPointName, to: endPointName) {
             result in
             if let response = result.success {
@@ -60,24 +63,30 @@ class Locator {
                     if responseRoute.interchanges == 0 && responseRoute.partialRoutes.count == 1 {
                         if let partialRoute = responseRoute.partialRoutes.first {
                             if let regularStops = partialRoute.regularStops {
-                                completion(true, regularStops); return
+                                log("\(regularStops.count) Haltestellen gefunden", "Zwischen \(startPointName) und \(endPointName)")
+                                completion(regularStops)
+                                return
                             }
                         }
                     }
                 }
-            } else { completion(false, nil); return }
+            } else {
+                log("Keine Haltestellen der Linie \(lineName) gefunden", "Zwischen \(startPointName) und \(endPointName)")
+            }
         }
     }
     
     static func alloccurences(forLineName lineName: String,
                               direction: String,
                               routeStops: [Route.RouteStop],
-                              completion: @escaping (_ success: Bool, _ result: [Route.RouteStop : [Departure]]) -> ()) {
+                              log: @escaping (_ text: String, _ detail: String?) -> (),
+                              completion: @escaping (_ result: [Route.RouteStop : [Departure]]) -> ()) {
         var output: [Route.RouteStop : [Departure]] = [Route.RouteStop : [Departure]]()
         let dispatchGroup = DispatchGroup()
+        log("Suche alle Daten zur Linie \(lineName) \(direction)", "Lade Live-Fahrplanmonitor von \(routeStops.count) Haltestellen")
         for stop in routeStops {
             dispatchGroup.enter()
-            Departure.monitor(stopWithName: stop.name) {
+            Departure.monitor(stopWithId: stop.dataId) {
                 result in
                 if let response = result.success {
                     for departure in response.departures {
@@ -94,38 +103,36 @@ class Locator {
             }
         }
         dispatchGroup.notify(queue: .main) {
-            completion(true, output); return
+            log("Daten zur Linie \(lineName) \(direction) wurden heruntergeladen", "Daten für \(output.count) Haltestellen gefunden")
+            completion(output)
         }
     }
     
     static func locate(lineName: String,
                        direction: String,
                        aroundStop stop: Stop,
-                       completion: @escaping (_ success: LocatorResponse, _ result: [Route.RouteStop: [Departure]]?) -> ()) {
-        Locator.directions(forLineName: lineName, aroundStop: stop) {
-            success, lines in
-            if !success { completion(.linesCouldNotBeLoaded, nil) }
-            else if let line = lines.first {
-                if line.directions.count > 1 {
+                       log: @escaping (_ text: String, _ detail: String?) -> (),
+                       completion: @escaping (_ result: [Route.RouteStop: [Departure]]?) -> ()) {
+        Locator.directions(forLineName: lineName, aroundStop: stop.name, log: log) {
+            directions in
+            if let directions = directions {
+                if directions.count > 1 {
                     let dispatchGroup = DispatchGroup()
                     var nextDepartures = [Route.RouteStop : [Departure]]()
-                    for pair in Util.removeDupes(Util.permutations(line.directions, k: 2)) {
+                    for pair in Util.removeDupes(Util.permutations(directions, k: 2)) {
                         dispatchGroup.enter()
-                        let startPointName = pair.first!.name
-                        let endPointName = pair.last!.name
-                        Locator.allstops(forLineName: lineName, startPointName: startPointName, endPointName: endPointName) {
-                            success, routeStops in
-                            if !success { dispatchGroup.leave() }
-                            else if let routeStops = routeStops {
-                                Locator.alloccurences(forLineName: lineName, direction: direction, routeStops: routeStops) {
-                                    success, result in
-                                    if !success { completion(.occurencesCouldNotBeLoaded, nil) } else {
-                                        for (routeStop, departures) in result {
-                                            if nextDepartures[routeStop] != nil {
-                                                nextDepartures[routeStop]!.append(contentsOf: departures)
-                                            } else {
-                                                nextDepartures[routeStop] = departures
-                                            }
+                        let startPointName = pair.first!
+                        let endPointName = pair.last!
+                        Locator.allstops(forLineName: lineName, startPointName: startPointName, endPointName: endPointName, log: log) {
+                            routeStops in
+                            if let routeStops = routeStops {
+                                Locator.alloccurences(forLineName: lineName, direction: direction, routeStops: routeStops, log: log) {
+                                    occurences in
+                                    for (routeStop, departures) in occurences {
+                                        if nextDepartures[routeStop] != nil {
+                                            nextDepartures[routeStop]!.append(contentsOf: departures)
+                                        } else {
+                                            nextDepartures[routeStop] = departures
                                         }
                                     }
                                     dispatchGroup.leave()
@@ -133,19 +140,22 @@ class Locator {
                             } else { dispatchGroup.leave() }
                         }
                     }
-                    dispatchGroup.notify(queue: .main) { completion(.success, nextDepartures); return }
-                } else { completion(.failure, nil); return }
-            } else { completion(.failure, nil); return }
+                    dispatchGroup.notify(queue: .main) { completion(nextDepartures) }
+                }
+            }
         }
-        
     }
     
-    static func filter(_ result: [Route.RouteStop : [Departure]], etaRange: Int=10) -> [Route.RouteStop : Departure] {
+    static func filter(_ result: [Route.RouteStop : [Departure]]) -> [Route.RouteStop : Departure] {
         var nextDepartures = [Route.RouteStop : Departure]()
         for (routeStop, departures) in result {
             var currentlyDeparting: Departure?
             for d in departures {
-                if d.ETA < etaRange {
+                if currentlyDeparting != nil {
+                    if currentlyDeparting!.ETA > d.ETA {
+                        currentlyDeparting = d
+                    }
+                } else {
                     currentlyDeparting = d
                 }
             }

@@ -11,6 +11,7 @@ import Material
 import Motion
 import DVB
 import MapKit
+import BRYXBanner
 
 class LocationController: UIViewController {
     
@@ -20,6 +21,8 @@ class LocationController: UIViewController {
     var locationManager = CLLocationManager()
     let locationAnnotation: MKPointAnnotation = MKPointAnnotation()
     var zoomOnNextLocationUpdate: Bool = true
+    
+    var banner = Banner()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +45,14 @@ class LocationController: UIViewController {
         let lineName = State.shared.departure!.line
         let direction = State.shared.departure!.direction
         let stop = State.shared.stop!
-        mapView.showLocations(lineName: lineName, direction: direction, stop: stop)
+        mapView.showLocations(lineName: lineName, direction: direction, stop: stop) {
+            logText, detailText in
+            DispatchQueue.main.async {
+                self.banner.dismiss()
+                self.banner = Banner(title: logText, subtitle: detailText).designed()
+                self.banner.show()
+            }
+        }
     }
     
     func configureNavigationBar(forStop stop: Stop) {
@@ -80,7 +90,14 @@ class LocationController: UIViewController {
         let lineName = State.shared.departure!.line
         let direction = State.shared.departure!.direction
         let stop = State.shared.stop!
-        mapView.showLocations(lineName: lineName, direction: direction, stop: stop, zoomFit: false)
+        mapView.showLocations(lineName: lineName, direction: direction, stop: stop, zoomFit: false) {
+            logText, detailText in
+            DispatchQueue.main.async {
+                self.banner.dismiss()
+                self.banner = Banner(title: logText, subtitle: detailText).designed()
+                self.banner.show()
+            }
+        }
     }
     
     @objc func locateUser() {
@@ -124,12 +141,11 @@ extension LocationController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKCircle {
             let circle = MKCircleRenderer(overlay: overlay)
-            
             if let title = overlay.title {
                 if let title = title {
                     if let etaDouble = Double(title) {
                         let eta = CGFloat(etaDouble)
-                        let alpha = max(0.0, 1-(eta/10))
+                        let alpha = max(0.1, 1-(eta/10))
                         
                         circle.strokeColor = UIColor.red.withAlphaComponent(alpha)
                         circle.fillColor = UIColor(red: 255, green: 0, blue: 0, alpha: alpha)

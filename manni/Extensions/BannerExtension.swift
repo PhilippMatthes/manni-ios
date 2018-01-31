@@ -39,4 +39,8 @@ extension Banner {
     convenience init(title: String) {
         self.init(title: title, subtitle: nil, image: Icon.cm.search, backgroundColor: UIColor.white, didTapBlock: nil)
     }
+    
+    convenience init(title: String, subtitle: String?) {
+        self.init(title: title, subtitle: subtitle, image: Icon.cm.search, backgroundColor: UIColor.white, didTapBlock: nil)
+    }
 }
