@@ -26,10 +26,13 @@ extension MKMapView {
                        stop: Stop,
                        etaRange: Int=Config.standardEtaRange,
                        zoomFit: Bool=true,
-                       log: @escaping (_ text: String, _ detail: String?) -> ()) {
+                       log: @escaping (_ text: String, _ detail: String?) -> (),
+                       completion: @escaping () -> ()) {
         log("Ortung für die Linie \(lineName) wird durchgeführt...", nil)
         Locator.locate(lineName: lineName, direction: direction, aroundStop: stop, log: log) {
             result in
+            self.removeOverlays(self.overlays)
+            self.removeAnnotations(self.annotations)
             if let result = result {
                 log("Erfolg!", "Daten zur Linie \(lineName) Richtg. \(direction) konnten an \(result.count) Orten gefunden werden.")
                 let dispatchGroup = DispatchGroup()
@@ -47,7 +50,7 @@ extension MKMapView {
                         }
                     }
                 }
-                dispatchGroup.notify(queue: .main) { if zoomFit{ self.zoomFitOverlays() } }
+                dispatchGroup.notify(queue: .main) { if zoomFit{ self.zoomFitOverlays(); completion() } }
             }
         }
     }
@@ -63,8 +66,7 @@ extension MKMapView {
     
     func addAnnotation(location: CLLocation, departure: Departure, radius: CLLocationDistance=100){
         let circle = MKCircle(center: location.coordinate, radius: radius)
-        circle.title = departure.description
-        circle.subtitle = "Abfahrt der \(departure.line) in \(departure.ETA) min"
+        circle.title = "Abfahrt der \(departure.line) in \(departure.ETA) min"
         self.addAnnotation(circle)
     }
     

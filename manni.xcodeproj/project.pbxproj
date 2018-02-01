@@ -13,7 +13,8 @@
 		BE2285D7201A389D00C2A7DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE2285D5201A389D00C2A7DF /* Main.storyboard */; };
 		BE2285D9201A389D00C2A7DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE2285D8201A389D00C2A7DF /* Assets.xcassets */; };
 		BE2285DC201A389D00C2A7DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE2285DA201A389D00C2A7DF /* LaunchScreen.storyboard */; };
-		BE59ABDF201A5CD7003CA1EF /* DepartureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABDE201A5CD7003CA1EF /* DepartureCell.swift */; };
+		BE2D05C2202235BB0064339B /* DepartureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABDE201A5CD7003CA1EF /* DepartureCell.swift */; };
+		BE2D05C5202244F60064339B /* SwiftSVG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2D05C6202244F60064339B /* SwiftSVG.framework */; };
 		BE59ABE1201A64FE003CA1EF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE0201A64FE003CA1EF /* Colors.swift */; };
 		BE59ABE3201A6528003CA1EF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE2201A6528003CA1EF /* UIColorExtension.swift */; };
 		BE59ABE8201A76B1003CA1EF /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE7201A76B1003CA1EF /* DateExtension.swift */; };
@@ -47,6 +48,7 @@
 		BE2285D8201A389D00C2A7DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE2285DB201A389D00C2A7DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE2285DD201A389D00C2A7DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE2D05C6202244F60064339B /* SwiftSVG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSVG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE59ABDE201A5CD7003CA1EF /* DepartureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartureCell.swift; sourceTree = "<group>"; };
 		BE59ABE0201A64FE003CA1EF /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		BE59ABE2201A6528003CA1EF /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE2D05C5202244F60064339B /* SwiftSVG.framework in Frameworks */,
 				BE8D5CE4202080B60057740A /* BRYXBanner.framework in Frameworks */,
 				BE650B51201A425A005D1F32 /* DVB.framework in Frameworks */,
 				BE650B52201A425A005D1F32 /* Material.framework in Frameworks */,
@@ -177,6 +180,7 @@
 		BE650B48201A41B1005D1F32 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE2D05C6202244F60064339B /* SwiftSVG.framework */,
 				BE8D5CE5202080B60057740A /* BRYXBanner.framework */,
 				BE59ABF3201B144C003CA1EF /* CSV.framework */,
 				BE650B54201A425A005D1F32 /* DVB.framework */,
@@ -305,6 +309,7 @@
 				"${BUILT_PRODUCTS_DIR}/DVB/DVB.framework",
 				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
 				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSVG/SwiftSVG.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -312,6 +317,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DVB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSVG.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -327,7 +333,6 @@
 			files = (
 				BE5BABF4201FA15B004C09FB /* LocationController.swift in Sources */,
 				BE59ABEF201B11E2003CA1EF /* DeparturesController.swift in Sources */,
-				BE59ABDF201A5CD7003CA1EF /* DepartureCell.swift in Sources */,
 				BE986020201B2FFB008B4A08 /* UIViewControllerExtension.swift in Sources */,
 				BE59ABE8201A76B1003CA1EF /* DateExtension.swift in Sources */,
 				BE986022201B3463008B4A08 /* TableViewCellExtension.swift in Sources */,
@@ -340,6 +345,7 @@
 				BE98601E201B2B15008B4A08 /* RootSearchController.swift in Sources */,
 				BE8D5CE120206AB80057740A /* MapViewExtension.swift in Sources */,
 				BE5BABF0201F5517004C09FB /* UserDefaultsExtension.swift in Sources */,
+				BE2D05C2202235BB0064339B /* DepartureCell.swift in Sources */,
 				BE59ABE3201A6528003CA1EF /* UIColorExtension.swift in Sources */,
 				BE8D5CE9202097410057740A /* Config.swift in Sources */,
 				BE2285D4201A389D00C2A7DF /* ModularSearchController.swift in Sources */,

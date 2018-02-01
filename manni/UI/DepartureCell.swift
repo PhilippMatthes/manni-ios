@@ -21,8 +21,7 @@ class DepartureCell: TableViewCell {
     @IBOutlet weak var button: RaisedButton!
 
     
-    func setUp(forDeparture departure: Departure) {
-        
+    func setUp(forDeparture departure: Departure) {        
         let direction = departure.direction
         let eta = departure.ETA
         let delay = departure.ETA - departure.scheduledETA

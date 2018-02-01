@@ -45,13 +45,15 @@ class LocationController: UIViewController {
         let lineName = State.shared.departure!.line
         let direction = State.shared.departure!.direction
         let stop = State.shared.stop!
-        mapView.showLocations(lineName: lineName, direction: direction, stop: stop) {
+        mapView.showLocations(lineName: lineName, direction: direction, stop: stop, log: {
             logText, detailText in
             DispatchQueue.main.async {
                 self.banner.dismiss()
                 self.banner = Banner(title: logText, subtitle: detailText).designed()
                 self.banner.show()
             }
+        }) {
+            self.mapView.addAnnotation(self.locationAnnotation)
         }
     }
     
@@ -90,13 +92,15 @@ class LocationController: UIViewController {
         let lineName = State.shared.departure!.line
         let direction = State.shared.departure!.direction
         let stop = State.shared.stop!
-        mapView.showLocations(lineName: lineName, direction: direction, stop: stop, zoomFit: false) {
+        mapView.showLocations(lineName: lineName, direction: direction, stop: stop, log: {
             logText, detailText in
             DispatchQueue.main.async {
                 self.banner.dismiss()
                 self.banner = Banner(title: logText, subtitle: detailText).designed()
                 self.banner.show()
             }
+        }) {
+            self.mapView.addAnnotation(self.locationAnnotation)
         }
     }
     
@@ -123,8 +127,7 @@ extension LocationController: CLLocationManagerDelegate {
             
             locationAnnotation.coordinate = location.coordinate
             locationAnnotation.title = Config.currentLocationTitle
-            
-            mapView.add(MKCircle(center: location.coordinate, radius: Config.circleRadius))
+
             mapView.addAnnotation(locationAnnotation)
             
             if zoomOnNextLocationUpdate {

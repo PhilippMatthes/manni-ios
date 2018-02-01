@@ -59,16 +59,14 @@ class Locator {
         Route.find(from: startPointName, to: endPointName) {
             result in
             if let response = result.success {
-                for responseRoute in response.routes {
-                    if responseRoute.interchanges == 0 && responseRoute.partialRoutes.count == 1 {
-                        if let partialRoute = responseRoute.partialRoutes.first {
-                            if let regularStops = partialRoute.regularStops {
-                                log("\(regularStops.count) Haltestellen gefunden", "Zwischen \(startPointName) und \(endPointName)")
-                                completion(regularStops)
-                                return
-                            }
-                        }
-                    }
+                for responseRoute in response.routes.sorted(by: {$0.interchanges < $1.interchanges}) {
+                    let regularStops = responseRoute.partialRoutes
+                        .map({ $0.regularStops })
+                        .flatMap({ $0 })
+                        .flatMap({ $0 })
+                    log("\(regularStops.count) Haltestellen gefunden", "Zwischen \(startPointName) und \(endPointName)")
+                    completion(regularStops)
+                    return
                 }
             } else {
                 log("Keine Haltestellen der Linie \(lineName) gefunden", "Zwischen \(startPointName) und \(endPointName)")
