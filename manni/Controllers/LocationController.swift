@@ -92,7 +92,7 @@ class LocationController: UIViewController {
         let lineName = State.shared.departure!.line
         let direction = State.shared.departure!.direction
         let stop = State.shared.stop!
-        mapView.showLocations(lineName: lineName, direction: direction, stop: stop, log: {
+        mapView.showLocations(lineName: lineName, direction: direction, stop: stop, zoomFit: false, log: {
             logText, detailText in
             DispatchQueue.main.async {
                 self.banner.dismiss()
