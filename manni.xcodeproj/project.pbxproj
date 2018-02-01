@@ -15,6 +15,7 @@
 		BE2285DC201A389D00C2A7DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE2285DA201A389D00C2A7DF /* LaunchScreen.storyboard */; };
 		BE2D05C2202235BB0064339B /* DepartureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABDE201A5CD7003CA1EF /* DepartureCell.swift */; };
 		BE2D05C5202244F60064339B /* SwiftSVG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2D05C6202244F60064339B /* SwiftSVG.framework */; };
+		BE2D05C8202308370064339B /* StorableStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2D05C7202308370064339B /* StorableStop.swift */; };
 		BE59ABE1201A64FE003CA1EF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE0201A64FE003CA1EF /* Colors.swift */; };
 		BE59ABE3201A6528003CA1EF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE2201A6528003CA1EF /* UIColorExtension.swift */; };
 		BE59ABE8201A76B1003CA1EF /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE7201A76B1003CA1EF /* DateExtension.swift */; };
@@ -49,6 +50,7 @@
 		BE2285DB201A389D00C2A7DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE2285DD201A389D00C2A7DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE2D05C6202244F60064339B /* SwiftSVG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftSVG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE2D05C7202308370064339B /* StorableStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorableStop.swift; sourceTree = "<group>"; };
 		BE59ABDE201A5CD7003CA1EF /* DepartureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartureCell.swift; sourceTree = "<group>"; };
 		BE59ABE0201A64FE003CA1EF /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		BE59ABE2201A6528003CA1EF /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				BE59ABF4201B146E003CA1EF /* State.swift */,
 				BE5BABED201E885D004C09FB /* Locator.swift */,
 				BE8D5CDC20204E930057740A /* Util.swift */,
+				BE2D05C9202308480064339B /* Model */,
 				BE59ABE5201A65D3003CA1EF /* Controllers */,
 				BE59ABE4201A65C2003CA1EF /* Extensions */,
 				BE59ABE6201A65E2003CA1EF /* UI */,
@@ -138,6 +141,14 @@
 				BE2285D8201A389D00C2A7DF /* Assets.xcassets */,
 			);
 			path = manni;
+			sourceTree = "<group>";
+		};
+		BE2D05C9202308480064339B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BE2D05C7202308370064339B /* StorableStop.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		BE59ABE4201A65C2003CA1EF /* Extensions */ = {
@@ -347,6 +358,7 @@
 				BE5BABF0201F5517004C09FB /* UserDefaultsExtension.swift in Sources */,
 				BE2D05C2202235BB0064339B /* DepartureCell.swift in Sources */,
 				BE59ABE3201A6528003CA1EF /* UIColorExtension.swift in Sources */,
+				BE2D05C8202308370064339B /* StorableStop.swift in Sources */,
 				BE8D5CE9202097410057740A /* Config.swift in Sources */,
 				BE2285D4201A389D00C2A7DF /* ModularSearchController.swift in Sources */,
 				BE59ABF5201B146E003CA1EF /* State.swift in Sources */,
