@@ -19,7 +19,8 @@ class DepartureCell: TableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var button: RaisedButton!
-
+    
+    static let identifier = "departureCell"
     
     func setUp(forDeparture departure: Departure) {        
         let direction = departure.direction

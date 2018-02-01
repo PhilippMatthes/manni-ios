@@ -15,10 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        State.shared.loadRouteChanges()        
-        
-        window!.rootViewController = ModularSearchBarController(rootViewController: UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RootSearchBarController"))
-        window!.makeKeyAndVisible()
+        State.shared.loadRouteChanges()
+        UIApplication.shared.delegate?.window??.backgroundColor = UIColor.white
         return true
     }
 

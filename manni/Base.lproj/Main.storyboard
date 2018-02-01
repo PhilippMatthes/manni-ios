@@ -12,7 +12,7 @@
         <!--RootSearchBarController-->
         <scene sceneID="PMu-zz-1JK">
             <objects>
-                <viewController storyboardIdentifier="RootSearchBarController" title="RootSearchBarController" id="wsV-yM-hsW" customClass="RootSearchBarController" customModule="manni" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RootSearchBarController" title="RootSearchBarController" id="wsV-yM-hsW" customClass="SearchController" customModule="manni" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xqQ-Gt-cwK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="stopCell" textLabel="2FB-O9-dZL" style="IBUITableViewCellStyleDefault" id="lvO-Ll-LHY" customClass="TableViewCell" customModule="Material">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="stopCell" textLabel="2FB-O9-dZL" style="IBUITableViewCellStyleDefault" id="lvO-Ll-LHY" customClass="StopCell" customModule="manni" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lvO-Ll-LHY" id="WEh-3R-6pJ">
@@ -40,19 +40,43 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="51S-iX-lKI" customClass="SearchBar" customModule="Material">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="NoM-8X-KYS"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="blW-BJ-kfh" customClass="SearchBar" customModule="Material">
+                                <rect key="frame" x="0.0" y="70" width="375" height="0.0"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="VZt-Jo-iHX"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="SHP-IH-Lqp" firstAttribute="bottom" secondItem="CFE-WJ-Nex" secondAttribute="bottom" id="J5X-O3-JeJ"/>
                             <constraint firstItem="SHP-IH-Lqp" firstAttribute="leading" secondItem="CFE-WJ-Nex" secondAttribute="leading" id="L75-0v-TAa"/>
                             <constraint firstItem="SHP-IH-Lqp" firstAttribute="trailing" secondItem="CFE-WJ-Nex" secondAttribute="trailing" id="NMD-BJ-FTt"/>
-                            <constraint firstItem="SHP-IH-Lqp" firstAttribute="top" secondItem="xqQ-Gt-cwK" secondAttribute="top" id="jx5-0N-3P9"/>
+                            <constraint firstItem="blW-BJ-kfh" firstAttribute="top" secondItem="51S-iX-lKI" secondAttribute="bottom" id="O5X-Wc-99i"/>
+                            <constraint firstItem="51S-iX-lKI" firstAttribute="trailing" secondItem="CFE-WJ-Nex" secondAttribute="trailing" id="V33-LF-sah"/>
+                            <constraint firstItem="blW-BJ-kfh" firstAttribute="trailing" secondItem="CFE-WJ-Nex" secondAttribute="trailing" id="a1Q-zj-KzR"/>
+                            <constraint firstItem="51S-iX-lKI" firstAttribute="top" secondItem="xqQ-Gt-cwK" secondAttribute="top" id="f2d-an-Zj1"/>
+                            <constraint firstItem="SHP-IH-Lqp" firstAttribute="top" secondItem="xqQ-Gt-cwK" secondAttribute="top" id="j8f-aL-TG5"/>
+                            <constraint firstItem="blW-BJ-kfh" firstAttribute="leading" secondItem="CFE-WJ-Nex" secondAttribute="leading" id="ohP-ny-MX3"/>
+                            <constraint firstItem="51S-iX-lKI" firstAttribute="leading" secondItem="CFE-WJ-Nex" secondAttribute="leading" id="v7Z-zK-Wd4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CFE-WJ-Nex"/>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="SHP-IH-Lqp" id="hyg-mj-R75"/>
-                        <segue destination="WrB-1g-nzh" kind="presentation" identifier="showDepartures" modalTransitionStyle="coverVertical" id="XsU-zr-8lZ"/>
+                        <outlet property="modularSearchBar" destination="blW-BJ-kfh" id="Djq-Zc-jTu"/>
+                        <outlet property="modularSearchBarHeight" destination="VZt-Jo-iHX" id="tHr-jP-is3"/>
+                        <outlet property="searchBar" destination="51S-iX-lKI" id="0wq-HQ-U3b"/>
+                        <outlet property="tableView" destination="SHP-IH-Lqp" id="tsm-d4-L93"/>
+                        <segue destination="WrB-1g-nzh" kind="presentation" identifier="showDepartures" modalTransitionStyle="crossDissolve" id="XsU-zr-8lZ"/>
+                        <segue destination="Bjp-mO-eSf" kind="presentation" identifier="showRoutes" id="QYp-DS-2Gn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mDg-06-fKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -170,6 +194,83 @@
             </objects>
             <point key="canvasLocation" x="925.60000000000002" y="31.934032983508249"/>
         </scene>
+        <!--Route Controller-->
+        <scene sceneID="MWI-Pn-Woe">
+            <objects>
+                <viewController id="99d-sC-hUG" customClass="RouteController" customModule="manni" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="osb-BM-Ezd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TYn-cn-bW8">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="routeCell" rowHeight="209" id="4cV-MJ-0SC" customClass="RouteCell" customModule="manni" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="209"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4cV-MJ-0SC" id="Ehp-0q-o7i">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="208.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lek-7d-S0h" customClass="RotatedView" customModule="FoldingCell">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                                    <color key="backgroundColor" red="0.19731987847222221" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="Ixt-lT-Ysb"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j3Q-lZ-j4p">
+                                                    <rect key="frame" x="0.0" y="60" width="375" height="150"/>
+                                                    <color key="backgroundColor" red="1" green="0.34974500868055558" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="150" id="MER-P1-kmY"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="lek-7d-S0h" secondAttribute="trailing" id="PXh-Da-v0w"/>
+                                                <constraint firstItem="j3Q-lZ-j4p" firstAttribute="top" secondItem="Ehp-0q-o7i" secondAttribute="top" constant="60" id="Tvy-lk-ta8"/>
+                                                <constraint firstItem="lek-7d-S0h" firstAttribute="top" secondItem="Ehp-0q-o7i" secondAttribute="top" id="W7c-g4-4Ej"/>
+                                                <constraint firstItem="j3Q-lZ-j4p" firstAttribute="leading" secondItem="Ehp-0q-o7i" secondAttribute="leading" id="Yfh-Yc-gOT"/>
+                                                <constraint firstItem="lek-7d-S0h" firstAttribute="leading" secondItem="Ehp-0q-o7i" secondAttribute="leading" id="fu1-EA-3B1"/>
+                                                <constraint firstAttribute="trailing" secondItem="j3Q-lZ-j4p" secondAttribute="trailing" id="sVj-39-i1J"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="itemCount">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="containerView" destination="j3Q-lZ-j4p" id="7oX-al-KTV"/>
+                                            <outlet property="containerViewTop" destination="Tvy-lk-ta8" id="bd8-ah-off"/>
+                                            <outlet property="foregroundView" destination="lek-7d-S0h" id="pyb-Ft-Qu8"/>
+                                            <outlet property="foregroundViewTop" destination="W7c-g4-4Ej" id="nAl-Q0-ZhD"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IPF-mZ-WrL" firstAttribute="bottom" secondItem="TYn-cn-bW8" secondAttribute="bottom" id="0TH-dD-fy4"/>
+                            <constraint firstItem="TYn-cn-bW8" firstAttribute="leading" secondItem="IPF-mZ-WrL" secondAttribute="leading" id="PX0-gD-pHC"/>
+                            <constraint firstItem="IPF-mZ-WrL" firstAttribute="trailing" secondItem="TYn-cn-bW8" secondAttribute="trailing" id="QzK-S1-Ch7"/>
+                            <constraint firstItem="TYn-cn-bW8" firstAttribute="top" secondItem="IPF-mZ-WrL" secondAttribute="top" id="bZl-k8-BLY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="IPF-mZ-WrL"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qDB-tM-bFS"/>
+                    <connections>
+                        <outlet property="tableView" destination="TYn-cn-bW8" id="1vE-3H-ZPb"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="showDepartures" id="h60-o1-fx6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cXu-nZ-tf9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="810.94452773613204"/>
+        </scene>
         <!--Location Controller-->
         <scene sceneID="s8d-oJ-Mfm">
             <objects>
@@ -236,5 +337,26 @@
             </objects>
             <point key="canvasLocation" x="1723.2" y="31.484257871064472"/>
         </scene>
+        <!--Dark Bar Navigation Controller-->
+        <scene sceneID="BjU-WT-tUw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Bjp-mO-eSf" customClass="DarkBarNavigationController" customModule="manni" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dgl-Zq-HHT">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="99d-sC-hUG" kind="relationship" relationship="rootViewController" id="n0T-gi-KzP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n5D-33-Mv1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-610" y="811"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="h60-o1-fx6"/>
+    </inferredMetricsTieBreakers>
 </document>

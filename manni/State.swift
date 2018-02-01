@@ -18,6 +18,8 @@ class State {
     
     var stop: Stop?
     var departure: Departure?
+    var from: String?
+    var to: String?
     
     private init() {}
     

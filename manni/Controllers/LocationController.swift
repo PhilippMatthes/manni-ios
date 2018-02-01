@@ -74,7 +74,7 @@ class LocationController: UIViewController {
         refreshButton.setTitleColor(UIColor.black, for: .normal)
         refreshButton.addTarget(self, action: #selector(self.refresh), for: .touchUpInside)
         
-        positionButton.setImage(Icon.cm.clear, for: .normal)
+        positionButton.setImage(Icon.place, for: .normal)
         positionButton.tintColor = UIColor.black
         positionButton.setTitleColor(UIColor.black, for: .normal)
         positionButton.addTarget(self, action: #selector(self.locateUser), for: .touchUpInside)

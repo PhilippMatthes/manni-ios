@@ -4,8 +4,8 @@
 target 'manni' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-  
-  pod 'SwiftSVG', '~> 2.0'
+  pod 'FoldingCell'
+  #pod 'SwiftSVG', '~> 2.0'
   pod 'BRYXBanner'
   pod 'Material'
   pod 'DVB', :git => 'https://github.com/PhilippMatthes/DVB.git'

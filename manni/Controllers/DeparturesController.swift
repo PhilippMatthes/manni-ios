@@ -72,7 +72,7 @@ class DeparturesController: UIViewController {
 
 extension DeparturesController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "departureCell", for: indexPath as IndexPath) as! DepartureCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: DepartureCell.identifier, for: indexPath as IndexPath) as! DepartureCell
         let departure = departures[indexPath.row]
         cell.setUp(forDeparture: departure)
         return cell
