@@ -1,3 +1,6 @@
-# manni
+# Manni
+[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)]() 
 
-This is the Repo for my Manni app
+iOS App written in Swift for Dresden's Public Transport. Currently in development
+
+![Showcase](mockup.jpg?raw=true "App")
