@@ -12,26 +12,25 @@ import Material
 import Motion
 import DVB
 
-fileprivate struct C {
-    struct CellHeight {
-        static let close: CGFloat = 50 // equal or greater foregroundView height
-        static let open: CGFloat = 150 // equal or greater containerView height
-    }
-}
-
 class RouteController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    var routes = [Route]()
-    var cellHeights = (0..<10).map { _ in C.CellHeight.close }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
+    var routeSections = [RouteSection]()
+    
+    var selectedIndexPath: IndexPath!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        selectedIndexPath = IndexPath(row: -1, section: -1)
+        let nib = UINib(nibName: "ExpandableHeaderView", bundle: nil)
+        tableView.register(nib, forHeaderFooterViewReuseIdentifier: "expandableHeaderView")
+        
+        configureTableView()
+        
         if let from = State.shared.from, let to = State.shared.to {
             configureNavigationBar(from: from, to: to)
-            showRoute(from: from, to: to)
+            loadRoute(from: from, to: to)
         } else {
             configureNavigationBar(from: "n/a", to: "n/a")
         }
@@ -40,15 +39,21 @@ class RouteController: UIViewController {
 }
 
 extension RouteController {
-    func showRoute(from: String, to: String) {
+    func loadRoute(from: String, to: String) {        
         Route.find(from: from, to: to) {
             result in
             if let response = result.success {
-                self.routes = response.routes
+                self.routeSections = response.routes.map { RouteSection(start: from, end: to, expanded: false, route: $0) }
+                DispatchQueue.main.async { self.tableView.reloadData() }
             } else {
                 print("Response did not succeed")
             }
         }
+    }
+    
+    func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     func configureNavigationBar(from: String, to: String) {
@@ -70,50 +75,57 @@ extension RouteController {
 }
 
 extension RouteController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        if case let cell as RouteCell = cell {
-            if cellHeights[indexPath.row] == C.CellHeight.close {
-                cell.selectedAnimation(false, animated: false, completion:nil)
-            } else {
-                cell.selectedAnimation(true, animated: false, completion: nil)
-            }
-        }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return routeSections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: RouteCell.identifier, for: indexPath as IndexPath) as! RouteCell
-        return cell
+        return routeSections[section].route.partialRoutes.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return cellHeights[indexPath.row]
+        return routeSections[indexPath.section].expanded ? 200 : 0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 100
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "expandableHeaderView") as? ExpandableHeaderView else {return nil}
+        headerView.configure(routeSection: routeSections[section],
+                             section: section,
+                             delegate: self)
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PartialRouteCell.identifier) as? PartialRouteCell else {return UITableViewCell()}
+        cell.setUp(forPartialRoute: routeSections[indexPath.section].route.partialRoutes[indexPath.row])
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard case let cell as RouteCell = tableView.cellForRow(at: indexPath) else {
-            return
-        }
-        
-        var duration = 0.0
-        if cellHeights[indexPath.row] == C.CellHeight.close { // open cell
-            cellHeights[indexPath.row] = C.CellHeight.open
-            cell.selectedAnimation(true, animated: true, completion: nil)
-            duration = 0.5
-        } else {// close cell
-            cellHeights[indexPath.row] = C.CellHeight.close
-            cell.selectedAnimation(false, animated: true, completion: nil)
-            duration = 1.1
-        }
-        
-        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {
-            tableView.beginUpdates()
-            tableView.endUpdates()
-        }, completion: nil)
+        selectedIndexPath = indexPath
+        routeSections[indexPath.section].expanded = !routeSections[indexPath.section].expanded
+        tableView.beginUpdates()
+        tableView.reloadData()
+        tableView.endUpdates()
+    }
+    
+}
+
+extension RouteController: ExpandableHeaderViewDelegate {
+    func toggleSection(header: ExpandableHeaderView, section: Int) {
+        routeSections[section].expanded = !routeSections[section].expanded
+        tableView.beginUpdates()
+        tableView.reloadData()
+        tableView.endUpdates()
     }
 }
 

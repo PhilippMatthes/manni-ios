@@ -66,7 +66,7 @@ extension UIColor {
                            green: min(g + percentage/100, 1.0),
                            blue: min(b + percentage/100, 1.0),
                            alpha: a)
-        }else{
+        } else {
             return nil
         }
     }

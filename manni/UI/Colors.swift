@@ -27,7 +27,7 @@ class Colors {
     ]
     
     static func color(forInt line: Int) -> UIColor {
-        return Colors.colors[line % Colors.colors.count]
+        return Colors.colors[line.mod(Colors.colors.count)]
     }
     
     static func standardColor() -> UIColor {
