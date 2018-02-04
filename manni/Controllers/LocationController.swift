@@ -84,10 +84,6 @@ class LocationController: UIViewController {
         navigationItem.hidesBackButton = false
     }
     
-    @objc func returnBack() {
-        dismiss(animated: true, completion: nil)
-    }
-    
     @objc func refresh() {
         let lineName = State.shared.departure!.line
         let direction = State.shared.departure!.direction

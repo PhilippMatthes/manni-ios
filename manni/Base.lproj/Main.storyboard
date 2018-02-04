@@ -76,7 +76,7 @@
                         <outlet property="searchBar" destination="51S-iX-lKI" id="0wq-HQ-U3b"/>
                         <outlet property="tableView" destination="SHP-IH-Lqp" id="tsm-d4-L93"/>
                         <segue destination="WrB-1g-nzh" kind="presentation" identifier="showDepartures" modalTransitionStyle="crossDissolve" id="XsU-zr-8lZ"/>
-                        <segue destination="Bjp-mO-eSf" kind="presentation" identifier="showRoutes" id="QYp-DS-2Gn"/>
+                        <segue destination="Bjp-mO-eSf" kind="presentation" identifier="showRoutes" modalTransitionStyle="crossDissolve" id="QYp-DS-2Gn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mDg-06-fKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -215,7 +215,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZoO-dP-RuL" customClass="TableView" customModule="Material">
-                                                    <rect key="frame" x="0.0" y="111" width="320" height="388.5"/>
+                                                    <rect key="frame" x="0.0" y="137" width="320" height="363"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <prototypes>
@@ -316,10 +316,22 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbf-l6-kqF" customClass="RaisedButton" customModule="Material">
+                                                    <rect key="frame" x="8" y="102" width="304" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Route auf der Karte anzeigen"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Route auf der Karte anzeigen"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="mapViewButtonPressed:" destination="kmx-SL-Mst" eventType="touchUpInside" id="2Jv-lg-bKM"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="lowerLabel" destination="Xby-LH-yJ6" id="qhd-Ag-0kR"/>
+                                            <outlet property="mapViewButton" destination="sbf-l6-kqF" id="Y8V-fc-PRS"/>
                                             <outlet property="scrollView" destination="PwH-CX-bft" id="dHo-jO-190"/>
                                             <outlet property="tableView" destination="ZoO-dP-RuL" id="btM-dT-omM"/>
                                             <outlet property="upperLabel" destination="0vP-KI-iQF" id="qyx-Fx-ObV"/>
@@ -334,7 +346,7 @@
                     <navigationItem key="navigationItem" id="qDB-tM-bFS"/>
                     <connections>
                         <outlet property="tableView" destination="TYn-cn-bW8" id="1vE-3H-ZPb"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="showDepartures" id="h60-o1-fx6"/>
+                        <segue destination="HyY-59-AFi" kind="presentation" identifier="showRouteMap" modalTransitionStyle="crossDissolve" id="9gc-Vq-Uxl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cXu-nZ-tf9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -425,8 +437,53 @@
             </objects>
             <point key="canvasLocation" x="-610" y="811"/>
         </scene>
+        <!--Route Map Controller-->
+        <scene sceneID="dSG-9H-ZJw">
+            <objects>
+                <viewController id="NLg-7Q-8wC" customClass="RouteMapController" customModule="manni" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aK4-aP-glf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Zvt-ho-fTI">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Zvt-ho-fTI" firstAttribute="bottom" secondItem="elL-Ze-oZM" secondAttribute="bottom" id="5IK-HH-aCx"/>
+                            <constraint firstItem="Zvt-ho-fTI" firstAttribute="leading" secondItem="elL-Ze-oZM" secondAttribute="leading" id="OQP-bM-ww0"/>
+                            <constraint firstItem="Zvt-ho-fTI" firstAttribute="trailing" secondItem="elL-Ze-oZM" secondAttribute="trailing" id="mn4-4C-7EV"/>
+                            <constraint firstItem="Zvt-ho-fTI" firstAttribute="top" secondItem="elL-Ze-oZM" secondAttribute="top" id="tWM-fE-t8c"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="elL-Ze-oZM"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4Yv-rr-E4G"/>
+                    <connections>
+                        <outlet property="mapView" destination="Zvt-ho-fTI" id="ZD9-UO-vdx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T46-Do-oAG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1723" y="809"/>
+        </scene>
+        <!--Dark Bar Navigation Controller-->
+        <scene sceneID="D7F-9E-ZQ5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HyY-59-AFi" customClass="DarkBarNavigationController" customModule="manni" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="inG-Z4-YpV">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="NLg-7Q-8wC" kind="relationship" relationship="rootViewController" id="pHg-cN-4Le"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GQc-QF-Tu9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="922.5" y="809.15492957746483"/>
+        </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="h60-o1-fx6"/>
-    </inferredMetricsTieBreakers>
 </document>

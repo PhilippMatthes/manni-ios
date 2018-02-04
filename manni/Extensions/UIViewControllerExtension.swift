@@ -27,4 +27,8 @@ extension UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
     }
+    
+    @objc func returnBack() {
+        self.dismiss(animated: true, completion: nil)
+    }
 }

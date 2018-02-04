@@ -44,10 +44,6 @@ class DeparturesController: UIViewController {
         navigationItem.setLeftBarButton(UIBarButtonItem(customView: backButton), animated: true)
         navigationItem.hidesBackButton = false
     }
-    
-    @objc func returnBack() {
-        self.dismiss(animated: true, completion: nil) 
-    }
 
     @objc func handleRefresh(refreshControl: UIRefreshControl) {
         if let stop = State.shared.stop {

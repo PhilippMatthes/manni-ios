@@ -23,6 +23,12 @@ class RouteController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
+        return refreshControl
+    }()
+    
     var routes = [ExpandedRoute]()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,10 +44,18 @@ class RouteController: UIViewController {
         }
     }
     
+    @objc func handleRefresh(refreshControl: UIRefreshControl) {
+        if let from = State.shared.from, let to = State.shared.to {
+            loadRoute(from: from, to: to) {
+                DispatchQueue.main.async{ refreshControl.endRefreshing() }
+            }
+        }
+    }
+    
 }
 
 extension RouteController {
-    func loadRoute(from: String, to: String) {        
+    func loadRoute(from: String, to: String, completion: @escaping () -> Void = {}) {        
         Route.find(from: from, to: to) {
             result in
             if let response = result.success {
@@ -52,12 +66,14 @@ extension RouteController {
             } else {
                 print("Response did not succeed")
             }
+            completion()
         }
     }
     
     func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        self.tableView.addSubview(self.refreshControl)
     }
     
     func configureNavigationBar(from: String, to: String) {
@@ -71,10 +87,6 @@ extension RouteController {
         backButton.addTarget(self, action: #selector(self.returnBack), for: .touchUpInside)
         navigationItem.setLeftBarButton(UIBarButtonItem(customView: backButton), animated: true)
         navigationItem.hidesBackButton = false
-    }
-    
-    @objc func returnBack() {
-        self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -98,8 +110,18 @@ extension RouteController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RouteCell.identifier) as? RouteCell else {return UITableViewCell()}
-        cell.configure(routes[indexPath.row].route)
+        cell.configure(routes[indexPath.row].route, indexPath: indexPath, delegate: self)
         return cell
+    }
+}
+
+extension RouteController: RouteCellDelegate {
+    func scrollViewTapped(_ indexPath: IndexPath) {
+        tableView(tableView, didSelectRowAt: indexPath)
+    }
+    
+    func showMapButtonPressed(route: Route) {
+        performSegue(withIdentifier: "showRouteMap", sender: self)
     }
 }
 

@@ -42,6 +42,7 @@
 		BEA7613C20263A4F00D39B15 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA7613B20263A4F00D39B15 /* IntExtension.swift */; };
 		BEA7613E2027224300D39B15 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA7613D2027224300D39B15 /* ArrayExtension.swift */; };
 		BEA761402027245300D39B15 /* PartialRouteExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA7613F2027245300D39B15 /* PartialRouteExtension.swift */; };
+		BEA761442027653A00D39B15 /* RouteMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA761432027653A00D39B15 /* RouteMapController.swift */; };
 		BEF7C4A020236E8E00FF96E1 /* FoldingCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF7C4A120236E8E00FF96E1 /* FoldingCell.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,7 @@
 		BEA7613B20263A4F00D39B15 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		BEA7613D2027224300D39B15 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		BEA7613F2027245300D39B15 /* PartialRouteExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialRouteExtension.swift; sourceTree = "<group>"; };
+		BEA761432027653A00D39B15 /* RouteMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteMapController.swift; sourceTree = "<group>"; };
 		BEF7C4A120236E8E00FF96E1 /* FoldingCell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FoldingCell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFB92583DD3E650EAD28A17C /* Pods-manni.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni.debug.xcconfig"; path = "Pods/Target Support Files/Pods-manni/Pods-manni.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -191,6 +193,7 @@
 				BE090F4F201CD277004C1410 /* DarkBarNavigationController.swift */,
 				BE5BABF3201FA15B004C09FB /* LocationController.swift */,
 				BE2D05CE20235C8F0064339B /* RouteController.swift */,
+				BEA761432027653A00D39B15 /* RouteMapController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				BE98601E201B2B15008B4A08 /* SearchController.swift in Sources */,
 				BE8D5CE120206AB80057740A /* MapViewExtension.swift in Sources */,
 				BE2D05CB20230DA50064339B /* StopCell.swift in Sources */,
+				BEA761442027653A00D39B15 /* RouteMapController.swift in Sources */,
 				BE5BABF0201F5517004C09FB /* UserDefaultsExtension.swift in Sources */,
 				BE2D05C2202235BB0064339B /* DepartureCell.swift in Sources */,
 				BE59ABE3201A6528003CA1EF /* UIColorExtension.swift in Sources */,

@@ -20,6 +20,7 @@ class State {
     var departure: Departure?
     var from: String?
     var to: String?
+    var route: Route?
     
     private init() {}
     

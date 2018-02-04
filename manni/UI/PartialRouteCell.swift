@@ -47,23 +47,21 @@ class PartialRouteCell: TableViewCell {
         if let stops = partialRoute.regularStops {
             fromLabel.text = stops.first?.name
             fromDetailLabel.text = "\(stops.first!.departureTime.time())"
-            if let changes = partialRoute.mode.changes {
-                let routeChanges = State.shared.routeChanges(forChangeIDs: changes)
-                if let duration = partialRoute.duration {
-                    lineChangesLabel.text = "Dauer: \(duration) min, Änderungen: \(routeChanges)"
-                } else {
-                    lineChangesLabel.text = "Änderungen: \(routeChanges)"
-                }
-            } else {
-                if let duration = partialRoute.duration {
-                    lineChangesLabel.text = "Dauer: \(duration) min"
-                } else {
-                    lineChangesLabel.text = ""
-                }
-            }
-            lineButton.setTitle(partialRoute.mode.name, for: .normal)
             toLabel.text = stops.last?.name
-            toDetailLabel.text = "\(stops.last!.arrivalTime.time())"
+            toDetailLabel.text = stops.last?.arrivalTime.time()
         }
+        var description: String = ""
+        if let direction = partialRoute.mode.direction {
+            description += "Richtung \(direction)"
+        }
+        if let duration = partialRoute.duration {
+            description += description == "" ? "Dauer: \(duration) min" : ", Dauer: \(duration) min"
+        }
+        if let routeChangeIDs = partialRoute.mode.changes {
+            description += description == "" ? "Änderungen: \(State.shared.routeChanges(forChangeIDs: routeChangeIDs))" : ", Änderungen: \(State.shared.routeChanges(forChangeIDs: routeChangeIDs))"
+        }
+        lineChangesLabel.text = description
+        
+        lineButton.setTitle(partialRoute.mode.name, for: .normal)
     }
 }
