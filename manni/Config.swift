@@ -13,8 +13,8 @@ class Config {
     static let departuresTableViewCellHeight: CGFloat = 100.0
     static let stopsCellHeight: CGFloat = 50
     static let searchBarPlaceHolder: String = "Haltestelle suchen"
-    static let modularSearchBarPlaceHolderStart: String = "Start: Adresse oder Hst"
-    static let modularSearchBarPlaceHolderDestination: String = "Ziel: Adresse oder Hst"
+    static let modularSearchBarPlaceHolderStart: String = "Start"
+    static let modularSearchBarPlaceHolderDestination: String = "Ziel"
     static let standardQuery: String = "Hauptbahnhof"
     static let searchResultsLoadingInterval: Double = 0.5
     static let backButtonTitle: String = "Zurück"

@@ -22,7 +22,7 @@ class PartialRouteCell: TableViewCell {
     @IBOutlet weak var toDetailLabel: UILabel!
     @IBOutlet weak var visualBar: UIView!
     
-    func setUp(forPartialRoute partialRoute: Route.RoutePartial) {
+    func configure(forPartialRoute partialRoute: Route.RoutePartial) {
         
         var color: UIColor
         if let lineName = partialRoute.mode.name {
@@ -43,7 +43,6 @@ class PartialRouteCell: TableViewCell {
         
         lineButton.layer.borderWidth = 3.0
         lineButton.layer.borderColor = UIColor.white.cgColor
-                
         
         if let stops = partialRoute.regularStops {
             fromLabel.text = stops.first?.name

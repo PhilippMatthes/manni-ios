@@ -12,19 +12,21 @@ import Material
 import Motion
 import DVB
 
+struct ExpandedRoute {
+    var route: Route!
+    var expanded: Bool!
+    
+    init(route: Route, expanded: Bool) { self.route = route; self.expanded = expanded}
+}
+
 class RouteController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var routeSections = [RouteSection]()
-    
-    var selectedIndexPath: IndexPath!
+    var routes = [ExpandedRoute]()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        selectedIndexPath = IndexPath(row: -1, section: -1)
-        let nib = UINib(nibName: "ExpandableHeaderView", bundle: nil)
-        tableView.register(nib, forHeaderFooterViewReuseIdentifier: "expandableHeaderView")
         
         configureTableView()
         
@@ -43,7 +45,9 @@ extension RouteController {
         Route.find(from: from, to: to) {
             result in
             if let response = result.success {
-                self.routeSections = response.routes.map { RouteSection(start: from, end: to, expanded: false, route: $0) }
+                self.routes = response.routes
+                    .filter { !$0.partialRoutes.isEmpty }
+                    .map { ExpandedRoute(route: $0, expanded: false) }
                 DispatchQueue.main.async { self.tableView.reloadData() }
             } else {
                 print("Response did not succeed")
@@ -75,57 +79,27 @@ extension RouteController {
 }
 
 extension RouteController: UITableViewDelegate, UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return routeSections.count
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return routeSections[section].route.partialRoutes.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return routeSections[indexPath.section].expanded ? 200 : 0
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 100
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "expandableHeaderView") as? ExpandableHeaderView else {return nil}
-        headerView.configure(routeSection: routeSections[section],
-                             section: section,
-                             delegate: self)
-        return headerView
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: PartialRouteCell.identifier) as? PartialRouteCell else {return UITableViewCell()}
-        cell.setUp(forPartialRoute: routeSections[indexPath.section].route.partialRoutes[indexPath.row])
-        return cell
+        return routes.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedIndexPath = indexPath
-        routeSections[indexPath.section].expanded = !routeSections[indexPath.section].expanded
+        routes[indexPath.row].expanded = !routes[indexPath.row].expanded
         tableView.beginUpdates()
-        tableView.reloadData()
         tableView.endUpdates()
+        if routes[indexPath.row].expanded {
+            tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: true)
+        }
     }
     
-}
-
-extension RouteController: ExpandableHeaderViewDelegate {
-    func toggleSection(header: ExpandableHeaderView, section: Int) {
-        routeSections[section].expanded = !routeSections[section].expanded
-        tableView.beginUpdates()
-        tableView.reloadData()
-        tableView.endUpdates()
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return routes[indexPath.row].expanded ? tableView.frame.height : RouteCell.closedHeight
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RouteCell.identifier) as? RouteCell else {return UITableViewCell()}
+        cell.configure(routes[indexPath.row].route)
+        return cell
     }
 }
 

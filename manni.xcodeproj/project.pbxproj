@@ -37,11 +37,11 @@
 		BE8D5CE9202097410057740A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8D5CE8202097410057740A /* Config.swift */; };
 		BE98601E201B2B15008B4A08 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE98601D201B2B15008B4A08 /* SearchController.swift */; };
 		BE986020201B2FFB008B4A08 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE98601F201B2FFB008B4A08 /* UIViewControllerExtension.swift */; };
-		BEA761322025E7C300D39B15 /* ExpandableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA761312025E7C300D39B15 /* ExpandableHeaderView.swift */; };
-		BEA761362025E7E300D39B15 /* RouteSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA761352025E7E300D39B15 /* RouteSection.swift */; };
-		BEA761382025E88F00D39B15 /* ExpandableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEA761372025E88F00D39B15 /* ExpandableHeaderView.xib */; };
+		BEA761362025E7E300D39B15 /* RouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA761352025E7E300D39B15 /* RouteCell.swift */; };
 		BEA7613A2025F6D900D39B15 /* PartialRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA761392025F6D900D39B15 /* PartialRouteCell.swift */; };
 		BEA7613C20263A4F00D39B15 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA7613B20263A4F00D39B15 /* IntExtension.swift */; };
+		BEA7613E2027224300D39B15 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA7613D2027224300D39B15 /* ArrayExtension.swift */; };
+		BEA761402027245300D39B15 /* PartialRouteExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA7613F2027245300D39B15 /* PartialRouteExtension.swift */; };
 		BEF7C4A020236E8E00FF96E1 /* FoldingCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF7C4A120236E8E00FF96E1 /* FoldingCell.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,11 +84,11 @@
 		BE8D5CE8202097410057740A /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		BE98601D201B2B15008B4A08 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		BE98601F201B2FFB008B4A08 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
-		BEA761312025E7C300D39B15 /* ExpandableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderView.swift; sourceTree = "<group>"; };
-		BEA761352025E7E300D39B15 /* RouteSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteSection.swift; sourceTree = "<group>"; };
-		BEA761372025E88F00D39B15 /* ExpandableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpandableHeaderView.xib; sourceTree = "<group>"; };
+		BEA761352025E7E300D39B15 /* RouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCell.swift; sourceTree = "<group>"; };
 		BEA761392025F6D900D39B15 /* PartialRouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialRouteCell.swift; sourceTree = "<group>"; };
 		BEA7613B20263A4F00D39B15 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		BEA7613D2027224300D39B15 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
+		BEA7613F2027245300D39B15 /* PartialRouteExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialRouteExtension.swift; sourceTree = "<group>"; };
 		BEF7C4A120236E8E00FF96E1 /* FoldingCell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FoldingCell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFB92583DD3E650EAD28A17C /* Pods-manni.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni.debug.xcconfig"; path = "Pods/Target Support Files/Pods-manni/Pods-manni.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,7 +146,6 @@
 				BE8D5CDC20204E930057740A /* Util.swift */,
 				BE2D05C9202308480064339B /* Model */,
 				BE59ABE5201A65D3003CA1EF /* Controllers */,
-				BEA761302025E7A500D39B15 /* ExpandableTableView */,
 				BE59ABE4201A65C2003CA1EF /* Extensions */,
 				BE59ABE6201A65E2003CA1EF /* UI */,
 				BE2285DD201A389D00C2A7DF /* Info.plist */,
@@ -177,6 +176,8 @@
 				BE8D5CE6202081CF0057740A /* BannerExtension.swift */,
 				BE2D05CC202356180064339B /* UIViewExtension.swift */,
 				BEA7613B20263A4F00D39B15 /* IntExtension.swift */,
+				BEA7613D2027224300D39B15 /* ArrayExtension.swift */,
+				BEA7613F2027245300D39B15 /* PartialRouteExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -197,10 +198,11 @@
 		BE59ABE6201A65E2003CA1EF /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				BEA761352025E7E300D39B15 /* RouteCell.swift */,
+				BEA761392025F6D900D39B15 /* PartialRouteCell.swift */,
 				BE59ABE0201A64FE003CA1EF /* Colors.swift */,
 				BE59ABDE201A5CD7003CA1EF /* DepartureCell.swift */,
 				BE2D05CA20230DA50064339B /* StopCell.swift */,
-				BEA761392025F6D900D39B15 /* PartialRouteCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -221,16 +223,6 @@
 				BE650B50201A41B1005D1F32 /* Pods_manni.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		BEA761302025E7A500D39B15 /* ExpandableTableView */ = {
-			isa = PBXGroup;
-			children = (
-				BEA761312025E7C300D39B15 /* ExpandableHeaderView.swift */,
-				BEA761352025E7E300D39B15 /* RouteSection.swift */,
-				BEA761372025E88F00D39B15 /* ExpandableHeaderView.xib */,
-			);
-			path = ExpandableTableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,7 +288,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE2285DC201A389D00C2A7DF /* LaunchScreen.storyboard in Resources */,
-				BEA761382025E88F00D39B15 /* ExpandableHeaderView.xib in Resources */,
 				BE2285D9201A389D00C2A7DF /* Assets.xcassets in Resources */,
 				BE2285D7201A389D00C2A7DF /* Main.storyboard in Resources */,
 			);
@@ -371,13 +362,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEA761362025E7E300D39B15 /* RouteSection.swift in Sources */,
+				BEA761362025E7E300D39B15 /* RouteCell.swift in Sources */,
 				BE5BABF4201FA15B004C09FB /* LocationController.swift in Sources */,
 				BE59ABEF201B11E2003CA1EF /* DeparturesController.swift in Sources */,
 				BE986020201B2FFB008B4A08 /* UIViewControllerExtension.swift in Sources */,
 				BE59ABE8201A76B1003CA1EF /* DateExtension.swift in Sources */,
 				BE8D5CDD20204E930057740A /* Util.swift in Sources */,
 				BE8D5CE7202081CF0057740A /* BannerExtension.swift in Sources */,
+				BEA761402027245300D39B15 /* PartialRouteExtension.swift in Sources */,
 				BEA7613C20263A4F00D39B15 /* IntExtension.swift in Sources */,
 				BEA7613A2025F6D900D39B15 /* PartialRouteCell.swift in Sources */,
 				BE5BABEE201E885D004C09FB /* Locator.swift in Sources */,
@@ -386,12 +378,12 @@
 				BE59ABE1201A64FE003CA1EF /* Colors.swift in Sources */,
 				BE98601E201B2B15008B4A08 /* SearchController.swift in Sources */,
 				BE8D5CE120206AB80057740A /* MapViewExtension.swift in Sources */,
-				BEA761322025E7C300D39B15 /* ExpandableHeaderView.swift in Sources */,
 				BE2D05CB20230DA50064339B /* StopCell.swift in Sources */,
 				BE5BABF0201F5517004C09FB /* UserDefaultsExtension.swift in Sources */,
 				BE2D05C2202235BB0064339B /* DepartureCell.swift in Sources */,
 				BE59ABE3201A6528003CA1EF /* UIColorExtension.swift in Sources */,
 				BE2D05C8202308370064339B /* StorableStop.swift in Sources */,
+				BEA7613E2027224300D39B15 /* ArrayExtension.swift in Sources */,
 				BE2D05CF20235C8F0064339B /* RouteController.swift in Sources */,
 				BE8D5CE9202097410057740A /* Config.swift in Sources */,
 				BE2D05CD202356180064339B /* UIViewExtension.swift in Sources */,
