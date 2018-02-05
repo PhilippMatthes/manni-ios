@@ -14,6 +14,7 @@ import Motion
 class PartialRouteCell: TableViewCell {
     static let identifier = "partialRouteCell"
     
+    @IBOutlet weak var lineButtonWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var fromLabel: UILabel!
     @IBOutlet weak var fromDetailLabel: UILabel!
     @IBOutlet weak var lineChangesLabel: UILabel!
@@ -64,6 +65,11 @@ class PartialRouteCell: TableViewCell {
         lineChangesLabel.text = [direction, duration, routeChanges].flatMap{$0}.joined(separator: ", ")
         
         lineButton.setTitle(partialRoute.mode.name, for: .normal)
+        let customButtonFrameWidth = partialRoute.mode.name == nil ? nil : min(70, max(50, CGFloat(partialRoute.mode.name!.count)*10))
+        if customButtonFrameWidth != nil {
+            lineButtonWidthConstraint.constant = customButtonFrameWidth!
+            contentView.layoutSubviews()
+        }
     }
     
     @objc func updatePoint() {

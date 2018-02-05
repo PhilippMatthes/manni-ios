@@ -86,13 +86,15 @@ class RouteCell: TableViewCell {
         scrollView.subviews.forEach { $0.removeFromSuperview() }
         let numberOfModes = route.modeChain.count
         scrollView.contentSize = CGSize(width: 2*58*CGFloat(numberOfModes), height: scrollView.frame.height)
+        var inset = 8
         for i in 0..<numberOfModes {
-            let buttonFrame = CGRect(x: 8+i*96, y: 0, width: 50, height: 50)
+            let mode = route.modeChain[i]
+            
+            let buttonFrameWidth = mode.name == nil ? 50 : max(50, mode.name!.count*10)
+            let buttonFrame = CGRect(x: inset, y: 0, width: buttonFrameWidth, height: 50)
             let button = RaisedButton(frame: buttonFrame)
             button.isEnabled = false
-            
-            let mode =  route.modeChain[i]
-            
+
             button.setTitle(mode.name, for: .normal)
             
             var color: UIColor
@@ -112,13 +114,15 @@ class RouteCell: TableViewCell {
             self.scrollView.addSubview(button)
             
             if i < numberOfModes-1 {
-                let arrowFrame = CGRect(x: 8+i*96+58, y: 0, width: 30, height: 50)
+                let arrowFrame = CGRect(x: buttonFrameWidth+inset+8, y: 0, width: 30, height: 50)
                 let arrow = IconButton(frame: arrowFrame)
                 arrow.isEnabled = false
                 arrow.setImage(Icon.cm.play, for: .normal)
                 arrow.tintColor = UIColor.black
                 self.scrollView.addSubview(arrow)
             }
+            
+            inset += buttonFrameWidth+8+38      
         }
     }
     

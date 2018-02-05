@@ -315,6 +315,7 @@
                                                                 <outlet property="fromDetailLabel" destination="YBE-bx-aln" id="cCd-zf-zQq"/>
                                                                 <outlet property="fromLabel" destination="73z-Eg-f8m" id="LIz-lo-tZP"/>
                                                                 <outlet property="lineButton" destination="tDK-2I-X6n" id="iDr-TR-SI5"/>
+                                                                <outlet property="lineButtonWidthConstraint" destination="ZwH-v6-ez6" id="0AP-5o-Rfk"/>
                                                                 <outlet property="lineChangesLabel" destination="5hI-6f-gyW" id="U8W-fb-UCI"/>
                                                                 <outlet property="toDetailLabel" destination="QMI-Pd-EDf" id="8Tz-zz-SAB"/>
                                                                 <outlet property="toLabel" destination="Cu7-5D-B33" id="tki-Nu-dWm"/>
