@@ -73,6 +73,7 @@ extension RouteController {
     func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.canCancelContentTouches = false
         self.tableView.addSubview(self.refreshControl)
     }
     

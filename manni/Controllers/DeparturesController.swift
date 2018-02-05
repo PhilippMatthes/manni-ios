@@ -28,21 +28,8 @@ class DeparturesController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = Color.blue.lighten5
         configureTableView()
-        configureNavigationBar(forStop: State.shared.stop!)
+        configureNavigationBar(withText: State.shared.stop!.description)
         loadDepartures(forStop: State.shared.stop!) {}
-    }
-    
-    func configureNavigationBar(forStop stop: Stop) {
-        navigationItem.titleLabel.text = stop.description
-        navigationItem.titleLabel.textColor = UIColor.black
-        let backButton = UIButton(type: .custom)
-        backButton.setImage(Icon.cm.arrowBack, for: .normal)
-        backButton.tintColor = UIColor.black
-        backButton.setTitleColor(UIColor.black, for: .normal)
-        backButton.setTitle(Config.backButtonTitle, for: .normal)
-        backButton.addTarget(self, action: #selector(self.returnBack), for: .touchUpInside)
-        navigationItem.setLeftBarButton(UIBarButtonItem(customView: backButton), animated: true)
-        navigationItem.hidesBackButton = false
     }
 
     @objc func handleRefresh(refreshControl: UIRefreshControl) {
@@ -62,6 +49,19 @@ class DeparturesController: UIViewController {
                 completion()
             }
         }
+    }
+    
+    func configureNavigationBar(withText text: String) {
+        navigationItem.titleLabel.text = text
+        navigationItem.titleLabel.textColor = UIColor.black
+        let backButton = UIButton(type: .custom)
+        backButton.setImage(Icon.cm.arrowBack, for: .normal)
+        backButton.tintColor = UIColor.black
+        backButton.setTitleColor(UIColor.black, for: .normal)
+        backButton.setTitle(Config.backButtonTitle, for: .normal)
+        backButton.addTarget(self, action: #selector(self.returnBack), for: .touchUpInside)
+        navigationItem.setLeftBarButton(UIBarButtonItem(customView: backButton), animated: true)
+        navigationItem.hidesBackButton = false
     }
     
 }

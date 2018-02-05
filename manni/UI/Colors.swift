@@ -26,8 +26,8 @@ class Colors {
         UIColor(rgb: 0xffc107, alpha: 1.0),
     ]
     
-    static func color(forInt line: Int) -> UIColor {
-        return Colors.colors[line.mod(Colors.colors.count)]
+    static func color(forInt line: Int?) -> UIColor {
+        return line == nil ? colors.first! : Colors.colors[line!.mod(Colors.colors.count)]
     }
     
     static func standardColor() -> UIColor {

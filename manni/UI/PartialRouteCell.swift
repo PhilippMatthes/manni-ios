@@ -21,8 +21,15 @@ class PartialRouteCell: TableViewCell {
     @IBOutlet weak var toLabel: UILabel!
     @IBOutlet weak var toDetailLabel: UILabel!
     @IBOutlet weak var visualBar: UIView!
+    var pointView: UIView?
+    var timer: Timer?
+    var partialRoute: Route.RoutePartial!
     
     func configure(forPartialRoute partialRoute: Route.RoutePartial) {
+        self.partialRoute = partialRoute
+        
+        updatePoint()
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(updatePoint), userInfo: nil, repeats: true)
         
         var color: UIColor
         if let lineName = partialRoute.mode.name {
@@ -50,18 +57,40 @@ class PartialRouteCell: TableViewCell {
             toLabel.text = stops.last?.name
             toDetailLabel.text = stops.last?.arrivalTime.time()
         }
-        var description: String = ""
-        if let direction = partialRoute.mode.direction {
-            description += "Richtung \(direction)"
-        }
-        if let duration = partialRoute.duration {
-            description += description == "" ? "Dauer: \(duration) min" : ", Dauer: \(duration) min"
-        }
-        if let routeChangeIDs = partialRoute.mode.changes {
-            description += description == "" ? "Änderungen: \(State.shared.routeChanges(forChangeIDs: routeChangeIDs))" : ", Änderungen: \(State.shared.routeChanges(forChangeIDs: routeChangeIDs))"
-        }
-        lineChangesLabel.text = description
+        
+        let direction = partialRoute.mode.direction == nil ? nil : "Richtung \(partialRoute.mode.direction!)"
+        let duration = partialRoute.duration == nil ? nil : "Dauer: \(partialRoute.duration!) min"
+        let routeChanges = partialRoute.mode.changes == nil ? nil : "Änderungen: \(State.shared.routeChanges(forChangeIDs: partialRoute.mode.changes!).joined(separator: ", "))"
+        lineChangesLabel.text = [direction, duration, routeChanges].flatMap{$0}.joined(separator: ", ")
         
         lineButton.setTitle(partialRoute.mode.name, for: .normal)
+    }
+    
+    @objc func updatePoint() {
+        if let fromDate = partialRoute.regularStops?.first?.departureTime, let toDate = partialRoute.regularStops?.last?.arrivalTime {
+            let currentDate = Date()
+            let tDCurrentDate = CGFloat(toDate.seconds(from: currentDate))
+            let tDDepartureDate = CGFloat(toDate.seconds(from: fromDate))
+            let truncatedTDCurrentDate = max(0, min(tDDepartureDate, tDDepartureDate-tDCurrentDate))
+            let percentage = truncatedTDCurrentDate / tDDepartureDate
+            let y0 = visualBar.frame.center.y - visualBar.frame.height/2
+            let y1 = y0 - visualBar.frame.height * percentage
+            let x = visualBar.frame.center.x
+            if pointView != nil {
+                UIView.animate(withDuration: 5, animations: {
+                    self.contentView.layoutIfNeeded()
+                    self.pointView!.frame = CGRect(center: CGPoint(x: x, y: y1), size: CGSize(width: 14, height: 14))
+                })
+            } else {
+                pointView = UIView(frame: CGRect(center: CGPoint(x: x, y: y1), size: CGSize(width: 14, height: 14)))
+                pointView!.layer.cornerRadius = 7
+                pointView!.backgroundColor = .white
+                self.contentView.addSubview(pointView!)
+            }
+        }
+    }
+    
+    func tearDown() {
+        timer?.invalidate()
     }
 }

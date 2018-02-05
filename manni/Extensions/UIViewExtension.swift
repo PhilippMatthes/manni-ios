@@ -19,4 +19,15 @@ extension UIView {
         mainBlurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(mainBlurEffectView)
     }
+    
+    func isBlurred() -> Bool {
+        for subview in self.subviews {
+            if let subview = subview as? UIVisualEffectView {
+                if let _ = subview.effect as? UIBlurEffect {
+                    return true
+                }
+            }
+        }
+        return false
+    }
 }
