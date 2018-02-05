@@ -80,7 +80,7 @@ class PartialRouteCell: TableViewCell {
             let truncatedTDCurrentDate = max(0, min(tDDepartureDate, tDDepartureDate-tDCurrentDate))
             let percentage = truncatedTDCurrentDate / tDDepartureDate
             let y0 = visualBar.frame.center.y - visualBar.frame.height/2
-            let y1 = y0 - visualBar.frame.height * percentage
+            let y1 = y0 + visualBar.frame.height * percentage
             let x = visualBar.frame.center.x
             if pointView != nil {
                 UIView.animate(withDuration: 5, animations: {
