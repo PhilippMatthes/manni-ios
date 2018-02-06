@@ -11,7 +11,6 @@ import CoreGraphics
 
 class Config {
     static let departuresTableViewCellHeight: CGFloat = 100.0
-    static let stopsCellHeight: CGFloat = 50
     static let searchBarPlaceHolder: String = "Haltestelle suchen"
     static let modularSearchBarPlaceHolderStart: String = "Start"
     static let modularSearchBarPlaceHolderDestination: String = "Ziel"

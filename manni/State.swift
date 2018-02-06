@@ -12,18 +12,63 @@ import DVB
 class State {
     
     static let shared = State()
-    let defaults = UserDefaults.standard
-    
     var routeChanges = [String : [String]]()
-    
     var stop: Stop?
     var departure: Departure?
     var from: String?
     var to: String?
     var route: Route?
     
+    var searchMode: SearchMode {
+        get {
+            guard let searchMode = UserDefaults.loadObject(ofType: String(), withIdentifier: "searchMode") else {
+                return .stop
+            }
+            return SearchMode(rawValue: searchMode) == nil ? .stop : SearchMode(rawValue: searchMode)!
+        }
+        set(new) {
+            UserDefaults.save(object: new.rawValue, withIdentifier: "searchMode")
+        }
+    }
+    
+    var predictionsActive: Bool {
+        get {
+            guard let predictionsActiveFromStorage = UserDefaults.loadObject(ofType: Bool(), withIdentifier: "predictionsActive") else {
+                return true
+            }
+            return predictionsActiveFromStorage
+        }
+        set(new) {
+            UserDefaults.save(object: new, withIdentifier: "predictionsActive")
+        }
+    }
+    
+    var logData: [Action : [Date]] {
+        get {
+            if let decoded = UserDefaults.loadObject(ofType: [Action : [Date]](), withIdentifier: "logData") {
+                return decoded
+            }
+            return [Action : [Date]]()
+        }
+        set(new) {
+            UserDefaults.save(object: new, withIdentifier: "logData")
+        }
+    }
+    
     private init() {}
     
+    func addLogData(_ action: Action) {
+        let date = Date()
+        if logData[action] != nil {
+            logData[action]!.append(date)
+        } else {
+            logData[action] = [date]
+        }
+    }
+    
+}
+
+extension State {
     func loadRouteChanges() {
         RouteChange.get { result in
             guard let response = result.success else { return }
@@ -62,5 +107,4 @@ class State {
         }
         return output
     }
-    
 }

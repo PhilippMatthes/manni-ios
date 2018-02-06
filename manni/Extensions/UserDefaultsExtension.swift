@@ -28,9 +28,8 @@ import Foundation
 
 extension UserDefaults {
     
-    static func loadObject<T>(ofType type: T, withIdentifier identifier: String) -> T? {
-        State.shared.defaults.synchronize()
-        if let decoded = State.shared.defaults.object(forKey: identifier) as? NSData {
+    static func loadObject<T>(ofType type: T, withIdentifier identifier: String, customClassName className: String?=nil) -> T? {
+        if let decoded = UserDefaults.standard.object(forKey: identifier) as? NSData {
             if let object = NSKeyedUnarchiver.unarchiveObject(with: decoded as Data) as? T {
                 return object
             }
@@ -38,20 +37,9 @@ extension UserDefaults {
         return nil
     }
     
-    static func save<T>(object: T, withIdentifier identifier: String) {
+    static func save<T>(object: T, withIdentifier identifier: String, customClassName className: String?=nil) {
         let encodedData = NSKeyedArchiver.archivedData(withRootObject: object)
-        State.shared.defaults.set(encodedData, forKey: identifier)
-        State.shared.defaults.synchronize()
+        UserDefaults.standard.set(encodedData, forKey: identifier)
     }
-    
-    static func loadAndExtendList<T>(withObject object: T, andIdentifier identifier: String) {
-        if var list = UserDefaults.loadObject(ofType: [T](), withIdentifier: identifier) {
-            list.append(object)
-            UserDefaults.save(object: list, withIdentifier: identifier)
-        } else {
-            UserDefaults.save(object: [object], withIdentifier: identifier)
-        }
-    }
-    
 }
 

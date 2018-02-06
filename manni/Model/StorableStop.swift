@@ -12,8 +12,6 @@ import DVB
 
 class StorableStop: NSObject, NSCoding {
     
-    public var _description: String!
-    public var _hashValue: Int!
     public var id: String!
     public var latitude: Double?
     public var longitude: Double?
@@ -24,16 +22,12 @@ class StorableStop: NSObject, NSCoding {
         super.init()
     }
     
-    init(_description: String,
-         _hashValue: Int,
-         id: String,
+    init(id: String,
          latitude: Double?,
          longitude: Double?,
          name: String,
          region: String?) {
         super.init()
-        self._description = _description
-        self._hashValue = _hashValue
         self.id = id
         self.latitude = latitude
         self.longitude = longitude
@@ -43,8 +37,6 @@ class StorableStop: NSObject, NSCoding {
     
     init(_ stop: Stop) {
         super.init()
-        self._description = stop.description
-        self._hashValue = stop.hashValue
         self.id = stop.id
         self.latitude = stop.location?.latitude
         self.longitude = stop.location?.longitude
@@ -54,8 +46,6 @@ class StorableStop: NSObject, NSCoding {
     
     convenience required init?(coder aDecoder: NSCoder) {
         guard
-            let _description = aDecoder.decodeObject(forKey: "_description") as? String,
-            let _hashValue = aDecoder.decodeObject(forKey: "_hashValue") as? Int,
             let id = aDecoder.decodeObject(forKey: "id") as? String,
             let latitude = aDecoder.decodeObject(forKey: "latitude") as? Double?,
             let longitude = aDecoder.decodeObject(forKey: "longitude") as? Double?,
@@ -64,9 +54,7 @@ class StorableStop: NSObject, NSCoding {
             else {
                 return nil
         }
-        self.init(_description: _description,
-                  _hashValue: _hashValue,
-                  id: id,
+        self.init(id: id,
                   latitude: latitude,
                   longitude: longitude,
                   name: name,
@@ -74,13 +62,15 @@ class StorableStop: NSObject, NSCoding {
     }
     
     func encode(with aCoder: NSCoder) {
-        aCoder.encode(_description, forKey: "_description")
-        aCoder.encode(_hashValue, forKey: "_hashValue")
         aCoder.encode(id, forKey: "id")
         aCoder.encode(latitude, forKey: "latitude")
         aCoder.encode(longitude, forKey: "longitude")
         aCoder.encode(name, forKey: "name")
         aCoder.encode(region, forKey: "region")
+    }
+    
+    func asStop() -> Stop {
+        return Stop(id: id, name: name, region: region, longitude: longitude, latitude: latitude)
     }
     
 }

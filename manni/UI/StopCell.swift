@@ -15,6 +15,8 @@ class StopCell: TableViewCell {
     
     static let identifier = "stopCell"
     
+    static let height: CGFloat = 50
+    
     func setUp(forStop stop: Stop) {
         if let region = stop.region {
             self.textLabel?.text = "\(stop.name) (\(region))"
