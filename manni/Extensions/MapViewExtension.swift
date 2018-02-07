@@ -41,13 +41,13 @@ extension MKMapView {
     
     func showLocations(lineName: String,
                        direction: String,
-                       stop: Stop,
+                       stopName: String,
                        etaRange: Int=Config.standardEtaRange,
                        zoomFit: Bool=true,
                        log: @escaping (_ text: String, _ detail: String?) -> (),
                        completion: @escaping () -> ()) {
         log("Ortung für die Linie \(lineName) wird durchgeführt...", nil)
-        Locator.locate(lineName: lineName, direction: direction, aroundStop: stop, log: log) {
+        Locator.locate(lineName: lineName, direction: direction, aroundStopName: stopName, log: log) {
             result in
             self.removeOverlays(self.overlays)
             self.removeAnnotations(self.annotations)

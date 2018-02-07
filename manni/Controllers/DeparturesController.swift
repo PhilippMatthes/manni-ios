@@ -28,20 +28,20 @@ class DeparturesController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = Color.blue.lighten5
         configureTableView()
-        configureNavigationBar(withText: State.shared.stop!.description)
-        loadDepartures(forStop: State.shared.stop!) {}
+        configureNavigationBar(withText: State.shared.stopQuery!)
+        loadDepartures(forStopName: State.shared.stopQuery!) {}
     }
 
     @objc func handleRefresh(refreshControl: UIRefreshControl) {
-        if let stop = State.shared.stop {
-            loadDepartures(forStop: stop) {
+        if let stopQuery = State.shared.stopQuery {
+            loadDepartures(forStopName: stopQuery) {
                 refreshControl.endRefreshing()
             }
         }
     }
     
-    func loadDepartures(forStop stop: Stop, completion: @escaping () -> Void) {
-        Departure.monitor(stopWithName: stop.description) { result in
+    func loadDepartures(forStopName stopName: String, completion: @escaping () -> Void) {
+        Departure.monitor(stopWithName: stopName) { result in
             guard let response = result.success else { return }
             self.departures = response.departures
             DispatchQueue.main.async {
@@ -52,16 +52,8 @@ class DeparturesController: UIViewController {
     }
     
     func configureNavigationBar(withText text: String) {
-        navigationItem.titleLabel.text = text
-        navigationItem.titleLabel.textColor = UIColor.black
-        let backButton = UIButton(type: .custom)
-        backButton.setImage(Icon.cm.arrowBack, for: .normal)
-        backButton.tintColor = UIColor.black
-        backButton.setTitleColor(UIColor.black, for: .normal)
-        backButton.setTitle(Config.backButtonTitle, for: .normal)
-        backButton.addTarget(self, action: #selector(self.returnBack), for: .touchUpInside)
-        navigationItem.setLeftBarButton(UIBarButtonItem(customView: backButton), animated: true)
-        navigationItem.hidesBackButton = false
+        navigationItem.configure(withText: text)
+        navigationItem.add(.returnButton, .left) { self.returnBack() }
     }
     
 }

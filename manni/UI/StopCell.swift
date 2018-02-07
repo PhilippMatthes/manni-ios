@@ -23,15 +23,22 @@ class StopCell: TableViewCell {
         } else {
             self.textLabel?.text = "\(stop.name)"
         }
+        self.textLabel?.textColor = UIColor.white
+        
+        let color: UIColor = Colors.color(forInt: stop.name.count)
+        self.backgroundColor = color
+        self.pulseColor = color.lighter()!
+        
+        self.imageView?.image = Icon.cm.menu
+        self.imageView?.tintColor = UIColor.white
+    }
+    
+    func setUp(forStopName stopName: String) {
+        self.textLabel?.text = "\(stopName)"
         
         self.textLabel?.textColor = UIColor.white
         
-        var color: UIColor
-        if let lineNumber = Int(stop.id) {
-            color = Colors.color(forInt: lineNumber)
-        } else {
-            color = Colors.color(forInt: stop.description.count)
-        }
+        let color: UIColor = Colors.color(forInt: stopName.count)
         self.backgroundColor = color
         self.pulseColor = color.lighter()!
         

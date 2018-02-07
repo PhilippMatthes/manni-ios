@@ -24,16 +24,8 @@ class RouteMapController: UIViewController {
     }
     
     func configureNavigationBar() {
-        navigationItem.titleLabel.text = "Route"
-        navigationItem.titleLabel.textColor = UIColor.black
-        let backButton = UIButton(type: .custom)
-        backButton.setImage(Icon.cm.arrowBack, for: .normal)
-        backButton.tintColor = UIColor.black
-        backButton.setTitleColor(UIColor.black, for: .normal)
-        backButton.setTitle(Config.backButtonTitle, for: .normal)
-        backButton.addTarget(self, action: #selector(self.returnBack), for: .touchUpInside)
-        navigationItem.setLeftBarButton(UIBarButtonItem(customView: backButton), animated: true)
-        navigationItem.hidesBackButton = false
+        navigationItem.configure(withText: "Route")
+        navigationItem.add(.returnButton, .left) { self.returnBack() }
     }
     
     func showRoute(_ route: Route, zoomFit: Bool=true) {

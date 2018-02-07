@@ -41,11 +41,11 @@ class LocationController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        configureNavigationBar(forStop: State.shared.stop!)
+        configureNavigationBar(forStopName: State.shared.stopQuery!)
         let lineName = State.shared.departure!.line
         let direction = State.shared.departure!.direction
-        let stop = State.shared.stop!
-        mapView.showLocations(lineName: lineName, direction: direction, stop: stop, log: {
+        let stopQuery = State.shared.stopQuery!
+        mapView.showLocations(lineName: lineName, direction: direction, stopName: stopQuery, log: {
             logText, detailText in
             DispatchQueue.main.async {
                 self.banner.dismiss()
@@ -57,38 +57,18 @@ class LocationController: UIViewController {
         }
     }
     
-    func configureNavigationBar(forStop stop: Stop) {
-        navigationItem.titleLabel.text = stop.description
-        navigationItem.titleLabel.textColor = UIColor.black
-        
-        let backButton = UIButton(type: .custom)
-        backButton.setImage(Icon.cm.arrowBack, for: .normal)
-        backButton.tintColor = UIColor.black
-        backButton.setTitleColor(UIColor.black, for: .normal)
-        backButton.setTitle(Config.backButtonTitle, for: .normal)
-        backButton.addTarget(self, action: #selector(self.returnBack), for: .touchUpInside)
-        
-        let refreshButton = UIButton(type: .custom)
-        refreshButton.setImage(Icon.cm.search, for: .normal)
-        refreshButton.tintColor = UIColor.black
-        refreshButton.setTitleColor(UIColor.black, for: .normal)
-        refreshButton.addTarget(self, action: #selector(self.refresh), for: .touchUpInside)
-        
-        positionButton.setImage(Icon.place, for: .normal)
-        positionButton.tintColor = UIColor.black
-        positionButton.setTitleColor(UIColor.black, for: .normal)
-        positionButton.addTarget(self, action: #selector(self.locateUser), for: .touchUpInside)
-        
-        navigationItem.setLeftBarButton(UIBarButtonItem(customView: backButton), animated: true)
-        navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: refreshButton), UIBarButtonItem(customView: positionButton)], animated: true)
-        navigationItem.hidesBackButton = false
+    func configureNavigationBar(forStopName stopName: String) {
+        navigationItem.configure(withText: stopName)
+        navigationItem.add(.returnButton, .left) { self.returnBack() }
+        navigationItem.add(.refreshButton, .right) { self.refresh() }
+        navigationItem.add(.positionButton, .right) { self.locateUser() }
     }
     
     @objc func refresh() {
         let lineName = State.shared.departure!.line
         let direction = State.shared.departure!.direction
-        let stop = State.shared.stop!
-        mapView.showLocations(lineName: lineName, direction: direction, stop: stop, zoomFit: false, log: {
+        let stopQuery = State.shared.stopQuery!
+        mapView.showLocations(lineName: lineName, direction: direction, stopName: stopQuery, zoomFit: false, log: {
             logText, detailText in
             DispatchQueue.main.async {
                 self.banner.dismiss()

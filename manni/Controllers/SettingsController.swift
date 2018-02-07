@@ -29,16 +29,8 @@ class SettingsController: UITableViewController {
     }
     
     func configureNavigationBar() {
-        navigationItem.titleLabel.text = "Einstellungen"
-        navigationItem.titleLabel.textColor = UIColor.black
-        let backButton = UIButton(type: .custom)
-        backButton.setImage(Icon.cm.arrowBack, for: .normal)
-        backButton.tintColor = UIColor.black
-        backButton.setTitleColor(UIColor.black, for: .normal)
-        backButton.setTitle(Config.backButtonTitle, for: .normal)
-        backButton.addTarget(self, action: #selector(self.returnBack), for: .touchUpInside)
-        navigationItem.setLeftBarButton(UIBarButtonItem(customView: backButton), animated: true)
-        navigationItem.hidesBackButton = false
+        navigationItem.configure(withText: "Einstellungen")
+        navigationItem.add(.returnButton, .left) { self.returnBack() }
     }
 }
 

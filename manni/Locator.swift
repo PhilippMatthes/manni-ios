@@ -108,10 +108,10 @@ class Locator {
     
     static func locate(lineName: String,
                        direction: String,
-                       aroundStop stop: Stop,
+                       aroundStopName stopName: String,
                        log: @escaping (_ text: String, _ detail: String?) -> (),
                        completion: @escaping (_ result: [Route.RouteStop: [Departure]]?) -> ()) {
-        Locator.directions(forLineName: lineName, aroundStop: stop.name, log: log) {
+        Locator.directions(forLineName: lineName, aroundStop: stopName, log: log) {
             directions in
             if let directions = directions {
                 if directions.count > 1 {

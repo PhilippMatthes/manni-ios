@@ -18,11 +18,9 @@
 		BE2D05CD202356180064339B /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2D05CC202356180064339B /* UIViewExtension.swift */; };
 		BE2D05CF20235C8F0064339B /* RouteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2D05CE20235C8F0064339B /* RouteController.swift */; };
 		BE593EB220298888008C8EAC /* StopExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE593EB120298888008C8EAC /* StopExtension.swift */; };
-		BE593EB420298C2D008C8EAC /* SearchMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE593EB320298C2D008C8EAC /* SearchMode.swift */; };
 		BE593EB62029A608008C8EAC /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE593EB52029A608008C8EAC /* SettingsController.swift */; };
 		BE593EB82029B1A2008C8EAC /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE593EB72029B1A2008C8EAC /* Prediction.swift */; };
 		BE593EBA2029BAFF008C8EAC /* RoutePredictionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE593EB92029BAFF008C8EAC /* RoutePredictionCell.swift */; };
-		BE593EBC2029C849008C8EAC /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE593EBB2029C849008C8EAC /* Action.swift */; };
 		BE59ABE1201A64FE003CA1EF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE0201A64FE003CA1EF /* Colors.swift */; };
 		BE59ABE3201A6528003CA1EF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE2201A6528003CA1EF /* UIColorExtension.swift */; };
 		BE59ABE8201A76B1003CA1EF /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE7201A76B1003CA1EF /* DateExtension.swift */; };
@@ -49,6 +47,8 @@
 		BEA7613E2027224300D39B15 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA7613D2027224300D39B15 /* ArrayExtension.swift */; };
 		BEA761402027245300D39B15 /* PartialRouteExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA7613F2027245300D39B15 /* PartialRouteExtension.swift */; };
 		BEA761442027653A00D39B15 /* RouteMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA761432027653A00D39B15 /* RouteMapController.swift */; };
+		BEBEC502202B4618007617B4 /* NavigationItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC501202B4618007617B4 /* NavigationItemExtension.swift */; };
+		BEBEC504202B7725007617B4 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC503202B7725007617B4 /* UIButtonExtension.swift */; };
 		BEF7C4A020236E8E00FF96E1 /* FoldingCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF7C4A120236E8E00FF96E1 /* FoldingCell.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,11 +67,9 @@
 		BE2D05CC202356180064339B /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		BE2D05CE20235C8F0064339B /* RouteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteController.swift; sourceTree = "<group>"; };
 		BE593EB120298888008C8EAC /* StopExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopExtension.swift; sourceTree = "<group>"; };
-		BE593EB320298C2D008C8EAC /* SearchMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMode.swift; sourceTree = "<group>"; };
 		BE593EB52029A608008C8EAC /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		BE593EB72029B1A2008C8EAC /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		BE593EB92029BAFF008C8EAC /* RoutePredictionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePredictionCell.swift; sourceTree = "<group>"; };
-		BE593EBB2029C849008C8EAC /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		BE59ABDE201A5CD7003CA1EF /* DepartureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartureCell.swift; sourceTree = "<group>"; };
 		BE59ABE0201A64FE003CA1EF /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		BE59ABE2201A6528003CA1EF /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
@@ -103,6 +101,8 @@
 		BEA7613D2027224300D39B15 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		BEA7613F2027245300D39B15 /* PartialRouteExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialRouteExtension.swift; sourceTree = "<group>"; };
 		BEA761432027653A00D39B15 /* RouteMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteMapController.swift; sourceTree = "<group>"; };
+		BEBEC501202B4618007617B4 /* NavigationItemExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItemExtension.swift; sourceTree = "<group>"; };
+		BEBEC503202B7725007617B4 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		BEF7C4A120236E8E00FF96E1 /* FoldingCell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FoldingCell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFB92583DD3E650EAD28A17C /* Pods-manni.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni.debug.xcconfig"; path = "Pods/Target Support Files/Pods-manni/Pods-manni.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -174,9 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				BE2D05C7202308370064339B /* StorableStop.swift */,
-				BE593EB320298C2D008C8EAC /* SearchMode.swift */,
 				BE593EB72029B1A2008C8EAC /* Prediction.swift */,
-				BE593EBB2029C849008C8EAC /* Action.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -196,6 +194,8 @@
 				BEA7613D2027224300D39B15 /* ArrayExtension.swift */,
 				BEA7613F2027245300D39B15 /* PartialRouteExtension.swift */,
 				BE593EB120298888008C8EAC /* StopExtension.swift */,
+				BEBEC501202B4618007617B4 /* NavigationItemExtension.swift */,
+				BEBEC503202B7725007617B4 /* UIButtonExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -390,13 +390,13 @@
 				BE59ABE8201A76B1003CA1EF /* DateExtension.swift in Sources */,
 				BE8D5CDD20204E930057740A /* Util.swift in Sources */,
 				BE8D5CE7202081CF0057740A /* BannerExtension.swift in Sources */,
+				BEBEC504202B7725007617B4 /* UIButtonExtension.swift in Sources */,
 				BEA761402027245300D39B15 /* PartialRouteExtension.swift in Sources */,
 				BEA7613C20263A4F00D39B15 /* IntExtension.swift in Sources */,
-				BE593EBC2029C849008C8EAC /* Action.swift in Sources */,
 				BE593EB220298888008C8EAC /* StopExtension.swift in Sources */,
 				BEA7613A2025F6D900D39B15 /* PartialRouteCell.swift in Sources */,
 				BE5BABEE201E885D004C09FB /* Locator.swift in Sources */,
-				BE593EB420298C2D008C8EAC /* SearchMode.swift in Sources */,
+				BEBEC502202B4618007617B4 /* NavigationItemExtension.swift in Sources */,
 				BE090F50201CD277004C1410 /* DarkBarNavigationController.swift in Sources */,
 				BE8D5CDF2020605D0057740A /* RouteStopExtension.swift in Sources */,
 				BE59ABE1201A64FE003CA1EF /* Colors.swift in Sources */,

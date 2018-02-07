@@ -15,6 +15,11 @@ import DVB
 
 class SearchController: UIViewController {
     
+    enum SearchMode: String {
+        case route
+        case stop
+    }
+    
     @IBOutlet weak var modularSearchBarHeight: NSLayoutConstraint!
     
     @IBOutlet weak var searchBar: SearchBar!
@@ -36,7 +41,6 @@ class SearchController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
         if showsPredictions { loadPredictions() }
         configureSearchBar()
         configureTableViews()
@@ -48,8 +52,8 @@ class SearchController: UIViewController {
         if State.shared.predictionsActive != showsPredictions {
             showsPredictions = State.shared.predictionsActive
             if showsPredictions { loadPredictions() }
-            tableView.reloadData()
         }
+        tableView.reloadData()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -59,7 +63,7 @@ class SearchController: UIViewController {
 
 extension SearchController {
     func loadPredictions() {
-        self.predictions = State.shared.logData.keys.map { $0.asPrediction(withProbability: 1.0) }
+        self.predictions = State.shared.logData.keys.map { Prediction(probability: 1.0, query: $0) }
     }
 }
 
@@ -94,8 +98,11 @@ extension SearchController: SearchBarDelegate {
     }
     
     func replaceActiveSearchBarText(_ text: String) {
-        if let bar = currentlyEditingSearchBar {
-            bar.textField.text = text
+        switch State.shared.searchMode {
+        case .stop:
+            searchBar.textField.text = text
+        case .route:
+            if let bar = currentlyEditingSearchBar {bar.textField.text = text}
         }
     }
     
@@ -132,11 +139,8 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
                 cell.setUp(forStop: stop.asStop())
                 return cell
             }
-        } else if let routePrediction = predictions[indexPath.row] as? RoutePrediction, let cell = tableView.dequeueReusableCell(withIdentifier: RoutePredictionCell.identifier, for: indexPath as IndexPath) as? RoutePredictionCell {
-                cell.setUp(forStart: routePrediction.start, end: routePrediction.end)
-                return cell
-        } else if let cell = tableView.dequeueReusableCell(withIdentifier: StopCell.identifier, for: indexPath as IndexPath) as? StopCell, let stopPrediction = predictions[indexPath.row] as? StopPrediction {
-                cell.setUp(forStop: stopPrediction.stop)
+        } else if let cell = tableView.dequeueReusableCell(withIdentifier: StopCell.identifier, for: indexPath as IndexPath) as? StopCell {
+                cell.setUp(forStopName: predictions[indexPath.row].query)
                 return cell
         }
         return TableViewCell()
@@ -151,10 +155,7 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 { return StopCell.height }
-        else {
-            return predictions[indexPath.row] is RoutePrediction ? RoutePredictionCell.height : StopCell.height
-        }
+        return StopCell.height
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -164,27 +165,23 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dismissKeyboard()
         
-        var selectedStop = indexPath.section == 0 ? stops[indexPath.row].asStop() : nil
-        if indexPath.section == 1, let stopPrediction = predictions[indexPath.row] as? StopPrediction { selectedStop = stopPrediction.stop }
+        let selectedStop = indexPath.section == 0 ? stops[indexPath.row].asStop() : nil
+        if indexPath.section == 1 {
+            replaceActiveSearchBarText(predictions[indexPath.row].query)
+            switchSearchBar()
+        }
         
         if let stop = selectedStop {
-            State.shared.stop = stop
             switch State.shared.searchMode {
             case .stop:
-                State.shared.addLogData(StopAction(stop: StorableStop(stop)))
-                performSegue(withIdentifier: "showDepartures", sender: self)
+                State.shared.addLogData(stop.name)
                 break
             case .route:
                 replaceActiveSearchBarText(stop.name)
-                openRouteControllerIfPossible()
                 switchSearchBar()
                 break
             }
-        } else if let routePrediction = predictions[indexPath.row] as? RoutePrediction {
-            searchBar.textField.text = routePrediction.start
-            modularSearchBar.textField.text = routePrediction.end
-            openRouteControllerIfPossible()
-        }
+        } 
     }
     
     func configureTableViews() {
@@ -205,24 +202,26 @@ extension SearchController {
         statusBarController?.statusBarStyle = .lightContent
         
         switchButton = IconButton(image: Icon.cm.shuffle)
-        switchButton.addTarget(self, action: #selector(switchModularSearchBar(sender:)), for: .touchUpInside)
+        switchButton.add(for: .touchUpInside) {self.switchModularSearchBar(sender: self.switchButton)}
         
         modularSearchButton = IconButton(image: Icon.cm.search)
-        modularSearchButton.addTarget(self, action: #selector(openRouteControllerIfPossible), for: .touchUpInside)
+        modularSearchButton.add(for: .touchUpInside) {self.openRouteOrDeparturesController()}
         
         settingsButton = IconButton(image: Icon.cm.settings)
-        settingsButton.addTarget(self, action: #selector(openSettingsController), for: .touchUpInside)
+        settingsButton.add(for: .touchUpInside) {self.openSettingsController()}
         
         modularSearchBar.alpha = State.shared.searchMode == .route ? 1.0 : 0.0
-        modularSearchBar.rightViews = [modularSearchButton]
         searchBar.leftViews = [switchButton]
-        searchBar.rightViews = [settingsButton]
+        searchBar.rightViews = [settingsButton, modularSearchButton]
         searchBar.placeholder = Config.searchBarPlaceHolder
         modularSearchBar.placeholder = Config.modularSearchBarPlaceHolderDestination
         
         searchBar.contentEdgeInsets = UIEdgeInsetsMake(20,4,4,4)
         modularSearchBar.contentEdgeInsets = UIEdgeInsetsMake(4, 53, 4, 4)
         tableView.contentInset = UIEdgeInsetsMake(50,0,0,0)
+        
+        searchBar.textField.delegate = self
+        modularSearchBar.textField.delegate = self
         
         searchBar.blur()
         modularSearchBar.blur()
@@ -263,7 +262,7 @@ extension SearchController {
         }
     }
     
-    @objc func switchModularSearchBar(sender: UIButton!) {
+    func switchModularSearchBar(sender: UIButton!) {
         switch State.shared.searchMode {
         case .stop:
             searchBar.placeholder = Config.modularSearchBarPlaceHolderStart
@@ -279,19 +278,37 @@ extension SearchController {
         }
     }
     
-    @objc func openRouteControllerIfPossible() {
-        if let fromText = searchBar.textField.text, let toText = modularSearchBar.textField.text {
-            if fromText != "" && toText != "" {
-                State.shared.from = fromText
-                State.shared.to = toText
-                State.shared.addLogData(RouteAction(start: fromText, end: toText))
-                performSegue(withIdentifier: "showRoutes", sender: self)
+    func openRouteOrDeparturesController() {
+        switch State.shared.searchMode {
+        case .stop:
+            if let fromText = searchBar.textField.text {
+                if fromText != "" {
+                    State.shared.stopQuery = fromText
+                    performSegue(withIdentifier: "showDepartures", sender: self)
+                }
+            }
+        case .route:
+            if let fromText = searchBar.textField.text, let toText = modularSearchBar.textField.text {
+                if fromText != "" && toText != "" {
+                    State.shared.from = fromText
+                    State.shared.to = toText
+                    State.shared.addLogData(fromText, toText)
+                    performSegue(withIdentifier: "showRoutes", sender: self)
+                }
             }
         }
     }
     
-    @objc func openSettingsController() {
+    func openSettingsController() {
         performSegue(withIdentifier: "showSettings", sender: self)
     }
     
+}
+
+extension SearchController: TextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        openRouteOrDeparturesController()
+        return true
+    }
 }

@@ -13,18 +13,16 @@ class State {
     
     static let shared = State()
     var routeChanges = [String : [String]]()
-    var stop: Stop?
+    var stopQuery: String?
     var departure: Departure?
     var from: String?
     var to: String?
     var route: Route?
     
-    var searchMode: SearchMode {
+    var searchMode: SearchController.SearchMode {
         get {
-            guard let searchMode = UserDefaults.loadObject(ofType: String(), withIdentifier: "searchMode") else {
-                return .stop
-            }
-            return SearchMode(rawValue: searchMode) == nil ? .stop : SearchMode(rawValue: searchMode)!
+            guard let searchMode = UserDefaults.loadObject(ofType: String(), withIdentifier: "searchMode") else {return .stop}
+            return SearchController.SearchMode(rawValue: searchMode) == nil ? .stop : SearchController.SearchMode(rawValue: searchMode)!
         }
         set(new) {
             UserDefaults.save(object: new.rawValue, withIdentifier: "searchMode")
@@ -33,9 +31,7 @@ class State {
     
     var predictionsActive: Bool {
         get {
-            guard let predictionsActiveFromStorage = UserDefaults.loadObject(ofType: Bool(), withIdentifier: "predictionsActive") else {
-                return true
-            }
+            guard let predictionsActiveFromStorage = UserDefaults.loadObject(ofType: Bool(), withIdentifier: "predictionsActive") else {return true}
             return predictionsActiveFromStorage
         }
         set(new) {
@@ -43,12 +39,10 @@ class State {
         }
     }
     
-    var logData: [Action : [Date]] {
+    var logData: [String : [Date]] {
         get {
-            if let decoded = UserDefaults.loadObject(ofType: [Action : [Date]](), withIdentifier: "logData") {
-                return decoded
-            }
-            return [Action : [Date]]()
+            if let decoded = UserDefaults.loadObject(ofType: [String : [Date]](), withIdentifier: "logData") {return decoded}
+            return [String : [Date]]()
         }
         set(new) {
             UserDefaults.save(object: new, withIdentifier: "logData")
@@ -57,12 +51,11 @@ class State {
     
     private init() {}
     
-    func addLogData(_ action: Action) {
+    func addLogData(_ queries: String?...) {
         let date = Date()
-        if logData[action] != nil {
-            logData[action]!.append(date)
-        } else {
-            logData[action] = [date]
+        for query in queries where query != nil {
+            if logData[query!] != nil {logData[query!]!.append(date)}
+            else {logData[query!] = [date]}
         }
     }
     

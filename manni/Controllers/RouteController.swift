@@ -78,16 +78,9 @@ extension RouteController {
     }
     
     func configureNavigationBar(from: String, to: String) {
-        navigationItem.titleLabel.text = "Routen von \(from) nach \(to)"
-        navigationItem.titleLabel.textColor = UIColor.black
-        let backButton = UIButton(type: .custom)
-        backButton.setImage(Icon.cm.arrowBack, for: .normal)
-        backButton.tintColor = UIColor.black
-        backButton.setTitleColor(UIColor.black, for: .normal)
-        backButton.setTitle(Config.backButtonTitle, for: .normal)
-        backButton.addTarget(self, action: #selector(self.returnBack), for: .touchUpInside)
-        navigationItem.setLeftBarButton(UIBarButtonItem(customView: backButton), animated: true)
-        navigationItem.hidesBackButton = false
+        let text = "Routen von \(from) nach \(to)"
+        navigationItem.configure(withText: text)
+        navigationItem.add(.returnButton, .left) { self.returnBack() }
     }
 }
 

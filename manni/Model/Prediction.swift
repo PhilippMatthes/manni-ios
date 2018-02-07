@@ -9,30 +9,12 @@
 import Foundation
 import DVB
 
-class Prediction {
+struct Prediction {
     var probability: Double!
+    var query: String!
     
-    init(probability: Double) {
+    init(probability: Double, query: String) {
         self.probability = probability
-    }
-}
-
-class StopPrediction: Prediction {
-    var stop: Stop!
-    
-    init(stop: Stop, probability: Double) {
-        super.init(probability: probability)
-        self.stop = stop
-    }
-}
-
-class RoutePrediction: Prediction {
-    var start: String!
-    var end: String!
-    
-    init(start: String, end: String, probability: Double) {
-        super.init(probability: probability)
-        self.start = start
-        self.end = end
+        self.query = query
     }
 }
