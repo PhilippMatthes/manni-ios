@@ -63,7 +63,7 @@ class SearchController: UIViewController {
 
 extension SearchController {
     func loadPredictions() {
-        self.predictions = State.shared.logData.keys.map { Prediction(probability: 1.0, query: $0) }
+        self.predictions = Predictor.loadPredictions()
     }
 }
 
@@ -140,8 +140,8 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             }
         } else if let cell = tableView.dequeueReusableCell(withIdentifier: StopCell.identifier, for: indexPath as IndexPath) as? StopCell {
-                cell.setUp(forStopName: predictions[indexPath.row].query)
-                return cell
+            cell.setUp(forStopName: predictions[indexPath.row].query)
+            return cell
         }
         return TableViewCell()
     }

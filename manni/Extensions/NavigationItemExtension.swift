@@ -29,11 +29,11 @@ extension UINavigationItem {
         self.hidesBackButton = false
     }
     
-    func add(_ type: ButtonType, _ location: ButtonLocation, completion: @escaping () -> ()) {
+    func add(_ type: ButtonType, _ location: ButtonLocation, completion: @escaping () -> ()) -> UIButton {
         let button = UIButton(type: .custom)
         switch type {
         case .positionButton:
-            button.setImage(Icon.cm.close, for: .normal)
+            button.setImage(Icon.home, for: .normal)
         case .returnButton:
             button.setImage(Icon.cm.arrowBack, for: .normal)
         case .refreshButton:
@@ -48,8 +48,9 @@ extension UINavigationItem {
             if let leftItems = leftBarButtonItems {setLeftBarButtonItems(leftItems + [buttonItem], animated: true)}
             else {setLeftBarButtonItems([buttonItem], animated: true)}
         case .right:
-            if let rightItems = rightBarButtonItems {setLeftBarButtonItems(rightItems + [buttonItem], animated: true)}
+            if let rightItems = rightBarButtonItems {setRightBarButtonItems(rightItems + [buttonItem], animated: true)}
             else {setRightBarButtonItems([buttonItem], animated: true)}
         }
+        return button
     }
 }

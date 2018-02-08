@@ -49,4 +49,8 @@ extension UIViewController {
     @objc func returnBack() {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func isVisible() -> Bool {
+        return viewIfLoaded?.window != nil
+    }
 }

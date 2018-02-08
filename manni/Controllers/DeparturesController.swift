@@ -18,7 +18,7 @@ class DeparturesController: UIViewController {
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(self.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
+        refreshControl.add(for: .valueChanged) {self.handleRefresh(refreshControl: refreshControl)}
         return refreshControl
     }()
     
@@ -32,7 +32,7 @@ class DeparturesController: UIViewController {
         loadDepartures(forStopName: State.shared.stopQuery!) {}
     }
 
-    @objc func handleRefresh(refreshControl: UIRefreshControl) {
+    func handleRefresh(refreshControl: UIRefreshControl) {
         if let stopQuery = State.shared.stopQuery {
             loadDepartures(forStopName: stopQuery) {
                 refreshControl.endRefreshing()
@@ -53,7 +53,7 @@ class DeparturesController: UIViewController {
     
     func configureNavigationBar(withText text: String) {
         navigationItem.configure(withText: text)
-        navigationItem.add(.returnButton, .left) { self.returnBack() }
+        _ = navigationItem.add(.returnButton, .left) { self.returnBack() }
     }
     
 }

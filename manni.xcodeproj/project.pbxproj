@@ -49,6 +49,7 @@
 		BEA761442027653A00D39B15 /* RouteMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA761432027653A00D39B15 /* RouteMapController.swift */; };
 		BEBEC502202B4618007617B4 /* NavigationItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC501202B4618007617B4 /* NavigationItemExtension.swift */; };
 		BEBEC504202B7725007617B4 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC503202B7725007617B4 /* UIButtonExtension.swift */; };
+		BEBEC506202C2F44007617B4 /* Predictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC505202C2F44007617B4 /* Predictor.swift */; };
 		BEF7C4A020236E8E00FF96E1 /* FoldingCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF7C4A120236E8E00FF96E1 /* FoldingCell.framework */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +104,7 @@
 		BEA761432027653A00D39B15 /* RouteMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteMapController.swift; sourceTree = "<group>"; };
 		BEBEC501202B4618007617B4 /* NavigationItemExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItemExtension.swift; sourceTree = "<group>"; };
 		BEBEC503202B7725007617B4 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		BEBEC505202C2F44007617B4 /* Predictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Predictor.swift; sourceTree = "<group>"; };
 		BEF7C4A120236E8E00FF96E1 /* FoldingCell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FoldingCell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFB92583DD3E650EAD28A17C /* Pods-manni.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni.debug.xcconfig"; path = "Pods/Target Support Files/Pods-manni/Pods-manni.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -158,6 +160,7 @@
 				BE59ABF4201B146E003CA1EF /* State.swift */,
 				BE5BABED201E885D004C09FB /* Locator.swift */,
 				BE8D5CDC20204E930057740A /* Util.swift */,
+				BEBEC505202C2F44007617B4 /* Predictor.swift */,
 				BE2D05C9202308480064339B /* Model */,
 				BE59ABE5201A65D3003CA1EF /* Controllers */,
 				BE59ABE4201A65C2003CA1EF /* Extensions */,
@@ -387,6 +390,7 @@
 				BE5BABF4201FA15B004C09FB /* LocationController.swift in Sources */,
 				BE59ABEF201B11E2003CA1EF /* DeparturesController.swift in Sources */,
 				BE986020201B2FFB008B4A08 /* UIViewControllerExtension.swift in Sources */,
+				BEBEC506202C2F44007617B4 /* Predictor.swift in Sources */,
 				BE59ABE8201A76B1003CA1EF /* DateExtension.swift in Sources */,
 				BE8D5CDD20204E930057740A /* Util.swift in Sources */,
 				BE8D5CE7202081CF0057740A /* BannerExtension.swift in Sources */,

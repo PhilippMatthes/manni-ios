@@ -25,7 +25,7 @@ class RouteMapController: UIViewController {
     
     func configureNavigationBar() {
         navigationItem.configure(withText: "Route")
-        navigationItem.add(.returnButton, .left) { self.returnBack() }
+        _ = navigationItem.add(.returnButton, .left) { self.returnBack() }
     }
     
     func showRoute(_ route: Route, zoomFit: Bool=true) {

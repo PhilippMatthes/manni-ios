@@ -80,7 +80,7 @@ extension RouteController {
     func configureNavigationBar(from: String, to: String) {
         let text = "Routen von \(from) nach \(to)"
         navigationItem.configure(withText: text)
-        navigationItem.add(.returnButton, .left) { self.returnBack() }
+        _ = navigationItem.add(.returnButton, .left) { self.returnBack() }
     }
 }
 

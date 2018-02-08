@@ -9,12 +9,15 @@
 import Foundation
 import DVB
 
-struct Prediction {
-    var probability: Double!
+class Prediction {
+    var score: Double! = 0.0
     var query: String!
     
-    init(probability: Double, query: String) {
-        self.probability = probability
+    init(_ query: String) {
         self.query = query
+    }
+    
+    func setScore(_ p: Double) {
+        self.score = p
     }
 }

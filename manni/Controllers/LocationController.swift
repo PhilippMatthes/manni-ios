@@ -48,9 +48,11 @@ class LocationController: UIViewController {
         mapView.showLocations(lineName: lineName, direction: direction, stopName: stopQuery, log: {
             logText, detailText in
             DispatchQueue.main.async {
-                self.banner.dismiss()
-                self.banner = Banner(title: logText, subtitle: detailText).designed()
-                self.banner.show()
+                if self.isVisible() {
+                    self.banner.dismiss()
+                    self.banner = Banner(title: logText, subtitle: detailText).designed()
+                    self.banner.show()
+                }
             }
         }) {
             self.mapView.addAnnotation(self.locationAnnotation)
@@ -59,9 +61,9 @@ class LocationController: UIViewController {
     
     func configureNavigationBar(forStopName stopName: String) {
         navigationItem.configure(withText: stopName)
-        navigationItem.add(.returnButton, .left) { self.returnBack() }
-        navigationItem.add(.refreshButton, .right) { self.refresh() }
-        navigationItem.add(.positionButton, .right) { self.locateUser() }
+        _ = navigationItem.add(.returnButton, .left) { self.banner.dismiss(); self.returnBack() }
+        _ = navigationItem.add(.refreshButton, .right) { self.refresh() }
+        _ = navigationItem.add(.positionButton, .right) { self.locateUser() }
     }
     
     @objc func refresh() {
