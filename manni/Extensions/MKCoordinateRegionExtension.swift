@@ -20,32 +20,28 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 //
-//  Created by Philipp Matthes on 01.02.18.
-//  Copyright © 2018 Philipp Matthes. All rights reserved.
+//  Created by Philipp Matthes on 14.11.17.
+//  Copyright © 2017 Philipp Matthes. All rights reserved.
 //
 
 import Foundation
-import UIKit
+import MapKit
 
-extension UIView {
-    func blur(style: UIBlurEffectStyle = .extraLight, color: UIColor = .white, alpha: CGFloat = 0.5) {
-        self.backgroundColor = color.withAlphaComponent(alpha)
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
-        let mainBlurEffectView = UIVisualEffectView(effect: blurEffect)
-        mainBlurEffectView.layer.zPosition = -1000
-        mainBlurEffectView.frame = self.bounds
-        mainBlurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.addSubview(mainBlurEffectView)
+extension MKCoordinateRegion {
+    
+    func getRadius() -> Double {
+        let center = self.center
+        let span = self.span
+        
+        let loc1 = CLLocation(latitude: center.latitude - span.latitudeDelta * 0.5, longitude: center.longitude)
+        let loc2 = CLLocation(latitude: center.latitude + span.latitudeDelta * 0.5, longitude: center.longitude)
+        let loc3 = CLLocation(latitude: center.latitude, longitude: center.longitude - span.longitudeDelta * 0.5)
+        let loc4 = CLLocation(latitude: center.latitude, longitude: center.longitude + span.longitudeDelta * 0.5)
+        
+        let metersInLatitude = loc1.distance(from: loc2)
+        let metersInLongitude = loc3.distance(from: loc4)
+        
+        return max(metersInLatitude, metersInLongitude)/2
     }
     
-    func isBlurred() -> Bool {
-        for subview in self.subviews {
-            if let subview = subview as? UIVisualEffectView {
-                if let _ = subview.effect as? UIBlurEffect {
-                    return true
-                }
-            }
-        }
-        return false
-    }
 }

@@ -20,26 +20,24 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 //
-//  Created by Philipp Matthes on 07.11.17.
+//  Created by Philipp Matthes on 01.11.17.
 //  Copyright © 2017 Philipp Matthes. All rights reserved.
 //
 
 import Foundation
+import MapKit
 
-extension UserDefaults {
-    
-    static func loadObject<T>(ofType type: T, withIdentifier identifier: String, customClassName className: String?=nil) -> T? {
-        if let decoded = UserDefaults.standard.object(forKey: identifier) as? NSData {
-            if let object = NSKeyedUnarchiver.unarchiveObject(with: decoded as Data) as? T {
-                return object
+extension CLLocation {
+    func fetchCountryAndCity(completion: @escaping (String?, String?) -> ()) {
+        print("Fetching country and city")
+        CLGeocoder().reverseGeocodeLocation(self) { placemarks, error in
+            if let error = error {
+                print(error)
+                completion(nil, nil)
+            } else if let country = placemarks?.first?.country,
+                let city = placemarks?.first?.locality {
+                completion(country, city)
             }
         }
-        return nil
-    }
-    
-    static func save<T>(object: T, withIdentifier identifier: String, customClassName className: String?=nil) {
-        let encodedData = NSKeyedArchiver.archivedData(withRootObject: object)
-        UserDefaults.standard.set(encodedData, forKey: identifier)
     }
 }
-

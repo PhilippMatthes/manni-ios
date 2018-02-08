@@ -20,40 +20,31 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 //
-//  Created by Philipp Matthes on 04.02.18.
-//  Copyright © 2018 Philipp Matthes. All rights reserved.
+//  Created by Philipp Matthes on 02.11.17.
+//  Copyright © 2017 Philipp Matthes. All rights reserved.
 //
 
 import Foundation
+import UIKit
 
-
-extension Array where Element:Equatable {
-    func removeDuplicates() -> [Element] {
-        var result = [Element]()
-        
-        for value in self {
-            if result.contains(value) == false {
-                result.append(value)
-            }
-        }
-        
-        return result
+extension UIImage {
+    func alpha(_ value:CGFloat) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        draw(at: CGPoint.zero, blendMode: .normal, alpha: value)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
     }
-}
-
-extension Array {
-    func filterDuplicates( includeElement: @escaping (_ lhs:Element, _ rhs:Element) -> Bool) -> [Element] {
-        var results = [Element]()
+    
+    public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
+        let rect = CGRect(origin: .zero, size: size)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+        color.setFill()
+        UIRectFill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
         
-        forEach { (element) in
-            let existingElements = results.filter {
-                return includeElement(element, $0)
-            }
-            if existingElements.count == 0 {
-                results.append(element)
-            }
-        }
-        
-        return results
+        guard let cgImage = image?.cgImage else { return nil }
+        self.init(cgImage: cgImage)
     }
 }

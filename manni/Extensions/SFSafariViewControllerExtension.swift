@@ -20,16 +20,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 //
-//  Created by Philipp Matthes on 03.02.18.
-//  Copyright © 2018 Philipp Matthes. All rights reserved.
+//  Created by Philipp Matthes on 25.11.17.
+//  Copyright © 2017 Philipp Matthes. All rights reserved.
 //
 
 import Foundation
+import SafariServices
 
-extension Int {
-    func mod(_ n: Int) -> Int {
-        precondition(n > 0, "modulus must be positive")
-        let r = self % n
-        return r >= 0 ? r : r + n
+extension SFSafariViewController {
+    
+    convenience init(url: URL, tintColor color: UIColor) {
+        self.init(url: url)
+        if #available(iOS 10.0, *) {
+            self.preferredControlTintColor = color
+        }
     }
+    
 }
