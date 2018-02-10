@@ -45,7 +45,6 @@
 		BEA761442027653A00D39B15 /* RouteMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA761432027653A00D39B15 /* RouteMapController.swift */; };
 		BEBEC502202B4618007617B4 /* NavigationItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC501202B4618007617B4 /* NavigationItemExtension.swift */; };
 		BEBEC506202C2F44007617B4 /* Predictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC505202C2F44007617B4 /* Predictor.swift */; };
-		BEBEC51B202C6133007617B4 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC507202C6130007617B4 /* ArrayExtension.swift */; };
 		BEBEC51C202C6133007617B4 /* EquatableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC508202C6130007617B4 /* EquatableExtension.swift */; };
 		BEBEC51E202C6133007617B4 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC50A202C6130007617B4 /* UIViewExtension.swift */; };
 		BEBEC51F202C6133007617B4 /* UINaviationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC50B202C6130007617B4 /* UINaviationBarExtension.swift */; };
@@ -61,6 +60,7 @@
 		BEBEC52C202C6133007617B4 /* CLLocationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC518202C6132007617B4 /* CLLocationExtension.swift */; };
 		BEBEC52D202C6133007617B4 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC519202C6132007617B4 /* IntExtension.swift */; };
 		BEBEC52E202C6133007617B4 /* SFSafariViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC51A202C6132007617B4 /* SFSafariViewControllerExtension.swift */; };
+		BEBEC531202C647D007617B4 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC530202C646F007617B4 /* ArrayExtension.swift */; };
 		BEF7C4A020236E8E00FF96E1 /* FoldingCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF7C4A120236E8E00FF96E1 /* FoldingCell.framework */; };
 /* End PBXBuildFile section */
 
@@ -111,7 +111,6 @@
 		BEA761432027653A00D39B15 /* RouteMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteMapController.swift; sourceTree = "<group>"; };
 		BEBEC501202B4618007617B4 /* NavigationItemExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItemExtension.swift; sourceTree = "<group>"; };
 		BEBEC505202C2F44007617B4 /* Predictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Predictor.swift; sourceTree = "<group>"; };
-		BEBEC507202C6130007617B4 /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArrayExtension.swift; path = "../../../../Downloads/swifthelpers-master/src/ArrayExtension.swift"; sourceTree = "<group>"; };
 		BEBEC508202C6130007617B4 /* EquatableExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquatableExtension.swift; sourceTree = "<group>"; };
 		BEBEC50A202C6130007617B4 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewExtension.swift; path = "../../../../Downloads/swifthelpers-master/src/UIViewExtension.swift"; sourceTree = "<group>"; };
 		BEBEC50B202C6130007617B4 /* UINaviationBarExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINaviationBarExtension.swift; sourceTree = "<group>"; };
@@ -127,6 +126,7 @@
 		BEBEC518202C6132007617B4 /* CLLocationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationExtension.swift; sourceTree = "<group>"; };
 		BEBEC519202C6132007617B4 /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntExtension.swift; path = "../../../../Downloads/swifthelpers-master/src/IntExtension.swift"; sourceTree = "<group>"; };
 		BEBEC51A202C6132007617B4 /* SFSafariViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFSafariViewControllerExtension.swift; sourceTree = "<group>"; };
+		BEBEC530202C646F007617B4 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		BEF7C4A120236E8E00FF96E1 /* FoldingCell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FoldingCell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFB92583DD3E650EAD28A17C /* Pods-manni.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni.debug.xcconfig"; path = "Pods/Target Support Files/Pods-manni/Pods-manni.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -207,7 +207,7 @@
 		BE59ABE4201A65C2003CA1EF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				BEBEC507202C6130007617B4 /* ArrayExtension.swift */,
+				BEBEC530202C646F007617B4 /* ArrayExtension.swift */,
 				BEBEC513202C6131007617B4 /* BadgeExtension.swift */,
 				BE8D5CE6202081CF0057740A /* BannerExtension.swift */,
 				BEBEC50F202C6131007617B4 /* CGSizeExtension.swift */,
@@ -422,7 +422,6 @@
 				BEA761362025E7E300D39B15 /* RouteCell.swift in Sources */,
 				BE5BABF4201FA15B004C09FB /* LocationController.swift in Sources */,
 				BE59ABEF201B11E2003CA1EF /* DeparturesController.swift in Sources */,
-				BEBEC51B202C6133007617B4 /* ArrayExtension.swift in Sources */,
 				BE986020201B2FFB008B4A08 /* UIViewControllerExtension.swift in Sources */,
 				BEBEC52D202C6133007617B4 /* IntExtension.swift in Sources */,
 				BEBEC506202C2F44007617B4 /* Predictor.swift in Sources */,
@@ -439,6 +438,7 @@
 				BEBEC524202C6133007617B4 /* UITabBarExtension.swift in Sources */,
 				BE5BABEE201E885D004C09FB /* Locator.swift in Sources */,
 				BEBEC51F202C6133007617B4 /* UINaviationBarExtension.swift in Sources */,
+				BEBEC531202C647D007617B4 /* ArrayExtension.swift in Sources */,
 				BEBEC502202B4618007617B4 /* NavigationItemExtension.swift in Sources */,
 				BE090F50201CD277004C1410 /* DarkBarNavigationController.swift in Sources */,
 				BE8D5CDF2020605D0057740A /* RouteStopExtension.swift in Sources */,
@@ -605,7 +605,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S36925NV4E;
 				INFOPLIST_FILE = manni/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.philippmatthes.manni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -622,7 +622,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S36925NV4E;
 				INFOPLIST_FILE = manni/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.philippmatthes.manni;
 				PRODUCT_NAME = "$(TARGET_NAME)";

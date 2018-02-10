@@ -172,12 +172,12 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
         }
         
         if let stop = selectedStop {
+            replaceActiveSearchBarText(stop.name)
             switch State.shared.searchMode {
             case .stop:
                 State.shared.addLogData(stop.name)
                 break
             case .route:
-                replaceActiveSearchBarText(stop.name)
                 switchSearchBar()
                 break
             }
