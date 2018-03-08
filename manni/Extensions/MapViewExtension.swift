@@ -51,12 +51,12 @@ extension MKMapView {
                        zoomFit: Bool=true,
                        log: @escaping (_ text: String, _ detail: String?) -> (),
                        completion: @escaping () -> ()) {
-        log("Ortung wird durchgeführt...", nil)
+        log(Config.locating, nil)
         let date = Date()
         TripStop.get(forTripID: tripId, stopID: stopId, atTime: date) {
             result in
             guard let success = result.success else {
-                log("Ihre Linie konnte nicht gefunden werden", nil)
+                log(Config.lineCouldNotBeFound, nil)
                 return
             }
             self.removeOverlays(self.overlays)
@@ -71,14 +71,14 @@ extension MKMapView {
                         let stop = success.stops.first,
                         let wgs = stop.location
                     else {
-                        log("Ihre Linie konnte nicht gefunden werden", nil)
+                        log(Config.lineCouldNotBeFound, nil)
                         return
                     }
                     let location = CLLocation(latitude: wgs.latitude, longitude: wgs.longitude)
                     self.addAnnotation(location: location, stopName: stop.name) {
                         self.addCircle(location: location) {
                             self.zoomFitOverlays()
-                            log("Ihre Linie wurde gefunden!", nil)
+                            log(Config.lineWasFound, nil)
                             completion()
                         }
                     }
@@ -92,7 +92,7 @@ extension MKMapView {
                        radius: CLLocationDistance=100,
                        completion: @escaping () -> ()) {
         let circle = MKCircle(center: location.coordinate, radius: radius)
-        circle.title = "Ihre Linie befindet sich aktuell an der Hst. \(stopName)"
+        circle.title = "\(Config.yourLineIsNowNear) \(stopName)"
         DispatchQueue.main.async {
             self.addAnnotation(circle)
             completion()

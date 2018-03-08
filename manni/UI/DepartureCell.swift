@@ -52,14 +52,14 @@ class DepartureCell: TableViewCell {
         
         self.titleLabel1.text = "\(direction)"
         if delay == 0 {
-            self.titleLabel2.text = "In \(eta) min"
+            self.titleLabel2.text = "\(Config.arrivingIn) \(eta) min"
         } else if delay > 0 {
-            self.titleLabel2.text = "In \(eta) min (\(delay) min Verspätung)"
+            self.titleLabel2.text = "\(Config.arrivingIn) \(eta) min (\(delay) min \(Config.delay))"
         } else {
-            self.titleLabel2.text = "In \(eta) min (\(-delay) min zu früh)"
+            self.titleLabel2.text = "\(Config.arrivingIn) \(eta) min (\(-delay) min \(Config.tooEarly))"
         }
-        self.detailLabel.text = "\(changesString) Fahrt von Bahnsteig \(platformName)"
-        self.timeLabel.text = "Vsl. Abfahrt: \(time)"
+        self.detailLabel.text = "\(changesString) \(Config.fromPlatform) \(platformName)"
+        self.timeLabel.text = "\(Config.scheduledArrival): \(time)"
         self.button.setTitle("\(line)", for: .normal)
         
         self.titleLabel1.textColor = UIColor.white

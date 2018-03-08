@@ -1,0 +1,43 @@
+/* 
+  Localizable.strings
+  manni
+
+  Created by Philipp Matthes on 08.03.18.
+  Copyright © 2018 Philipp Matthes. All rights reserved.
+*/
+
+"currentLocationTitle" = "Aktueller Standort";
+"lastKnownLocationTitle" = "Letzter bekannter Standort";
+"standardQuery" = "Hauptbahnhof";
+"modularSearchBarPlaceHolderStart" = "Start";
+"searchBarPlaceHolder" = "Haltestelle suchen";
+"modularSearchBarPlaceHolderDestination" = "Ziel";
+"backButtonTitle" = "Zurück";
+"amplifiedTransport" = "Verstärkter Transport";
+"scheduledChange" = "Geplante Änderung";
+"shortTermChange" = "Kurzfristige Änderung";
+"suggestions" = "Vorschläge";
+"searchResults" = "Suchergebnisse";
+"routesFrom" = "Routen von";
+"route" = "Route";
+"locating" = "Lokalisiere die Linie...";
+"lineCouldNotBeFound" = "Linie konnte nicht gefunden werden";
+"lineWasFound" = "Linie wurde gefunden!";
+"yourLineIsNowNear" = "Ihre Linie befindet sich in der Nähe von";
+"direction" = "Richtung";
+"duration" = "Dauer";
+"changes" = "Änderungen";
+"arrivingIn" = "Ankunft in";
+"fromPlatform" = "Von Plattform";
+"settings" = "Einstellungen";
+"delay" = "Verspätung";
+"tooEarly" = "zu früh";
+"scheduledArrival" = "Geplante Ankunft";
+"to" = "nach";
+"stairsUpNecessary" = "Treppensteigen aufwärts notwendig";
+"stairsDownNecessary" = "Treppensteigen abwärts notwendig";
+"positionChangeNecessary" = "Standortwechsel notwendig";
+"interchanges" = "Umstiege";
+"durationNotAvailable" = "Dauer nicht bestimmbar";
+"footpath" = "Fußweg";
+"showRouteOnMap" = "Route auf der Karte anzeigen";

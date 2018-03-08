@@ -159,7 +159,7 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return section == 0 ? "Suchergebnisse" : "Vorschläge"
+        return section == 0 ? Config.searchResults : Config.suggestions
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -172,7 +172,7 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
         }
         
         if let stop = selectedStop {
-            replaceActiveSearchBarText(stop.name)
+            replaceActiveSearchBarText(stop.description)
             switch State.shared.searchMode {
             case .stop:
                 State.shared.addLogData(stop.name)

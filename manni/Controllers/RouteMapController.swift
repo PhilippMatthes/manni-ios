@@ -24,7 +24,7 @@ class RouteMapController: UIViewController {
     }
     
     func configureNavigationBar() {
-        navigationItem.configure(withText: "Route")
+        navigationItem.configure(withText: Config.route)
         _ = navigationItem.add(.returnButton, .left) { self.returnBack() }
     }
     

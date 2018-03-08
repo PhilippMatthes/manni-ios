@@ -71,11 +71,11 @@ extension State {
                 var description: String
                 switch change.kind.rawValue {
                 case RouteChange.Kind.AmplifyingTransport.rawValue:
-                    description = "Verstärkter Transport: "
+                    description = "\(Config.amplifiedTransport): "
                 case RouteChange.Kind.Scheduled.rawValue:
-                    description = "Geplante Änderung: "
+                    description = "\(Config.amplifiedTransport): "
                 case RouteChange.Kind.ShortTerm.rawValue:
-                    description = "Kurzfristige Änderung: "
+                    description = "\(Config.shortTermChange): "
                 default:
                     description = ""
                 }

@@ -64,10 +64,11 @@ class RouteCell: TableViewCell {
         mapViewButton.pulseColor = .white
         mapViewButton.backgroundColor = Color.grey.base
         mapViewButton.alpha = 0.9
+        mapViewButton.setTitle(Config.showRouteOnMap, for: .normal)
     }
         
     func configureLabels() {
-        upperLabel.text = "\(route.duration) min - \(route.interchanges) Umstiege"
+        upperLabel.text = "\(route.duration) min - \(route.interchanges) \(Config.interchanges)"
         let times = route.partialRoutes
             .flatMap { $0 }
             .filter { $0.regularStops != nil }
@@ -78,7 +79,7 @@ class RouteCell: TableViewCell {
         if let first = sortedTimes.first, let last = sortedTimes.last {
             lowerLabel.text = "\(first.time()) - \(last.time())"
         } else {
-            lowerLabel.text = "Dauer nicht bestimmbar"
+            lowerLabel.text = "\(Config.durationNotAvailable)"
         }
     }
     
@@ -158,14 +159,14 @@ extension RouteCell: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "interchangeCell") as? TableViewCell
                 else {return UITableViewCell()}
             cell.textLabel?.font = cell.textLabel?.font.withSize(10)
-            let duration = partialRoute.duration == nil ? nil : "Dauer: \(partialRoute.duration!) min"
+            let duration = partialRoute.duration == nil ? nil : "\(Config.duration): \(partialRoute.duration!) min"
             if var identifier = partialRoute.mode.mode?.identifier {
-                if identifier == "Footpath" { identifier = "Fußweg" }
-                if identifier == "MobilityStairsUp" { identifier = "Treppensteigen aufwärts notwendig" }
-                if identifier == "MobilityStairsDown" { identifier = "Treppensteigen abwärts notwendig" }
+                if identifier == "Footpath" { identifier = Config.footpath }
+                if identifier == "MobilityStairsUp" { identifier = Config.stairsUpNecessary }
+                if identifier == "MobilityStairsDown" { identifier = Config.stairsDownNecessary }
                 cell.textLabel?.text = [identifier, duration].flatMap{ $0 }.joined(separator: ", ")
             } else {
-                let identifier = "Eventuell Standortwechsel notwendig"
+                let identifier = Config.positionChangeNecessary
                 cell.textLabel?.text = [identifier, duration].flatMap{ $0 }.joined(separator: ", ")
             }
             cell.backgroundColor = Color.grey.base

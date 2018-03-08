@@ -59,9 +59,9 @@ class PartialRouteCell: TableViewCell {
             toDetailLabel.text = stops.last?.arrivalTime.time()
         }
         
-        let direction = partialRoute.mode.direction == nil ? nil : "Richtung \(partialRoute.mode.direction!)"
-        let duration = partialRoute.duration == nil ? nil : "Dauer: \(partialRoute.duration!) min"
-        let routeChanges = partialRoute.mode.changes == nil ? nil : "Änderungen: \(State.shared.routeChanges(forChangeIDs: partialRoute.mode.changes!).joined(separator: ", "))"
+        let direction = partialRoute.mode.direction == nil ? nil : "\(Config.direction) \(partialRoute.mode.direction!)"
+        let duration = partialRoute.duration == nil ? nil : "\(Config.duration): \(partialRoute.duration!) min"
+        let routeChanges = partialRoute.mode.changes == nil ? nil : "\(Config.changes): \(State.shared.routeChanges(forChangeIDs: partialRoute.mode.changes!).joined(separator: ", "))"
         lineChangesLabel.text = [direction, duration, routeChanges].flatMap{$0}.joined(separator: ", ")
         
         lineButton.setTitle(partialRoute.mode.name, for: .normal)

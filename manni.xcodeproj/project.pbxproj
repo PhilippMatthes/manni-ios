@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BE090F50201CD277004C1410 /* DarkBarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE090F4F201CD277004C1410 /* DarkBarNavigationController.swift */; };
+		BE0A8A942051250D00B779B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE0A8A922051250D00B779B9 /* Localizable.strings */; };
 		BE2285D2201A389D00C2A7DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2285D1201A389D00C2A7DF /* AppDelegate.swift */; };
 		BE2285D7201A389D00C2A7DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE2285D5201A389D00C2A7DF /* Main.storyboard */; };
 		BE2285D9201A389D00C2A7DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE2285D8201A389D00C2A7DF /* Assets.xcassets */; };
@@ -67,6 +68,10 @@
 		BE090F4F201CD277004C1410 /* DarkBarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkBarNavigationController.swift; sourceTree = "<group>"; };
 		BE0A8A8C20511CA900B779B9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		BE0A8A8D20511CA900B779B9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		BE0A8A932051250D00B779B9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = manni/de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BE0A8A952051251E00B779B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		BE0A8A962051251E00B779B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		BE0A8A972051251E00B779B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = manni/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BE2285CE201A389D00C2A7DF /* manni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = manni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2285D1201A389D00C2A7DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE2285D6201A389D00C2A7DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -158,6 +163,7 @@
 		BE2285C5201A389D00C2A7DF = {
 			isa = PBXGroup;
 			children = (
+				BE0A8A922051250D00B779B9 /* Localizable.strings */,
 				BE2285D0201A389D00C2A7DF /* manni */,
 				BE2285CF201A389D00C2A7DF /* Products */,
 				BE650B48201A41B1005D1F32 /* Frameworks */,
@@ -323,8 +329,9 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				de,
+				en,
 			);
 			mainGroup = BE2285C5201A389D00C2A7DF;
 			productRefGroup = BE2285CF201A389D00C2A7DF /* Products */;
@@ -342,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE2285DC201A389D00C2A7DF /* LaunchScreen.storyboard in Resources */,
+				BE0A8A942051250D00B779B9 /* Localizable.strings in Resources */,
 				BE2285D9201A389D00C2A7DF /* Assets.xcassets in Resources */,
 				BE2285D7201A389D00C2A7DF /* Main.storyboard in Resources */,
 			);
@@ -467,11 +475,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		BE0A8A922051250D00B779B9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE0A8A932051250D00B779B9 /* de */,
+				BE0A8A972051251E00B779B9 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		BE2285D5201A389D00C2A7DF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				BE2285D6201A389D00C2A7DF /* Base */,
 				BE0A8A8D20511CA900B779B9 /* de */,
+				BE0A8A962051251E00B779B9 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -481,6 +499,7 @@
 			children = (
 				BE2285DB201A389D00C2A7DF /* Base */,
 				BE0A8A8C20511CA900B779B9 /* de */,
+				BE0A8A952051251E00B779B9 /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

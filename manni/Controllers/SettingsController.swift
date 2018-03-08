@@ -29,7 +29,7 @@ class SettingsController: UITableViewController {
     }
     
     func configureNavigationBar() {
-        navigationItem.configure(withText: "Einstellungen")
+        navigationItem.configure(withText: Config.settings)
         _ = navigationItem.add(.returnButton, .left) { self.returnBack() }
     }
 }

@@ -31,10 +31,8 @@ class RouteController: UIViewController {
     
     var routes = [ExpandedRoute]()
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        configureTableView()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         if let from = State.shared.from, let to = State.shared.to {
             configureNavigationBar(from: from, to: to)
@@ -42,6 +40,12 @@ class RouteController: UIViewController {
         } else {
             configureNavigationBar(from: "n/a", to: "n/a")
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureTableView()
     }
     
     @objc func handleRefresh(refreshControl: UIRefreshControl) {
@@ -78,7 +82,7 @@ extension RouteController {
     }
     
     func configureNavigationBar(from: String, to: String) {
-        let text = "Routen von \(from) nach \(to)"
+        let text = "\(Config.routesFrom) \(from) \(Config.to) \(to)"
         navigationItem.configure(withText: text)
         _ = navigationItem.add(.returnButton, .left) { self.returnBack() }
     }
