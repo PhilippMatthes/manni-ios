@@ -25,9 +25,7 @@
 		BE59ABE8201A76B1003CA1EF /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE7201A76B1003CA1EF /* DateExtension.swift */; };
 		BE59ABEF201B11E2003CA1EF /* DeparturesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABEE201B11E2003CA1EF /* DeparturesController.swift */; };
 		BE59ABF5201B146E003CA1EF /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABF4201B146E003CA1EF /* State.swift */; };
-		BE5BABEE201E885D004C09FB /* Locator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5BABED201E885D004C09FB /* Locator.swift */; };
 		BE5BABF4201FA15B004C09FB /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5BABF3201FA15B004C09FB /* LocationController.swift */; };
-		BE650B4C201A41B1005D1F32 /* Pods_manni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B50201A41B1005D1F32 /* Pods_manni.framework */; };
 		BE650B51201A425A005D1F32 /* DVB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B54201A425A005D1F32 /* DVB.framework */; };
 		BE650B52201A425A005D1F32 /* Material.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B55201A425A005D1F32 /* Material.framework */; };
 		BE650B53201A425A005D1F32 /* Motion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B56201A425A005D1F32 /* Motion.framework */; };
@@ -67,6 +65,8 @@
 /* Begin PBXFileReference section */
 		1BADA0BE6BDD8E9A8E44701D /* Pods-manni.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni.release.xcconfig"; path = "Pods/Target Support Files/Pods-manni/Pods-manni.release.xcconfig"; sourceTree = "<group>"; };
 		BE090F4F201CD277004C1410 /* DarkBarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkBarNavigationController.swift; sourceTree = "<group>"; };
+		BE0A8A8C20511CA900B779B9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		BE0A8A8D20511CA900B779B9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		BE2285CE201A389D00C2A7DF /* manni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = manni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2285D1201A389D00C2A7DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE2285D6201A389D00C2A7DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,7 +88,6 @@
 		BE59ABEE201B11E2003CA1EF /* DeparturesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesController.swift; sourceTree = "<group>"; };
 		BE59ABF3201B144C003CA1EF /* CSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE59ABF4201B146E003CA1EF /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		BE5BABED201E885D004C09FB /* Locator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locator.swift; sourceTree = "<group>"; };
 		BE5BABF3201FA15B004C09FB /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		BE650B4D201A41B1005D1F32 /* DVB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DVB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE650B4E201A41B1005D1F32 /* Material.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Material.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,7 +140,6 @@
 				BE650B51201A425A005D1F32 /* DVB.framework in Frameworks */,
 				BE650B52201A425A005D1F32 /* Material.framework in Frameworks */,
 				BE650B53201A425A005D1F32 /* Motion.framework in Frameworks */,
-				BE650B4C201A41B1005D1F32 /* Pods_manni.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,7 +178,6 @@
 			children = (
 				BE8D5CE8202097410057740A /* Config.swift */,
 				BE59ABF4201B146E003CA1EF /* State.swift */,
-				BE5BABED201E885D004C09FB /* Locator.swift */,
 				BE8D5CDC20204E930057740A /* Util.swift */,
 				BEBEC505202C2F44007617B4 /* Predictor.swift */,
 				BE2D05C9202308480064339B /* Model */,
@@ -436,7 +433,6 @@
 				BEBEC527202C6133007617B4 /* BadgeExtension.swift in Sources */,
 				BEA7613A2025F6D900D39B15 /* PartialRouteCell.swift in Sources */,
 				BEBEC524202C6133007617B4 /* UITabBarExtension.swift in Sources */,
-				BE5BABEE201E885D004C09FB /* Locator.swift in Sources */,
 				BEBEC51F202C6133007617B4 /* UINaviationBarExtension.swift in Sources */,
 				BEBEC531202C647D007617B4 /* ArrayExtension.swift in Sources */,
 				BEBEC502202B4618007617B4 /* NavigationItemExtension.swift in Sources */,
@@ -475,6 +471,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				BE2285D6201A389D00C2A7DF /* Base */,
+				BE0A8A8D20511CA900B779B9 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -483,6 +480,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				BE2285DB201A389D00C2A7DF /* Base */,
+				BE0A8A8C20511CA900B779B9 /* de */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -494,6 +492,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -538,7 +537,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -551,6 +550,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -589,7 +589,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

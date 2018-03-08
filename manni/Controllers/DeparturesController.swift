@@ -41,12 +41,17 @@ class DeparturesController: UIViewController {
     }
     
     func loadDepartures(forStopName stopName: String, completion: @escaping () -> Void) {
-        Departure.monitor(stopWithName: stopName) { result in
-            guard let response = result.success else { return }
-            self.departures = response.departures
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                completion()
+        Stop.find(stopName) {
+            result in
+            guard let result = result.success, let first = result.stops.first else {return}
+            State.shared.stopId = first.id
+            Departure.monitor(stopWithId: first.id) { result in
+                guard let response = result.success else { return }
+                self.departures = response.departures
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    completion()
+                }
             }
         }
     }

@@ -14,6 +14,7 @@ class State {
     static let shared = State()
     var routeChanges = [String : [String]]()
     var stopQuery: String?
+    var stopId: String?
     var departure: Departure?
     var from: String?
     var to: String?

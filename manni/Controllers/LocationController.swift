@@ -42,10 +42,11 @@ class LocationController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         configureNavigationBar(forStopName: State.shared.stopQuery!)
-        let lineName = State.shared.departure!.line
-        let direction = State.shared.departure!.direction
-        let stopQuery = State.shared.stopQuery!
-        mapView.showLocations(lineName: lineName, direction: direction, stopName: stopQuery, log: {
+        
+        let stopId = State.shared.stopId!
+        let tripId = State.shared.departure!.id
+        
+        mapView.showLocations(tripId: tripId, stopId: stopId, log: {
             logText, detailText in
             DispatchQueue.main.async {
                 if self.isVisible() {
@@ -67,15 +68,16 @@ class LocationController: UIViewController {
     }
     
     @objc func refresh() {
-        let lineName = State.shared.departure!.line
-        let direction = State.shared.departure!.direction
-        let stopQuery = State.shared.stopQuery!
-        mapView.showLocations(lineName: lineName, direction: direction, stopName: stopQuery, zoomFit: false, log: {
+        let stopId = State.shared.stopId!
+        let tripId = State.shared.departure!.id
+        mapView.showLocations(tripId: tripId, stopId: stopId, log: {
             logText, detailText in
             DispatchQueue.main.async {
-                self.banner.dismiss()
-                self.banner = Banner(title: logText, subtitle: detailText).designed()
-                self.banner.show()
+                if self.isVisible() {
+                    self.banner.dismiss()
+                    self.banner = Banner(title: logText, subtitle: detailText).designed()
+                    self.banner.show()
+                }
             }
         }) {
             self.mapView.addAnnotation(self.locationAnnotation)

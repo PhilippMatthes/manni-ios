@@ -35,63 +35,77 @@ extension MKMapView {
     func zoomFitOverlays() {
         if let first = overlays.first {
             let rect = overlays.reduce(first.boundingMapRect, {MKMapRectUnion($0, $1.boundingMapRect)})
-            setVisibleMapRect(rect, edgePadding: UIEdgeInsets(top: 50.0, left: 50.0, bottom: 50.0, right: 50.0), animated: true)
+            DispatchQueue.main.async {
+                self.setVisibleMapRect (
+                    rect,
+                    edgePadding: UIEdgeInsets(top: 50.0, left: 50.0, bottom: 50.0, right: 50.0),
+                    animated: true
+                )
+            }
         }
     }
     
-    func showLocations(lineName: String,
-                       direction: String,
-                       stopName: String,
+    func showLocations(tripId: String,
+                       stopId: String,
                        etaRange: Int=Config.standardEtaRange,
                        zoomFit: Bool=true,
                        log: @escaping (_ text: String, _ detail: String?) -> (),
                        completion: @escaping () -> ()) {
-        log("Ortung für die Linie \(lineName) wird durchgeführt...", nil)
-        Locator.locate(lineName: lineName, direction: direction, aroundStopName: stopName, log: log) {
+        log("Ortung wird durchgeführt...", nil)
+        let date = Date()
+        TripStop.get(forTripID: tripId, stopID: stopId, atTime: date) {
             result in
+            guard let success = result.success else {
+                log("Ihre Linie konnte nicht gefunden werden", nil)
+                return
+            }
             self.removeOverlays(self.overlays)
             self.removeAnnotations(self.annotations)
-            if let result = result {
-                log("Erfolg!", "Daten zur Linie \(lineName) Richtg. \(direction) konnten an \(result.count) Orten gefunden werden.")
-                let dispatchGroup = DispatchGroup()
-                for (routeStop, departure) in Locator.filter(result) {
-                    dispatchGroup.enter()
-                    if let c = routeStop.coordinate {
-                        let location = CLLocation(latitude: c.latitude, longitude: c.longitude)
-                        self.add(location: location, departure: departure, etaRange: etaRange)
-                        dispatchGroup.leave()
-                    } else {
-                        Locator.location(forRouteStop: routeStop, log: log) {
-                            loc in
-                            if let loc = loc { self.add(location: loc, departure: departure, etaRange: etaRange) }
-                            dispatchGroup.leave()
+            if let currentStop = success.stops
+                .sorted(by: {abs($0.time.seconds(from: date)) < abs($1.time.seconds(from: date))})
+                .first {
+                Stop.find(currentStop.id) {
+                    result in
+                    guard
+                        let success = result.success,
+                        let stop = success.stops.first,
+                        let wgs = stop.location
+                    else {
+                        log("Ihre Linie konnte nicht gefunden werden", nil)
+                        return
+                    }
+                    let location = CLLocation(latitude: wgs.latitude, longitude: wgs.longitude)
+                    self.addAnnotation(location: location, stopName: stop.name) {
+                        self.addCircle(location: location) {
+                            self.zoomFitOverlays()
+                            log("Ihre Linie wurde gefunden!", nil)
+                            completion()
                         }
                     }
                 }
-                dispatchGroup.notify(queue: .main) { if zoomFit{ self.zoomFitOverlays(); completion() } }
             }
         }
     }
     
-    func add(location: CLLocation?, departure: Departure, etaRange: Int) {
+    func addAnnotation(location: CLLocation,
+                       stopName: String,
+                       radius: CLLocationDistance=100,
+                       completion: @escaping () -> ()) {
+        let circle = MKCircle(center: location.coordinate, radius: radius)
+        circle.title = "Ihre Linie befindet sich aktuell an der Hst. \(stopName)"
         DispatchQueue.main.async {
-            if let location = location {
-                self.addCircle(location: location, departure: departure)
-                if departure.ETA < etaRange { self.addAnnotation(location: location, departure: departure) }
-            }
+            self.addAnnotation(circle)
+            completion()
         }
     }
     
-    func addAnnotation(location: CLLocation, departure: Departure, radius: CLLocationDistance=100){
+    func addCircle(location: CLLocation,
+                   radius: CLLocationDistance=100,
+                   completion: @escaping () -> ()) {
         let circle = MKCircle(center: location.coordinate, radius: radius)
-        circle.title = "Abfahrt der \(departure.line) in \(departure.ETA) min"
-        self.addAnnotation(circle)
-    }
-    
-    func addCircle(location: CLLocation, departure: Departure, radius: CLLocationDistance=100){
-        let circle = MKCircle(center: location.coordinate, radius: radius)
-        circle.title = String(departure.ETA)
-        circle.subtitle = "Abfahrt der \(departure.line) in \(departure.ETA) min"
-        self.add(circle, level: .aboveRoads)
+        DispatchQueue.main.async {
+            self.add(circle, level: .aboveRoads)
+            completion()
+        }
     }
 }
