@@ -56,7 +56,9 @@ class LocationController: UIViewController {
                 }
             }
         }) {
-            self.mapView.addAnnotation(self.locationAnnotation)
+            DispatchQueue.main.async {
+                self.mapView.addAnnotation(self.locationAnnotation)
+            }
         }
     }
     
@@ -80,7 +82,9 @@ class LocationController: UIViewController {
                 }
             }
         }) {
-            self.mapView.addAnnotation(self.locationAnnotation)
+            DispatchQueue.main.async {
+                self.mapView.addAnnotation(self.locationAnnotation)
+            }
         }
     }
     

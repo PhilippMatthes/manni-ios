@@ -59,8 +59,10 @@ extension MKMapView {
                 log(Config.lineCouldNotBeFound, nil)
                 return
             }
-            self.removeOverlays(self.overlays)
-            self.removeAnnotations(self.annotations)
+            DispatchQueue.main.async {
+                self.removeOverlays(self.overlays)
+                self.removeAnnotations(self.annotations)
+            }
             if let currentStop = success.stops
                 .sorted(by: {abs($0.time.seconds(from: date)) < abs($1.time.seconds(from: date))})
                 .first {
