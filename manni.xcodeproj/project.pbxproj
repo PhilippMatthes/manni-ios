@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EA444EB3FF2F9974D5ED5B9 /* Pods_manni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B50201A41B1005D1F32 /* Pods_manni.framework */; };
 		BE090F50201CD277004C1410 /* DarkBarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE090F4F201CD277004C1410 /* DarkBarNavigationController.swift */; };
 		BE0A8A942051250D00B779B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE0A8A922051250D00B779B9 /* Localizable.strings */; };
 		BE2285D2201A389D00C2A7DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2285D1201A389D00C2A7DF /* AppDelegate.swift */; };
@@ -60,6 +61,8 @@
 		BEBEC52D202C6133007617B4 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC519202C6132007617B4 /* IntExtension.swift */; };
 		BEBEC52E202C6133007617B4 /* SFSafariViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC51A202C6132007617B4 /* SFSafariViewControllerExtension.swift */; };
 		BEBEC531202C647D007617B4 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC530202C646F007617B4 /* ArrayExtension.swift */; };
+		BEC6887520543C5F0013965A /* SwiftRater.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC6887620543C5F0013965A /* SwiftRater.framework */; };
+		BEC6887820543C6B0013965A /* SwiftRaterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC6887720543C6B0013965A /* SwiftRaterExtension.swift */; };
 		BEF7C4A020236E8E00FF96E1 /* FoldingCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF7C4A120236E8E00FF96E1 /* FoldingCell.framework */; };
 /* End PBXBuildFile section */
 
@@ -131,6 +134,8 @@
 		BEBEC519202C6132007617B4 /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntExtension.swift; path = "../../../../Downloads/swifthelpers-master/src/IntExtension.swift"; sourceTree = "<group>"; };
 		BEBEC51A202C6132007617B4 /* SFSafariViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFSafariViewControllerExtension.swift; sourceTree = "<group>"; };
 		BEBEC530202C646F007617B4 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
+		BEC6887620543C5F0013965A /* SwiftRater.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftRater.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEC6887720543C6B0013965A /* SwiftRaterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftRaterExtension.swift; sourceTree = "<group>"; };
 		BEF7C4A120236E8E00FF96E1 /* FoldingCell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FoldingCell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFB92583DD3E650EAD28A17C /* Pods-manni.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni.debug.xcconfig"; path = "Pods/Target Support Files/Pods-manni/Pods-manni.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,11 +145,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEC6887520543C5F0013965A /* SwiftRater.framework in Frameworks */,
 				BEF7C4A020236E8E00FF96E1 /* FoldingCell.framework in Frameworks */,
 				BE8D5CE4202080B60057740A /* BRYXBanner.framework in Frameworks */,
 				BE650B51201A425A005D1F32 /* DVB.framework in Frameworks */,
 				BE650B52201A425A005D1F32 /* Material.framework in Frameworks */,
 				BE650B53201A425A005D1F32 /* Motion.framework in Frameworks */,
+				0EA444EB3FF2F9974D5ED5B9 /* Pods_manni.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +242,7 @@
 				BEBEC50A202C6130007617B4 /* UIViewExtension.swift */,
 				BEBEC511202C6131007617B4 /* URLExtension.swift */,
 				BEBEC512202C6131007617B4 /* UserDefaultsExtension.swift */,
+				BEC6887720543C6B0013965A /* SwiftRaterExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -270,6 +278,7 @@
 		BE650B48201A41B1005D1F32 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BEC6887620543C5F0013965A /* SwiftRater.framework */,
 				BEF7C4A120236E8E00FF96E1 /* FoldingCell.framework */,
 				BE2D05C6202244F60064339B /* SwiftSVG.framework */,
 				BE8D5CE5202080B60057740A /* BRYXBanner.framework */,
@@ -403,6 +412,7 @@
 				"${BUILT_PRODUCTS_DIR}/FoldingCell/FoldingCell.framework",
 				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
 				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftRater/SwiftRater.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -411,6 +421,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FoldingCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftRater.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -438,6 +449,7 @@
 				BEBEC51E202C6133007617B4 /* UIViewExtension.swift in Sources */,
 				BEA761402027245300D39B15 /* PartialRouteExtension.swift in Sources */,
 				BE593EB220298888008C8EAC /* StopExtension.swift in Sources */,
+				BEC6887820543C6B0013965A /* SwiftRaterExtension.swift in Sources */,
 				BEBEC527202C6133007617B4 /* BadgeExtension.swift in Sources */,
 				BEA7613A2025F6D900D39B15 /* PartialRouteCell.swift in Sources */,
 				BEBEC524202C6133007617B4 /* UITabBarExtension.swift in Sources */,

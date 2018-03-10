@@ -6,6 +6,7 @@ target 'manni' do
   use_frameworks!
   pod 'FoldingCell'
   #pod 'SwiftSVG', '~> 2.0'
+  pod 'SwiftRater'
   pod 'BRYXBanner'
   pod 'Material'
   pod 'DVB', :git => 'https://github.com/PhilippMatthes/DVB.git'
