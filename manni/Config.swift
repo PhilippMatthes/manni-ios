@@ -54,6 +54,6 @@ class Config {
     static let durationNotAvailable: String = NSLocalizedString("durationNotAvailable", comment: "")
     static let footpath: String = NSLocalizedString("footpath", comment: "")
     static let showRouteOnMap: String = NSLocalizedString("showRouteOnMap", comment: "")
-    
+    static let laterButtonText: String = NSLocalizedString("laterButtonText", comment: "")
     
 }

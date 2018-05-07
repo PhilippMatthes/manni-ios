@@ -23,6 +23,8 @@ class RouteController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var startDate = Date()
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(self.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
@@ -36,7 +38,7 @@ class RouteController: UIViewController {
         
         if let from = State.shared.from, let to = State.shared.to {
             configureNavigationBar(from: from, to: to)
-            loadRoute(from: from, to: to)
+            refreshControl.refreshManually()
         } else {
             configureNavigationBar(from: "n/a", to: "n/a")
         }
@@ -56,11 +58,21 @@ class RouteController: UIViewController {
         }
     }
     
+    
+    
 }
 
 extension RouteController {
-    func loadRoute(from: String, to: String, completion: @escaping () -> Void = {}) {        
-        Route.find(from: from, to: to) {
+    func loadRoute(from: String, to: String, completion: @escaping () -> Void = {}) {
+        Route.find(
+            from: from,
+            to: to,
+            time: startDate,
+            dateIsArrival: false,
+            allowShortTermChanges: true,
+            mobilityRestriction: .None,
+            session: .shared
+        ) {
             result in
             if let response = result.success {
                 self.routes = response.routes
@@ -90,26 +102,41 @@ extension RouteController {
 
 extension RouteController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return routes.count
+        return routes.count + 1
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        routes[indexPath.row].expanded = !routes[indexPath.row].expanded
-        tableView.beginUpdates()
-        tableView.endUpdates()
-        if routes[indexPath.row].expanded {
-            tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: true)
+        if indexPath.row == routes.count {
+            startDate = Tools.lastDepartureDate(fromRoutes: routes)!
+            refreshControl.refreshManually()
+        } else {
+            routes[indexPath.row].expanded = !routes[indexPath.row].expanded
+            tableView.beginUpdates()
+            tableView.endUpdates()
+            if routes[indexPath.row].expanded {
+                tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: true)
+            }
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return routes[indexPath.row].expanded ? tableView.frame.height : RouteCell.closedHeight
+        if indexPath.row == routes.count {
+            return LaterCell.height
+        } else {
+            return routes[indexPath.row].expanded ? tableView.frame.height : RouteCell.closedHeight
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RouteCell.identifier) as? RouteCell else {return UITableViewCell()}
-        cell.configure(routes[indexPath.row].route, indexPath: indexPath, delegate: self)
-        return cell
+        if indexPath.row == routes.count {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: LaterCell.identifier) as? LaterCell else {return UITableViewCell()}
+            cell.configure()
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: RouteCell.identifier) as? RouteCell else {return UITableViewCell()}
+            cell.configure(routes[indexPath.row].route, indexPath: indexPath, delegate: self)
+            return cell
+        }
     }
 }
 
