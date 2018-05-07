@@ -29,7 +29,7 @@ class DeparturesController: UIViewController {
         view.backgroundColor = Color.blue.lighten5
         configureTableView()
         configureNavigationBar(withText: State.shared.stopQuery!)
-        loadDepartures(forStopName: State.shared.stopQuery!) {}
+        refreshControl.refreshManually()
     }
 
     func handleRefresh(refreshControl: UIRefreshControl) {

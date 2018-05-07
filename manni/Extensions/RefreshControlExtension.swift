@@ -1,10 +1,4 @@
-//
-//  RefreshControlExtension.swift
-//  manni
-//
-//  Created by Philipp Matthes on 07.05.18.
-//  Copyright © 2018 Philipp Matthes. All rights reserved.
-//
+// From: https://stackoverflow.com/questions/28550021/uirefreshcontrol-not-refreshing-when-triggered-programmatically?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
 
 import Foundation
 import UIKit
