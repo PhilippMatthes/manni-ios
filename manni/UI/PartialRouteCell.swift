@@ -62,7 +62,7 @@ class PartialRouteCell: TableViewCell {
         let direction = partialRoute.mode.direction == nil ? nil : "\(Config.direction) \(partialRoute.mode.direction!)"
         let duration = partialRoute.duration == nil ? nil : "\(Config.duration): \(partialRoute.duration!) min"
         let routeChanges = partialRoute.mode.changes == nil ? nil : "\(Config.changes): \(State.shared.routeChanges(forChangeIDs: partialRoute.mode.changes!).joined(separator: ", "))"
-        lineChangesLabel.text = [direction, duration, routeChanges].flatMap{$0}.joined(separator: ", ")
+        lineChangesLabel.text = [direction, duration, routeChanges].compactMap{$0}.joined(separator: ", ")
         
         lineButton.setTitle(partialRoute.mode.name, for: .normal)
         let customButtonFrameWidth = partialRoute.mode.name == nil ? nil : min(70, max(50, CGFloat(partialRoute.mode.name!.count)*10))

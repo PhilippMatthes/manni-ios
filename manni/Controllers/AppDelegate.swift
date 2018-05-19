@@ -9,9 +9,12 @@
 import UIKit
 import DVB
 import SwiftRater
+import CoreLocation
+import WatchKit
+import MapKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
 
@@ -19,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         State.shared.loadRouteChanges()
         UIApplication.shared.delegate?.window??.backgroundColor = UIColor.white
         SwiftRater.setUpFor(.distributing)
+        
         return true
     }
 

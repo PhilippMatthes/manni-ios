@@ -32,7 +32,7 @@ class RouteMapController: UIViewController {
         mapView.removeOverlays(mapView.overlays)
         let partialRouteCoordinates = route.mapData.map { $0.points }
         let partialRouteStops = route.partialRoutes
-            .flatMap { $0.regularStops }
+            .compactMap { $0.regularStops }
             .flatMap { $0 }
             .filter { $0.coordinate != nil }
         

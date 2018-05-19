@@ -1,0 +1,15 @@
+
+/* Class = "WKInterfaceController"; title = "Haltestellen"; ObjectID = "AgC-eL-Hgc"; */
+"AgC-eL-Hgc.title" = "Haltestellen";
+
+/* Class = "WKInterfaceLabel"; text = "Alert Label"; ObjectID = "IdU-wH-bcW"; */
+"IdU-wH-bcW.text" = "Lade...";
+
+/* Class = "WKInterfaceLabel"; text = "Label"; ObjectID = "YHx-VZ-1bu"; */
+"YHx-VZ-1bu.text" = "Lade...";
+
+/* Class = "WKInterfaceLabel"; text = "Label"; ObjectID = "kDh-99-qfC"; */
+"kDh-99-qfC.text" = "Lade...";
+
+/* Class = "WKInterfaceController"; title = "Abfahrtsmonitor"; ObjectID = "zdz-Vy-teE"; */
+"zdz-Vy-teE.title" = "Abfahrtsmonitor";

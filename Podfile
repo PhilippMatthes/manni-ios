@@ -4,12 +4,24 @@
 target 'manni' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-  pod 'FoldingCell'
-  #pod 'SwiftSVG', '~> 2.0'
   pod 'SwiftRater'
-  pod 'BRYXBanner'
   pod 'Material'
+  pod 'BRYXBanner'
   pod 'DVB', :git => 'https://github.com/PhilippMatthes/DVB.git'
   # Pods for manni
+
+end
+
+target 'manni-watch' do
+
+  use_frameworks!
+  pod 'DVB', :git => 'https://github.com/PhilippMatthes/DVB.git'
+
+end
+
+target 'manni-watch Extension' do
+
+  use_frameworks!
+  pod 'DVB', :git => 'https://github.com/PhilippMatthes/DVB.git'
 
 end

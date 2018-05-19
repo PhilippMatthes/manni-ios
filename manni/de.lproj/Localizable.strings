@@ -42,3 +42,11 @@
 "footpath" = "Fußweg";
 "showRouteOnMap" = "Route auf der Karte anzeigen";
 "laterButtonText" = "Spätere Routen";
+"determiningPosition" = "Bestimme Position...";
+"didNotFindAnyStations" = "Keine Stationen gefunden.";
+"gpsPositionCouldNotBeAccessed" = "GPS-Position konnte nicht bestimmt werden.";
+"loadingLiveMonitor" = "Lade Live-Monitor...";
+"thereWasAProblemDownloading" = "Herunterladen gescheitert.";
+"refresh" = "Aktualisieren";
+"refreshing" = "Aktualisiere...";
+"pleaseActivateLocationServices" = "Bitte die Ortungsdienste aktivieren.";

@@ -42,3 +42,11 @@
 "footpath" = "Footpath";
 "showRouteOnMap" = "Show route on map";
 "laterButtonText" = "Later routes";
+"determiningPosition" = "Determining Position...";
+"didNotFindAnyStations" = "No Stations found.";
+"gpsPositionCouldNotBeAccessed" = "GPS Position could not be accessed.";
+"loadingLiveMonitor" = "Loading Departures...";
+"thereWasAProblemDownloading" = "Download failed.";
+"refresh" = "Refresh";
+"refreshing" = "Refreshing...";
+"pleaseActivateLocationServices" = "Please activate location services.";

@@ -56,4 +56,12 @@ class Config {
     static let showRouteOnMap: String = NSLocalizedString("showRouteOnMap", comment: "")
     static let laterButtonText: String = NSLocalizedString("laterButtonText", comment: "")
     
+    static let determiningPosition: String = NSLocalizedString("determiningPosition", comment: "")
+    static let didNotFindAnyStations: String = NSLocalizedString("didNotFindAnyStations", comment: "")
+    static let pleaseActivateLocationServices: String = NSLocalizedString("pleaseActivateLocationServices", comment: "")
+    static let gpsPositionCouldNotBeAccessed: String = NSLocalizedString("gpsPositionCouldNotBeAccessed", comment: "")
+    static let loadingLiveMonitor: String = NSLocalizedString("loadingLiveMonitor", comment: "")
+    static let thereWasAProblemDownloading: String = NSLocalizedString("thereWasAProblemDownloading", comment: "")
+    static let refresh: String = NSLocalizedString("refresh", comment: "")
+    static let refreshing: String = NSLocalizedString("refreshing", comment: "")
 }

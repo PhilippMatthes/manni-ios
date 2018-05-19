@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14109" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch42" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14031"/>
+    </dependencies>
+    <scenes>
+        <!--Haltestellen-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller identifier="NearbyStopsInterfaceController" title="Haltestellen" id="AgC-eL-Hgc" customClass="NearbyStopsInterfaceController" customModule="manni_watch_Extension">
+                    <items>
+                        <table alignment="left" id="L50-it-MEE">
+                            <items>
+                                <tableRow identifier="NearbyStopRow" id="724-R9-ELc" customClass="StopRowController" customModule="manni_watch_Extension">
+                                    <group key="rootItem" width="1" height="69" alignment="left" id="0cZ-7p-fyJ">
+                                        <items>
+                                            <label width="136" height="77" alignment="left" text="Label" numberOfLines="999" id="kDh-99-qfC"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="group" destination="0cZ-7p-fyJ" id="iAb-Ut-jzh"/>
+                                        <outlet property="label" destination="kDh-99-qfC" id="ax6-0f-7BU"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="nearbyStopsTable" destination="L50-it-MEE" id="sXv-t3-Fu0"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="167.38461538461539" y="316.89743589743591"/>
+        </scene>
+        <!--Abfahrtsmonitor-->
+        <scene sceneID="HiE-ZD-m67">
+            <objects>
+                <controller identifier="DeparturesInterfaceController" title="Abfahrtsmonitor" id="zdz-Vy-teE" customClass="DeparturesInterfaceController" customModule="manni_watch_Extension">
+                    <items>
+                        <table alignment="left" id="eGW-n5-Y8Y">
+                            <items>
+                                <tableRow identifier="DepartureRow" id="wRu-d3-GAq" customClass="DepartureRowController" customModule="manni_watch_Extension">
+                                    <group key="rootItem" width="1" height="65" alignment="left" id="FmP-7G-TLE">
+                                        <items>
+                                            <label width="136" height="107" alignment="left" text="Label" numberOfLines="999" id="YHx-VZ-1bu"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="group" destination="FmP-7G-TLE" id="NAI-95-5tD"/>
+                                        <outlet property="label" destination="YHx-VZ-1bu" id="7zI-fg-n9j"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="table" destination="eGW-n5-Y8Y" id="S74-Ch-xZs"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="463.79487179487182" y="310.79487179487182"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="manni_watch" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+    </scenes>
+</document>

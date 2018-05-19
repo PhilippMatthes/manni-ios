@@ -12,7 +12,7 @@ import DVB
 class Tools {
     static func lastDepartureDate(fromRoute route: Route) -> Date? {
         let times = route.partialRoutes
-            .flatMap { $0 }
+            .compactMap { $0 }
             .filter { $0.regularStops != nil }
             .flatMap { $0.regularStops! }
             .map { [$0.arrivalTime, $0.departureTime] }

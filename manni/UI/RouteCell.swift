@@ -70,7 +70,7 @@ class RouteCell: TableViewCell {
     func configureLabels() {
         upperLabel.text = "\(route.duration) min - \(route.interchanges) \(Config.interchanges)"
         let times = route.partialRoutes
-            .flatMap { $0 }
+            .compactMap { $0 }
             .filter { $0.regularStops != nil }
             .flatMap { $0.regularStops! }
             .map { [$0.arrivalTime, $0.departureTime] }
@@ -164,10 +164,10 @@ extension RouteCell: UITableViewDelegate, UITableViewDataSource {
                 if identifier == "Footpath" { identifier = Config.footpath }
                 if identifier == "MobilityStairsUp" { identifier = Config.stairsUpNecessary }
                 if identifier == "MobilityStairsDown" { identifier = Config.stairsDownNecessary }
-                cell.textLabel?.text = [identifier, duration].flatMap{ $0 }.joined(separator: ", ")
+                cell.textLabel?.text = [identifier, duration].compactMap{ $0 }.joined(separator: ", ")
             } else {
                 let identifier = Config.positionChangeNecessary
-                cell.textLabel?.text = [identifier, duration].flatMap{ $0 }.joined(separator: ", ")
+                cell.textLabel?.text = [identifier, duration].compactMap{ $0 }.joined(separator: ", ")
             }
             cell.backgroundColor = Color.grey.base
             cell.textLabel?.textColor = UIColor.white
