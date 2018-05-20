@@ -87,7 +87,7 @@ class NearbyStopsInterfaceController: WKInterfaceController, CLLocationManagerDe
             locationManager.requestLocation()
         } else {
             guard let _ = table.rowController(at: rowIndex) as? StopRowController else { return }
-            let station = stations[rowIndex]
+            let station = stations[rowIndex-1]
             presentController(withName: "DeparturesInterfaceController", context: station)
         }
     }
