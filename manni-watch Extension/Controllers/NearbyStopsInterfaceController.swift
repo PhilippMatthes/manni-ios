@@ -19,15 +19,19 @@ class NearbyStopsInterfaceController: WKInterfaceController, CLLocationManagerDe
     
     let locationManager = CLLocationManager()
     
-    override func awake(withContext context: Any?) {
-        super.awake(withContext: context)
+    override func willActivate() {
+        super.willActivate()
         
-        self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.requestWhenInUseAuthorization()
+        prepareLocationManager()
         self.locationManager.requestLocation()
         
         showCells(Config.determiningPosition)
+    }
+    
+    func prepareLocationManager() {
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestWhenInUseAuthorization()
     }
     
     func showCells(_ text: String...) {

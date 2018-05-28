@@ -30,6 +30,7 @@ class SearchController: UIViewController {
     var currentlyEditingSearchBar: SearchBar?
     
     var switchButton: IconButton!
+    var exchangeButton: IconButton!
     var modularSearchButton: IconButton!
     var settingsButton: IconButton!
     
@@ -203,8 +204,11 @@ extension SearchController {
         
         statusBarController?.statusBarStyle = .lightContent
         
-        switchButton = IconButton(image: Icon.cm.shuffle)
+        switchButton = IconButton(image: Icon.cm.arrowDownward)
         switchButton.add(for: .touchUpInside) {self.switchModularSearchBar(sender: self.switchButton)}
+        
+        exchangeButton = IconButton(image: Icon.cm.shuffle)
+        exchangeButton.add(for: .touchUpInside) {self.exchangeLocations(sender: self.exchangeButton)}
         
         modularSearchButton = IconButton(image: Icon.cm.search)
         modularSearchButton.add(for: .touchUpInside) {self.openRouteOrDeparturesController()}
@@ -215,11 +219,12 @@ extension SearchController {
         modularSearchBar.alpha = State.shared.searchMode == .route ? 1.0 : 0.0
         searchBar.leftViews = [switchButton]
         searchBar.rightViews = [settingsButton, modularSearchButton]
+        modularSearchBar.leftViews = [exchangeButton]
         searchBar.placeholder = Config.searchBarPlaceHolder
         modularSearchBar.placeholder = Config.modularSearchBarPlaceHolderDestination
         
         searchBar.contentEdgeInsets = UIEdgeInsetsMake(20,4,4,4)
-        modularSearchBar.contentEdgeInsets = UIEdgeInsetsMake(4, 53, 4, 4)
+        modularSearchBar.contentEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4)
         tableView.contentInset = UIEdgeInsetsMake(50,0,0,0)
         
         searchBar.textField.delegate = self
@@ -243,13 +248,13 @@ extension SearchController {
     
     func openModularSearchBar() {
         modularSearchBarHeight.constant = 50
-        tableView.setContentOffset(CGPoint(x: 0, y: -120), animated: true)
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.3) {
                 self.tableView.contentInset = UIEdgeInsetsMake(100,0,0,0)
                 self.modularSearchBar.alpha = 1
                 self.view.layoutIfNeeded()
             }
+            self.tableView.setContentOffset(CGPoint(x: 0, y: -120), animated: true)
         }
     }
     
@@ -264,19 +269,22 @@ extension SearchController {
         }
     }
     
+    func exchangeLocations(sender: UIButton!) {
+        let lowerText = modularSearchBar.textField.text
+        modularSearchBar.textField.text = searchBar.textField.text
+        searchBar.textField.text = lowerText
+    }
+    
     func switchModularSearchBar(sender: UIButton!) {
         switch State.shared.searchMode {
         case .stop:
             searchBar.placeholder = Config.modularSearchBarPlaceHolderStart
             State.shared.searchMode = .route
-            switchButton = IconButton(image: Icon.cm.close)
             openModularSearchBar()
-            break
         case .route:
             State.shared.searchMode = .stop
             closeModularSearchBar()
             searchBar.placeholder = Config.searchBarPlaceHolder
-            break
         }
     }
     
