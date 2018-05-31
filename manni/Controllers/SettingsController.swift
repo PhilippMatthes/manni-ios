@@ -32,6 +32,10 @@ class SettingsController: UITableViewController {
         navigationItem.configure(withText: Config.settings)
         _ = navigationItem.add(.returnButton, .left) { self.returnBack() }
     }
+    
+    override var prefersStatusBarHidden: Bool {
+        return Device.runningOniPhoneX
+    }
 }
 
 extension SettingsController: SwitchDelegate {

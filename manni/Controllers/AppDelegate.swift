@@ -13,6 +13,10 @@ import CoreLocation
 import WatchKit
 import MapKit
 
+struct Device {
+    static var runningOniPhoneX = false
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
@@ -22,6 +26,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         State.shared.loadRouteChanges()
         UIApplication.shared.delegate?.window??.backgroundColor = UIColor.white
         SwiftRater.setUpFor(.distributing)
+        
+        if #available(iOS 11.0, *) {
+            if (window?.safeAreaInsets.top)! > CGFloat(0.0) || window?.safeAreaInsets != .zero {
+                Device.runningOniPhoneX = true
+            }
+            else {
+                Device.runningOniPhoneX = false
+            }
+        }
         
         return true
     }

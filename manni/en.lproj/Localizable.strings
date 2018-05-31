@@ -50,3 +50,6 @@
 "refresh" = "Refresh";
 "refreshing" = "Refreshing...";
 "pleaseActivateLocationServices" = "Please activate location services.";
+"yes" = "Yes";
+"no" = "No";
+"refreshQuestion" = "Refresh location?";

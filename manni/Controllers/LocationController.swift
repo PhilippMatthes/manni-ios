@@ -102,6 +102,10 @@ class LocationController: UIViewController {
         }
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return Device.runningOniPhoneX
+    }
+    
 }
 
 extension LocationController: CLLocationManagerDelegate {

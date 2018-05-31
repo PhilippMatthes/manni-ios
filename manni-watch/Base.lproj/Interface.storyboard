@@ -66,6 +66,24 @@
             </objects>
             <point key="canvasLocation" x="463.79487179487182" y="310.79487179487182"/>
         </scene>
+        <!--Location-->
+        <scene sceneID="YwH-us-Zzk">
+            <objects>
+                <controller identifier="LocationInterfaceController" title="Location" id="h9u-WT-hQO" customClass="LocationInterfaceController" customModule="manni_watch_Extension">
+                    <items>
+                        <map width="1" height="1" heightAdjustment="-20" alignment="left" id="NUX-Vq-Ydc"/>
+                        <label width="1" alignment="left" text="Loading..." textAlignment="center" id="mf0-mK-Db5">
+                            <fontDescription key="font" type="system" pointSize="10"/>
+                        </label>
+                    </items>
+                    <connections>
+                        <outlet property="label" destination="mf0-mK-Db5" id="bO8-GB-rZc"/>
+                        <outlet property="map" destination="NUX-Vq-Ydc" id="fPA-md-7hJ"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="726.20512820512829" y="311.66666666666669"/>
+        </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
             <objects>

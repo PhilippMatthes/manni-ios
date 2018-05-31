@@ -19,9 +19,12 @@ class NearbyStopsInterfaceController: WKInterfaceController, CLLocationManagerDe
     
     let locationManager = CLLocationManager()
     
-    override func willActivate() {
-        super.willActivate()
-        
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
+        update()
+    }
+    
+    func update() {
         prepareLocationManager()
         self.locationManager.requestLocation()
         
@@ -73,7 +76,7 @@ class NearbyStopsInterfaceController: WKInterfaceController, CLLocationManagerDe
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if locations.count == 0 { return }
         let loc = locations.first!
-        // let loc = CLLocation(latitude: 51.0381358, longitude: 13.701056)
+//        let loc = CLLocation(latitude: 51.0381358, longitude: 13.701056)
         showStations(aroundLocation: loc)
     }
     

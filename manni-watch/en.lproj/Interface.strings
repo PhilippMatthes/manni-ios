@@ -8,8 +8,14 @@
 /* Class = "WKInterfaceLabel"; text = "Label"; ObjectID = "YHx-VZ-1bu"; */
 "YHx-VZ-1bu.text" = "Loading...";
 
+/* Class = "WKInterfaceController"; title = "Location"; ObjectID = "h9u-WT-hQO"; */
+"h9u-WT-hQO.title" = "Location";
+
 /* Class = "WKInterfaceLabel"; text = "Label"; ObjectID = "kDh-99-qfC"; */
 "kDh-99-qfC.text" = "Loading...";
+
+/* Class = "WKInterfaceLabel"; text = "Loading..."; ObjectID = "mf0-mK-Db5"; */
+"mf0-mK-Db5.text" = "Loading...";
 
 /* Class = "WKInterfaceController"; title = "Abfahrtsmonitor"; ObjectID = "zdz-Vy-teE"; */
 "zdz-Vy-teE.title" = "Departures";

@@ -14,4 +14,8 @@ class DarkBarNavigationController: NavigationController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
+    
+    override var prefersStatusBarHidden: Bool {
+        return Device.runningOniPhoneX
+    }
 }

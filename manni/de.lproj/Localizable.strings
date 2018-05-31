@@ -50,3 +50,6 @@
 "refresh" = "Aktualisieren";
 "refreshing" = "Aktualisiere...";
 "pleaseActivateLocationServices" = "Bitte die Ortungsdienste aktivieren.";
+"yes" = "Ja";
+"no" = "Nein";
+"refreshQuestion" = "Standort Aktualisieren?";

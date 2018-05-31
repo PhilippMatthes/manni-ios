@@ -58,6 +58,10 @@ class RouteMapController: UIViewController {
         }
         if zoomFit { mapView.zoomFitOverlays() }
     }
+    
+    override var prefersStatusBarHidden: Bool {
+        return Device.runningOniPhoneX
+    }
 }
 
 extension RouteMapController: MKMapViewDelegate {

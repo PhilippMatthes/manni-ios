@@ -58,7 +58,9 @@ class RouteController: UIViewController {
         }
     }
     
-    
+    override var prefersStatusBarHidden: Bool {
+        return Device.runningOniPhoneX
+    }
     
 }
 

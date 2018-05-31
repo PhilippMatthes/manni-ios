@@ -61,6 +61,10 @@ class DeparturesController: UIViewController {
         _ = navigationItem.add(.returnButton, .left) { self.returnBack() }
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return Device.runningOniPhoneX
+    }
+    
 }
 
 extension DeparturesController: UITableViewDelegate, UITableViewDataSource {

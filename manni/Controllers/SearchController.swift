@@ -59,6 +59,10 @@ class SearchController: UIViewController {
         SwiftRater.check()
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return Device.runningOniPhoneX
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }

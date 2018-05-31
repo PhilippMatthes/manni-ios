@@ -64,4 +64,7 @@ class Config {
     static let thereWasAProblemDownloading: String = NSLocalizedString("thereWasAProblemDownloading", comment: "")
     static let refresh: String = NSLocalizedString("refresh", comment: "")
     static let refreshing: String = NSLocalizedString("refreshing", comment: "")
+    static let yes: String = NSLocalizedString("yes", comment: "")
+    static let no: String = NSLocalizedString("no", comment: "")
+    static let refreshQuestion: String = NSLocalizedString("refreshQuestion", comment: "")
 }
