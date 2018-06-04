@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0EA444EB3FF2F9974D5ED5B9 /* Pods_manni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B50201A41B1005D1F32 /* Pods_manni.framework */; };
 		7E39EDA2CACF8DC655FA9F5F /* Pods_manni_watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B755EA8020BC9A57886C037 /* Pods_manni_watch.framework */; };
-		BE090F50201CD277004C1410 /* DarkBarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE090F4F201CD277004C1410 /* DarkBarNavigationController.swift */; };
 		BE0A8A942051250D00B779B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE0A8A922051250D00B779B9 /* Localizable.strings */; };
 		BE2285D2201A389D00C2A7DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2285D1201A389D00C2A7DF /* AppDelegate.swift */; };
 		BE2285D7201A389D00C2A7DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE2285D5201A389D00C2A7DF /* Main.storyboard */; };
@@ -19,6 +18,7 @@
 		BE2D05C8202308370064339B /* StorableStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2D05C7202308370064339B /* StorableStop.swift */; };
 		BE2D05CB20230DA50064339B /* StopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2D05CA20230DA50064339B /* StopCell.swift */; };
 		BE2D05CF20235C8F0064339B /* RouteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2D05CE20235C8F0064339B /* RouteController.swift */; };
+		BE466DFE20C359BB008EA5D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE5DA25520B0607E00E57659 /* Assets.xcassets */; };
 		BE49759120B0641B00D5148D /* DVB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE49759020B0641B00D5148D /* DVB.framework */; };
 		BE4975AD20B06B7900D5148D /* NearbyStopsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4975AC20B06B7900D5148D /* NearbyStopsInterfaceController.swift */; };
 		BE593EB220298888008C8EAC /* StopExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE593EB120298888008C8EAC /* StopExtension.swift */; };
@@ -31,12 +31,11 @@
 		BE59ABEF201B11E2003CA1EF /* DeparturesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABEE201B11E2003CA1EF /* DeparturesController.swift */; };
 		BE59ABF5201B146E003CA1EF /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABF4201B146E003CA1EF /* State.swift */; };
 		BE5BABF4201FA15B004C09FB /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5BABF3201FA15B004C09FB /* LocationController.swift */; };
+		BE5BBA5520C539AF00E5B284 /* PredictionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5BBA5420C539AF00E5B284 /* PredictionCell.swift */; };
 		BE5DA24220B0607C00E57659 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE5DA24020B0607C00E57659 /* Interface.storyboard */; };
 		BE5DA24420B0607D00E57659 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE5DA24320B0607D00E57659 /* Assets.xcassets */; };
 		BE5DA24B20B0607D00E57659 /* manni-watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BE5DA24A20B0607D00E57659 /* manni-watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BE5DA25220B0607D00E57659 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DA25120B0607D00E57659 /* ExtensionDelegate.swift */; };
 		BE5DA25420B0607D00E57659 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DA25320B0607D00E57659 /* NotificationController.swift */; };
-		BE5DA25620B0607E00E57659 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE5DA25520B0607E00E57659 /* Assets.xcassets */; };
 		BE5DA25B20B0607E00E57659 /* manni-watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BE5DA23E20B0607C00E57659 /* manni-watch.app */; };
 		BE650B51201A425A005D1F32 /* DVB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B54201A425A005D1F32 /* DVB.framework */; };
 		BE650B52201A425A005D1F32 /* Material.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B55201A425A005D1F32 /* Material.framework */; };
@@ -55,6 +54,8 @@
 		BEA7613A2025F6D900D39B15 /* PartialRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA761392025F6D900D39B15 /* PartialRouteCell.swift */; };
 		BEA761402027245300D39B15 /* PartialRouteExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA7613F2027245300D39B15 /* PartialRouteExtension.swift */; };
 		BEA761442027653A00D39B15 /* RouteMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA761432027653A00D39B15 /* RouteMapController.swift */; };
+		BEB2A1A720C3450200E7A79E /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB2A19620C3444D00E7A79E /* ExtensionDelegate.swift */; };
+		BEB2A1A820C3450200E7A79E /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB2A19820C3444D00E7A79E /* ComplicationController.swift */; };
 		BEBCE9E5209F0CEE00D471DC /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBCE9E3209F0CED00D471DC /* IntExtension.swift */; };
 		BEBCE9E6209F0CEE00D471DC /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBCE9E4209F0CED00D471DC /* UIViewExtension.swift */; };
 		BEBCE9E8209F0CFF00D471DC /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBCE9E7209F0CFF00D471DC /* UserDefaultsExtension.swift */; };
@@ -83,6 +84,8 @@
 		BECB0CAA20B0E2F9009E34DA /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE7201A76B1003CA1EF /* DateExtension.swift */; };
 		BECB0CAB20B0E345009E34DA /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8D5CE8202097410057740A /* Config.swift */; };
 		BECB0CB020B0EA80009E34DA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE0A8A922051250D00B779B9 /* Localizable.strings */; };
+		BEDA931E20C5E07900B7D828 /* NavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDA931D20C5E07900B7D828 /* NavController.swift */; };
+		BEDA932020C5E44700B7D828 /* StoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDA931F20C5E44700B7D828 /* StoryboardExtension.swift */; };
 		BEE3D65420C03C9A00C6D57F /* WKInterfaceMapExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE3D65320C03C9A00C6D57F /* WKInterfaceMapExtension.swift */; };
 		BEE3D65520C03CC100C6D57F /* WKInterfaceMapExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE3D65320C03C9A00C6D57F /* WKInterfaceMapExtension.swift */; };
 		BEF4854520B0837200B93508 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE0201A64FE003CA1EF /* Colors.swift */; };
@@ -145,12 +148,9 @@
 		1BADA0BE6BDD8E9A8E44701D /* Pods-manni.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni.release.xcconfig"; path = "Pods/Target Support Files/Pods-manni/Pods-manni.release.xcconfig"; sourceTree = "<group>"; };
 		5540C537CC606CF790B39F8B /* Pods-manni-watch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni-watch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-manni-watch/Pods-manni-watch.debug.xcconfig"; sourceTree = "<group>"; };
 		82F5048C4DB35EB25F7C1512 /* Pods-manni-watch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni-watch Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-manni-watch Extension/Pods-manni-watch Extension.debug.xcconfig"; sourceTree = "<group>"; };
-		BE090F4F201CD277004C1410 /* DarkBarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkBarNavigationController.swift; sourceTree = "<group>"; };
 		BE0A8A8C20511CA900B779B9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		BE0A8A8D20511CA900B779B9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		BE0A8A932051250D00B779B9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = manni/de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BE0A8A952051251E00B779B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		BE0A8A962051251E00B779B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		BE0A8A972051251E00B779B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = manni/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BE2285CE201A389D00C2A7DF /* manni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = manni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2285D1201A389D00C2A7DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -176,12 +176,12 @@
 		BE59ABF3201B144C003CA1EF /* CSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE59ABF4201B146E003CA1EF /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		BE5BABF3201FA15B004C09FB /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
+		BE5BBA5420C539AF00E5B284 /* PredictionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionCell.swift; sourceTree = "<group>"; };
 		BE5DA23E20B0607C00E57659 /* manni-watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "manni-watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE5DA24120B0607C00E57659 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		BE5DA24320B0607D00E57659 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE5DA24520B0607D00E57659 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE5DA24A20B0607D00E57659 /* manni-watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "manni-watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE5DA25120B0607D00E57659 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		BE5DA25320B0607D00E57659 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		BE5DA25520B0607E00E57659 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE5DA25720B0607E00E57659 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -194,6 +194,8 @@
 		BE650B55201A425A005D1F32 /* Material.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Material.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE650B56201A425A005D1F32 /* Motion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Motion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE73E8D020C0318F00DAD51B /* LocationInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInterfaceController.swift; sourceTree = "<group>"; };
+		BE7C7CFE20C3672700095652 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Interface.strings; sourceTree = "<group>"; };
+		BE7C7D0020C3672900095652 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Interface.strings; sourceTree = "<group>"; };
 		BE89CAFA20B06DC300626C37 /* StopRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopRowController.swift; sourceTree = "<group>"; };
 		BE8D5CDC20204E930057740A /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		BE8D5CDE2020605D0057740A /* RouteStopExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteStopExtension.swift; sourceTree = "<group>"; };
@@ -207,6 +209,8 @@
 		BEA761392025F6D900D39B15 /* PartialRouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialRouteCell.swift; sourceTree = "<group>"; };
 		BEA7613F2027245300D39B15 /* PartialRouteExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialRouteExtension.swift; sourceTree = "<group>"; };
 		BEA761432027653A00D39B15 /* RouteMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteMapController.swift; sourceTree = "<group>"; };
+		BEB2A19620C3444D00E7A79E /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		BEB2A19820C3444D00E7A79E /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		BEBCE9E3209F0CED00D471DC /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		BEBCE9E4209F0CED00D471DC /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		BEBCE9E7209F0CFF00D471DC /* UserDefaultsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtension.swift; sourceTree = "<group>"; };
@@ -232,8 +236,10 @@
 		BEC6887720543C6B0013965A /* SwiftRaterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftRaterExtension.swift; sourceTree = "<group>"; };
 		BECB0CA620B0D856009E34DA /* DeparturesInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesInterfaceController.swift; sourceTree = "<group>"; };
 		BECB0CA820B0D930009E34DA /* DepartureRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureRowController.swift; sourceTree = "<group>"; };
-		BEE3D65020C035F000C6D57F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Interface.strings; sourceTree = "<group>"; };
-		BEE3D65220C035F300C6D57F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Interface.strings; sourceTree = "<group>"; };
+		BEDA931D20C5E07900B7D828 /* NavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavController.swift; sourceTree = "<group>"; };
+		BEDA931F20C5E44700B7D828 /* StoryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardExtension.swift; sourceTree = "<group>"; };
+		BEDA932220C5EA3800B7D828 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		BEDA932420C5EA3D00B7D828 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		BEE3D65320C03C9A00C6D57F /* WKInterfaceMapExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKInterfaceMapExtension.swift; sourceTree = "<group>"; };
 		BEF4854A20B091EA00B93508 /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		BEF4854C20B0930500B93508 /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
@@ -378,6 +384,7 @@
 				BEC6887720543C6B0013965A /* SwiftRaterExtension.swift */,
 				BEBCE9ED20A023E900D471DC /* RefreshControlExtension.swift */,
 				BEE3D65320C03C9A00C6D57F /* WKInterfaceMapExtension.swift */,
+				BEDA931F20C5E44700B7D828 /* StoryboardExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -388,11 +395,11 @@
 				BE2285D1201A389D00C2A7DF /* AppDelegate.swift */,
 				BE59ABEE201B11E2003CA1EF /* DeparturesController.swift */,
 				BE98601D201B2B15008B4A08 /* SearchController.swift */,
-				BE090F4F201CD277004C1410 /* DarkBarNavigationController.swift */,
 				BE5BABF3201FA15B004C09FB /* LocationController.swift */,
 				BE2D05CE20235C8F0064339B /* RouteController.swift */,
 				BEA761432027653A00D39B15 /* RouteMapController.swift */,
 				BE593EB52029A608008C8EAC /* SettingsController.swift */,
+				BEDA931D20C5E07900B7D828 /* NavController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -407,6 +414,7 @@
 				BE2D05CA20230DA50064339B /* StopCell.swift */,
 				BE593EB92029BAFF008C8EAC /* RoutePredictionCell.swift */,
 				BEBCE9EB209F16BC00D471DC /* LaterCell.swift */,
+				BE5BBA5420C539AF00E5B284 /* PredictionCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -424,8 +432,9 @@
 		BE5DA24E20B0607D00E57659 /* manni-watch Extension */ = {
 			isa = PBXGroup;
 			children = (
-				BE5DA25120B0607D00E57659 /* ExtensionDelegate.swift */,
 				BE5DA25320B0607D00E57659 /* NotificationController.swift */,
+				BEB2A19620C3444D00E7A79E /* ExtensionDelegate.swift */,
+				BEB2A19820C3444D00E7A79E /* ComplicationController.swift */,
 				BE5DA25520B0607E00E57659 /* Assets.xcassets */,
 				BE5DA25720B0607E00E57659 /* Info.plist */,
 				BE5DA25820B0607E00E57659 /* PushNotificationPayload.apns */,
@@ -539,7 +548,7 @@
 		BE2285C6201A389D00C2A7DF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Philipp Matthes";
 				TargetAttributes = {
@@ -606,8 +615,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEF4855920B0A28500B93508 /* stations.csv in Resources */,
+				BE466DFE20C359BB008EA5D8 /* Assets.xcassets in Resources */,
 				BECB0CB020B0EA80009E34DA /* Localizable.strings in Resources */,
-				BE5DA25620B0607E00E57659 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,14 +797,15 @@
 				BEBEC51F202C6133007617B4 /* UINaviationBarExtension.swift in Sources */,
 				BEBEC531202C647D007617B4 /* ArrayExtension.swift in Sources */,
 				BEBEC502202B4618007617B4 /* NavigationItemExtension.swift in Sources */,
-				BE090F50201CD277004C1410 /* DarkBarNavigationController.swift in Sources */,
 				BE8D5CDF2020605D0057740A /* RouteStopExtension.swift in Sources */,
 				BEBEC521202C6133007617B4 /* OptionalExtension.swift in Sources */,
 				BE59ABE1201A64FE003CA1EF /* Colors.swift in Sources */,
 				BE593EBA2029BAFF008C8EAC /* RoutePredictionCell.swift in Sources */,
 				BE98601E201B2B15008B4A08 /* SearchController.swift in Sources */,
+				BE5BBA5520C539AF00E5B284 /* PredictionCell.swift in Sources */,
 				BEBEC522202C6133007617B4 /* MKCoordinateRegionExtension.swift in Sources */,
 				BE8D5CE120206AB80057740A /* MapViewExtension.swift in Sources */,
+				BEDA932020C5E44700B7D828 /* StoryboardExtension.swift in Sources */,
 				BEBEC51C202C6133007617B4 /* EquatableExtension.swift in Sources */,
 				BE2D05CB20230DA50064339B /* StopCell.swift in Sources */,
 				BEBEC52B202C6133007617B4 /* UIImageExtension.swift in Sources */,
@@ -804,6 +814,7 @@
 				BE2D05C2202235BB0064339B /* DepartureCell.swift in Sources */,
 				BEE3D65420C03C9A00C6D57F /* WKInterfaceMapExtension.swift in Sources */,
 				BE59ABE3201A6528003CA1EF /* UIColorExtension.swift in Sources */,
+				BEDA931E20C5E07900B7D828 /* NavController.swift in Sources */,
 				BE2D05C8202308370064339B /* StorableStop.swift in Sources */,
 				BE2D05CF20235C8F0064339B /* RouteController.swift in Sources */,
 				BEBEC525202C6133007617B4 /* URLExtension.swift in Sources */,
@@ -828,14 +839,15 @@
 				BECB0CAA20B0E2F9009E34DA /* DateExtension.swift in Sources */,
 				BECB0CA920B0D930009E34DA /* DepartureRowController.swift in Sources */,
 				BEF4854520B0837200B93508 /* Colors.swift in Sources */,
+				BEB2A1A720C3450200E7A79E /* ExtensionDelegate.swift in Sources */,
 				BEF4854E20B09DF500B93508 /* Station.swift in Sources */,
 				BECB0CA720B0D856009E34DA /* DeparturesInterfaceController.swift in Sources */,
 				BECB0CAB20B0E345009E34DA /* Config.swift in Sources */,
 				BEF4854720B084C200B93508 /* IntExtension.swift in Sources */,
 				BEE3D65520C03CC100C6D57F /* WKInterfaceMapExtension.swift in Sources */,
-				BE5DA25220B0607D00E57659 /* ExtensionDelegate.swift in Sources */,
 				BEF4854F20B09DF700B93508 /* CSV.swift in Sources */,
 				BE89CAFB20B06DC300626C37 /* StopRowController.swift in Sources */,
+				BEB2A1A820C3450200E7A79E /* ComplicationController.swift in Sources */,
 				BE4975AD20B06B7900D5148D /* NearbyStopsInterfaceController.swift in Sources */,
 				BEF4854620B084BC00B93508 /* UIColorExtension.swift in Sources */,
 			);
@@ -870,8 +882,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				BE2285D6201A389D00C2A7DF /* Base */,
-				BE0A8A8D20511CA900B779B9 /* de */,
-				BE0A8A962051251E00B779B9 /* en */,
+				BEDA932220C5EA3800B7D828 /* de */,
+				BEDA932420C5EA3D00B7D828 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -890,8 +902,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				BE5DA24120B0607C00E57659 /* Base */,
-				BEE3D65020C035F000C6D57F /* de */,
-				BEE3D65220C035F300C6D57F /* en */,
+				BE7C7CFE20C3672700095652 /* de */,
+				BE7C7D0020C3672900095652 /* en */,
 			);
 			name = Interface.storyboard;
 			sourceTree = "<group>";

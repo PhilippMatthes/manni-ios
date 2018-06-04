@@ -62,9 +62,12 @@ class Config {
     static let gpsPositionCouldNotBeAccessed: String = NSLocalizedString("gpsPositionCouldNotBeAccessed", comment: "")
     static let loadingLiveMonitor: String = NSLocalizedString("loadingLiveMonitor", comment: "")
     static let thereWasAProblemDownloading: String = NSLocalizedString("thereWasAProblemDownloading", comment: "")
+    static let success: String = NSLocalizedString("success", comment: "")
     static let refresh: String = NSLocalizedString("refresh", comment: "")
     static let refreshing: String = NSLocalizedString("refreshing", comment: "")
     static let yes: String = NSLocalizedString("yes", comment: "")
     static let no: String = NSLocalizedString("no", comment: "")
     static let refreshQuestion: String = NSLocalizedString("refreshQuestion", comment: "")
+    static let cancel: String = NSLocalizedString("cancel", comment: "")
+    static let noPrediction: String = NSLocalizedString("noPrediction", comment: "")
 }

@@ -19,13 +19,8 @@ class RouteMapController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         mapView.delegate = self
-        configureNavigationBar()
+        navigationItem.title = Config.route
         showRoute(State.shared.route!)
-    }
-    
-    func configureNavigationBar() {
-        navigationItem.configure(withText: Config.route)
-        _ = navigationItem.add(.returnButton, .left) { self.returnBack() }
     }
     
     func showRoute(_ route: Route, zoomFit: Bool=true) {

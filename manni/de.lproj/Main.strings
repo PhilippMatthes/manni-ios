@@ -3,67 +3,76 @@
 "0Vz-Be-Ocw.title" = "Station";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "0vP-KI-iQF"; */
-"0vP-KI-iQF.text" = "Label";
-
-/* Class = "UILabel"; text = "Aktivieren Sie diese Option, um Vorhersagen für Ihre Suchanfragen zu ermöglichen. Ihre Suchanfragen werden hierfür lokal aufgezeichnet."; ObjectID = "16H-Cl-Hvg"; */
-"16H-Cl-Hvg.text" = "Aktivieren Sie diese Option, um Vorhersagen für Ihre Suchanfragen zu ermöglichen. Ihre Suchanfragen werden hierfür lokal aufgezeichnet.";
+"0vP-KI-iQF.text" = "Lädt...";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "2FB-O9-dZL"; */
-"2FB-O9-dZL.text" = "Title";
+"2FB-O9-dZL.text" = "Lädt...";
 
 /* Class = "UILabel"; text = "Linienänderungen"; ObjectID = "5hI-6f-gyW"; */
 "5hI-6f-gyW.text" = "Linienänderungen";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6oM-Dt-Yha"; */
+"6oM-Dt-Yha.text" = "Lädt...";
 
 /* Class = "UILabel"; text = "Von Haltestelle"; ObjectID = "73z-Eg-f8m"; */
 "73z-Eg-f8m.text" = "Von Haltestelle";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "97h-uq-kUY"; */
-"97h-uq-kUY.text" = "Label";
-
-/* Class = "UITableViewSection"; headerTitle = "Suchvorschläge"; ObjectID = "B5S-pI-O56"; */
-"B5S-pI-O56.headerTitle" = "Suchvorschläge";
+"97h-uq-kUY.text" = "Lädt...";
 
 /* Class = "UILabel"; text = "Nach Haltestelle"; ObjectID = "Cu7-5D-B33"; */
 "Cu7-5D-B33.text" = "Nach Haltestelle";
 
 /* Class = "UILabel"; text = "From"; ObjectID = "EV4-g0-MuD"; */
-"EV4-g0-MuD.text" = "From";
+"EV4-g0-MuD.text" = "Von";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "G2W-tK-aQ7"; */
-"G2W-tK-aQ7.text" = "Label";
+"G2W-tK-aQ7.text" = "Lädt...";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "IHE-BR-0yV"; */
-"IHE-BR-0yV.normalTitle" = "Button";
+"IHE-BR-0yV.normalTitle" = "Lädt...";
 
 /* Class = "UILabel"; text = "To"; ObjectID = "LGq-rf-uYQ"; */
-"LGq-rf-uYQ.text" = "To";
+"LGq-rf-uYQ.text" = "Nach";
 
 /* Class = "UILabel"; text = "Nach Detail"; ObjectID = "QMI-Pd-EDf"; */
-"QMI-Pd-EDf.text" = "Nach Detail";
+"QMI-Pd-EDf.text" = "Lädt...";
 
 /* Class = "UIBarButtonItem"; title = "Zurück"; ObjectID = "XO6-Pb-cCc"; */
 "XO6-Pb-cCc.title" = "Zurück";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Xby-LH-yJ6"; */
-"Xby-LH-yJ6.text" = "Label";
+"Xby-LH-yJ6.text" = "Lädt...";
 
 /* Class = "UILabel"; text = "Von Detail"; ObjectID = "YBE-bx-aln"; */
 "YBE-bx-aln.text" = "Von Detail";
 
-/* Class = "UILabel"; text = "Intelligente Suchvorhersage"; ObjectID = "ac0-ww-ane"; */
-"ac0-ww-ane.text" = "Intelligente Suchvorhersage";
+/* Class = "UILabel"; text = "Intelligente Suchvorhersage"; ObjectID = "ZDS-5H-g67"; */
+"ZDS-5H-g67.text" = "Intelligente Suchvorhersage";
+
+/* Class = "UILabel"; text = "Aktivieren Sie diese Option, um Vorhersagen für Ihre Suchanfragen zu ermöglichen. Ihre Suchanfragen werden hierfür lokal aufgezeichnet."; ObjectID = "cea-vB-I2P"; */
+"cea-vB-I2P.text" = "Aktivieren Sie diese Option, um Vorhersagen für Ihre Suchanfragen zu ermöglichen. Ihre Suchanfragen werden hierfür lokal aufgezeichnet.";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "gTc-wq-LrW"; */
-"gTc-wq-LrW.text" = "Label";
+"gTc-wq-LrW.text" = "Lädt...";
+
+/* Class = "UILabel"; text = "Wenn Sie möchten, werden Ihre Suchanfragen lokal aufgezeichnet. Die App berechnet dann anhand dieser Daten Suchvorschläge. "; ObjectID = "iZO-yT-3iM"; */
+"iZO-yT-3iM.text" = "Wenn Sie möchten, werden Ihre Suchanfragen lokal aufgezeichnet. Die App berechnet dann anhand dieser Daten Suchvorschläge. ";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "nU3-H4-xre"; */
-"nU3-H4-xre.text" = "Label";
+"nU3-H4-xre.text" = "Lädt...";
+
+/* Class = "UILabel"; text = "Vorhersagen"; ObjectID = "pNK-Vu-5Jw"; */
+"pNK-Vu-5Jw.text" = "Vorhersagen";
 
 /* Class = "UIButton"; normalTitle = "Route auf der Karte anzeigen"; ObjectID = "sbf-l6-kqF"; */
 "sbf-l6-kqF.normalTitle" = "Route auf der Karte anzeigen";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "tDK-2I-X6n"; */
-"tDK-2I-X6n.normalTitle" = "Button";
+"tDK-2I-X6n.normalTitle" = "Lädt...";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "vr2-m0-gbm"; */
+"vr2-m0-gbm.text" = "Lädt...";
 
 /* Class = "UIViewController"; title = "RootSearchBarController"; ObjectID = "wsV-yM-hsW"; */
-"wsV-yM-hsW.title" = "RootSearchBarController";
+"wsV-yM-hsW.title" = "Lädt...";

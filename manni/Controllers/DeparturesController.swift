@@ -28,7 +28,7 @@ class DeparturesController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = Color.blue.lighten5
         configureTableView()
-        configureNavigationBar(withText: State.shared.stopQuery!)
+        navigationItem.title = State.shared.stopQuery!
         refreshControl.refreshManually()
     }
 
@@ -54,11 +54,6 @@ class DeparturesController: UIViewController {
                 }
             }
         }
-    }
-    
-    func configureNavigationBar(withText text: String) {
-        navigationItem.configure(withText: text)
-        _ = navigationItem.add(.returnButton, .left) { self.returnBack() }
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -88,8 +83,9 @@ extension DeparturesController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let locationController = UIStoryboard.instanciateController(withId: "LocationController") as! LocationController
         State.shared.departure = departures[indexPath.row]
-        performSegue(withIdentifier: "showLocation", sender: self)
+        navigationController?.pushViewController(locationController, animated: true)
     }
     
     func configureTableView() {

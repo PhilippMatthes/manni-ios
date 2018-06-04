@@ -13,6 +13,7 @@ import CoreLocation
 
 class NearbyStopsInterfaceController: WKInterfaceController, CLLocationManagerDelegate {
     
+    @IBOutlet var indicator: WKInterfaceImage!
     @IBOutlet var nearbyStopsTable: WKInterfaceTable!
     
     var stations = [Station]()
@@ -24,11 +25,27 @@ class NearbyStopsInterfaceController: WKInterfaceController, CLLocationManagerDe
         update()
     }
     
+    func startAnimatingLoading() {
+        self.nearbyStopsTable.setHidden(true)
+        self.indicator.setHidden(false)
+        self.indicator.setImageNamed("satellit")
+        self.indicator.startAnimating()
+    }
+    
+    func stopAnimatingLoading() {
+        self.indicator.setHidden(true)
+        self.nearbyStopsTable.setHidden(false)
+        self.indicator.stopAnimating()
+    }
+    
+    @IBAction func refreshButtonPressed() {
+        update()
+    }
+    
     func update() {
+        self.startAnimatingLoading()
         prepareLocationManager()
         self.locationManager.requestLocation()
-        
-        showCells(Config.determiningPosition)
     }
     
     func prepareLocationManager() {
@@ -37,40 +54,46 @@ class NearbyStopsInterfaceController: WKInterfaceController, CLLocationManagerDe
         self.locationManager.requestWhenInUseAuthorization()
     }
     
-    func showCells(_ text: String...) {
-        
-        self.nearbyStopsTable.setNumberOfRows(text.count, withRowType: "NearbyStopRow")
-        
-        for i in 0..<text.count {
-            guard let controller = self.nearbyStopsTable.rowController(at: i) as? StopRowController else { return }
-            controller.label.setText(text[i])
+    func showPrompt() {
+        let action1 = WKAlertAction(title: Config.refresh, style: .default) {
+            self.update()
         }
+        let action2 = WKAlertAction(title: Config.cancel, style: .destructive) {}
+        presentAlert(withTitle: Config.thereWasAProblemDownloading, message: "", preferredStyle: .actionSheet, actions: [action1,action2])
+    }
+    
+    func showNavigationServicesPrompt() {
+        let action1 = WKAlertAction(title: Config.refresh, style: .default) {
+            self.update()
+        }
+        let action2 = WKAlertAction(title: Config.cancel, style: .destructive) {}
+        presentAlert(withTitle: Config.gpsPositionCouldNotBeAccessed + " " + Config.pleaseActivateLocationServices, message: "", preferredStyle: .actionSheet, actions: [action1, action2])
     }
     
     func showStations(aroundLocation loc: CLLocation) {
         let coord = WGSCoordinate(latitude: loc.coordinate.latitude, longitude: loc.coordinate.longitude)
         
-        stations = Array(Station.nearestStations(coordinate: coord).prefix(15))
+        stations = Array(Station.nearestStations(coordinate: coord).prefix(100))
         if stations.count == 0 {
-            showCells(Config.didNotFindAnyStations)
+            self.showPrompt()
             return
         }
         
-        self.nearbyStopsTable.setNumberOfRows(stations.count+1, withRowType: "NearbyStopRow")
-        
-        guard let controller = self.nearbyStopsTable.rowController(at: 0) as? StopRowController else { return }
-        controller.label.setText(Config.refresh)
+        self.nearbyStopsTable.setNumberOfRows(stations.count, withRowType: "NearbyStopRow")
         
         for i in 0..<stations.count {
-            guard let controller = self.nearbyStopsTable.rowController(at: i+1) as? StopRowController else { continue }
+            guard let controller = self.nearbyStopsTable.rowController(at: i) as? StopRowController else { continue }
             let station = stations[i]
             let distance = Int(CLLocation(
                 latitude: station.wgs84Lat,
                 longitude: station.wgs84Long
-                ).distance(from: loc))
+            ).distance(from: loc))
             controller.group.setBackgroundColor(Colors.color(forInt: station.name.count))
-            controller.label.setText("\(distance)m - \(station.nameWithLocation)")
+            controller.label.setText("\(station.name)")
+            controller.distanceLabel.setText("\(distance)m")
         }
+        
+        stopAnimatingLoading()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -81,22 +104,14 @@ class NearbyStopsInterfaceController: WKInterfaceController, CLLocationManagerDe
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        showCells(
-            Config.gpsPositionCouldNotBeAccessed,
-            Config.pleaseActivateLocationServices
-        )
+        self.showNavigationServicesPrompt()
+        return
     }
     
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
-        if rowIndex == 0 || stations.count <= rowIndex {
-            guard let controller = table.rowController(at: rowIndex) as? StopRowController else { return }
-            controller.label.setText(Config.refreshing)
-            locationManager.requestLocation()
-        } else {
-            guard let _ = table.rowController(at: rowIndex) as? StopRowController else { return }
-            let station = stations[rowIndex-1]
-            presentController(withName: "DeparturesInterfaceController", context: station)
-        }
+        guard let _ = table.rowController(at: rowIndex) as? StopRowController else { return }
+        let station = stations[rowIndex]
+        presentController(withName: "DeparturesInterfaceController", context: station)
     }
     
 }

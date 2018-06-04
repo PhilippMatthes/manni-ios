@@ -1,8 +1,8 @@
 //
 //  ExtensionDelegate.swift
-//  manni-watch Extension
+//  temp Extension
 //
-//  Created by Philipp Matthes on 19.05.18.
+//  Created by Philipp Matthes on 02.06.18.
 //  Copyright © 2018 Philipp Matthes. All rights reserved.
 //
 

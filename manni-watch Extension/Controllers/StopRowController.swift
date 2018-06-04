@@ -14,4 +14,5 @@ class StopRowController: NSObject {
     @IBOutlet var group: WKInterfaceGroup!
     @IBOutlet var label: WKInterfaceLabel!    
     
+    @IBOutlet var distanceLabel: WKInterfaceLabel!
 }

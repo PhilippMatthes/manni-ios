@@ -15,19 +15,29 @@ import CoreLocation
 
 class DeparturesInterfaceController: WKInterfaceController {
     
+    @IBOutlet var indicator: WKInterfaceImage!
     @IBOutlet var table: WKInterfaceTable!
     
     var departures = [Departure]()
     var station: Station!
     var stop: Stop?
     
-    func showCells(_ text: String...) {
-        table.setNumberOfRows(text.count, withRowType: "DepartureRow")
-        
-        for i in 0..<text.count {
-            guard let controller = table.rowController(at: i) as? DepartureRowController else { return }
-            controller.label.setText(text[i])
-        }
+    
+    @IBAction func refreshButtonPressed() {
+        loadDepartures(station: station) {}
+    }
+    
+    func startAnimatingLoading() {
+        table.setHidden(true)
+        indicator.setHidden(false)
+        indicator.setImageNamed("animation")
+        indicator.startAnimating()
+    }
+    
+    func stopAnimatingLoading() {
+        indicator.setHidden(true)
+        table.setHidden(false)
+        indicator.stopAnimating()
     }
     
     override func awake(withContext context: Any?) {
@@ -36,58 +46,71 @@ class DeparturesInterfaceController: WKInterfaceController {
         guard let station = context as? Station else { return }
         self.station = station
         
-        showCells(Config.loadingLiveMonitor)
-        
-        loadDepartures()
+        loadDepartures(station: self.station) {}
     }
     
-    func loadDepartures() {
-        Stop.find(self.station.id) { result in
+    func showPrompt() {
+        let action1 = WKAlertAction(title: Config.refresh, style: .default) {
+            self.loadDepartures(station: self.station) {}
+        }
+        let action2 = WKAlertAction(title: Config.cancel, style: .destructive) {
+            self.dismiss()
+        }
+        presentAlert(withTitle: Config.thereWasAProblemDownloading, message: "", preferredStyle: .actionSheet, actions: [action1,action2])
+    }
+    
+    func loadDepartures(station: Station, completion: @escaping () -> ()) {
+        self.startAnimatingLoading()
+        Stop.find(station.id) { result in
             switch result {
-            case .failure(_): return
+            case .failure(_):
+                self.showPrompt()
+                return
             case let .success(response):
-                guard let first = response.stops.first else {return}
+                guard let first = response.stops.first else {
+                    self.showPrompt()
+                    return
+                }
                 self.stop = first
                 Departure.monitor(stopWithId: first.id) {
                     result in
                     guard let response = result.success else {
-                        self.showCells(Config.thereWasAProblemDownloading)
+                        self.showPrompt()
                         return
                     }
                     self.departures = response.departures
-                    self.table.setNumberOfRows(self.departures.count+1, withRowType: "DepartureRow")
-                    guard let controller = self.table.rowController(at: 0) as? DepartureRowController else { return }
-                    controller.label.setText(Config.refresh)
-                    for i in 0..<self.departures.count {
-                        guard let controller = self.table.rowController(at: i+1) as? DepartureRowController else { return }
-                        let departure = self.departures[i]
-                        
-                        var color: UIColor
-                        if let lineNumber = Int(departure.line) {
-                            color = Colors.color(forInt: lineNumber)
-                        } else {
-                            color = Colors.color(forInt: departure.line.count)
-                        }
-                        
-                        controller.group.setBackgroundColor(color)
-                        controller.setDepartureTime(time: departure.realTime ?? departure.scheduledTime, line: departure.line, direction: departure.direction)
+                    DispatchQueue.main.async{
+                        self.reloadTableView()
+                        self.stopAnimatingLoading()
                     }
                 }
             }
         }
     }
     
-    override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
-        if rowIndex == 0 {
-            guard let controller = table.rowController(at: rowIndex) as? DepartureRowController else { return }
-            controller.label.setText(Config.refreshing)
-            loadDepartures()
-        } else {
-            guard let stopId = stop?.id else {return}
-            let departure = departures[rowIndex - 1]
-            let tripId = departure.id
-            presentController(withName: "LocationInterfaceController", context: [stopId, tripId])
+    func reloadTableView() {
+        self.table.setNumberOfRows(self.departures.count, withRowType: "DepartureRow")
+        for i in 0..<self.departures.count {
+            guard let controller = self.table.rowController(at: i) as? DepartureRowController else { return }
+            let departure = self.departures[i]
+            
+            var color: UIColor
+            if let lineNumber = Int(departure.line) {
+                color = Colors.color(forInt: lineNumber)
+            } else {
+                color = Colors.color(forInt: departure.line.count)
+            }
+            
+            controller.group.setBackgroundColor(color)
+            controller.configure(time: departure.realTime ?? departure.scheduledTime, line: departure.line, direction: departure.direction)
         }
+    }
+    
+    override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
+        guard let stopId = stop?.id else {return}
+        let departure = departures[rowIndex]
+        let tripId = departure.id
+        presentController(withName: "LocationInterfaceController", context: [stopId, tripId])
     }
     
 }

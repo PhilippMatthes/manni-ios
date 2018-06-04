@@ -59,6 +59,11 @@ class SearchController: UIViewController {
         SwiftRater.check()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     override var prefersStatusBarHidden: Bool {
         return Device.runningOniPhoneX
     }
@@ -293,28 +298,33 @@ extension SearchController {
     }
     
     func openRouteOrDeparturesController() {
+        navigationController?.setNavigationBarHidden(false, animated: true)
         switch State.shared.searchMode {
         case .stop:
             if let fromText = searchBar.textField.text {
                 if fromText != "" {
+                    let controller = UIStoryboard.instanciateController(withId: "DeparturesController") as! DeparturesController
                     State.shared.stopQuery = fromText
-                    performSegue(withIdentifier: "showDepartures", sender: self)
+                    navigationController?.pushViewController(controller, animated: true)
                 }
             }
         case .route:
             if let fromText = searchBar.textField.text, let toText = modularSearchBar.textField.text {
                 if fromText != "" && toText != "" {
+                    let controller = UIStoryboard.instanciateController(withId: "RouteController") as! RouteController
                     State.shared.from = fromText
                     State.shared.to = toText
                     State.shared.addLogData(fromText, toText)
-                    performSegue(withIdentifier: "showRoutes", sender: self)
+                    navigationController?.pushViewController(controller, animated: true)
                 }
             }
         }
     }
     
     func openSettingsController() {
-        performSegue(withIdentifier: "showSettings", sender: self)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        let controller = UIStoryboard.instanciateController(withId: "SettingsController") as! SettingsController
+        navigationController?.pushViewController(controller, animated: true)
     }
     
 }

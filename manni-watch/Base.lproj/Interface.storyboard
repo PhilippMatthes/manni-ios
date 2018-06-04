@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14109" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14113" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc" pageOrientation="vertical">
     <device id="watch42" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="watchOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14031"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14033"/>
     </dependencies>
     <scenes>
         <!--Haltestellen-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller identifier="NearbyStopsInterfaceController" title="Haltestellen" id="AgC-eL-Hgc" customClass="NearbyStopsInterfaceController" customModule="manni_watch_Extension">
+                <controller identifier="NearbyStopsInterfaceController" title="Haltestellen" id="AgC-eL-Hgc" customClass="NearbyStopsInterfaceController" customModule="manni_watch" customModuleProvider="target">
                     <items>
                         <table alignment="left" id="L50-it-MEE">
                             <items>
-                                <tableRow identifier="NearbyStopRow" id="724-R9-ELc" customClass="StopRowController" customModule="manni_watch_Extension">
-                                    <group key="rootItem" width="1" height="69" alignment="left" id="0cZ-7p-fyJ">
+                                <tableRow identifier="NearbyStopRow" id="724-R9-ELc" customClass="StopRowController" customModule="manni_watch" customModuleProvider="target">
+                                    <group key="rootItem" width="1" height="58" alignment="left" id="0cZ-7p-fyJ">
                                         <items>
-                                            <label width="136" height="77" alignment="left" text="Label" numberOfLines="999" id="kDh-99-qfC"/>
+                                            <label width="0.34999999999999998" height="1" alignment="left" text="Lädt..." textAlignment="center" numberOfLines="0" id="Ekp-Tm-eJX">
+                                                <fontDescription key="font" type="system" pointSize="13"/>
+                                            </label>
+                                            <separator alignment="left" id="ady-wx-FbF"/>
+                                            <label width="0.65000000000000002" widthAdjustment="-3" height="1" alignment="left" text="Lädt..." numberOfLines="0" id="kDh-99-qfC"/>
                                         </items>
                                     </group>
                                     <connections>
+                                        <outlet property="distanceLabel" destination="Ekp-Tm-eJX" id="L56-hF-V1g"/>
                                         <outlet property="group" destination="0cZ-7p-fyJ" id="iAb-Ut-jzh"/>
                                         <outlet property="label" destination="kDh-99-qfC" id="ax6-0f-7BU"/>
                                     </connections>
@@ -30,8 +35,19 @@
                             </items>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                         </table>
+                        <imageView width="1" height="1" alignment="left" hidden="YES" contentMode="scaleAspectFit" id="La6-qs-FM5"/>
                     </items>
+                    <menu key="menu" id="XdJ-jT-h0x">
+                        <items>
+                            <menuItem title="Refresh" icon="repeat" id="761-iY-dxg">
+                                <connections>
+                                    <action selector="refreshButtonPressed" destination="AgC-eL-Hgc" id="wnN-J3-rrO"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
+                        <outlet property="indicator" destination="La6-qs-FM5" id="uQd-dt-412"/>
                         <outlet property="nearbyStopsTable" destination="L50-it-MEE" id="sXv-t3-Fu0"/>
                     </connections>
                 </controller>
@@ -41,25 +57,51 @@
         <!--Abfahrtsmonitor-->
         <scene sceneID="HiE-ZD-m67">
             <objects>
-                <controller identifier="DeparturesInterfaceController" title="Abfahrtsmonitor" id="zdz-Vy-teE" customClass="DeparturesInterfaceController" customModule="manni_watch_Extension">
+                <controller identifier="DeparturesInterfaceController" title="Abfahrtsmonitor" id="zdz-Vy-teE" customClass="DeparturesInterfaceController" customModule="manni_watch" customModuleProvider="target">
                     <items>
                         <table alignment="left" id="eGW-n5-Y8Y">
                             <items>
-                                <tableRow identifier="DepartureRow" id="wRu-d3-GAq" customClass="DepartureRowController" customModule="manni_watch_Extension">
-                                    <group key="rootItem" width="1" height="65" alignment="left" id="FmP-7G-TLE">
+                                <tableRow identifier="DepartureRow" id="wRu-d3-GAq" customClass="DepartureRowController" customModule="manni_watch" customModuleProvider="target">
+                                    <group key="rootItem" width="1" height="34" alignment="left" id="FmP-7G-TLE">
                                         <items>
-                                            <label width="136" height="107" alignment="left" text="Label" numberOfLines="999" id="YHx-VZ-1bu"/>
+                                            <label width="0.34999999999999998" height="1" alignment="left" text="Lädt..." textAlignment="center" numberOfLines="0" id="QDK-YI-GIJ">
+                                                <fontDescription key="font" type="system" pointSize="15"/>
+                                            </label>
+                                            <separator alignment="left" id="kEe-pm-JML">
+                                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </separator>
+                                            <group width="0.65000000000000002" widthAdjustment="-4" height="1" alignment="left" layout="vertical" id="HSZ-C7-SV3">
+                                                <items>
+                                                    <label width="1" height="0.5" alignment="left" text="Lädt..." textAlignment="left" numberOfLines="999" id="YHx-VZ-1bu"/>
+                                                    <timer width="1" height="0.5" alignment="left" textAlignment="left" format="abbreviated" previewedSeconds="10" id="6nV-vM-wWl">
+                                                        <calendarUnit key="units" day="YES" hour="YES" minute="YES" second="YES"/>
+                                                    </timer>
+                                                </items>
+                                            </group>
                                         </items>
                                     </group>
                                     <connections>
                                         <outlet property="group" destination="FmP-7G-TLE" id="NAI-95-5tD"/>
                                         <outlet property="label" destination="YHx-VZ-1bu" id="7zI-fg-n9j"/>
+                                        <outlet property="lineLabel" destination="QDK-YI-GIJ" id="ETH-rd-qIc"/>
+                                        <outlet property="timer" destination="6nV-vM-wWl" id="pAl-dw-K15"/>
                                     </connections>
                                 </tableRow>
                             </items>
                         </table>
+                        <imageView width="1" height="1" alignment="left" hidden="YES" contentMode="scaleAspectFit" id="LQ2-AD-5vv"/>
                     </items>
+                    <menu key="menu" id="NRh-Lr-sHS">
+                        <items>
+                            <menuItem title="Refresh" icon="repeat" id="9DD-1d-Wd4">
+                                <connections>
+                                    <action selector="refreshButtonPressed" destination="zdz-Vy-teE" id="FgY-6T-KZL"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
+                        <outlet property="indicator" destination="LQ2-AD-5vv" id="SwA-z1-eee"/>
                         <outlet property="table" destination="eGW-n5-Y8Y" id="S74-Ch-xZs"/>
                     </connections>
                 </controller>
@@ -69,16 +111,21 @@
         <!--Location-->
         <scene sceneID="YwH-us-Zzk">
             <objects>
-                <controller identifier="LocationInterfaceController" title="Location" id="h9u-WT-hQO" customClass="LocationInterfaceController" customModule="manni_watch_Extension">
+                <controller identifier="LocationInterfaceController" title="Location" id="h9u-WT-hQO" customClass="LocationInterfaceController" customModule="manni_watch" customModuleProvider="target">
                     <items>
-                        <map width="1" height="1" heightAdjustment="-20" alignment="left" id="NUX-Vq-Ydc"/>
-                        <label width="1" alignment="left" text="Loading..." textAlignment="center" id="mf0-mK-Db5">
-                            <fontDescription key="font" type="system" pointSize="10"/>
-                        </label>
+                        <picker width="2" height="2" alignment="left" id="A8R-4b-QqZ">
+                            <connections>
+                                <action selector="pickerChanged:" destination="h9u-WT-hQO" id="mbl-Yw-09l"/>
+                            </connections>
+                        </picker>
+                        <map width="1" height="1" heightAdjustment="-2" alignment="left" id="NUX-Vq-Ydc"/>
+                        <imageView width="1" height="1" heightAdjustment="-2" alignment="left" hidden="YES" contentMode="scaleAspectFit" id="6mQ-Gr-DYU"/>
                     </items>
+                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                     <connections>
-                        <outlet property="label" destination="mf0-mK-Db5" id="bO8-GB-rZc"/>
+                        <outlet property="indicator" destination="6mQ-Gr-DYU" id="VY0-lF-941"/>
                         <outlet property="map" destination="NUX-Vq-Ydc" id="fPA-md-7hJ"/>
+                        <outlet property="tempPicker" destination="A8R-4b-QqZ" id="FRF-mY-3Id"/>
                     </connections>
                 </controller>
             </objects>

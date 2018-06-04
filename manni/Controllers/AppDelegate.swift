@@ -12,6 +12,8 @@ import SwiftRater
 import CoreLocation
 import WatchKit
 import MapKit
+import Material
+
 
 struct Device {
     static var runningOniPhoneX = false

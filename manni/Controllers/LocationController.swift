@@ -41,7 +41,7 @@ class LocationController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        configureNavigationBar(forStopName: State.shared.stopQuery!)
+        navigationItem.title = State.shared.stopQuery!
         
         let stopId = State.shared.stopId!
         let tripId = State.shared.departure!.id

@@ -33,21 +33,20 @@ class RouteController: UIViewController {
     
     var routes = [ExpandedRoute]()
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+    override func viewDidLoad() {
+        super.viewDidLoad()
         if let from = State.shared.from, let to = State.shared.to {
-            configureNavigationBar(from: from, to: to)
-            refreshControl.refreshManually()
+            navigationItem.title = "\(Config.routesFrom) \(from) \(Config.to) \(to)"
         } else {
-            configureNavigationBar(from: "n/a", to: "n/a")
+            navigationItem.title = "Route"
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         configureTableView()
+        refreshControl.refreshManually()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     @objc func handleRefresh(refreshControl: UIRefreshControl) {
@@ -93,12 +92,6 @@ extension RouteController {
         tableView.dataSource = self
         tableView.canCancelContentTouches = false
         self.tableView.addSubview(self.refreshControl)
-    }
-    
-    func configureNavigationBar(from: String, to: String) {
-        let text = "\(Config.routesFrom) \(from) \(Config.to) \(to)"
-        navigationItem.configure(withText: text)
-        _ = navigationItem.add(.returnButton, .left) { self.returnBack() }
     }
 }
 
@@ -148,7 +141,8 @@ extension RouteController: RouteCellDelegate {
     }
     
     func showMapButtonPressed(route: Route) {
-        performSegue(withIdentifier: "showRouteMap", sender: self)
+        let controller = UIStoryboard.instanciateController(withId: "RouteMapController") as! RouteMapController
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 

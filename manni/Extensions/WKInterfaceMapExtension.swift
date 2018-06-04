@@ -14,4 +14,8 @@ extension WKInterfaceMap {
         let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
         setRegion(MKCoordinateRegion(center: coordinate, span: span))
     }
+    
+    func zoomFit(coordinate: CLLocationCoordinate2D, span: MKCoordinateSpan) {
+        setRegion(MKCoordinateRegion(center: coordinate, span: span))
+    }
 }

@@ -1,21 +1,30 @@
 
+/* Class = "WKInterfaceMenuItem"; title = "Refresh"; ObjectID = "761-iY-dxg"; */
+"761-iY-dxg.title" = "Aktualisieren";
+
+/* Class = "WKInterfaceMenuItem"; title = "Refresh"; ObjectID = "9DD-1d-Wd4"; */
+"9DD-1d-Wd4.title" = "Aktualisieren";
+
 /* Class = "WKInterfaceController"; title = "Haltestellen"; ObjectID = "AgC-eL-Hgc"; */
 "AgC-eL-Hgc.title" = "Haltestellen";
+
+/* Class = "WKInterfaceLabel"; text = "Lädt..."; ObjectID = "Ekp-Tm-eJX"; */
+"Ekp-Tm-eJX.text" = "Lädt...";
 
 /* Class = "WKInterfaceLabel"; text = "Alert Label"; ObjectID = "IdU-wH-bcW"; */
 "IdU-wH-bcW.text" = "Lädt...";
 
-/* Class = "WKInterfaceLabel"; text = "Label"; ObjectID = "YHx-VZ-1bu"; */
+/* Class = "WKInterfaceLabel"; text = "Lädt..."; ObjectID = "QDK-YI-GIJ"; */
+"QDK-YI-GIJ.text" = "Lädt...";
+
+/* Class = "WKInterfaceLabel"; text = "Lädt..."; ObjectID = "YHx-VZ-1bu"; */
 "YHx-VZ-1bu.text" = "Lädt...";
 
 /* Class = "WKInterfaceController"; title = "Location"; ObjectID = "h9u-WT-hQO"; */
 "h9u-WT-hQO.title" = "Ortung";
 
-/* Class = "WKInterfaceLabel"; text = "Label"; ObjectID = "kDh-99-qfC"; */
+/* Class = "WKInterfaceLabel"; text = "Lädt..."; ObjectID = "kDh-99-qfC"; */
 "kDh-99-qfC.text" = "Lädt...";
-
-/* Class = "WKInterfaceLabel"; text = "Loading..."; ObjectID = "mf0-mK-Db5"; */
-"mf0-mK-Db5.text" = "Lädt...";
 
 /* Class = "WKInterfaceController"; title = "Abfahrtsmonitor"; ObjectID = "zdz-Vy-teE"; */
 "zdz-Vy-teE.title" = "Abfahrtsmonitor";
