@@ -23,5 +23,12 @@ target 'manni-watch Extension' do
 
   use_frameworks!
   pod 'DVB', :git => 'https://github.com/PhilippMatthes/DVB.git'
+ 
+end
+
+target 'manni-mac' do
+
+  use_frameworks!
+  pod 'DVB', :git => 'https://github.com/PhilippMatthes/DVB.git'
 
 end

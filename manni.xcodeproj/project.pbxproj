@@ -9,7 +9,12 @@
 /* Begin PBXBuildFile section */
 		0EA444EB3FF2F9974D5ED5B9 /* Pods_manni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B50201A41B1005D1F32 /* Pods_manni.framework */; };
 		7E39EDA2CACF8DC655FA9F5F /* Pods_manni_watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B755EA8020BC9A57886C037 /* Pods_manni_watch.framework */; };
+		B36285CD48AB17DBEB16114D /* Pods_manni_mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C770ACE1059266F4B98126DE /* Pods_manni_mac.framework */; };
 		BE0A8A942051250D00B779B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE0A8A922051250D00B779B9 /* Localizable.strings */; };
+		BE11E25D20DBFAEA00174008 /* DVB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE11E25C20DBFAEA00174008 /* DVB.framework */; };
+		BE11E26320DC052800174008 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE11E26220DC052800174008 /* Colors.swift */; };
+		BE11E26420DC05D100174008 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBCE9E3209F0CED00D471DC /* IntExtension.swift */; };
+		BE11E26620DC0C0000174008 /* DepartureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE11E26520DC0C0000174008 /* DepartureController.swift */; };
 		BE2285D2201A389D00C2A7DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2285D1201A389D00C2A7DF /* AppDelegate.swift */; };
 		BE2285D7201A389D00C2A7DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE2285D5201A389D00C2A7DF /* Main.storyboard */; };
 		BE2285D9201A389D00C2A7DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE2285D8201A389D00C2A7DF /* Assets.xcassets */; };
@@ -21,6 +26,10 @@
 		BE466DFE20C359BB008EA5D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE5DA25520B0607E00E57659 /* Assets.xcassets */; };
 		BE49759120B0641B00D5148D /* DVB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE49759020B0641B00D5148D /* DVB.framework */; };
 		BE4975AD20B06B7900D5148D /* NearbyStopsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4975AC20B06B7900D5148D /* NearbyStopsInterfaceController.swift */; };
+		BE4D730220DBECCA00BFADF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4D730120DBECCA00BFADF0 /* AppDelegate.swift */; };
+		BE4D730420DBECCA00BFADF0 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4D730320DBECCA00BFADF0 /* InitialViewController.swift */; };
+		BE4D730620DBECCB00BFADF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE4D730520DBECCB00BFADF0 /* Assets.xcassets */; };
+		BE4D730920DBECCB00BFADF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE4D730720DBECCB00BFADF0 /* Main.storyboard */; };
 		BE593EB220298888008C8EAC /* StopExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE593EB120298888008C8EAC /* StopExtension.swift */; };
 		BE593EB62029A608008C8EAC /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE593EB52029A608008C8EAC /* SettingsController.swift */; };
 		BE593EB82029B1A2008C8EAC /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE593EB72029B1A2008C8EAC /* Prediction.swift */; };
@@ -147,11 +156,15 @@
 		1B755EA8020BC9A57886C037 /* Pods_manni_watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_manni_watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BADA0BE6BDD8E9A8E44701D /* Pods-manni.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni.release.xcconfig"; path = "Pods/Target Support Files/Pods-manni/Pods-manni.release.xcconfig"; sourceTree = "<group>"; };
 		5540C537CC606CF790B39F8B /* Pods-manni-watch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni-watch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-manni-watch/Pods-manni-watch.debug.xcconfig"; sourceTree = "<group>"; };
+		74B5628902DE319433140831 /* Pods-manni-mac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni-mac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-manni-mac/Pods-manni-mac.debug.xcconfig"; sourceTree = "<group>"; };
 		82F5048C4DB35EB25F7C1512 /* Pods-manni-watch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni-watch Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-manni-watch Extension/Pods-manni-watch Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		BE0A8A8C20511CA900B779B9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		BE0A8A932051250D00B779B9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = manni/de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BE0A8A952051251E00B779B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		BE0A8A972051251E00B779B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = manni/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BE11E25C20DBFAEA00174008 /* DVB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DVB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE11E26220DC052800174008 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		BE11E26520DC0C0000174008 /* DepartureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureController.swift; sourceTree = "<group>"; };
 		BE2285CE201A389D00C2A7DF /* manni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = manni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2285D1201A389D00C2A7DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE2285D6201A389D00C2A7DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -164,6 +177,13 @@
 		BE2D05CE20235C8F0064339B /* RouteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteController.swift; sourceTree = "<group>"; };
 		BE49759020B0641B00D5148D /* DVB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DVB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE4975AC20B06B7900D5148D /* NearbyStopsInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyStopsInterfaceController.swift; sourceTree = "<group>"; };
+		BE4D72FF20DBECCA00BFADF0 /* manni-mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "manni-mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE4D730120DBECCA00BFADF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BE4D730320DBECCA00BFADF0 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		BE4D730520DBECCB00BFADF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BE4D730820DBECCB00BFADF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BE4D730A20DBECCB00BFADF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE4D730B20DBECCB00BFADF0 /* manni_mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = manni_mac.entitlements; sourceTree = "<group>"; };
 		BE593EB120298888008C8EAC /* StopExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopExtension.swift; sourceTree = "<group>"; };
 		BE593EB52029A608008C8EAC /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		BE593EB72029B1A2008C8EAC /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
@@ -245,6 +265,8 @@
 		BEF4854C20B0930500B93508 /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		BEF4855520B0A16B00B93508 /* stations.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = stations.csv; path = /Users/philippmatthes/Desktop/manni/manni/stations.csv; sourceTree = "<absolute>"; };
 		BEF7C4A120236E8E00FF96E1 /* FoldingCell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FoldingCell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C59436D685E7787C3F6166FE /* Pods-manni-mac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni-mac.release.xcconfig"; path = "Pods/Target Support Files/Pods-manni-mac/Pods-manni-mac.release.xcconfig"; sourceTree = "<group>"; };
+		C770ACE1059266F4B98126DE /* Pods_manni_mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_manni_mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFB92583DD3E650EAD28A17C /* Pods-manni.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni.debug.xcconfig"; path = "Pods/Target Support Files/Pods-manni/Pods-manni.debug.xcconfig"; sourceTree = "<group>"; };
 		EE4A008C5CA4DF5E4863CE00 /* Pods_manni_watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_manni_watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8A571D3F8C2B13565E4313C /* Pods-manni-watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni-watch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-manni-watch Extension/Pods-manni-watch Extension.release.xcconfig"; sourceTree = "<group>"; };
@@ -273,6 +295,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BE4D72FC20DBECCA00BFADF0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE11E25D20DBFAEA00174008 /* DVB.framework in Frameworks */,
+				B36285CD48AB17DBEB16114D /* Pods_manni_mac.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BE5DA24720B0607D00E57659 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -294,6 +325,8 @@
 				FA9F918B9C5BA433D3C4950D /* Pods-manni-watch.release.xcconfig */,
 				82F5048C4DB35EB25F7C1512 /* Pods-manni-watch Extension.debug.xcconfig */,
 				F8A571D3F8C2B13565E4313C /* Pods-manni-watch Extension.release.xcconfig */,
+				74B5628902DE319433140831 /* Pods-manni-mac.debug.xcconfig */,
+				C59436D685E7787C3F6166FE /* Pods-manni-mac.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -305,6 +338,7 @@
 				BE2285D0201A389D00C2A7DF /* manni */,
 				BE5DA23F20B0607C00E57659 /* manni-watch */,
 				BE5DA24E20B0607D00E57659 /* manni-watch Extension */,
+				BE4D730020DBECCA00BFADF0 /* manni-mac */,
 				BE2285CF201A389D00C2A7DF /* Products */,
 				BE650B48201A41B1005D1F32 /* Frameworks */,
 				A15B540B0AE544577B3C9CD0 /* Pods */,
@@ -317,6 +351,7 @@
 				BE2285CE201A389D00C2A7DF /* manni.app */,
 				BE5DA23E20B0607C00E57659 /* manni-watch.app */,
 				BE5DA24A20B0607D00E57659 /* manni-watch Extension.appex */,
+				BE4D72FF20DBECCA00BFADF0 /* manni-mac.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -351,6 +386,21 @@
 				BE593EB72029B1A2008C8EAC /* Prediction.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		BE4D730020DBECCA00BFADF0 /* manni-mac */ = {
+			isa = PBXGroup;
+			children = (
+				BE4D730120DBECCA00BFADF0 /* AppDelegate.swift */,
+				BE4D730320DBECCA00BFADF0 /* InitialViewController.swift */,
+				BE11E26520DC0C0000174008 /* DepartureController.swift */,
+				BE11E26220DC052800174008 /* Colors.swift */,
+				BE4D730520DBECCB00BFADF0 /* Assets.xcassets */,
+				BE4D730720DBECCB00BFADF0 /* Main.storyboard */,
+				BE4D730A20DBECCB00BFADF0 /* Info.plist */,
+				BE4D730B20DBECCB00BFADF0 /* manni_mac.entitlements */,
+			);
+			path = "manni-mac";
 			sourceTree = "<group>";
 		};
 		BE59ABE4201A65C2003CA1EF /* Extensions */ = {
@@ -446,6 +496,7 @@
 		BE650B48201A41B1005D1F32 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE11E25C20DBFAEA00174008 /* DVB.framework */,
 				BE49759020B0641B00D5148D /* DVB.framework */,
 				BEC6887620543C5F0013965A /* SwiftRater.framework */,
 				BEF7C4A120236E8E00FF96E1 /* FoldingCell.framework */,
@@ -461,6 +512,7 @@
 				BE650B50201A41B1005D1F32 /* Pods_manni.framework */,
 				1B755EA8020BC9A57886C037 /* Pods_manni_watch.framework */,
 				EE4A008C5CA4DF5E4863CE00 /* Pods_manni_watch_Extension.framework */,
+				C770ACE1059266F4B98126DE /* Pods_manni_mac.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -489,7 +541,6 @@
 				BE2285CB201A389D00C2A7DF /* Frameworks */,
 				BE2285CC201A389D00C2A7DF /* Resources */,
 				F74C063B4F7CA91A7C6C8932 /* [CP] Embed Pods Frameworks */,
-				68255C36B3367B2C31178DC8 /* [CP] Copy Pods Resources */,
 				BE5DA26320B0607E00E57659 /* Embed Watch Content */,
 			);
 			buildRules = (
@@ -502,6 +553,25 @@
 			productReference = BE2285CE201A389D00C2A7DF /* manni.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BE4D72FE20DBECCA00BFADF0 /* manni-mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE4D730E20DBECCB00BFADF0 /* Build configuration list for PBXNativeTarget "manni-mac" */;
+			buildPhases = (
+				9704410D17C21145ED268FD8 /* [CP] Check Pods Manifest.lock */,
+				BE4D72FB20DBECCA00BFADF0 /* Sources */,
+				BE4D72FC20DBECCA00BFADF0 /* Frameworks */,
+				BE4D72FD20DBECCA00BFADF0 /* Resources */,
+				0980698D7288F1A440DE8782 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "manni-mac";
+			productName = "manni-mac";
+			productReference = BE4D72FF20DBECCA00BFADF0 /* manni-mac.app */;
+			productType = "com.apple.product-type.application";
+		};
 		BE5DA23D20B0607C00E57659 /* manni-watch */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE5DA26220B0607E00E57659 /* Build configuration list for PBXNativeTarget "manni-watch" */;
@@ -510,7 +580,6 @@
 				BE5DA23C20B0607C00E57659 /* Resources */,
 				BE5DA26120B0607E00E57659 /* Embed App Extensions */,
 				00CF3F043681FD07604673A7 /* Frameworks */,
-				BB63CA57D177F23F0E8B3C4D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -531,7 +600,6 @@
 				BE5DA24720B0607D00E57659 /* Frameworks */,
 				BE5DA24820B0607D00E57659 /* Resources */,
 				D9463A839B747F6683EC2A28 /* [CP] Embed Pods Frameworks */,
-				3E5EA70990F26CAAF9BAF13C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -555,6 +623,15 @@
 					BE2285CD201A389D00C2A7DF = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+					};
+					BE4D72FE20DBECCA00BFADF0 = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 					BE5DA23D20B0607C00E57659 = {
 						CreatedOnToolsVersion = 9.3.1;
@@ -583,6 +660,7 @@
 				BE2285CD201A389D00C2A7DF /* manni */,
 				BE5DA23D20B0607C00E57659 /* manni-watch */,
 				BE5DA24920B0607D00E57659 /* manni-watch Extension */,
+				BE4D72FE20DBECCA00BFADF0 /* manni-mac */,
 			);
 		};
 /* End PBXProject section */
@@ -597,6 +675,15 @@
 				BE0A8A942051250D00B779B9 /* Localizable.strings in Resources */,
 				BE2285D9201A389D00C2A7DF /* Assets.xcassets in Resources */,
 				BE2285D7201A389D00C2A7DF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE4D72FD20DBECCA00BFADF0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE4D730620DBECCB00BFADF0 /* Assets.xcassets in Resources */,
+				BE4D730920DBECCB00BFADF0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,6 +710,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0980698D7288F1A440DE8782 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-manni-mac/Pods-manni-mac-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DVB-macOS/DVB.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DVB.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-manni-mac/Pods-manni-mac-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		12047646F4049C2B4541EFF9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -659,49 +764,22 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3E5EA70990F26CAAF9BAF13C /* [CP] Copy Pods Resources */ = {
+		9704410D17C21145ED268FD8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-manni-mac-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-manni-watch Extension/Pods-manni-watch Extension-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		68255C36B3367B2C31178DC8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-manni/Pods-manni-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BB63CA57D177F23F0E8B3C4D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-manni-watch/Pods-manni-watch-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D9463A839B747F6683EC2A28 /* [CP] Embed Pods Frameworks */ = {
@@ -830,6 +908,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BE4D72FB20DBECCA00BFADF0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE4D730420DBECCA00BFADF0 /* InitialViewController.swift in Sources */,
+				BE11E26620DC0C0000174008 /* DepartureController.swift in Sources */,
+				BE11E26420DC05D100174008 /* IntExtension.swift in Sources */,
+				BE11E26320DC052800174008 /* Colors.swift in Sources */,
+				BE4D730220DBECCA00BFADF0 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BE5DA24620B0607D00E57659 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -896,6 +986,14 @@
 				BE0A8A952051251E00B779B9 /* en */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		BE4D730720DBECCB00BFADF0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE4D730820DBECCB00BFADF0 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		BE5DA24020B0607C00E57659 /* Interface.storyboard */ = {
@@ -1058,6 +1156,46 @@
 			};
 			name = Release;
 		};
+		BE4D730C20DBECCB00BFADF0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74B5628902DE319433140831 /* Pods-manni-mac.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = S36925NV4E;
+				INFOPLIST_FILE = "manni-mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.philippmatthes.manni-mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		BE4D730D20DBECCB00BFADF0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C59436D685E7787C3F6166FE /* Pods-manni-mac.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = S36925NV4E;
+				INFOPLIST_FILE = "manni-mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.philippmatthes.manni-mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 		BE5DA25C20B0607E00E57659 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5540C537CC606CF790B39F8B /* Pods-manni-watch.debug.xcconfig */;
@@ -1165,6 +1303,15 @@
 			buildConfigurations = (
 				BE2285E1201A389D00C2A7DF /* Debug */,
 				BE2285E2201A389D00C2A7DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE4D730E20DBECCB00BFADF0 /* Build configuration list for PBXNativeTarget "manni-mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE4D730C20DBECCB00BFADF0 /* Debug */,
+				BE4D730D20DBECCB00BFADF0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

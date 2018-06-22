@@ -7,43 +7,48 @@
 		<key>manni-complication.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>19</integer>
+			<integer>6</integer>
+		</dict>
+		<key>manni-mac.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>20</integer>
 		</dict>
 		<key>manni-watch (Notification).xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>12</integer>
+			<integer>2</integer>
 		</dict>
 		<key>manni-watch.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>10</integer>
+			<integer>1</integer>
 		</dict>
 		<key>manni.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>0</integer>
 		</dict>
 		<key>temp (Complication).xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>18</integer>
+			<integer>5</integer>
 		</dict>
 		<key>temp (Notification).xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>17</integer>
+			<integer>4</integer>
 		</dict>
 		<key>temp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>14</integer>
+			<integer>3</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
