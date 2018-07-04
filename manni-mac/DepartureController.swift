@@ -57,7 +57,7 @@ extension DepartureController: NSTableViewDataSource, NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let departure = departures[row]
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIDs.DepartureCell), owner: nil) as? NSTableCellView {
-            cell.textField?.stringValue = departure.description
+            cell.textField?.stringValue = "\(departure.line) \(departure.direction) in \(departure.ETA) min"
             return cell
         }
         return nil

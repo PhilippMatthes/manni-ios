@@ -8,7 +8,7 @@
 
 import UIKit
 import DVB
-import SwiftRater
+//import SwiftRater
 import CoreLocation
 import WatchKit
 import MapKit
@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         State.shared.loadRouteChanges()
         UIApplication.shared.delegate?.window??.backgroundColor = UIColor.white
-        SwiftRater.setUpFor(.distributing)
+//        SwiftRater.setUpFor(.distributing)
         
         if #available(iOS 11.0, *) {
             if (window?.safeAreaInsets.top)! > CGFloat(0.0) || window?.safeAreaInsets != .zero {

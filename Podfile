@@ -4,7 +4,7 @@
 target 'manni' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-  pod 'SwiftRater'
+  #pod 'SwiftRater'
   pod 'Material'
   pod 'BRYXBanner'
   pod 'DVB', :git => 'https://github.com/PhilippMatthes/DVB.git'

@@ -57,6 +57,7 @@
 		BE8D5CE4202080B60057740A /* BRYXBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE8D5CE5202080B60057740A /* BRYXBanner.framework */; };
 		BE8D5CE7202081CF0057740A /* BannerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8D5CE6202081CF0057740A /* BannerExtension.swift */; };
 		BE8D5CE9202097410057740A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8D5CE8202097410057740A /* Config.swift */; };
+		BE8DA2E520E7EF28002571CE /* SwiftRaterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC6887720543C6B0013965A /* SwiftRaterExtension.swift */; };
 		BE98601E201B2B15008B4A08 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE98601D201B2B15008B4A08 /* SearchController.swift */; };
 		BE986020201B2FFB008B4A08 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE98601F201B2FFB008B4A08 /* UIViewControllerExtension.swift */; };
 		BEA761362025E7E300D39B15 /* RouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA761352025E7E300D39B15 /* RouteCell.swift */; };
@@ -86,8 +87,6 @@
 		BEBEC52C202C6133007617B4 /* CLLocationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC518202C6132007617B4 /* CLLocationExtension.swift */; };
 		BEBEC52E202C6133007617B4 /* SFSafariViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC51A202C6132007617B4 /* SFSafariViewControllerExtension.swift */; };
 		BEBEC531202C647D007617B4 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC530202C646F007617B4 /* ArrayExtension.swift */; };
-		BEC6887520543C5F0013965A /* SwiftRater.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC6887620543C5F0013965A /* SwiftRater.framework */; };
-		BEC6887820543C6B0013965A /* SwiftRaterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC6887720543C6B0013965A /* SwiftRaterExtension.swift */; };
 		BECB0CA720B0D856009E34DA /* DeparturesInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECB0CA620B0D856009E34DA /* DeparturesInterfaceController.swift */; };
 		BECB0CA920B0D930009E34DA /* DepartureRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECB0CA820B0D930009E34DA /* DepartureRowController.swift */; };
 		BECB0CAA20B0E2F9009E34DA /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE7201A76B1003CA1EF /* DateExtension.swift */; };
@@ -95,6 +94,7 @@
 		BECB0CB020B0EA80009E34DA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE0A8A922051250D00B779B9 /* Localizable.strings */; };
 		BEDA931E20C5E07900B7D828 /* NavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDA931D20C5E07900B7D828 /* NavController.swift */; };
 		BEDA932020C5E44700B7D828 /* StoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDA931F20C5E44700B7D828 /* StoryboardExtension.swift */; };
+		BEE2B35D20DCD9FB0086C037 /* StopCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE2B35C20DCD9FB0086C037 /* StopCellView.swift */; };
 		BEE3D65420C03C9A00C6D57F /* WKInterfaceMapExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE3D65320C03C9A00C6D57F /* WKInterfaceMapExtension.swift */; };
 		BEE3D65520C03CC100C6D57F /* WKInterfaceMapExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE3D65320C03C9A00C6D57F /* WKInterfaceMapExtension.swift */; };
 		BEF4854520B0837200B93508 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE0201A64FE003CA1EF /* Colors.swift */; };
@@ -260,6 +260,7 @@
 		BEDA931F20C5E44700B7D828 /* StoryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardExtension.swift; sourceTree = "<group>"; };
 		BEDA932220C5EA3800B7D828 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		BEDA932420C5EA3D00B7D828 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		BEE2B35C20DCD9FB0086C037 /* StopCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopCellView.swift; sourceTree = "<group>"; };
 		BEE3D65320C03C9A00C6D57F /* WKInterfaceMapExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKInterfaceMapExtension.swift; sourceTree = "<group>"; };
 		BEF4854A20B091EA00B93508 /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		BEF4854C20B0930500B93508 /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
@@ -286,7 +287,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEC6887520543C5F0013965A /* SwiftRater.framework in Frameworks */,
 				BE8D5CE4202080B60057740A /* BRYXBanner.framework in Frameworks */,
 				BE650B51201A425A005D1F32 /* DVB.framework in Frameworks */,
 				BE650B52201A425A005D1F32 /* Material.framework in Frameworks */,
@@ -394,6 +394,7 @@
 				BE4D730120DBECCA00BFADF0 /* AppDelegate.swift */,
 				BE4D730320DBECCA00BFADF0 /* InitialViewController.swift */,
 				BE11E26520DC0C0000174008 /* DepartureController.swift */,
+				BEE2B35C20DCD9FB0086C037 /* StopCellView.swift */,
 				BE11E26220DC052800174008 /* Colors.swift */,
 				BE4D730520DBECCB00BFADF0 /* Assets.xcassets */,
 				BE4D730720DBECCB00BFADF0 /* Main.storyboard */,
@@ -829,7 +830,6 @@
 				"${BUILT_PRODUCTS_DIR}/DVB-iOS/DVB.framework",
 				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
 				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftRater/SwiftRater.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -837,7 +837,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DVB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftRater.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -866,7 +865,6 @@
 				BEBCE9EE20A023E900D471DC /* RefreshControlExtension.swift in Sources */,
 				BEA761402027245300D39B15 /* PartialRouteExtension.swift in Sources */,
 				BE593EB220298888008C8EAC /* StopExtension.swift in Sources */,
-				BEC6887820543C6B0013965A /* SwiftRaterExtension.swift in Sources */,
 				BEBCE9E8209F0CFF00D471DC /* UserDefaultsExtension.swift in Sources */,
 				BEBEC527202C6133007617B4 /* BadgeExtension.swift in Sources */,
 				BEBCE9E6209F0CEE00D471DC /* UIViewExtension.swift in Sources */,
@@ -902,6 +900,7 @@
 				BE593EB82029B1A2008C8EAC /* Prediction.swift in Sources */,
 				BE593EB62029A608008C8EAC /* SettingsController.swift in Sources */,
 				BEF4854D20B0930500B93508 /* CSV.swift in Sources */,
+				BE8DA2E520E7EF28002571CE /* SwiftRaterExtension.swift in Sources */,
 				BEBEC52E202C6133007617B4 /* SFSafariViewControllerExtension.swift in Sources */,
 				BE59ABF5201B146E003CA1EF /* State.swift in Sources */,
 				BE2285D2201A389D00C2A7DF /* AppDelegate.swift in Sources */,
@@ -913,6 +912,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE4D730420DBECCA00BFADF0 /* InitialViewController.swift in Sources */,
+				BEE2B35D20DCD9FB0086C037 /* StopCellView.swift in Sources */,
 				BE11E26620DC0C0000174008 /* DepartureController.swift in Sources */,
 				BE11E26420DC05D100174008 /* IntExtension.swift in Sources */,
 				BE11E26320DC052800174008 /* Colors.swift in Sources */,

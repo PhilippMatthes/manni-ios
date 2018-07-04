@@ -11,7 +11,7 @@ import UIKit
 import Material
 import Motion
 import DVB
-import SwiftRater
+//import SwiftRater
 
 
 class SearchController: UIViewController {
@@ -56,7 +56,7 @@ class SearchController: UIViewController {
             if showsPredictions { loadPredictions() }
         }
         tableView.reloadData()
-        SwiftRater.check()
+//        SwiftRater.check()
     }
     
     override func viewWillAppear(_ animated: Bool) {
