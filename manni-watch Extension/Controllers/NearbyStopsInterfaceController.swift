@@ -26,16 +26,21 @@ class NearbyStopsInterfaceController: WKInterfaceController, CLLocationManagerDe
     }
     
     func startAnimatingLoading() {
-        self.nearbyStopsTable.setHidden(true)
-        self.indicator.setHidden(false)
-        self.indicator.setImageNamed("satellit")
-        self.indicator.startAnimating()
+        DispatchQueue.main.async {
+            self.nearbyStopsTable.setHidden(true)
+            self.indicator.setHidden(false)
+            self.indicator.setImageNamed("satellit")
+            self.indicator.startAnimating()
+        }
     }
     
     func stopAnimatingLoading() {
-        self.indicator.setHidden(true)
-        self.nearbyStopsTable.setHidden(false)
-        self.indicator.stopAnimating()
+        DispatchQueue.main.async {
+            self.indicator.setHidden(true)
+            self.nearbyStopsTable.setHidden(false)
+            self.indicator.stopAnimating()
+            self.indicator.setImage(nil)
+        }
     }
     
     @IBAction func refreshButtonPressed() {

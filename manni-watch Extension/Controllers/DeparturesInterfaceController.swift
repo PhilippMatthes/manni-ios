@@ -28,16 +28,21 @@ class DeparturesInterfaceController: WKInterfaceController {
     }
     
     func startAnimatingLoading() {
-        table.setHidden(true)
-        indicator.setHidden(false)
-        indicator.setImageNamed("animation")
-        indicator.startAnimating()
+        DispatchQueue.main.async {
+            self.table.setHidden(true)
+            self.indicator.setHidden(false)
+            self.indicator.setImageNamed("animation")
+            self.indicator.startAnimating()
+        }
     }
     
     func stopAnimatingLoading() {
-        indicator.setHidden(true)
-        table.setHidden(false)
-        indicator.stopAnimating()
+        DispatchQueue.main.async {
+            self.indicator.setHidden(true)
+            self.table.setHidden(false)
+            self.indicator.stopAnimating()
+            self.indicator.setImage(nil)
+        }
     }
     
     override func awake(withContext context: Any?) {
@@ -100,7 +105,7 @@ class DeparturesInterfaceController: WKInterfaceController {
             } else {
                 color = Colors.color(forInt: departure.line.count)
             }
-            
+            controller.lineLabelBackground.setBackgroundColor(color.darker())
             controller.group.setBackgroundColor(color)
             controller.configure(time: departure.realTime ?? departure.scheduledTime, line: departure.line, direction: departure.direction)
         }

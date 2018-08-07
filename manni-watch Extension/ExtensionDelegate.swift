@@ -11,6 +11,7 @@ import WatchKit
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func applicationDidFinishLaunching() {
+        WKExtension.shared().isAutorotating = true
         // Perform any final initialization of your application.
     }
 

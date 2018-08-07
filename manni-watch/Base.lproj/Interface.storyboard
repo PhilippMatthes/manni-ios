@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14113" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc" pageOrientation="vertical">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14306.4" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc" pageOrientation="vertical">
     <device id="watch42" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14033"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14278.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14237"/>
     </dependencies>
     <scenes>
         <!--Haltestellen-->
@@ -17,13 +16,13 @@
                         <table alignment="left" id="L50-it-MEE">
                             <items>
                                 <tableRow identifier="NearbyStopRow" id="724-R9-ELc" customClass="StopRowController" customModule="manni_watch" customModuleProvider="target">
-                                    <group key="rootItem" width="1" height="58" alignment="left" id="0cZ-7p-fyJ">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="0cZ-7p-fyJ">
                                         <items>
-                                            <label width="0.34999999999999998" height="1" alignment="left" text="Lädt..." textAlignment="center" numberOfLines="0" id="Ekp-Tm-eJX">
+                                            <label width="40" alignment="left" verticalAlignment="center" text="Lädt..." textAlignment="center" numberOfLines="0" id="Ekp-Tm-eJX">
                                                 <fontDescription key="font" type="system" pointSize="13"/>
                                             </label>
                                             <separator alignment="left" id="ady-wx-FbF"/>
-                                            <label width="0.65000000000000002" widthAdjustment="-3" height="1" alignment="left" text="Lädt..." numberOfLines="0" id="kDh-99-qfC"/>
+                                            <label alignment="left" verticalAlignment="center" text="Lädt..." numberOfLines="0" id="kDh-99-qfC"/>
                                         </items>
                                     </group>
                                     <connections>
@@ -62,18 +61,20 @@
                         <table alignment="left" id="eGW-n5-Y8Y">
                             <items>
                                 <tableRow identifier="DepartureRow" id="wRu-d3-GAq" customClass="DepartureRowController" customModule="manni_watch" customModuleProvider="target">
-                                    <group key="rootItem" width="1" height="34" alignment="left" id="FmP-7G-TLE">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" spacing="6" id="FmP-7G-TLE">
                                         <items>
-                                            <label width="0.34999999999999998" height="1" alignment="left" text="Lädt..." textAlignment="center" numberOfLines="0" id="QDK-YI-GIJ">
-                                                <fontDescription key="font" type="system" pointSize="15"/>
-                                            </label>
-                                            <separator alignment="left" id="kEe-pm-JML">
-                                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </separator>
-                                            <group width="0.65000000000000002" widthAdjustment="-4" height="1" alignment="left" layout="vertical" id="HSZ-C7-SV3">
+                                            <group width="30" height="30" alignment="left" verticalAlignment="center" radius="6" id="RUZ-GG-lCm">
                                                 <items>
-                                                    <label width="1" height="0.5" alignment="left" text="Lädt..." textAlignment="left" numberOfLines="999" id="YHx-VZ-1bu"/>
-                                                    <timer width="1" height="0.5" alignment="left" textAlignment="left" format="abbreviated" previewedSeconds="10" id="6nV-vM-wWl">
+                                                    <label alignment="center" verticalAlignment="center" text="Lädt..." textAlignment="center" numberOfLines="0" id="QDK-YI-GIJ">
+                                                        <fontDescription key="font" type="system" pointSize="12"/>
+                                                    </label>
+                                                </items>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </group>
+                                            <group alignment="left" layout="vertical" id="HSZ-C7-SV3">
+                                                <items>
+                                                    <label alignment="left" text="Lädt..." textAlignment="left" numberOfLines="0" id="YHx-VZ-1bu"/>
+                                                    <timer alignment="left" textAlignment="left" numberOfLines="0" format="abbreviated" previewedSeconds="0" id="6nV-vM-wWl">
                                                         <calendarUnit key="units" day="YES" hour="YES" minute="YES" second="YES"/>
                                                     </timer>
                                                 </items>
@@ -84,12 +85,13 @@
                                         <outlet property="group" destination="FmP-7G-TLE" id="NAI-95-5tD"/>
                                         <outlet property="label" destination="YHx-VZ-1bu" id="7zI-fg-n9j"/>
                                         <outlet property="lineLabel" destination="QDK-YI-GIJ" id="ETH-rd-qIc"/>
+                                        <outlet property="lineLabelBackground" destination="RUZ-GG-lCm" id="8sv-Ft-nPl"/>
                                         <outlet property="timer" destination="6nV-vM-wWl" id="pAl-dw-K15"/>
                                     </connections>
                                 </tableRow>
                             </items>
                         </table>
-                        <imageView width="1" height="1" alignment="left" hidden="YES" contentMode="scaleAspectFit" id="LQ2-AD-5vv"/>
+                        <imageView width="1" height="1" alignment="center" verticalAlignment="center" hidden="YES" contentMode="scaleAspectFit" id="LQ2-AD-5vv"/>
                     </items>
                     <menu key="menu" id="NRh-Lr-sHS">
                         <items>

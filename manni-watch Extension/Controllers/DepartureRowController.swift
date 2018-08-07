@@ -11,6 +11,7 @@ import WatchKit
 
 class DepartureRowController: NSObject {
     
+    @IBOutlet weak var lineLabelBackground: WKInterfaceGroup!
     @IBOutlet var timer: WKInterfaceTimer!
     @IBOutlet var lineLabel: WKInterfaceLabel!
     @IBOutlet var group: WKInterfaceGroup!
