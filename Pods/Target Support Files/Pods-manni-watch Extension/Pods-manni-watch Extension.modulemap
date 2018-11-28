@@ -1,0 +1,6 @@
+framework module Pods_manni_watch_Extension {
+  umbrella header "Pods-manni-watch Extension-umbrella.h"
+
+  export *
+  module * { export * }
+}

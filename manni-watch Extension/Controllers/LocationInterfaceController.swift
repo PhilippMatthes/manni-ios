@@ -52,21 +52,17 @@ class LocationInterfaceController: WKInterfaceController {
     }
     
     func startAnimatingLoading() {
-        DispatchQueue.main.async {
-            self.map.setHidden(true)
-            self.indicator.setHidden(false)
-            self.indicator.setImageNamed("satellit")
-            self.indicator.startAnimating()
-        }
+        self.map.setHidden(true)
+        self.indicator.setHidden(false)
+        self.indicator.setImageNamed("satellit")
+        self.indicator.startAnimating()
     }
     
     func stopAnimatingLoading() {
-        DispatchQueue.main.async {
-            self.indicator.setHidden(true)
-            self.map.setHidden(false)
-            self.indicator.stopAnimating()
-            self.indicator.setImage(nil) 
-        }
+        self.indicator.setHidden(true)
+        self.map.setHidden(false)
+        self.indicator.stopAnimating()
+        self.indicator.setImage(nil) 
     }
     
     func showLocations(tripId: String,

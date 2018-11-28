@@ -35,11 +35,12 @@ class SearchController: UIViewController {
     var settingsButton: IconButton!
     
     var showsPredictions: Bool! = State.shared.predictionsActive == true
-    var predictions: [Prediction] = [Prediction]()
 
     var query: String = Config.standardQuery
     var requestTimer: Timer?
     var stops: [StorableStop] = [StorableStop]()
+    
+    private var predictions = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +76,8 @@ class SearchController: UIViewController {
 
 extension SearchController {
     func loadPredictions() {
-        self.predictions = Predictor.loadPredictions()
+        guard let predictions = Predictor.loadPredictions() else {return}
+        self.predictions = predictions
     }
 }
 
@@ -152,7 +154,7 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             }
         } else if let cell = tableView.dequeueReusableCell(withIdentifier: StopCell.identifier, for: indexPath as IndexPath) as? StopCell {
-            cell.setUp(forStopName: predictions[indexPath.row].query)
+            cell.setUp(forStopName: predictions[indexPath.row])
             return cell
         }
         return TableViewCell()
@@ -179,7 +181,7 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
         
         let selectedStop = indexPath.section == 0 ? stops[indexPath.row].asStop() : nil
         if indexPath.section == 1 {
-            replaceActiveSearchBarText(predictions[indexPath.row].query)
+            replaceActiveSearchBarText(predictions[indexPath.row])
             switchSearchBar()
         }
         

@@ -8,41 +8,53 @@
 
 import Foundation
 
-enum ScoreType {
-    case vertical
-    case horizontal
-}
+
 
 class Predictor {
     
-    static func loadPredictions(forDate date: Date = Date(), sort: Bool=true) -> [Prediction] {
+    static func loadPredictions() -> [String]? {
         let logData: [String : [Date]] = State.shared.logData
-        let predictions: [Prediction] = logData.keys
-            .filter { logData[$0] != nil }
-            .map { Prediction($0) }
-        for prediction in predictions {
-            let dates: [Date] = logData[prediction.query]!
-            prediction.setScore(Predictor.score(.horizontal ,dates, date) + Predictor.score(.vertical, dates, date))
+        
+        guard logData.values.count > 2 else {return nil
+            
         }
-        return sort ? predictions.sorted { $0.score > $1.score } : predictions
-    }
-    
-    static func score(_ type: ScoreType, _ dates: [Date], _ referenceDate: Date) -> Double {
-        var score: Double = 0
-        for date in dates {
-            let timeDifference: Double = Double(referenceDate.seconds(from: date))
-            var timeDifferenceTruncated: Double
-            switch type {
-            case .vertical:
-                timeDifferenceTruncated = timeDifference.truncatingRemainder(dividingBy: 604800)
-            case .horizontal:
-                timeDifferenceTruncated = timeDifference.truncatingRemainder(dividingBy: 86400)
+        
+        var locationToStrings = [(String, Date)]()
+        for entry in logData {
+            for date in entry.value {
+                locationToStrings.append((entry.key, date))
             }
-            if timeDifferenceTruncated.isZero {
+        }
+        locationToStrings = locationToStrings.sorted(by: {$0.1 < $1.1})
+        
+        var transitions = [String: [String: Int]]()
+        for i in 0..<locationToStrings.count {
+            if i == locationToStrings.count - 1 {break}
+            let locationToLocation = (locationToStrings[i].0, locationToStrings[i + 1].0)
+            if let transition = transitions[locationToLocation.0] {
+                if transition[locationToLocation.1] != nil {
+                    transitions[locationToLocation.0]![locationToLocation.1]! += 1
+                } else {
+                    transitions[locationToLocation.0]![locationToLocation.1] = 1
+                }
+            } else {
+                transitions[locationToLocation.0] = [locationToLocation.1: 1]
+            }
+        }
+        
+        var predictions = [String]()
+        for location in locationToStrings {
+            guard predictions.count < 20 else {
+                return predictions
+            }
+            guard let transition = transitions[location.0] else {
                 continue
             }
-            score += 1/(pow(timeDifferenceTruncated, 2))
+            let transitionPredictions = transition
+                .sorted(by: {$0.1 > $1.1})
+                .map({$0.key})
+            predictions.append(contentsOf: transitionPredictions)
         }
-        return score
+        return nil
     }
 }

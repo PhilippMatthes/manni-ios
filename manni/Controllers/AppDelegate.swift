@@ -29,14 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         UIApplication.shared.delegate?.window??.backgroundColor = UIColor.white
 //        SwiftRater.setUpFor(.distributing)
         
-        if #available(iOS 11.0, *) {
-            if (window?.safeAreaInsets.top)! > CGFloat(0.0) || window?.safeAreaInsets != .zero {
-                Device.runningOniPhoneX = true
-            }
-            else {
-                Device.runningOniPhoneX = false
-            }
-        }
+        
         
         return true
     }

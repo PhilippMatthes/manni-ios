@@ -9,9 +9,18 @@
 import Foundation
 
 class CSV {
+    
+    static var cachedCSV: [[String]]?
+    static var cachedData: String?
+    
     static func csv(data: String) -> [[String]] {
-        return data.components(separatedBy: "\n")
+        if cachedCSV != nil {
+            return cachedCSV!
+        }
+        let csv = data.components(separatedBy: "\n")
             .map { $0.components(separatedBy: ";") }
+        cachedCSV = csv
+        return csv
     }
     
     static func stripRowsFrom(csvString string: String) -> String {
@@ -20,17 +29,16 @@ class CSV {
             .replacingOccurrences(of: "\n\n", with: "\n")
     }
     
-    static func readDataFromCSV(fileName:String, fileType: String)-> String! {
-        guard let filepath = Bundle.main.path(forResource: fileName, ofType: fileType) else {
-            return nil
+    static func readDataFromCSV(fileName:String, fileType: String) -> String? {
+        if cachedData != nil {
+            return cachedData
         }
-        do {
-            var contents = try String(contentsOfFile: filepath, encoding: .isoLatin1)
-            contents = stripRowsFrom(csvString: contents)
-            return contents
-        } catch {
-            print("File Read Error for file \(filepath)")
-            return nil
-        }
+        guard
+            let filepath = Bundle.main.path(forResource: fileName, ofType: fileType),
+            let contents = try? String(contentsOfFile: filepath, encoding: .isoLatin1)
+        else {return nil}
+        let strippedContents = stripRowsFrom(csvString: contents)
+        cachedData = strippedContents
+        return strippedContents
     }
 }

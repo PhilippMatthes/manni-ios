@@ -28,21 +28,17 @@ class DeparturesInterfaceController: WKInterfaceController {
     }
     
     func startAnimatingLoading() {
-        DispatchQueue.main.async {
-            self.table.setHidden(true)
-            self.indicator.setHidden(false)
-            self.indicator.setImageNamed("animation")
-            self.indicator.startAnimating()
-        }
+        self.table.setHidden(true)
+        self.indicator.setHidden(false)
+        self.indicator.setImageNamed("animation")
+        self.indicator.startAnimating()
     }
     
     func stopAnimatingLoading() {
-        DispatchQueue.main.async {
-            self.indicator.setHidden(true)
-            self.table.setHidden(false)
-            self.indicator.stopAnimating()
-            self.indicator.setImage(nil)
-        }
+        self.indicator.setHidden(true)
+        self.table.setHidden(false)
+        self.indicator.stopAnimating()
+        self.indicator.setImage(nil)
     }
     
     override func awake(withContext context: Any?) {

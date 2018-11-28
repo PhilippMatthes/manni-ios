@@ -17,7 +17,8 @@ extension Stop {
     
     init(id: String, name: String, region: String?, longitude: Double?, latitude: Double?) {
         self.id = id; self.name = name; self.region = region
-        self.location = longitude != nil && latitude != nil ? GKCoordinate(x: longitude!, y: latitude!).asWGS : nil
+        let location = longitude != nil && latitude != nil ? GKCoordinate(x: longitude!, y: latitude!).asWGS : nil
+        self.location = location
     }
     
 }

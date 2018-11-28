@@ -32,7 +32,6 @@
 		BE4D730920DBECCB00BFADF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE4D730720DBECCB00BFADF0 /* Main.storyboard */; };
 		BE593EB220298888008C8EAC /* StopExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE593EB120298888008C8EAC /* StopExtension.swift */; };
 		BE593EB62029A608008C8EAC /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE593EB52029A608008C8EAC /* SettingsController.swift */; };
-		BE593EB82029B1A2008C8EAC /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE593EB72029B1A2008C8EAC /* Prediction.swift */; };
 		BE593EBA2029BAFF008C8EAC /* RoutePredictionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE593EB92029BAFF008C8EAC /* RoutePredictionCell.swift */; };
 		BE59ABE1201A64FE003CA1EF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE0201A64FE003CA1EF /* Colors.swift */; };
 		BE59ABE3201A6528003CA1EF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE2201A6528003CA1EF /* UIColorExtension.swift */; };
@@ -40,7 +39,6 @@
 		BE59ABEF201B11E2003CA1EF /* DeparturesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABEE201B11E2003CA1EF /* DeparturesController.swift */; };
 		BE59ABF5201B146E003CA1EF /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABF4201B146E003CA1EF /* State.swift */; };
 		BE5BABF4201FA15B004C09FB /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5BABF3201FA15B004C09FB /* LocationController.swift */; };
-		BE5BBA5520C539AF00E5B284 /* PredictionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5BBA5420C539AF00E5B284 /* PredictionCell.swift */; };
 		BE5DA24220B0607C00E57659 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE5DA24020B0607C00E57659 /* Interface.storyboard */; };
 		BE5DA24420B0607D00E57659 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE5DA24320B0607D00E57659 /* Assets.xcassets */; };
 		BE5DA24B20B0607D00E57659 /* manni-watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BE5DA24A20B0607D00E57659 /* manni-watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -95,6 +93,7 @@
 		BEDA931E20C5E07900B7D828 /* NavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDA931D20C5E07900B7D828 /* NavController.swift */; };
 		BEDA932020C5E44700B7D828 /* StoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDA931F20C5E44700B7D828 /* StoryboardExtension.swift */; };
 		BEE2B35D20DCD9FB0086C037 /* StopCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE2B35C20DCD9FB0086C037 /* StopCellView.swift */; };
+		BEE2EC152119D04B00062105 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE5DA24020B0607C00E57659 /* Interface.storyboard */; };
 		BEE3D65420C03C9A00C6D57F /* WKInterfaceMapExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE3D65320C03C9A00C6D57F /* WKInterfaceMapExtension.swift */; };
 		BEE3D65520C03CC100C6D57F /* WKInterfaceMapExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE3D65320C03C9A00C6D57F /* WKInterfaceMapExtension.swift */; };
 		BEF4854520B0837200B93508 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE0201A64FE003CA1EF /* Colors.swift */; };
@@ -186,7 +185,6 @@
 		BE4D730B20DBECCB00BFADF0 /* manni_mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = manni_mac.entitlements; sourceTree = "<group>"; };
 		BE593EB120298888008C8EAC /* StopExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopExtension.swift; sourceTree = "<group>"; };
 		BE593EB52029A608008C8EAC /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
-		BE593EB72029B1A2008C8EAC /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		BE593EB92029BAFF008C8EAC /* RoutePredictionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePredictionCell.swift; sourceTree = "<group>"; };
 		BE59ABDE201A5CD7003CA1EF /* DepartureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartureCell.swift; sourceTree = "<group>"; };
 		BE59ABE0201A64FE003CA1EF /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -196,7 +194,6 @@
 		BE59ABF3201B144C003CA1EF /* CSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE59ABF4201B146E003CA1EF /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		BE5BABF3201FA15B004C09FB /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
-		BE5BBA5420C539AF00E5B284 /* PredictionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionCell.swift; sourceTree = "<group>"; };
 		BE5DA23E20B0607C00E57659 /* manni-watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "manni-watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE5DA24120B0607C00E57659 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		BE5DA24320B0607D00E57659 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -383,7 +380,6 @@
 			isa = PBXGroup;
 			children = (
 				BE2D05C7202308370064339B /* StorableStop.swift */,
-				BE593EB72029B1A2008C8EAC /* Prediction.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -465,7 +461,6 @@
 				BE2D05CA20230DA50064339B /* StopCell.swift */,
 				BE593EB92029BAFF008C8EAC /* RoutePredictionCell.swift */,
 				BEBCE9EB209F16BC00D471DC /* LaterCell.swift */,
-				BE5BBA5420C539AF00E5B284 /* PredictionCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -623,6 +618,7 @@
 				TargetAttributes = {
 					BE2285CD201A389D00C2A7DF = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 					BE4D72FE20DBECCA00BFADF0 = {
@@ -636,10 +632,12 @@
 					};
 					BE5DA23D20B0607C00E57659 = {
 						CreatedOnToolsVersion = 9.3.1;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 					BE5DA24920B0607D00E57659 = {
 						CreatedOnToolsVersion = 9.3.1;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -702,6 +700,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEE2EC152119D04B00062105 /* Interface.storyboard in Resources */,
 				BEF4855920B0A28500B93508 /* stations.csv in Resources */,
 				BE466DFE20C359BB008EA5D8 /* Assets.xcassets in Resources */,
 				BECB0CB020B0EA80009E34DA /* Localizable.strings in Resources */,
@@ -718,7 +717,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-manni-mac/Pods-manni-mac-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/DVB-macOS/DVB.framework",
+				"${BUILT_PRODUCTS_DIR}/DVB-macOS10.13/DVB.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -790,7 +789,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-manni-watch Extension/Pods-manni-watch Extension-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/DVB-watchOS/DVB.framework",
+				"${BUILT_PRODUCTS_DIR}/DVB-watchOS4.0/DVB.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -827,7 +826,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-manni/Pods-manni-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BRYXBanner/BRYXBanner.framework",
-				"${BUILT_PRODUCTS_DIR}/DVB-iOS/DVB.framework",
+				"${BUILT_PRODUCTS_DIR}/DVB-iOS9.0/DVB.framework",
 				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
 				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
 			);
@@ -878,7 +877,6 @@
 				BE59ABE1201A64FE003CA1EF /* Colors.swift in Sources */,
 				BE593EBA2029BAFF008C8EAC /* RoutePredictionCell.swift in Sources */,
 				BE98601E201B2B15008B4A08 /* SearchController.swift in Sources */,
-				BE5BBA5520C539AF00E5B284 /* PredictionCell.swift in Sources */,
 				BEBEC522202C6133007617B4 /* MKCoordinateRegionExtension.swift in Sources */,
 				BE8D5CE120206AB80057740A /* MapViewExtension.swift in Sources */,
 				BEDA932020C5E44700B7D828 /* StoryboardExtension.swift in Sources */,
@@ -897,7 +895,6 @@
 				BE8D5CE9202097410057740A /* Config.swift in Sources */,
 				BEF4854B20B091EA00B93508 /* Station.swift in Sources */,
 				BEBEC52C202C6133007617B4 /* CLLocationExtension.swift in Sources */,
-				BE593EB82029B1A2008C8EAC /* Prediction.swift in Sources */,
 				BE593EB62029A608008C8EAC /* SettingsController.swift in Sources */,
 				BEF4854D20B0930500B93508 /* CSV.swift in Sources */,
 				BE8DA2E520E7EF28002571CE /* SwiftRaterExtension.swift in Sources */,
@@ -1171,7 +1168,9 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.philippmatthes.manni-mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
+				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = on;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -1191,7 +1190,9 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.philippmatthes.manni-mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
+				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = on;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
@@ -1215,7 +1216,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 5.0;
 			};
 			name = Debug;
 		};
@@ -1238,7 +1239,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 5.0;
 			};
 			name = Release;
 		};

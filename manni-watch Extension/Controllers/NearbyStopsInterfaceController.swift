@@ -26,21 +26,17 @@ class NearbyStopsInterfaceController: WKInterfaceController, CLLocationManagerDe
     }
     
     func startAnimatingLoading() {
-        DispatchQueue.main.async {
-            self.nearbyStopsTable.setHidden(true)
-            self.indicator.setHidden(false)
-            self.indicator.setImageNamed("satellit")
-            self.indicator.startAnimating()
-        }
+        self.nearbyStopsTable.setHidden(true)
+        self.indicator.setHidden(false)
+        self.indicator.setImageNamed("satellit")
+        self.indicator.startAnimating()
     }
     
     func stopAnimatingLoading() {
-        DispatchQueue.main.async {
-            self.indicator.setHidden(true)
-            self.nearbyStopsTable.setHidden(false)
-            self.indicator.stopAnimating()
-            self.indicator.setImage(nil)
-        }
+        self.indicator.setHidden(true)
+        self.nearbyStopsTable.setHidden(false)
+        self.indicator.stopAnimating()
+        self.indicator.setImage(nil)
     }
     
     @IBAction func refreshButtonPressed() {
@@ -78,13 +74,17 @@ class NearbyStopsInterfaceController: WKInterfaceController, CLLocationManagerDe
     func showStations(aroundLocation loc: CLLocation) {
         let coord = WGSCoordinate(latitude: loc.coordinate.latitude, longitude: loc.coordinate.longitude)
         
-        stations = Array(Station.nearestStations(coordinate: coord).prefix(100))
+        guard let nearestStations = Station.nearestStations(coordinate: coord)?.prefix(100) else {return}
+        
+        stations = Array(nearestStations)
         if stations.count == 0 {
             self.showPrompt()
             return
         }
         
-        self.nearbyStopsTable.setNumberOfRows(stations.count, withRowType: "NearbyStopRow")
+        if self.nearbyStopsTable.numberOfRows != stations.count {
+            self.nearbyStopsTable.setNumberOfRows(stations.count, withRowType: "NearbyStopRow")
+        }
         
         for i in 0..<stations.count {
             guard let controller = self.nearbyStopsTable.rowController(at: i) as? StopRowController else { continue }
@@ -102,8 +102,7 @@ class NearbyStopsInterfaceController: WKInterfaceController, CLLocationManagerDe
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if locations.count == 0 { return }
-        let loc = locations.first!
+        guard let loc = locations.first else {return}
 //        let loc = CLLocation(latitude: 51.0381358, longitude: 13.701056)
         showStations(aroundLocation: loc)
     }
@@ -114,7 +113,6 @@ class NearbyStopsInterfaceController: WKInterfaceController, CLLocationManagerDe
     }
     
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
-        guard let _ = table.rowController(at: rowIndex) as? StopRowController else { return }
         let station = stations[rowIndex]
         presentController(withName: "DeparturesInterfaceController", context: station)
     }

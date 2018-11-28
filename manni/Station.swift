@@ -19,6 +19,8 @@ class Station {
     var wgs84Lat: Double
     var wgs84Long: Double
     
+    private static var cachedStations: [Station]?
+    
     init(
         id: String,
         nameWithLocation: String,
@@ -35,8 +37,14 @@ class Station {
         self.wgs84Long = wgs84Long
     }
     
-    static func loadAllStations() -> [Station] {
-        var stationsCSV = CSV.csv(data: CSV.readDataFromCSV(fileName: "stations", fileType: "csv"))
+    static func loadAllStations() -> [Station]? {
+        if cachedStations != nil {
+            return cachedStations
+        }
+        guard
+            let data = CSV.readDataFromCSV(fileName: "stations", fileType: "csv")
+        else {return nil}
+        var stationsCSV = CSV.csv(data: data)
         stationsCSV.removeFirst()
         
         var stations = [Station]()
@@ -46,17 +54,27 @@ class Station {
             let nameWithLocation = csv[1]
             let name = csv[2]
             let location = csv[3]
-            let wgs84Long = Double(csv[7].replacingOccurrences(of: ",", with: "."))!
-            let wgs84Lat = Double(csv[8].replacingOccurrences(of: ",", with: "."))!
-            stations.append(Station(id: id, nameWithLocation: nameWithLocation, name: name, location: location, wgs84Lat: wgs84Lat, wgs84Long: wgs84Long))
+            autoreleasepool {
+                let wgs84Long = Double(csv[7].replacingOccurrences(of: ",", with: "."))!
+                let wgs84Lat = Double(csv[8].replacingOccurrences(of: ",", with: "."))!
+                stations.append(Station(id: id, nameWithLocation: nameWithLocation, name: name, location: location, wgs84Lat: wgs84Lat, wgs84Long: wgs84Long))
+            }
         }
+        
+        cachedStations = stations
         
         return stations
     }
     
-    static func nearestStations(coordinate wgs: WGSCoordinate) -> [Station] {
-        let stationsSorted = loadAllStations().sorted {
-            $0.distance(wgs) < $1.distance(wgs)
+    static func nearestStations(coordinate wgs: WGSCoordinate) -> [Station]? {
+        guard let allStations = loadAllStations() else {return nil}
+        let stationsWithDistance = allStations.map {
+            ($0.distance(wgs), $0)
+        }
+        let stationsSorted = stationsWithDistance.sorted {
+            $0.0 < $1.0
+        }.map {
+            $0.1
         }
         return stationsSorted
     }
