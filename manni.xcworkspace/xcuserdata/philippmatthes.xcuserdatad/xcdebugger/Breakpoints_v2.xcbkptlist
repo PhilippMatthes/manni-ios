@@ -200,7 +200,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "manni/Controllers/LocationController.swift"
-            timestampString = "549841839.331805"
+            timestampString = "565193092.174418"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "93"
@@ -216,7 +216,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "manni/Controllers/LocationController.swift"
-            timestampString = "549841839.331853"
+            timestampString = "565193092.1744829"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "99"
@@ -1760,7 +1760,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "manni-watch Extension/Controllers/DeparturesInterfaceController.swift"
-            timestampString = "556809667.872522"
+            timestampString = "565177176.4185261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
@@ -1772,27 +1772,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "manni-watch Extension/Controllers/DeparturesInterfaceController.swift"
-            timestampString = "556809667.8725899"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "awake(withContext:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "manni-watch Extension/Controllers/DeparturesInterfaceController.swift"
-            timestampString = "556809667.872649"
+            timestampString = "565177176.418604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "46"
@@ -1808,7 +1792,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "manni-watch Extension/Controllers/DeparturesInterfaceController.swift"
-            timestampString = "556809667.872703"
+            timestampString = "565177176.418664"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
@@ -1824,7 +1808,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "manni-watch Extension/Controllers/DeparturesInterfaceController.swift"
-            timestampString = "556809667.872757"
+            timestampString = "565177176.418718"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "48"
@@ -1840,7 +1824,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "manni-watch Extension/Controllers/DeparturesInterfaceController.swift"
-            timestampString = "556809667.872811"
+            timestampString = "565177176.418771"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
@@ -1856,7 +1840,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "manni-watch Extension/Controllers/NearbyStopsInterfaceController.swift"
-            timestampString = "565139375.812014"
+            timestampString = "565193092.175561"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "107"
@@ -1872,7 +1856,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "manni-watch Extension/Controllers/NearbyStopsInterfaceController.swift"
-            timestampString = "565139375.812104"
+            timestampString = "565193092.175621"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
@@ -1888,7 +1872,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "manni-watch Extension/Controllers/NearbyStopsInterfaceController.swift"
-            timestampString = "565139375.812173"
+            timestampString = "565193092.17567"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "91"
@@ -1904,7 +1888,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "manni-watch Extension/Controllers/NearbyStopsInterfaceController.swift"
-            timestampString = "565139375.812237"
+            timestampString = "565193092.175715"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "75"
@@ -1920,7 +1904,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "manni-watch Extension/Controllers/NearbyStopsInterfaceController.swift"
-            timestampString = "565139375.812315"
+            timestampString = "565193092.175761"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
@@ -1936,7 +1920,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "manni-watch Extension/Controllers/NearbyStopsInterfaceController.swift"
-            timestampString = "565139375.812373"
+            timestampString = "565193092.175805"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
@@ -1952,7 +1936,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "manni-watch Extension/Controllers/NearbyStopsInterfaceController.swift"
-            timestampString = "565139375.812427"
+            timestampString = "565193092.175849"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "79"
@@ -1968,7 +1952,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "manni-watch Extension/Controllers/NearbyStopsInterfaceController.swift"
-            timestampString = "565139375.812481"
+            timestampString = "565193092.1758929"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "80"
@@ -1984,7 +1968,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "manni-watch Extension/Controllers/NearbyStopsInterfaceController.swift"
-            timestampString = "565139375.812535"
+            timestampString = "565193092.175938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "98"
@@ -2022,38 +2006,6 @@
             startingLineNumber = "34"
             endingLineNumber = "34"
             landmarkName = "readDataFromCSV(fileName:fileType:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "manni-watch Extension/Controllers/NearbyStopsInterfaceController.swift"
-            timestampString = "565139375.81262"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "table(_:didSelectRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "manni-watch Extension/Controllers/NearbyStopsInterfaceController.swift"
-            timestampString = "565139375.812678"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "table(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

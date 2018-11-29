@@ -55,7 +55,6 @@
 		BE8D5CE4202080B60057740A /* BRYXBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE8D5CE5202080B60057740A /* BRYXBanner.framework */; };
 		BE8D5CE7202081CF0057740A /* BannerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8D5CE6202081CF0057740A /* BannerExtension.swift */; };
 		BE8D5CE9202097410057740A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8D5CE8202097410057740A /* Config.swift */; };
-		BE8DA2E520E7EF28002571CE /* SwiftRaterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC6887720543C6B0013965A /* SwiftRaterExtension.swift */; };
 		BE98601E201B2B15008B4A08 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE98601D201B2B15008B4A08 /* SearchController.swift */; };
 		BE986020201B2FFB008B4A08 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE98601F201B2FFB008B4A08 /* UIViewControllerExtension.swift */; };
 		BEA761362025E7E300D39B15 /* RouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA761352025E7E300D39B15 /* RouteCell.swift */; };
@@ -250,7 +249,6 @@
 		BEBEC51A202C6132007617B4 /* SFSafariViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFSafariViewControllerExtension.swift; sourceTree = "<group>"; };
 		BEBEC530202C646F007617B4 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		BEC6887620543C5F0013965A /* SwiftRater.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftRater.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BEC6887720543C6B0013965A /* SwiftRaterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftRaterExtension.swift; sourceTree = "<group>"; };
 		BECB0CA620B0D856009E34DA /* DeparturesInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesInterfaceController.swift; sourceTree = "<group>"; };
 		BECB0CA820B0D930009E34DA /* DepartureRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureRowController.swift; sourceTree = "<group>"; };
 		BEDA931D20C5E07900B7D828 /* NavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavController.swift; sourceTree = "<group>"; };
@@ -428,7 +426,6 @@
 				BEBEC510202C6131007617B4 /* UITabBarExtension.swift */,
 				BE98601F201B2FFB008B4A08 /* UIViewControllerExtension.swift */,
 				BEBEC511202C6131007617B4 /* URLExtension.swift */,
-				BEC6887720543C6B0013965A /* SwiftRaterExtension.swift */,
 				BEBCE9ED20A023E900D471DC /* RefreshControlExtension.swift */,
 				BEE3D65320C03C9A00C6D57F /* WKInterfaceMapExtension.swift */,
 				BEDA931F20C5E44700B7D828 /* StoryboardExtension.swift */,
@@ -897,7 +894,6 @@
 				BEBEC52C202C6133007617B4 /* CLLocationExtension.swift in Sources */,
 				BE593EB62029A608008C8EAC /* SettingsController.swift in Sources */,
 				BEF4854D20B0930500B93508 /* CSV.swift in Sources */,
-				BE8DA2E520E7EF28002571CE /* SwiftRaterExtension.swift in Sources */,
 				BEBEC52E202C6133007617B4 /* SFSafariViewControllerExtension.swift in Sources */,
 				BE59ABF5201B146E003CA1EF /* State.swift in Sources */,
 				BE2285D2201A389D00C2A7DF /* AppDelegate.swift in Sources */,

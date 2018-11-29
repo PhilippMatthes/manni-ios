@@ -113,6 +113,7 @@ class NearbyStopsInterfaceController: WKInterfaceController, CLLocationManagerDe
     }
     
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
+
         let station = stations[rowIndex]
         presentController(withName: "DeparturesInterfaceController", context: station)
     }
