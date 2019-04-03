@@ -1,0 +1,15 @@
+"EGQSNS" = "Wann fährt die Linie ${line} an der Haltestelle ${stop}?";
+
+"4qr14H" = "GetCurrentDeparturesOfLineAtStop";
+
+"POKB1b" = "Wann fährt die Linie ${line} in der Nähe von ${location}?";
+
+"Vr0Ox5" = "Zeige mir den Fahrplan für ${stop}";
+
+"mmVrRe" = "Zeige mir den Fahrplan von Linie für Haltestelle";
+
+"r0gAE7" = "Was fährt in der Nähe von ${location}?";
+
+"2Bszwb" = "Ich habe die folgenden Abfahrten an ${stop} gefunden: ${departures}";
+
+"YggfPj" = "Ich konnte hierzu leider nichts finden.";

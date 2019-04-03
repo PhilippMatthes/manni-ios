@@ -9,6 +9,8 @@
 import UIKit
 import DVB
 import Material
+import CoreLocation
+import Intents
 
 class DeparturesController: UIViewController {
     
@@ -23,6 +25,7 @@ class DeparturesController: UIViewController {
     }()
     
     var departures: [Departure] = [Departure]()
+    var stop: Stop?
     
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +48,7 @@ class DeparturesController: UIViewController {
             result in
             guard let result = result.success, let first = result.stops.first else {return}
             State.shared.stopId = first.id
+            self.stop = first
             Departure.monitor(stopWithId: first.id) { result in
                 guard let response = result.success else { return }
                 self.departures = response.departures
@@ -83,9 +87,43 @@ extension DeparturesController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let locationController = UIStoryboard.instanciateController(withId: "LocationController") as! LocationController
-        State.shared.departure = departures[indexPath.row]
-        navigationController?.pushViewController(locationController, animated: true)
+        if #available(iOS 12.0, *) {
+            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            alertController.addAction(UIAlertAction(title: Config.showLocation, style: .default) {
+                action in
+                let locationController = UIStoryboard.instanciateController(withId: "LocationController") as! LocationController
+                State.shared.departure = self.departures[indexPath.row]
+                self.navigationController?.pushViewController(locationController, animated: true)
+            })
+            alertController.addAction(UIAlertAction(title: Config.addIntent, style: .default) {
+                action in
+                let intent = GetCurrentDeparturesOfLineAtStopIntent()
+                guard let stop = self.stop else {return}
+                intent.stop = stop.name
+                let departure = self.departures[indexPath.row]
+                intent.line = departure.line
+                
+                let interaction = INInteraction(intent: intent, response: nil)
+                interaction.donate() {
+                    error in
+                    if let error = error {
+                        let alertController = UIAlertController(title: "Aktion fehlgeschlagen.", message: error.localizedDescription, preferredStyle: .actionSheet)
+                        alertController.addAction(UIAlertAction(title: Config.cancel, style: .cancel) {
+                            action in
+                        })
+                        self.present(alertController, animated: true)
+                    }
+                }
+            })
+            alertController.addAction(UIAlertAction(title: Config.cancel, style: .cancel) {
+                action in
+            })
+            self.present(alertController, animated: true)
+        } else {
+            let locationController = UIStoryboard.instanciateController(withId: "LocationController") as! LocationController
+            State.shared.departure = self.departures[indexPath.row]
+            self.navigationController?.pushViewController(locationController, animated: true)
+        }
     }
     
     func configureTableView() {

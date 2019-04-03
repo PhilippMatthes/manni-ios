@@ -73,11 +73,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource, WKExtensionDe
     }
     
     func scheduleNextRefresh() {
-        if let d = lastScheduledRefreshDate {
-            guard d < Date() else {
-                return
-            }
-        }
         lastScheduledRefreshDate = (lastScheduledRefreshDate ?? Date()).addingTimeInterval(10 * 60)
         WKExtension.shared().delegate = self
         WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: lastScheduledRefreshDate!, userInfo: nil) {
@@ -200,6 +195,7 @@ extension ComplicationController: CLLocationManagerDelegate {
         if lastStopID == nearestStation.id {
             if let lastDate = departures.last?.realTime ?? departures.last?.scheduledTime, lastDate > Date() {
                 print("Decided to not perform a monitor request, because the stop didn't change and the last fetched departure is still in the future.")
+                scheduleNextRefresh()
                 return
             }
         }
@@ -229,9 +225,7 @@ extension ComplicationController: CLLocationManagerDelegate {
         case .modularLarge:
             let template = CLKComplicationTemplateModularLargeTable()
             
-            let row1Column1Provider = CLKSimpleTextProvider(text: "42")
-            row1Column1Provider.tintColor = UIColor(rgb: 0xff7675, alpha: 1.0)
-            template.row1Column1TextProvider = row1Column1Provider
+            template.row1Column1TextProvider = CLKSimpleTextProvider(text: "42")
             
             template.row2Column1TextProvider = CLKSimpleTextProvider(text: "12:34")
             

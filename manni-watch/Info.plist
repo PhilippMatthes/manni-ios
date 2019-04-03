@@ -20,6 +20,10 @@
 	<string>2.4.1</string>
 	<key>CFBundleVersion</key>
 	<string>16</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>GetCurrentDeparturesOfLineAtStopIntent</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

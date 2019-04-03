@@ -17,18 +17,25 @@
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.0</string>
+	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>9</string>
+	<string>1</string>
+	<key>Intent Class Generation Language</key>
+	<string>Swift</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>IntentsRestrictedWhileLocked</key>
 			<array/>
+			<key>IntentsRestrictedWhileProtectedDataUnavailable</key>
+			<array/>
 			<key>IntentsSupported</key>
 			<array>
-				<string>INRequestRideIntent</string>
+				<string>GetCurrentDeparturesOfLineAtStopIntent</string>
+				<string>INSearchForMessagesIntent</string>
+				<string>INSendMessageIntent</string>
+				<string>INSetMessageAttributeIntent</string>
 			</array>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>

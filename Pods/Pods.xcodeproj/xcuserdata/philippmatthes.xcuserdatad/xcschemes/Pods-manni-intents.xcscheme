@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6F3E72C3745C073E2B7EE12115D55AC5"
-               BuildableName = "Pods_manni.framework"
-               BlueprintName = "Pods-manni"
+               BlueprintIdentifier = "3C6B62E38E7117109D306DA6ECCD50B8"
+               BuildableName = "Pods_manni_intents.framework"
+               BlueprintName = "Pods-manni-intents"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6F3E72C3745C073E2B7EE12115D55AC5"
-            BuildableName = "Pods_manni.framework"
-            BlueprintName = "Pods-manni"
+            BlueprintIdentifier = "3C6B62E38E7117109D306DA6ECCD50B8"
+            BuildableName = "Pods_manni_intents.framework"
+            BlueprintName = "Pods-manni-intents"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

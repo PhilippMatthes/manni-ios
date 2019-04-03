@@ -70,4 +70,7 @@ class Config {
     static let refreshQuestion: String = NSLocalizedString("refreshQuestion", comment: "")
     static let cancel: String = NSLocalizedString("cancel", comment: "")
     static let noPrediction: String = NSLocalizedString("noPrediction", comment: "")
+    static let showLocation: String = NSLocalizedString("showLocation", comment: "")
+    static let addIntent: String = NSLocalizedString("addIntent", comment: "")
+    static let minutes: String = NSLocalizedString("minutes", comment: "")
 }

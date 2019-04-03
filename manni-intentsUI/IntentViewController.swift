@@ -2,8 +2,8 @@
 //  IntentViewController.swift
 //  manni-intentsUI
 //
-//  Created by Philipp Matthes on 22.05.18.
-//  Copyright © 2018 Philipp Matthes. All rights reserved.
+//  Created by Philipp Matthes on 03.04.19.
+//  Copyright © 2019 Philipp Matthes. All rights reserved.
 //
 
 import IntentsUI
@@ -15,25 +15,20 @@ import IntentsUI
 // You can test this example integration by saying things to Siri like:
 // "Send a message using <myApp>"
 
-@available(iOSApplicationExtension 10.0, *)
 class IntentViewController: UIViewController, INUIHostedViewControlling {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+        
     // MARK: - INUIHostedViewControlling
     
     // Prepare your view controller for the interaction to handle.
-    @available(iOSApplicationExtension 11.0, *)
     func configureView(for parameters: Set<INParameter>, of interaction: INInteraction, interactiveBehavior: INUIInteractiveBehavior, context: INUIHostedViewContext, completion: @escaping (Bool, Set<INParameter>, CGSize) -> Void) {
-        // Do configuration here, including preparing views and calculating a desired size for presentation.
+        
+        
+        
         completion(true, parameters, self.desiredSize)
     }
     

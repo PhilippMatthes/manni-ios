@@ -32,3 +32,17 @@ target 'manni-mac' do
   pod 'DVB', :git => 'https://github.com/PhilippMatthes/DVB.git'
 
 end
+
+target 'manni-intents' do
+
+  use_frameworks!
+  pod 'DVB', :git => 'https://github.com/PhilippMatthes/DVB.git'
+
+end
+
+target 'manni-intentsUI' do
+
+  use_frameworks!
+  pod 'DVB', :git => 'https://github.com/PhilippMatthes/DVB.git'
+
+end

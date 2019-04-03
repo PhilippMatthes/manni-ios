@@ -56,3 +56,6 @@
 "success" = "Erfolg!";
 "cancel" = "Abbruch";
 "noPrediction" = "Keine Vorhersage";
+"showLocation" = "Zeige Standort";
+"addIntent" = "Erstelle neuen Siri-Shortcut";
+"minutes" = "Minuten";

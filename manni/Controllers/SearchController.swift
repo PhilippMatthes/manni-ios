@@ -11,6 +11,7 @@ import UIKit
 import Material
 import Motion
 import DVB
+import Intents
 //import SwiftRater
 
 
@@ -190,6 +191,12 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
             switch State.shared.searchMode {
             case .stop:
                 State.shared.addLogData(stop.name)
+                if #available(iOS 12.0, *) {
+                    let intent = GetCurrentDeparturesOfLineAtStopIntent()
+                    intent.stop = stop.name
+                    let interaction = INInteraction(intent: intent, response: nil)
+                    interaction.donate()
+                }
                 break
             case .route:
                 switchSearchBar()

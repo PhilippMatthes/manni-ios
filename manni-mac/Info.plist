@@ -37,5 +37,9 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>GetCurrentDeparturesOfLineAtStopIntent</string>
+	</array>
 </dict>
 </plist>

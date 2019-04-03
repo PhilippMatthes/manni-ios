@@ -1,0 +1,16 @@
+"2Bszwb" = "I found the following departures at ${stop}: ${departures}";
+
+"4qr14H" = "GetCurrentDeparturesOfLineAtStop";
+
+"EGQSNS" = "Get current departures of line ${line} at ${stop}";
+
+"POKB1b" = "Get current departures of line ${line} near ${location}";
+
+"Vr0Ox5" = "Get current departures at ${stop}";
+
+"YggfPj" = "I could not find departures for your given information.";
+
+"mmVrRe" = "Get current departures";
+
+"r0gAE7" = "Get current departures nearby ${location}";
+
