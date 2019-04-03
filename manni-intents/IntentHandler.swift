@@ -80,9 +80,14 @@ class GetCurrentDeparturesIntentHandler: NSObject, GetCurrentDeparturesOfLineAtS
             guard let success = response.success else {completion(failure); return}
             var departures: [String]
             if let line = line {
-                departures = success.departures
+                let filteredDepartures = success.departures
                     .filter {$0.line.contains(line)}
-                    .map {$0.shortTimedDescription}
+                guard let firstDirection = filteredDepartures.first?.direction else {return}
+                if (!filteredDepartures.map {$0.direction == firstDirection}.contains(false)) {
+                    departures = filteredDepartures.map {$0.shortTime}
+                } else {
+                    departures = filteredDepartures.map {$0.shortTimedDescription}
+                }
             } else {
                 departures = success.departures
                     .map {$0.localizedDescription}
@@ -103,6 +108,12 @@ extension Departure {
     var shortTimedDescription: String {
         get {
             return "in \(self.ETA) \(Config.minutes) \(Config.direction) \(self.direction)"
+        }
+    }
+    
+    var shortTime: String {
+        get {
+            return "in \(self.ETA) \(Config.minutes)"
         }
     }
 }
