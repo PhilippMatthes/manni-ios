@@ -307,11 +307,11 @@ extension SearchController {
     }
     
     func openRouteOrDeparturesController() {
-        navigationController?.setNavigationBarHidden(false, animated: true)
         switch State.shared.searchMode {
         case .stop:
             if let fromText = searchBar.textField.text {
                 if fromText != "" {
+                    navigationController?.setNavigationBarHidden(false, animated: true)
                     let controller = UIStoryboard.instanciateController(withId: "DeparturesController") as! DeparturesController
                     State.shared.stopQuery = fromText
                     navigationController?.pushViewController(controller, animated: true)
@@ -320,6 +320,7 @@ extension SearchController {
         case .route:
             if let fromText = searchBar.textField.text, let toText = modularSearchBar.textField.text {
                 if fromText != "" && toText != "" {
+                    navigationController?.setNavigationBarHidden(false, animated: true)
                     let controller = UIStoryboard.instanciateController(withId: "RouteController") as! RouteController
                     State.shared.from = fromText
                     State.shared.to = toText
