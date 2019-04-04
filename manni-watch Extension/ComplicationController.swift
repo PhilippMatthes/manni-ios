@@ -202,15 +202,11 @@ extension ComplicationController: CLLocationManagerDelegate {
         
         lastStopID = nearestStation.id
         
-        print("Requesting stop with id: \(lastStopID)")
         Stop.find(nearestStation.id) {
             response in
-            print("Server responded to find request with: Failure(\(response.failure)), Success(\(response.success))")
             if let success = response.success, let stop = success.stops.first {
-                print("Performing monitor request on stop: \(stop.name)")
                 stop.monitor() {
                     monitorResponse in
-                    print("Server responded to find monitor request with: Failure(\(monitorResponse.failure)), Success(\(monitorResponse.success))")
                     guard let monitorSuccess = monitorResponse.success else {return}
                     self.departures = monitorSuccess.departures
                     self.stopName = monitorSuccess.stopName
