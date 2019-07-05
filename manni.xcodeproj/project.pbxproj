@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0EA444EB3FF2F9974D5ED5B9 /* Pods_manni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B50201A41B1005D1F32 /* Pods_manni.framework */; };
 		4558B26FF1CEEAAEA36877C7 /* Pods_manni_intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16DABFE26B3FEE8A9E9B286E /* Pods_manni_intents.framework */; };
-		7E39EDA2CACF8DC655FA9F5F /* Pods_manni_watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B755EA8020BC9A57886C037 /* Pods_manni_watch.framework */; };
 		B36285CD48AB17DBEB16114D /* Pods_manni_mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C770ACE1059266F4B98126DE /* Pods_manni_mac.framework */; };
 		BE0A8A942051250D00B779B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE0A8A922051250D00B779B9 /* Localizable.strings */; };
 		BE11E25D20DBFAEA00174008 /* DVB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE11E25C20DBFAEA00174008 /* DVB.framework */; };
@@ -24,11 +23,17 @@
 		BE2D05C8202308370064339B /* StorableStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2D05C7202308370064339B /* StorableStop.swift */; };
 		BE2D05CB20230DA50064339B /* StopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2D05CA20230DA50064339B /* StopCell.swift */; };
 		BE2D05CF20235C8F0064339B /* RouteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2D05CE20235C8F0064339B /* RouteController.swift */; };
-		BE466DFE20C359BB008EA5D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE5DA25520B0607E00E57659 /* Assets.xcassets */; };
 		BE49717F2254FC5100844787 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8D5CE8202097410057740A /* Config.swift */; };
 		BE4971812254FC8900844787 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE0A8A922051250D00B779B9 /* Localizable.strings */; };
-		BE49759120B0641B00D5148D /* DVB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE49759020B0641B00D5148D /* DVB.framework */; };
-		BE4975AD20B06B7900D5148D /* NearbyStopsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4975AC20B06B7900D5148D /* NearbyStopsInterfaceController.swift */; };
+		BE49BF5522CF340C00E225E3 /* manni-watch WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BE49BF5422CF340C00E225E3 /* manni-watch WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BE49BF5B22CF340C00E225E3 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE49BF5922CF340C00E225E3 /* Interface.storyboard */; };
+		BE49BF5D22CF340E00E225E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE49BF5C22CF340E00E225E3 /* Assets.xcassets */; };
+		BE49BF6422CF340E00E225E3 /* manni-watch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BE49BF6322CF340E00E225E3 /* manni-watch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BE49BF6922CF340E00E225E3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE49BF6822CF340E00E225E3 /* ContentView.swift */; };
+		BE49BF6B22CF340E00E225E3 /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE49BF6A22CF340E00E225E3 /* HostingController.swift */; };
+		BE49BF6D22CF340E00E225E3 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE49BF6C22CF340E00E225E3 /* ExtensionDelegate.swift */; };
+		BE49BF6F22CF340E00E225E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE49BF6E22CF340E00E225E3 /* Assets.xcassets */; };
+		BE49BF7222CF340E00E225E3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE49BF7122CF340E00E225E3 /* Preview Assets.xcassets */; };
 		BE4D730220DBECCA00BFADF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4D730120DBECCA00BFADF0 /* AppDelegate.swift */; };
 		BE4D730420DBECCA00BFADF0 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4D730320DBECCA00BFADF0 /* InitialViewController.swift */; };
 		BE4D730620DBECCB00BFADF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE4D730520DBECCB00BFADF0 /* Assets.xcassets */; };
@@ -42,16 +47,9 @@
 		BE59ABEF201B11E2003CA1EF /* DeparturesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABEE201B11E2003CA1EF /* DeparturesController.swift */; };
 		BE59ABF5201B146E003CA1EF /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABF4201B146E003CA1EF /* State.swift */; };
 		BE5BABF4201FA15B004C09FB /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5BABF3201FA15B004C09FB /* LocationController.swift */; };
-		BE5DA24220B0607C00E57659 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE5DA24020B0607C00E57659 /* Interface.storyboard */; };
-		BE5DA24420B0607D00E57659 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE5DA24320B0607D00E57659 /* Assets.xcassets */; };
-		BE5DA24B20B0607D00E57659 /* manni-watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BE5DA24A20B0607D00E57659 /* manni-watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BE5DA25420B0607D00E57659 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DA25320B0607D00E57659 /* NotificationController.swift */; };
-		BE5DA25B20B0607E00E57659 /* manni-watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BE5DA23E20B0607C00E57659 /* manni-watch.app */; };
 		BE650B51201A425A005D1F32 /* DVB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B54201A425A005D1F32 /* DVB.framework */; };
 		BE650B52201A425A005D1F32 /* Material.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B55201A425A005D1F32 /* Material.framework */; };
 		BE650B53201A425A005D1F32 /* Motion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE650B56201A425A005D1F32 /* Motion.framework */; };
-		BE73E8D120C0318F00DAD51B /* LocationInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE73E8D020C0318F00DAD51B /* LocationInterfaceController.swift */; };
-		BE89CAFB20B06DC300626C37 /* StopRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89CAFA20B06DC300626C37 /* StopRowController.swift */; };
 		BE8D5CDD20204E930057740A /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8D5CDC20204E930057740A /* Util.swift */; };
 		BE8D5CDF2020605D0057740A /* RouteStopExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8D5CDE2020605D0057740A /* RouteStopExtension.swift */; };
 		BE8D5CE120206AB80057740A /* MapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8D5CE020206AB80057740A /* MapViewExtension.swift */; };
@@ -64,13 +62,9 @@
 		BEA7613A2025F6D900D39B15 /* PartialRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA761392025F6D900D39B15 /* PartialRouteCell.swift */; };
 		BEA761402027245300D39B15 /* PartialRouteExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA7613F2027245300D39B15 /* PartialRouteExtension.swift */; };
 		BEA761442027653A00D39B15 /* RouteMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA761432027653A00D39B15 /* RouteMapController.swift */; };
-		BEB2A1A720C3450200E7A79E /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB2A19620C3444D00E7A79E /* ExtensionDelegate.swift */; };
-		BEB2A1A820C3450200E7A79E /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB2A19820C3444D00E7A79E /* ComplicationController.swift */; };
 		BEBCD7C82254E62500A20E6A /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BEBCD7CA2254E62500A20E6A /* Intents.intentdefinition */; };
 		BEBCD7DE2254E8DA00A20E6A /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBCD7DD2254E8DA00A20E6A /* IntentHandler.swift */; };
 		BEBCD7F22254E8DA00A20E6A /* manni-intents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BEBCD7DB2254E8DA00A20E6A /* manni-intents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BEBCD7F92254E90300A20E6A /* Intents.intentdefinition in Resources */ = {isa = PBXBuildFile; fileRef = BEBCD7CA2254E62500A20E6A /* Intents.intentdefinition */; };
-		BEBCD7FA2254E90400A20E6A /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BEBCD7CA2254E62500A20E6A /* Intents.intentdefinition */; };
 		BEBCD7FB2254E90400A20E6A /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BEBCD7CA2254E62500A20E6A /* Intents.intentdefinition */; };
 		BEBCD7FE2254E90600A20E6A /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BEBCD7CA2254E62500A20E6A /* Intents.intentdefinition */; };
 		BEBCE9E5209F0CEE00D471DC /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBCE9E3209F0CED00D471DC /* IntExtension.swift */; };
@@ -94,44 +88,29 @@
 		BEBEC52C202C6133007617B4 /* CLLocationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC518202C6132007617B4 /* CLLocationExtension.swift */; };
 		BEBEC52E202C6133007617B4 /* SFSafariViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC51A202C6132007617B4 /* SFSafariViewControllerExtension.swift */; };
 		BEBEC531202C647D007617B4 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEC530202C646F007617B4 /* ArrayExtension.swift */; };
-		BECB0CA720B0D856009E34DA /* DeparturesInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECB0CA620B0D856009E34DA /* DeparturesInterfaceController.swift */; };
-		BECB0CA920B0D930009E34DA /* DepartureRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECB0CA820B0D930009E34DA /* DepartureRowController.swift */; };
-		BECB0CAA20B0E2F9009E34DA /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE7201A76B1003CA1EF /* DateExtension.swift */; };
-		BECB0CAB20B0E345009E34DA /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8D5CE8202097410057740A /* Config.swift */; };
-		BECB0CB020B0EA80009E34DA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE0A8A922051250D00B779B9 /* Localizable.strings */; };
 		BEDA931E20C5E07900B7D828 /* NavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDA931D20C5E07900B7D828 /* NavController.swift */; };
 		BEDA932020C5E44700B7D828 /* StoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDA931F20C5E44700B7D828 /* StoryboardExtension.swift */; };
 		BEE2B35D20DCD9FB0086C037 /* StopCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE2B35C20DCD9FB0086C037 /* StopCellView.swift */; };
-		BEE2EC152119D04B00062105 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE5DA24020B0607C00E57659 /* Interface.storyboard */; };
 		BEE3D65420C03C9A00C6D57F /* WKInterfaceMapExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE3D65320C03C9A00C6D57F /* WKInterfaceMapExtension.swift */; };
-		BEE3D65520C03CC100C6D57F /* WKInterfaceMapExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE3D65320C03C9A00C6D57F /* WKInterfaceMapExtension.swift */; };
-		BEF4854520B0837200B93508 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE0201A64FE003CA1EF /* Colors.swift */; };
-		BEF4854620B084BC00B93508 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59ABE2201A6528003CA1EF /* UIColorExtension.swift */; };
-		BEF4854720B084C200B93508 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBCE9E3209F0CED00D471DC /* IntExtension.swift */; };
 		BEF4854B20B091EA00B93508 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF4854A20B091EA00B93508 /* Station.swift */; };
 		BEF4854D20B0930500B93508 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF4854C20B0930500B93508 /* CSV.swift */; };
-		BEF4854E20B09DF500B93508 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF4854A20B091EA00B93508 /* Station.swift */; };
-		BEF4854F20B09DF700B93508 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF4854C20B0930500B93508 /* CSV.swift */; };
-		BEF4855720B0A27500B93508 /* stations.csv in Resources */ = {isa = PBXBuildFile; fileRef = BEF4855520B0A16B00B93508 /* stations.csv */; };
 		BEF4855820B0A27D00B93508 /* stations.csv in Resources */ = {isa = PBXBuildFile; fileRef = BEF4855520B0A16B00B93508 /* stations.csv */; };
-		BEF4855920B0A28500B93508 /* stations.csv in Resources */ = {isa = PBXBuildFile; fileRef = BEF4855520B0A16B00B93508 /* stations.csv */; };
-		C28C36362AFDA7C1B5904AF7 /* Pods_manni_watch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE4A008C5CA4DF5E4863CE00 /* Pods_manni_watch_Extension.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		BE5DA24C20B0607D00E57659 /* PBXContainerItemProxy */ = {
+		BE49BF5622CF340C00E225E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BE2285C6201A389D00C2A7DF /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = BE5DA24920B0607D00E57659;
-			remoteInfo = "manni-watch Extension";
+			remoteGlobalIDString = BE49BF5322CF340C00E225E3;
+			remoteInfo = "manni-watch WatchKit App";
 		};
-		BE5DA25920B0607E00E57659 /* PBXContainerItemProxy */ = {
+		BE49BF6522CF340E00E225E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BE2285C6201A389D00C2A7DF /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = BE5DA23D20B0607C00E57659;
-			remoteInfo = "manni-watch";
+			remoteGlobalIDString = BE49BF6222CF340E00E225E3;
+			remoteInfo = "manni-watch WatchKit Extension";
 		};
 		BEBCD7F02254E8DA00A20E6A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -143,15 +122,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		BE5DA26120B0607E00E57659 /* Embed App Extensions */ = {
+		BE49BF7722CF340E00E225E3 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				BE5DA24B20B0607D00E57659 /* manni-watch Extension.appex in Embed App Extensions */,
+				BE49BF6422CF340E00E225E3 /* manni-watch WatchKit Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE49BF7B22CF340E00E225E3 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				BE49BF5522CF340C00E225E3 /* manni-watch WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BE5DA26320B0607E00E57659 /* Embed Watch Content */ = {
@@ -160,7 +150,6 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				BE5DA25B20B0607E00E57659 /* manni-watch.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,7 +196,18 @@
 		BE2D05CA20230DA50064339B /* StopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopCell.swift; sourceTree = "<group>"; };
 		BE2D05CE20235C8F0064339B /* RouteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteController.swift; sourceTree = "<group>"; };
 		BE49759020B0641B00D5148D /* DVB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DVB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE4975AC20B06B7900D5148D /* NearbyStopsInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyStopsInterfaceController.swift; sourceTree = "<group>"; };
+		BE49BF5122CF340B00E225E3 /* manni-watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "manni-watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE49BF5422CF340C00E225E3 /* manni-watch WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "manni-watch WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE49BF5A22CF340C00E225E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		BE49BF5C22CF340E00E225E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BE49BF5E22CF340E00E225E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE49BF6322CF340E00E225E3 /* manni-watch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "manni-watch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE49BF6822CF340E00E225E3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BE49BF6A22CF340E00E225E3 /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
+		BE49BF6C22CF340E00E225E3 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		BE49BF6E22CF340E00E225E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BE49BF7122CF340E00E225E3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BE49BF7322CF340E00E225E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE4D72FF20DBECCA00BFADF0 /* manni-mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "manni-mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE4D730120DBECCA00BFADF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE4D730320DBECCA00BFADF0 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
@@ -226,15 +226,6 @@
 		BE59ABF3201B144C003CA1EF /* CSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE59ABF4201B146E003CA1EF /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		BE5BABF3201FA15B004C09FB /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
-		BE5DA23E20B0607C00E57659 /* manni-watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "manni-watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE5DA24120B0607C00E57659 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
-		BE5DA24320B0607D00E57659 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BE5DA24520B0607D00E57659 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BE5DA24A20B0607D00E57659 /* manni-watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "manni-watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE5DA25320B0607D00E57659 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
-		BE5DA25520B0607E00E57659 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BE5DA25720B0607E00E57659 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BE5DA25820B0607E00E57659 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		BE650B4D201A41B1005D1F32 /* DVB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DVB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE650B4E201A41B1005D1F32 /* Material.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Material.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE650B4F201A41B1005D1F32 /* Motion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Motion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -242,11 +233,7 @@
 		BE650B54201A425A005D1F32 /* DVB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DVB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE650B55201A425A005D1F32 /* Material.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Material.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE650B56201A425A005D1F32 /* Motion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Motion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE73E8D020C0318F00DAD51B /* LocationInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInterfaceController.swift; sourceTree = "<group>"; };
 		BE75DB7B2254E030002B35AF /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
-		BE7C7CFE20C3672700095652 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Interface.strings; sourceTree = "<group>"; };
-		BE7C7D0020C3672900095652 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Interface.strings; sourceTree = "<group>"; };
-		BE89CAFA20B06DC300626C37 /* StopRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopRowController.swift; sourceTree = "<group>"; };
 		BE8D5CDC20204E930057740A /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		BE8D5CDE2020605D0057740A /* RouteStopExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteStopExtension.swift; sourceTree = "<group>"; };
 		BE8D5CE020206AB80057740A /* MapViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewExtension.swift; sourceTree = "<group>"; };
@@ -259,8 +246,6 @@
 		BEA761392025F6D900D39B15 /* PartialRouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialRouteCell.swift; sourceTree = "<group>"; };
 		BEA7613F2027245300D39B15 /* PartialRouteExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialRouteExtension.swift; sourceTree = "<group>"; };
 		BEA761432027653A00D39B15 /* RouteMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteMapController.swift; sourceTree = "<group>"; };
-		BEB2A19620C3444D00E7A79E /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		BEB2A19820C3444D00E7A79E /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		BEBCD7C92254E62500A20E6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/Intents.intentdefinition; sourceTree = "<group>"; };
 		BEBCD7D42254E80D00A20E6A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Intents.strings; sourceTree = "<group>"; };
 		BEBCD7D62254E80E00A20E6A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Intents.strings; sourceTree = "<group>"; };
@@ -292,8 +277,6 @@
 		BEBEC51A202C6132007617B4 /* SFSafariViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFSafariViewControllerExtension.swift; sourceTree = "<group>"; };
 		BEBEC530202C646F007617B4 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		BEC6887620543C5F0013965A /* SwiftRater.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftRater.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BECB0CA620B0D856009E34DA /* DeparturesInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesInterfaceController.swift; sourceTree = "<group>"; };
-		BECB0CA820B0D930009E34DA /* DepartureRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureRowController.swift; sourceTree = "<group>"; };
 		BEDA931D20C5E07900B7D828 /* NavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavController.swift; sourceTree = "<group>"; };
 		BEDA931F20C5E44700B7D828 /* StoryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardExtension.swift; sourceTree = "<group>"; };
 		BEDA932220C5EA3800B7D828 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
@@ -314,14 +297,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		00CF3F043681FD07604673A7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7E39EDA2CACF8DC655FA9F5F /* Pods_manni_watch.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		BE2285CB201A389D00C2A7DF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -334,21 +309,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BE49BF6022CF340E00E225E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BE4D72FC20DBECCA00BFADF0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				BE11E25D20DBFAEA00174008 /* DVB.framework in Frameworks */,
 				B36285CD48AB17DBEB16114D /* Pods_manni_mac.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BE5DA24720B0607D00E57659 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BE49759120B0641B00D5148D /* DVB.framework in Frameworks */,
-				C28C36362AFDA7C1B5904AF7 /* Pods_manni_watch_Extension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,11 +361,11 @@
 				BEBCD7CA2254E62500A20E6A /* Intents.intentdefinition */,
 				BE0A8A922051250D00B779B9 /* Localizable.strings */,
 				BE2285D0201A389D00C2A7DF /* manni */,
-				BE5DA23F20B0607C00E57659 /* manni-watch */,
-				BE5DA24E20B0607D00E57659 /* manni-watch Extension */,
 				BE4D730020DBECCA00BFADF0 /* manni-mac */,
 				BEBCD7DC2254E8DA00A20E6A /* manni-intents */,
 				BEBCD7E62254E8DA00A20E6A /* manni-intentsUI */,
+				BE49BF5822CF340C00E225E3 /* manni-watch WatchKit App */,
+				BE49BF6722CF340E00E225E3 /* manni-watch WatchKit Extension */,
 				BE2285CF201A389D00C2A7DF /* Products */,
 				BE650B48201A41B1005D1F32 /* Frameworks */,
 				A15B540B0AE544577B3C9CD0 /* Pods */,
@@ -403,10 +376,11 @@
 			isa = PBXGroup;
 			children = (
 				BE2285CE201A389D00C2A7DF /* manni.app */,
-				BE5DA23E20B0607C00E57659 /* manni-watch.app */,
-				BE5DA24A20B0607D00E57659 /* manni-watch Extension.appex */,
 				BE4D72FF20DBECCA00BFADF0 /* manni-mac.app */,
 				BEBCD7DB2254E8DA00A20E6A /* manni-intents.appex */,
+				BE49BF5122CF340B00E225E3 /* manni-watch.app */,
+				BE49BF5422CF340C00E225E3 /* manni-watch WatchKit App.app */,
+				BE49BF6322CF340E00E225E3 /* manni-watch WatchKit Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -440,6 +414,37 @@
 				BE2D05C7202308370064339B /* StorableStop.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		BE49BF5822CF340C00E225E3 /* manni-watch WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				BE49BF5922CF340C00E225E3 /* Interface.storyboard */,
+				BE49BF5C22CF340E00E225E3 /* Assets.xcassets */,
+				BE49BF5E22CF340E00E225E3 /* Info.plist */,
+			);
+			path = "manni-watch WatchKit App";
+			sourceTree = "<group>";
+		};
+		BE49BF6722CF340E00E225E3 /* manni-watch WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BE49BF6822CF340E00E225E3 /* ContentView.swift */,
+				BE49BF6A22CF340E00E225E3 /* HostingController.swift */,
+				BE49BF6C22CF340E00E225E3 /* ExtensionDelegate.swift */,
+				BE49BF6E22CF340E00E225E3 /* Assets.xcassets */,
+				BE49BF7322CF340E00E225E3 /* Info.plist */,
+				BE49BF7022CF340E00E225E3 /* Preview Content */,
+			);
+			path = "manni-watch WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		BE49BF7022CF340E00E225E3 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				BE49BF7122CF340E00E225E3 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		BE4D730020DBECCA00BFADF0 /* manni-mac */ = {
@@ -522,30 +527,6 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
-		BE5DA23F20B0607C00E57659 /* manni-watch */ = {
-			isa = PBXGroup;
-			children = (
-				BE5DA24020B0607C00E57659 /* Interface.storyboard */,
-				BE5DA24320B0607D00E57659 /* Assets.xcassets */,
-				BE5DA24520B0607D00E57659 /* Info.plist */,
-			);
-			path = "manni-watch";
-			sourceTree = "<group>";
-		};
-		BE5DA24E20B0607D00E57659 /* manni-watch Extension */ = {
-			isa = PBXGroup;
-			children = (
-				BE5DA25320B0607D00E57659 /* NotificationController.swift */,
-				BEB2A19620C3444D00E7A79E /* ExtensionDelegate.swift */,
-				BEB2A19820C3444D00E7A79E /* ComplicationController.swift */,
-				BE5DA25520B0607E00E57659 /* Assets.xcassets */,
-				BE5DA25720B0607E00E57659 /* Info.plist */,
-				BE5DA25820B0607E00E57659 /* PushNotificationPayload.apns */,
-				BECB0CA520B0D83D009E34DA /* Controllers */,
-			);
-			path = "manni-watch Extension";
-			sourceTree = "<group>";
-		};
 		BE650B48201A41B1005D1F32 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -592,18 +573,6 @@
 			path = "manni-intentsUI";
 			sourceTree = "<group>";
 		};
-		BECB0CA520B0D83D009E34DA /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				BE89CAFA20B06DC300626C37 /* StopRowController.swift */,
-				BE4975AC20B06B7900D5148D /* NearbyStopsInterfaceController.swift */,
-				BECB0CA620B0D856009E34DA /* DeparturesInterfaceController.swift */,
-				BECB0CA820B0D930009E34DA /* DepartureRowController.swift */,
-				BE73E8D020C0318F00DAD51B /* LocationInterfaceController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -622,13 +591,63 @@
 			buildRules = (
 			);
 			dependencies = (
-				BE5DA25A20B0607E00E57659 /* PBXTargetDependency */,
 				BEBCD7F12254E8DA00A20E6A /* PBXTargetDependency */,
 			);
 			name = manni;
 			productName = manni;
 			productReference = BE2285CE201A389D00C2A7DF /* manni.app */;
 			productType = "com.apple.product-type.application";
+		};
+		BE49BF5022CF340B00E225E3 /* manni-watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE49BF7C22CF340E00E225E3 /* Build configuration list for PBXNativeTarget "manni-watch" */;
+			buildPhases = (
+				BE49BF4F22CF340B00E225E3 /* Resources */,
+				BE49BF7B22CF340E00E225E3 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BE49BF5722CF340C00E225E3 /* PBXTargetDependency */,
+			);
+			name = "manni-watch";
+			productName = "manni-watch";
+			productReference = BE49BF5122CF340B00E225E3 /* manni-watch.app */;
+			productType = "com.apple.product-type.application.watchapp2-container";
+		};
+		BE49BF5322CF340C00E225E3 /* manni-watch WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE49BF7822CF340E00E225E3 /* Build configuration list for PBXNativeTarget "manni-watch WatchKit App" */;
+			buildPhases = (
+				BE49BF5222CF340C00E225E3 /* Resources */,
+				BE49BF7722CF340E00E225E3 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BE49BF6622CF340E00E225E3 /* PBXTargetDependency */,
+			);
+			name = "manni-watch WatchKit App";
+			productName = "manni-watch WatchKit App";
+			productReference = BE49BF5422CF340C00E225E3 /* manni-watch WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		BE49BF6222CF340E00E225E3 /* manni-watch WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE49BF7422CF340E00E225E3 /* Build configuration list for PBXNativeTarget "manni-watch WatchKit Extension" */;
+			buildPhases = (
+				BE49BF5F22CF340E00E225E3 /* Sources */,
+				BE49BF6022CF340E00E225E3 /* Frameworks */,
+				BE49BF6122CF340E00E225E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "manni-watch WatchKit Extension";
+			productName = "manni-watch WatchKit Extension";
+			productReference = BE49BF6322CF340E00E225E3 /* manni-watch WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 		BE4D72FE20DBECCA00BFADF0 /* manni-mac */ = {
 			isa = PBXNativeTarget;
@@ -648,44 +667,6 @@
 			productName = "manni-mac";
 			productReference = BE4D72FF20DBECCA00BFADF0 /* manni-mac.app */;
 			productType = "com.apple.product-type.application";
-		};
-		BE5DA23D20B0607C00E57659 /* manni-watch */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BE5DA26220B0607E00E57659 /* Build configuration list for PBXNativeTarget "manni-watch" */;
-			buildPhases = (
-				1D201B23D0C56926B41BC1A5 /* [CP] Check Pods Manifest.lock */,
-				BE5DA23C20B0607C00E57659 /* Resources */,
-				BE5DA26120B0607E00E57659 /* Embed App Extensions */,
-				00CF3F043681FD07604673A7 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				BE5DA24D20B0607D00E57659 /* PBXTargetDependency */,
-			);
-			name = "manni-watch";
-			productName = "manni-watch";
-			productReference = BE5DA23E20B0607C00E57659 /* manni-watch.app */;
-			productType = "com.apple.product-type.application.watchapp2";
-		};
-		BE5DA24920B0607D00E57659 /* manni-watch Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BE5DA26020B0607E00E57659 /* Build configuration list for PBXNativeTarget "manni-watch Extension" */;
-			buildPhases = (
-				12047646F4049C2B4541EFF9 /* [CP] Check Pods Manifest.lock */,
-				BE5DA24620B0607D00E57659 /* Sources */,
-				BE5DA24720B0607D00E57659 /* Frameworks */,
-				BE5DA24820B0607D00E57659 /* Resources */,
-				D9463A839B747F6683EC2A28 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "manni-watch Extension";
-			productName = "manni-watch Extension";
-			productReference = BE5DA24A20B0607D00E57659 /* manni-watch Extension.appex */;
-			productType = "com.apple.product-type.watchkit2-extension";
 		};
 		BEBCD7DA2254E8DA00A20E6A /* manni-intents */ = {
 			isa = PBXNativeTarget;
@@ -711,13 +692,26 @@
 		BE2285C6201A389D00C2A7DF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				DefaultBuildSystemTypeForWorkspace = Original;
+				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Philipp Matthes";
 				TargetAttributes = {
 					BE2285CD201A389D00C2A7DF = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1000;
+						ProvisioningStyle = Automatic;
+					};
+					BE49BF5022CF340B00E225E3 = {
+						CreatedOnToolsVersion = 11.0;
+						ProvisioningStyle = Automatic;
+					};
+					BE49BF5322CF340C00E225E3 = {
+						CreatedOnToolsVersion = 11.0;
+						ProvisioningStyle = Automatic;
+					};
+					BE49BF6222CF340E00E225E3 = {
+						CreatedOnToolsVersion = 11.0;
 						ProvisioningStyle = Automatic;
 					};
 					BE4D72FE20DBECCA00BFADF0 = {
@@ -728,16 +722,6 @@
 								enabled = 0;
 							};
 						};
-					};
-					BE5DA23D20B0607C00E57659 = {
-						CreatedOnToolsVersion = 9.3.1;
-						LastSwiftMigration = 1000;
-						ProvisioningStyle = Automatic;
-					};
-					BE5DA24920B0607D00E57659 = {
-						CreatedOnToolsVersion = 9.3.1;
-						LastSwiftMigration = 1000;
-						ProvisioningStyle = Automatic;
 					};
 					BEBCD7DA2254E8DA00A20E6A = {
 						CreatedOnToolsVersion = 10.1;
@@ -760,10 +744,11 @@
 			projectRoot = "";
 			targets = (
 				BE2285CD201A389D00C2A7DF /* manni */,
-				BE5DA23D20B0607C00E57659 /* manni-watch */,
-				BE5DA24920B0607D00E57659 /* manni-watch Extension */,
 				BE4D72FE20DBECCA00BFADF0 /* manni-mac */,
 				BEBCD7DA2254E8DA00A20E6A /* manni-intents */,
+				BE49BF5022CF340B00E225E3 /* manni-watch */,
+				BE49BF5322CF340C00E225E3 /* manni-watch WatchKit App */,
+				BE49BF6222CF340E00E225E3 /* manni-watch WatchKit Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -781,34 +766,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BE49BF4F22CF340B00E225E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE49BF5222CF340C00E225E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE49BF5D22CF340E00E225E3 /* Assets.xcassets in Resources */,
+				BE49BF5B22CF340C00E225E3 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE49BF6122CF340E00E225E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE49BF7222CF340E00E225E3 /* Preview Assets.xcassets in Resources */,
+				BE49BF6F22CF340E00E225E3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BE4D72FD20DBECCA00BFADF0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				BE4D730620DBECCB00BFADF0 /* Assets.xcassets in Resources */,
 				BE4D730920DBECCB00BFADF0 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BE5DA23C20B0607C00E57659 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BEF4855720B0A27500B93508 /* stations.csv in Resources */,
-				BE5DA24420B0607D00E57659 /* Assets.xcassets in Resources */,
-				BEBCD7F92254E90300A20E6A /* Intents.intentdefinition in Resources */,
-				BE5DA24220B0607C00E57659 /* Interface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BE5DA24820B0607D00E57659 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BEE2EC152119D04B00062105 /* Interface.storyboard in Resources */,
-				BEF4855920B0A28500B93508 /* stations.csv in Resources */,
-				BE466DFE20C359BB008EA5D8 /* Assets.xcassets in Resources */,
-				BECB0CB020B0EA80009E34DA /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -839,42 +827,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-manni-mac/Pods-manni-mac-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		12047646F4049C2B4541EFF9 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-manni-watch Extension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1D201B23D0C56926B41BC1A5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-manni-watch-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3F3728246E534D150DF1A8FD /* [CP] Check Pods Manifest.lock */ = {
@@ -911,24 +863,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D9463A839B747F6683EC2A28 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-manni-watch Extension/Pods-manni-watch Extension-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/DVB-watchOS4.0/DVB.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DVB.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-manni-watch Extension/Pods-manni-watch Extension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F4816E8657AAD73108A6C5F6 /* [CP] Check Pods Manifest.lock */ = {
@@ -1036,6 +970,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BE49BF5F22CF340E00E225E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE49BF6B22CF340E00E225E3 /* HostingController.swift in Sources */,
+				BE49BF6922CF340E00E225E3 /* ContentView.swift in Sources */,
+				BE49BF6D22CF340E00E225E3 /* ExtensionDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BE4D72FB20DBECCA00BFADF0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1047,30 +991,6 @@
 				BE11E26420DC05D100174008 /* IntExtension.swift in Sources */,
 				BE11E26320DC052800174008 /* Colors.swift in Sources */,
 				BE4D730220DBECCA00BFADF0 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BE5DA24620B0607D00E57659 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BE73E8D120C0318F00DAD51B /* LocationInterfaceController.swift in Sources */,
-				BE5DA25420B0607D00E57659 /* NotificationController.swift in Sources */,
-				BEBCD7FA2254E90400A20E6A /* Intents.intentdefinition in Sources */,
-				BECB0CAA20B0E2F9009E34DA /* DateExtension.swift in Sources */,
-				BECB0CA920B0D930009E34DA /* DepartureRowController.swift in Sources */,
-				BEF4854520B0837200B93508 /* Colors.swift in Sources */,
-				BEB2A1A720C3450200E7A79E /* ExtensionDelegate.swift in Sources */,
-				BEF4854E20B09DF500B93508 /* Station.swift in Sources */,
-				BECB0CA720B0D856009E34DA /* DeparturesInterfaceController.swift in Sources */,
-				BECB0CAB20B0E345009E34DA /* Config.swift in Sources */,
-				BEF4854720B084C200B93508 /* IntExtension.swift in Sources */,
-				BEE3D65520C03CC100C6D57F /* WKInterfaceMapExtension.swift in Sources */,
-				BEF4854F20B09DF700B93508 /* CSV.swift in Sources */,
-				BE89CAFB20B06DC300626C37 /* StopRowController.swift in Sources */,
-				BEB2A1A820C3450200E7A79E /* ComplicationController.swift in Sources */,
-				BE4975AD20B06B7900D5148D /* NearbyStopsInterfaceController.swift in Sources */,
-				BEF4854620B084BC00B93508 /* UIColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1087,15 +1007,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		BE5DA24D20B0607D00E57659 /* PBXTargetDependency */ = {
+		BE49BF5722CF340C00E225E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BE5DA24920B0607D00E57659 /* manni-watch Extension */;
-			targetProxy = BE5DA24C20B0607D00E57659 /* PBXContainerItemProxy */;
+			target = BE49BF5322CF340C00E225E3 /* manni-watch WatchKit App */;
+			targetProxy = BE49BF5622CF340C00E225E3 /* PBXContainerItemProxy */;
 		};
-		BE5DA25A20B0607E00E57659 /* PBXTargetDependency */ = {
+		BE49BF6622CF340E00E225E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BE5DA23D20B0607C00E57659 /* manni-watch */;
-			targetProxy = BE5DA25920B0607E00E57659 /* PBXContainerItemProxy */;
+			target = BE49BF6222CF340E00E225E3 /* manni-watch WatchKit Extension */;
+			targetProxy = BE49BF6522CF340E00E225E3 /* PBXContainerItemProxy */;
 		};
 		BEBCD7F12254E8DA00A20E6A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1134,22 +1054,20 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		BE49BF5922CF340C00E225E3 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE49BF5A22CF340C00E225E3 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		BE4D730720DBECCB00BFADF0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				BE4D730820DBECCB00BFADF0 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		BE5DA24020B0607C00E57659 /* Interface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BE5DA24120B0607C00E57659 /* Base */,
-				BE7C7CFE20C3672700095652 /* de */,
-				BE7C7D0020C3672900095652 /* en */,
-			);
-			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 		BEBCD7CA2254E62500A20E6A /* Intents.intentdefinition */ = {
@@ -1324,6 +1242,125 @@
 			};
 			name = Release;
 		};
+		BE49BF7522CF340E00E225E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"manni-watch WatchKit Extension\"/Preview\\ Content";
+				DEVELOPMENT_TEAM = S36925NV4E;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "manni-watch WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.philippmatthes.manni-watch.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		BE49BF7622CF340E00E225E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"manni-watch WatchKit Extension\"/Preview\\ Content";
+				DEVELOPMENT_TEAM = S36925NV4E;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "manni-watch WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.philippmatthes.manni-watch.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		BE49BF7922CF340E00E225E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S36925NV4E;
+				IBSC_MODULE = manni_watch_WatchKit_Extension;
+				INFOPLIST_FILE = "manni-watch WatchKit App/Info.plist";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.philippmatthes.manni-watch.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		BE49BF7A22CF340E00E225E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S36925NV4E;
+				IBSC_MODULE = manni_watch_WatchKit_Extension;
+				INFOPLIST_FILE = "manni-watch WatchKit App/Info.plist";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.philippmatthes.manni-watch.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		BE49BF7D22CF340E00E225E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S36925NV4E;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.philippmatthes.manni-watch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		BE49BF7E22CF340E00E225E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S36925NV4E;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.philippmatthes.manni-watch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		BE4D730C20DBECCB00BFADF0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 74B5628902DE319433140831 /* Pods-manni-mac.debug.xcconfig */;
@@ -1367,100 +1404,6 @@
 				SDKROOT = macosx;
 				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = on;
 				SWIFT_VERSION = 4.0;
-			};
-			name = Release;
-		};
-		BE5DA25C20B0607E00E57659 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5540C537CC606CF790B39F8B /* Pods-manni-watch.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S36925NV4E;
-				IBSC_MODULE = manni_watch_Extension;
-				INFOPLIST_FILE = "manni-watch/Info.plist";
-				INTENTS_CODEGEN_LANGUAGE = Swift;
-				PRODUCT_BUNDLE_IDENTIFIER = com.philippmatthes.manni.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.0;
-			};
-			name = Debug;
-		};
-		BE5DA25D20B0607E00E57659 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA9F918B9C5BA433D3C4950D /* Pods-manni-watch.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S36925NV4E;
-				IBSC_MODULE = manni_watch_Extension;
-				INFOPLIST_FILE = "manni-watch/Info.plist";
-				INTENTS_CODEGEN_LANGUAGE = Swift;
-				PRODUCT_BUNDLE_IDENTIFIER = com.philippmatthes.manni.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.0;
-			};
-			name = Release;
-		};
-		BE5DA25E20B0607E00E57659 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 82F5048C4DB35EB25F7C1512 /* Pods-manni-watch Extension.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S36925NV4E;
-				INFOPLIST_FILE = "manni-watch Extension/Info.plist";
-				INTENTS_CODEGEN_LANGUAGE = Swift;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.philippmatthes.manni.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = Debug;
-		};
-		BE5DA25F20B0607E00E57659 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F8A571D3F8C2B13565E4313C /* Pods-manni-watch Extension.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S36925NV4E;
-				INFOPLIST_FILE = "manni-watch Extension/Info.plist";
-				INTENTS_CODEGEN_LANGUAGE = Swift;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.philippmatthes.manni.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
@@ -1526,29 +1469,38 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		BE49BF7422CF340E00E225E3 /* Build configuration list for PBXNativeTarget "manni-watch WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE49BF7522CF340E00E225E3 /* Debug */,
+				BE49BF7622CF340E00E225E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE49BF7822CF340E00E225E3 /* Build configuration list for PBXNativeTarget "manni-watch WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE49BF7922CF340E00E225E3 /* Debug */,
+				BE49BF7A22CF340E00E225E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE49BF7C22CF340E00E225E3 /* Build configuration list for PBXNativeTarget "manni-watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE49BF7D22CF340E00E225E3 /* Debug */,
+				BE49BF7E22CF340E00E225E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BE4D730E20DBECCB00BFADF0 /* Build configuration list for PBXNativeTarget "manni-mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BE4D730C20DBECCB00BFADF0 /* Debug */,
 				BE4D730D20DBECCB00BFADF0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BE5DA26020B0607E00E57659 /* Build configuration list for PBXNativeTarget "manni-watch Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BE5DA25E20B0607E00E57659 /* Debug */,
-				BE5DA25F20B0607E00E57659 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BE5DA26220B0607E00E57659 /* Build configuration list for PBXNativeTarget "manni-watch" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BE5DA25C20B0607E00E57659 /* Debug */,
-				BE5DA25D20B0607E00E57659 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
