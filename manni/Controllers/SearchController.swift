@@ -66,10 +66,6 @@ class SearchController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
-    override var prefersStatusBarHidden: Bool {
-        return Device.runningOniPhoneX
-    }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }

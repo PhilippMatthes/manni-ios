@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1010"
+   LastUpgradeVersion = "1100"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BE5DA23D20B0607C00E57659"
+               BlueprintIdentifier = "BE49BF5022CF340B00E225E3"
                BuildableName = "manni-watch.app"
                BlueprintName = "manni-watch"
                ReferencedContainer = "container:manni.xcodeproj">
@@ -41,19 +41,17 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-      </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BE5DA23D20B0607C00E57659"
+            BlueprintIdentifier = "BE49BF5022CF340B00E225E3"
             BuildableName = "manni-watch.app"
             BlueprintName = "manni-watch"
             ReferencedContainer = "container:manni.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
+      <Testables>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -66,29 +64,19 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES"
-      notificationPayloadFile = "manni-watch Extension/PushNotificationPayload.apns">
+      allowLocationSimulation = "YES">
       <RemoteRunnable
          runnableDebuggingMode = "2"
          BundleIdentifier = "com.apple.Carousel"
          RemotePath = "/manni">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BE5DA23D20B0607C00E57659"
+            BlueprintIdentifier = "BE49BF5022CF340B00E225E3"
             BuildableName = "manni-watch.app"
             BlueprintName = "manni-watch"
             ReferencedContainer = "container:manni.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BE5DA23D20B0607C00E57659"
-            BuildableName = "manni-watch.app"
-            BlueprintName = "manni-watch"
-            ReferencedContainer = "container:manni.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
          <AdditionalOption
             key = "NSZombieEnabled"
@@ -118,7 +106,7 @@
          RemotePath = "/manni">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BE5DA23D20B0607C00E57659"
+            BlueprintIdentifier = "BE49BF5022CF340B00E225E3"
             BuildableName = "manni-watch.app"
             BlueprintName = "manni-watch"
             ReferencedContainer = "container:manni.xcodeproj">
@@ -127,7 +115,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BE5DA23D20B0607C00E57659"
+            BlueprintIdentifier = "BE49BF5022CF340B00E225E3"
             BuildableName = "manni-watch.app"
             BlueprintName = "manni-watch"
             ReferencedContainer = "container:manni.xcodeproj">

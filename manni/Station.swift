@@ -88,3 +88,13 @@ class Station {
     }
     
 }
+
+extension Station: Hashable {
+    static func == (lhs: Station, rhs: Station) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}

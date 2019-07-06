@@ -32,7 +32,7 @@ extension NSColor {
         NSColor(rgb: 0x4caf50, alpha: 1.0),
         NSColor(rgb: 0x8bc34a, alpha: 1.0),
         NSColor(rgb: 0xffc107, alpha: 1.0),
-        ]
+    ]
     
     static func color(forInt line: Int?) -> NSColor {
         return line == nil ? colors.first! : colors[line!.mod(colors.count)]

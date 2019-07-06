@@ -22,7 +22,7 @@
 		<key>manni-intents.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>23</integer>
+			<integer>21</integer>
 		</dict>
 		<key>manni-intentsUI.xcscheme_^#shared#^_</key>
 		<dict>
@@ -37,7 +37,7 @@
 		<key>manni-mac.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>24</integer>
+			<integer>22</integer>
 		</dict>
 		<key>manni-watch (Notification).xcscheme</key>
 		<dict>
@@ -47,7 +47,7 @@
 		<key>manni-watch WatchKit App.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>25</integer>
+			<integer>23</integer>
 		</dict>
 		<key>manni-watch.xcscheme</key>
 		<dict>

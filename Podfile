@@ -12,14 +12,14 @@ target 'manni' do
 
 end
 
-target 'manni-watch' do
+target 'manni-watch WatchKit App' do
 
   use_frameworks!
   pod 'DVB', :git => 'https://github.com/PhilippMatthes/DVB.git'
 
 end
 
-target 'manni-watch Extension' do
+target 'manni-watch WatchKit Extension' do
 
   use_frameworks!
   pod 'DVB', :git => 'https://github.com/PhilippMatthes/DVB.git'
@@ -40,9 +40,9 @@ target 'manni-intents' do
 
 end
 
-target 'manni-intentsUI' do
+#target 'manni-intentsUI' do
 
-  use_frameworks!
-  pod 'DVB', :git => 'https://github.com/PhilippMatthes/DVB.git'
+#  use_frameworks!
+#  pod 'DVB', :git => 'https://github.com/PhilippMatthes/DVB.git'
 
-end
+#end

@@ -1,13 +1,13 @@
 PODS:
-  - BRYXBanner (0.8.3)
+  - BRYXBanner (0.8.4)
   - DVB (2.3.0)
-  - Material (2.16.4):
-    - Material/Core (= 2.16.4)
-  - Material/Core (2.16.4):
-    - Motion (~> 1.4.3)
-  - Motion (1.4.3):
-    - Motion/Core (= 1.4.3)
-  - Motion/Core (1.4.3)
+  - Material (3.1.6):
+    - Material/Core (= 3.1.6)
+  - Material/Core (3.1.6):
+    - Motion (~> 3.1.1)
+  - Motion (3.1.1):
+    - Motion/Core (= 3.1.1)
+  - Motion/Core (3.1.1)
 
 DEPENDENCIES:
   - BRYXBanner
@@ -30,11 +30,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/PhilippMatthes/DVB.git
 
 SPEC CHECKSUMS:
-  BRYXBanner: 8cf1b119792e1cee8d7ba107297ef89f7409bc53
+  BRYXBanner: 4fbd266f96ce000e4c6cc9a0558c446bd88d9801
   DVB: b3ae57ed431d4e1c7a17bc1b5bccfd4d60ff62c8
-  Material: 4ed78690b09ffd148b5ffab6b4367fb1d8da1cd3
-  Motion: 153ba49692997888556c7a95207278a8b1f8be95
+  Material: 9b30613deb1b79487eeede5e4f90cbff084311ea
+  Motion: f115b33f36cc52472a25a965daa89b3859817de0
 
-PODFILE CHECKSUM: 8fc210bb63151e228e5be29de46bed18179a851d
+PODFILE CHECKSUM: 8e1961c430662cf77ed4556b95a9617015973367
 
 COCOAPODS: 1.5.3

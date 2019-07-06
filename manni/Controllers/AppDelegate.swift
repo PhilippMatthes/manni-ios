@@ -10,7 +10,6 @@ import UIKit
 import DVB
 //import SwiftRater
 import CoreLocation
-import WatchKit
 import MapKit
 import Material
 

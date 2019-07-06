@@ -7,10 +7,13 @@
 //
 
 import SwiftUI
+import DVB
 
 struct ContentView : View {
     var body: some View {
-        Text("Hello World")
+        let location = CLLocationCoordinate2D(latitude: 51.050407, longitude: 13.737262)
+        
+        return Stop.StopList(location: location)
     }
 }
 
