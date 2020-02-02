@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		601F991BF36BE67B31FCCE42 /* Pods_manni_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D4BBB96EF853D7F691F3047 /* Pods_manni_ios.framework */; };
+		BE5AABFB23E756A9006EE1BD /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5AABFA23E756A9006EE1BD /* SearchController.swift */; };
+		BE6213F923E76EAA00FD638E /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6213F823E76EAA00FD638E /* StopTableViewCell.swift */; };
+		BEBA661523E75B6A00CA99CF /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA661423E75B6A00CA99CF /* SearchView.swift */; };
+		BEBA661A23E7639300CA99CF /* SkeuomorphismView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA661923E7639300CA99CF /* SkeuomorphismView.swift */; };
 		BEDAA49023E7541900A25187 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDAA48F23E7541900A25187 /* AppDelegate.swift */; };
-		BEDAA49223E7541900A25187 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDAA49123E7541900A25187 /* SceneDelegate.swift */; };
-		BEDAA49423E7541900A25187 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDAA49323E7541900A25187 /* ContentView.swift */; };
 		BEDAA49623E7541A00A25187 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEDAA49523E7541A00A25187 /* Assets.xcassets */; };
 		BEDAA49923E7541A00A25187 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEDAA49823E7541A00A25187 /* Preview Assets.xcassets */; };
 		BEDAA49C23E7541A00A25187 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDAA49A23E7541A00A25187 /* LaunchScreen.storyboard */; };
@@ -19,10 +21,12 @@
 /* Begin PBXFileReference section */
 		2D4BBB96EF853D7F691F3047 /* Pods_manni_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_manni_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C386E87EF8C59FA3321A287 /* Pods-manni-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-manni-ios/Pods-manni-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		BE5AABFA23E756A9006EE1BD /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		BE6213F823E76EAA00FD638E /* StopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopTableViewCell.swift; sourceTree = "<group>"; };
+		BEBA661423E75B6A00CA99CF /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		BEBA661923E7639300CA99CF /* SkeuomorphismView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeuomorphismView.swift; sourceTree = "<group>"; };
 		BEDAA48C23E7541900A25187 /* manni-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "manni-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEDAA48F23E7541900A25187 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BEDAA49123E7541900A25187 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BEDAA49323E7541900A25187 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BEDAA49523E7541A00A25187 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEDAA49823E7541A00A25187 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BEDAA49B23E7541A00A25187 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -59,6 +63,39 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BE6213FA23E76FFD00FD638E /* Skeuomorphism */ = {
+			isa = PBXGroup;
+			children = (
+				BEBA661923E7639300CA99CF /* SkeuomorphismView.swift */,
+			);
+			path = Skeuomorphism;
+			sourceTree = "<group>";
+		};
+		BE6213FB23E7701000FD638E /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				BE5AABFA23E756A9006EE1BD /* SearchController.swift */,
+				BEBA661423E75B6A00CA99CF /* SearchView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		BE6213FC23E7701C00FD638E /* Stops */ = {
+			isa = PBXGroup;
+			children = (
+				BE6213F823E76EAA00FD638E /* StopTableViewCell.swift */,
+			);
+			path = Stops;
+			sourceTree = "<group>";
+		};
+		BEBA661823E762E600CA99CF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				BE6213FA23E76FFD00FD638E /* Skeuomorphism */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		BEDAA48323E7541900A25187 = {
 			isa = PBXGroup;
 			children = (
@@ -80,9 +117,10 @@
 		BEDAA48E23E7541900A25187 /* manni-ios */ = {
 			isa = PBXGroup;
 			children = (
+				BE6213FC23E7701C00FD638E /* Stops */,
+				BE6213FB23E7701000FD638E /* Search */,
+				BEBA661823E762E600CA99CF /* Components */,
 				BEDAA48F23E7541900A25187 /* AppDelegate.swift */,
-				BEDAA49123E7541900A25187 /* SceneDelegate.swift */,
-				BEDAA49323E7541900A25187 /* ContentView.swift */,
 				BEDAA49523E7541A00A25187 /* Assets.xcassets */,
 				BEDAA49A23E7541A00A25187 /* LaunchScreen.storyboard */,
 				BEDAA49D23E7541A00A25187 /* Info.plist */,
@@ -194,14 +232,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-manni-ios/Pods-manni-ios-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DVB/DVB.framework",
-				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
-				"${BUILT_PRODUCTS_DIR}/gausskrueger/gausskrueger.framework",
+				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
+				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DVB.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/gausskrueger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -215,9 +253,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEBA661A23E7639300CA99CF /* SkeuomorphismView.swift in Sources */,
+				BE6213F923E76EAA00FD638E /* StopTableViewCell.swift in Sources */,
 				BEDAA49023E7541900A25187 /* AppDelegate.swift in Sources */,
-				BEDAA49223E7541900A25187 /* SceneDelegate.swift in Sources */,
-				BEDAA49423E7541900A25187 /* ContentView.swift in Sources */,
+				BEBA661523E75B6A00CA99CF /* SearchView.swift in Sources */,
+				BE5AABFB23E756A9006EE1BD /* SearchController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,7 +325,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -339,7 +379,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -359,6 +399,7 @@
 				DEVELOPMENT_TEAM = S36925NV4E;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "manni-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -380,6 +421,7 @@
 				DEVELOPMENT_TEAM = S36925NV4E;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "manni-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

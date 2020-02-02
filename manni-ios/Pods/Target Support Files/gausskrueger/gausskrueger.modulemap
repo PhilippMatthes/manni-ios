@@ -1,6 +1,0 @@
-framework module gausskrueger {
-  umbrella header "gausskrueger-umbrella.h"
-
-  export *
-  module * { export * }
-}

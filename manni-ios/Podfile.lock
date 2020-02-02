@@ -1,24 +1,37 @@
 PODS:
-  - DVB (2.3.0):
-    - gausskrueger (~> 0.3)
-    - Marshal (~> 1.2.4)
-  - gausskrueger (0.3.0)
-  - Marshal (1.2.7)
+  - DVB (2.3.0)
+  - Material (3.1.8):
+    - Material/Core (= 3.1.8)
+  - Material/Core (3.1.8):
+    - Motion (~> 3.1.1)
+  - Motion (3.1.3):
+    - Motion/Core (= 3.1.3)
+  - Motion/Core (3.1.3)
 
 DEPENDENCIES:
-  - DVB
+  - DVB (from `https://github.com/manni-app/DVB.git`, branch `master`)
+  - Material
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - DVB
-    - gausskrueger
-    - Marshal
+    - Material
+    - Motion
+
+EXTERNAL SOURCES:
+  DVB:
+    :branch: master
+    :git: https://github.com/manni-app/DVB.git
+
+CHECKOUT OPTIONS:
+  DVB:
+    :commit: 59a05489cd8c96f03f90de56949a40b47e951585
+    :git: https://github.com/manni-app/DVB.git
 
 SPEC CHECKSUMS:
-  DVB: c19b24dc66bbf83250b5d21602af451754d42f81
-  gausskrueger: b0cc926ceefe712174773eb02d8b3cefceb008ab
-  Marshal: ef480864a6af10a63f67be7e55bb5d8fe67a16d9
+  DVB: b3ae57ed431d4e1c7a17bc1b5bccfd4d60ff62c8
+  Material: a2a3f400a3b549d53ef89e56c58c4535b29db387
+  Motion: cf1e060e489f6661126374d5c60dbd2ed991605c
 
-PODFILE CHECKSUM: be775108341deb3913c736aadc5e299089350604
+PODFILE CHECKSUM: 9662c4fe1e8ef0ef119acf18e58904290190fe9d
 
 COCOAPODS: 1.5.3

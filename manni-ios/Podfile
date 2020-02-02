@@ -6,5 +6,6 @@ target 'manni-ios' do
   use_frameworks!
 
   # Pods for manni-ios
-  pod 'DVB'
+  pod 'DVB', :git => 'https://github.com/manni-app/DVB.git', :branch => 'master'
+  pod 'Material'
 end
