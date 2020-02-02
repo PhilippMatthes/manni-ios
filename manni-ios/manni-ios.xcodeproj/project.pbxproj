@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		601F991BF36BE67B31FCCE42 /* Pods_manni_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D4BBB96EF853D7F691F3047 /* Pods_manni_ios.framework */; };
 		BEDAA49023E7541900A25187 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDAA48F23E7541900A25187 /* AppDelegate.swift */; };
 		BEDAA49223E7541900A25187 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDAA49123E7541900A25187 /* SceneDelegate.swift */; };
 		BEDAA49423E7541900A25187 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDAA49323E7541900A25187 /* ContentView.swift */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D4BBB96EF853D7F691F3047 /* Pods_manni_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_manni_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C386E87EF8C59FA3321A287 /* Pods-manni-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-manni-ios/Pods-manni-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		BEDAA48C23E7541900A25187 /* manni-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "manni-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEDAA48F23E7541900A25187 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEDAA49123E7541900A25187 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +27,7 @@
 		BEDAA49823E7541A00A25187 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BEDAA49B23E7541A00A25187 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BEDAA49D23E7541A00A25187 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6419AB9B161AD29027F159A /* Pods-manni-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-manni-ios/Pods-manni-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				601F991BF36BE67B31FCCE42 /* Pods_manni_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9D0EA4BB0C1043A17C3F5731 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2D4BBB96EF853D7F691F3047 /* Pods_manni_ios.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A747C1C627FA09546CA9ECA2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5C386E87EF8C59FA3321A287 /* Pods-manni-ios.debug.xcconfig */,
+				F6419AB9B161AD29027F159A /* Pods-manni-ios.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BEDAA48323E7541900A25187 = {
 			isa = PBXGroup;
 			children = (
 				BEDAA48E23E7541900A25187 /* manni-ios */,
 				BEDAA48D23E7541900A25187 /* Products */,
+				A747C1C627FA09546CA9ECA2 /* Pods */,
+				9D0EA4BB0C1043A17C3F5731 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,9 +106,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BEDAA4A023E7541A00A25187 /* Build configuration list for PBXNativeTarget "manni-ios" */;
 			buildPhases = (
+				0D3E2FA9E66F246909A2FAB9 /* [CP] Check Pods Manifest.lock */,
 				BEDAA48823E7541900A25187 /* Sources */,
 				BEDAA48923E7541900A25187 /* Frameworks */,
 				BEDAA48A23E7541900A25187 /* Resources */,
+				2880759BB3FDC8873853FAAE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -140,6 +166,49 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0D3E2FA9E66F246909A2FAB9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-manni-ios-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2880759BB3FDC8873853FAAE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-manni-ios/Pods-manni-ios-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DVB/DVB.framework",
+				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
+				"${BUILT_PRODUCTS_DIR}/gausskrueger/gausskrueger.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DVB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/gausskrueger.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-manni-ios/Pods-manni-ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BEDAA48823E7541900A25187 /* Sources */ = {
@@ -282,6 +351,7 @@
 		};
 		BEDAA4A123E7541A00A25187 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C386E87EF8C59FA3321A287 /* Pods-manni-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -302,6 +372,7 @@
 		};
 		BEDAA4A223E7541A00A25187 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6419AB9B161AD29027F159A /* Pods-manni-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
