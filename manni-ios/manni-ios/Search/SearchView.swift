@@ -11,18 +11,27 @@ import Material
 
 class SearchView: SkeuomorphismView {
     
-    public let textField = TextField()
+    public let textField = UITextField()
+    public let searchButton = SkeuomorphismIconButton(image: Icon.search, tintColor: Color.grey.darken4)
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        prepareTextField()
-    }
-    
-    fileprivate func prepareTextField() {
+        contentView.layout(searchButton)
+            .right()
+            .top()
+            .bottom()
+            .width(64)
+            .height(64)
+        searchButton.pulseColor = Color.blue.base
+            
         contentView.layout(textField)
-            .edges(top: 12, left: 24, bottom: 12, right: 24)
-        textField.isPlaceholderAnimated = false
+            .left(24)
+            .top(8)
+            .bottom(8)
+            .before(searchButton, 12)
+            .height(48)
+        textField.font = RobotoFont.light(with: 24)
     }
     
 }

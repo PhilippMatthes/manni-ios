@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 import Material
 import DVB
 
@@ -14,8 +15,10 @@ import DVB
 class SearchController: ViewController {
     fileprivate let searchViewBackground = UIVisualEffectView()
     fileprivate let searchView = SearchView()
+
     fileprivate let tableView = TableView()
     
+    fileprivate var locationManager = CLLocationManager()
     fileprivate var stops = [Stop]()
     
     override func viewDidLoad() {
@@ -25,15 +28,7 @@ class SearchController: ViewController {
         prepareTableView()
         prepareSearchViewBackground()
         prepareSearchView()
-        
-        Stop.find("Tharandter Straße") {
-            result in
-            guard let success = result.success else {return}
-            self.stops = success.stops
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+        prepareLocationManager()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,7 +47,10 @@ class SearchController: ViewController {
 
 extension SearchController {
     fileprivate func prepareBackgroundView() {
-        view.backgroundColor = Color.blue.base
+        let gradient = CAGradientLayer()
+        gradient.colors = [UIColor("#ECE9E6").cgColor, UIColor("#E0E0E0").cgColor]
+        gradient.frame = self.view.bounds
+        self.view.layer.addSublayer(gradient)
     }
     
     fileprivate func prepareTableView() {
@@ -79,7 +77,42 @@ extension SearchController {
     
     fileprivate func prepareSearchView() {
         searchViewBackground.contentView.layout(searchView)
-            .edgesSafe(top: 12, left: 12, bottom: 12, right: 12)
+            .edgesSafe(top: 24, left: 24, bottom: 24, right: 24)
+        searchView.textField.delegate = self
+        searchView.searchButton.addTarget(self, action: #selector(searchStop), for: .touchUpInside)
+    }
+    
+    fileprivate func prepareLocationManager() {
+        locationManager.delegate = self
+        let authorizationStatus = CLLocationManager.authorizationStatus()
+        if authorizationStatus == .notDetermined {
+            locationManager.requestWhenInUseAuthorization()
+        } else if authorizationStatus == .authorizedWhenInUse || authorizationStatus == .authorizedAlways {
+            locationManager.startUpdatingLocation()
+        }
+    }
+}
+
+extension SearchController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchStop()
+        return true
+    }
+    
+    @objc func searchStop() {
+        searchView.textField.resignFirstResponder()
+        guard let query = searchView.textField.text, query != "" else {
+            return
+        }
+        
+        Stop.find(query) {
+            result in
+            guard let success = result.success else {return}
+            self.stops = success.stops
+            DispatchQueue.main.async {
+                self.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
+            }
+        }
     }
 }
 
@@ -98,6 +131,29 @@ extension SearchController {
     }
 }
 
+extension SearchController: CLLocationManagerDelegate {
+    static let didUpdateLocation = Notification.Name("didUpdateLocation")
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse || status == .authorizedAlways {
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let currentLocation = manager.location else {return}
+        Stop.findNear(coord: currentLocation.coordinate) {
+            result in
+            guard let success = result.success else {return}
+            self.stops = success.stops
+            DispatchQueue.main.async {
+                self.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
+            }
+        }
+        NotificationCenter.default.post(name: SearchController.didUpdateLocation, object: nil, userInfo: ["location": currentLocation])
+    }
+}
+
 extension SearchController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return stops.count
@@ -108,6 +164,17 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
             withIdentifier: StopTableViewCell.reuseIdentifier, for: indexPath
         ) as! StopTableViewCell
         cell.stop = stops[indexPath.row]
+        if let location = locationManager.location {
+            cell.location = location
+        }
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let stop = stops[indexPath.row]
+        let controller = DeparturesController()
+        controller.stop = stop
+        show(controller, sender: self)
+    }
+
 }
