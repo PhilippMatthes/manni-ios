@@ -64,6 +64,7 @@ class StopTableViewCell: UITableViewCell {
             .width(64)
             .centerY()
         rightButton.skeuomorphismView.lightColor = Color.grey.lighten5
+        rightButton.isUserInteractionEnabled = false
         
         contentView.layout(leftBorderView)
             .left(12)

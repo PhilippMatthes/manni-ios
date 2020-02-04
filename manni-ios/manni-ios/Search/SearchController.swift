@@ -191,7 +191,7 @@ extension SearchController {
     
     fileprivate func prepareSearchView() {
         searchViewBackground.contentView.layout(searchView)
-            .edgesSafe(top: 24, left: 24, bottom: 24, right: 24)
+            .edges(top: 24, left: 24, bottom: 24, right: 24)
                 
         searchView.textField.delegate = self
         searchView.searchButton.addTarget(self, action: #selector(searchStop), for: .touchUpInside)
@@ -246,11 +246,7 @@ extension SearchController {
             let keyboardFrameValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         else {return}
         let keyboardFrame = view.convert(keyboardFrameValue.cgRectValue, from: nil)
-        if #available(iOS 11.0, *), let safeAreaBottomPadding = UIApplication.shared.keyWindow?.safeAreaInsets.bottom {
-            view.frame.origin.y = -keyboardFrame.bounds.maxY + safeAreaBottomPadding
-        } else {
-            view.frame.origin.y = -keyboardFrame.bounds.maxY
-        }
+        view.frame.origin.y = -keyboardFrame.bounds.maxY
         UIView.animate(withDuration: 0.2) {
             self.searchViewBackground.layer.cornerRadius = 0.0
         }
