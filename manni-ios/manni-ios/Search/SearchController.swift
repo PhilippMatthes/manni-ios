@@ -14,14 +14,14 @@ import AVFoundation
 
 
 class SearchController: ViewController {
-    fileprivate var gpsFetchWasTriggered = false {
+    fileprivate var gpsFetchWasTriggered: Bool? {
         didSet {
-            if gpsFetchWasTriggered {
+            if gpsFetchWasTriggered == true {
                 gpsView.startAnimating()
                 UIView.animate(withDuration: 1.0) {
                     self.tableView.contentInset = .init(top: self.gpsViewExpandedHeight, left: 0, bottom: 128, right: 0)
                 }
-            } else {
+            } else if gpsFetchWasTriggered == false {
                 gpsView.stopAnimating()
                 UIView.animate(withDuration: 1.0) {
                     self.tableView.contentInset = .init(top: self.gpsViewCollapsedHeight, left: 0, bottom: 128, right: 0)
@@ -32,10 +32,39 @@ class SearchController: ViewController {
     fileprivate var gpsViewExpandedHeight: CGFloat = 168
     fileprivate let gpsViewCollapsedHeight: CGFloat = 32
     
+    fileprivate var showsGreeting: Bool? {
+        didSet {
+            if showsGreeting == true {
+                UIView.animate(withDuration: 1.0) {
+                    self.greetingLabel.alpha = 1.0
+                }
+            } else if showsGreeting == false {
+                UIView.animate(withDuration: 1.0) {
+                    self.greetingLabel.alpha = 0.0
+                }
+            }
+        }
+    }
+    
+    fileprivate var showsTutorial: Bool? {
+        didSet {
+            if showsTutorial == true {
+                UIView.animate(withDuration: 1.0) {
+                    self.tutorialLabel.alpha = 1.0
+                }
+            } else if showsTutorial == false {
+                UIView.animate(withDuration: 1.0) {
+                    self.tutorialLabel.alpha = 0.0
+                }
+            }
+        }
+    }
+    
     fileprivate let searchViewBackground = UIVisualEffectView()
     fileprivate let gpsView = GPSView()
     fileprivate let searchView = SearchView()
-
+    fileprivate let greetingLabel = UILabel()
+    fileprivate let tutorialLabel = UILabel()
     fileprivate let tableView = TableView()
     
     fileprivate var locationManager = CLLocationManager()
@@ -45,6 +74,8 @@ class SearchController: ViewController {
         super.viewDidLoad()
         
         prepareBackground()
+        prepareGreeting()
+        prepareTutorial()
         prepareTableView()
         prepareGPSView()
         prepareSearchViewBackground()
@@ -55,6 +86,8 @@ class SearchController: ViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        AppDelegate.viewTapDelegate = self
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -62,11 +95,20 @@ class SearchController: ViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        AppDelegate.viewTapDelegate = nil
+        
         NotificationCenter.default.removeObserver(self)
     }
-    
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    @available(iOS 11.0, *)
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        
+        print(self.view.safeAreaInsets)
     }
 }
 
@@ -75,17 +117,41 @@ extension SearchController {
         view.backgroundColor = UIColor("#ECE9E6")
     }
     
-    fileprivate func prepareGPSView() {
-        gpsView.contentView.backgroundColor = Color.blue.base
-        gpsView.cornerRadius = 32
-        tableView.insertSubview(gpsView, at: 0)
-        gpsView.translatesAutoresizingMaskIntoConstraints = false
-        gpsView.startAnimating()
-        
-        NSLayoutConstraint(item: gpsView, attribute: .height, relatedBy: .equal, toItem: tableView, attribute: .height, multiplier: 1.0, constant: 0.0).isActive = true
-        NSLayoutConstraint(item: gpsView, attribute: .width, relatedBy: .equal, toItem: tableView, attribute: .width, multiplier: 1.0, constant: 0.0).isActive = true
-        NSLayoutConstraint(item: gpsView, attribute: .bottom, relatedBy: .equal, toItem: tableView, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
-        NSLayoutConstraint(item: gpsView, attribute: .centerX, relatedBy: .equal, toItem: tableView, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
+    fileprivate func prepareGreeting() {
+        view.layout(greetingLabel)
+            .left(48)
+            .right(48)
+            .top(128)
+        greetingLabel.textColor = Color.blue.base
+        greetingLabel.font = RobotoFont.bold(with: 48)
+        greetingLabel.numberOfLines = 0
+        greetingLabel.text = [
+            "Hi!",
+            "Hallöle!",
+            "Glück auf!",
+            "Moin moin!",
+            "Hallo!",
+            "Guten Tag!",
+        ].randomElement()!
+        showsGreeting = true
+    }
+    
+    fileprivate func prepareTutorial() {
+        view.layout(tutorialLabel)
+            .left(48)
+            .right(48)
+            .below(greetingLabel, 8)
+        tutorialLabel.textColor = Color.grey.darken4
+        tutorialLabel.font = RobotoFont.light(with: 24)
+        tutorialLabel.numberOfLines = 0
+        let choice = [
+            "Gute Fahrt!",
+            "Auf gehts!",
+            "Und los!",
+            "Fahrkarte nicht vergessen!"
+        ].randomElement()!
+        tutorialLabel.text = "Du kannst nach unten wischen, um Haltestellen in deiner Nähe zu finden. Alternativ gibt es unten eine Suchleiste. \(choice)"
+        showsTutorial = true
     }
     
     fileprivate func prepareTableView() {
@@ -101,6 +167,18 @@ extension SearchController {
         tableView.backgroundColor = .clear
     }
     
+    fileprivate func prepareGPSView() {
+        gpsView.contentView.backgroundColor = Color.blue.base
+        gpsView.cornerRadius = 32
+        tableView.insertSubview(gpsView, at: 0)
+        gpsView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint(item: gpsView, attribute: .height, relatedBy: .equal, toItem: tableView, attribute: .height, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: gpsView, attribute: .width, relatedBy: .equal, toItem: tableView, attribute: .width, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: gpsView, attribute: .bottom, relatedBy: .equal, toItem: tableView, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: gpsView, attribute: .centerX, relatedBy: .equal, toItem: tableView, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
+    }
+    
     fileprivate func prepareSearchViewBackground() {
         view.layout(searchViewBackground)
             .bottom()
@@ -114,12 +192,24 @@ extension SearchController {
     fileprivate func prepareSearchView() {
         searchViewBackground.contentView.layout(searchView)
             .edgesSafe(top: 24, left: 24, bottom: 24, right: 24)
+                
         searchView.textField.delegate = self
         searchView.searchButton.addTarget(self, action: #selector(searchStop), for: .touchUpInside)
     }
     
     fileprivate func prepareLocationManager() {
         locationManager.delegate = self
+    }
+}
+
+extension SearchController: ViewTapDelegate {
+    func viewWasTapped() {
+        if (showsTutorial == true) {
+            showsTutorial = false
+        }
+        if (showsGreeting == true) {
+            showsGreeting = false
+        }
     }
 }
 
@@ -184,6 +274,7 @@ extension SearchController: CLLocationManagerDelegate {
                 UINotificationFeedbackGenerator().notificationOccurred(.warning)
             }
             locationManager.requestWhenInUseAuthorization()
+            gpsFetchWasTriggered = false
             return
         }
         if authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse {
@@ -216,19 +307,30 @@ extension SearchController: CLLocationManagerDelegate {
         gpsFetchWasTriggered = false
     }
     
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        requestLocation()
-    }
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        gpsFetchWasTriggered = false
-        if #available(iOS 10.0, *) {
-            UINotificationFeedbackGenerator().notificationOccurred(.success)
-        }
         let currentLocation = manager.location!
         Stop.findNear(coord: currentLocation.coordinate) {
             result in
-            guard let success = result.success else {return}
+            
+            DispatchQueue.main.async {
+                self.gpsFetchWasTriggered = false
+            }
+            
+            guard let success = result.success else {
+                if #available(iOS 10.0, *) {
+                    UINotificationFeedbackGenerator()
+                        .notificationOccurred(.error)
+                }
+                let alert = UIAlertController(title: "Es gab einen Fehler bei der GPS-Ortung.", message: "Bitte versuche es später erneut.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+
+            if #available(iOS 10.0, *) {
+                UINotificationFeedbackGenerator().notificationOccurred(.success)
+            }
+            
             self.stops = success.stops
             if let location = self.locationManager.location {
                 self.stops.sort {$0.distance(from: location) ?? 0 < $1.distance(from: location) ?? 0}
@@ -264,11 +366,14 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
         let stop = stops[indexPath.row]
         let controller = DeparturesController()
         controller.stop = stop
-        show(controller, sender: self)
+        if let location = locationManager.location {
+            controller.location = location
+        }
+        present(controller, animated: true)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y < -gpsViewExpandedHeight && !gpsFetchWasTriggered {
+        if scrollView.contentOffset.y < -gpsViewExpandedHeight && (gpsFetchWasTriggered == false || gpsFetchWasTriggered == nil) {
             gpsFetchWasTriggered = true
             requestLocation()
         }

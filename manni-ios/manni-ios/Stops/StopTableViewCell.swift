@@ -24,10 +24,6 @@ class StopTableViewCell: UITableViewCell {
             leftBorderView.lightColor = stop?.color ?? .white
             stopNameLabel.text = stop?.name
             stopLocationLabel.text = stop?.region ?? "Dresden"
-            
-            if let stop = stop {
-                stopNameLabel.motionIdentifier = "stopNameLabel_\(stop.id)"
-            }
         }
     }
     
@@ -58,7 +54,7 @@ class StopTableViewCell: UITableViewCell {
         backgroundColor = .clear
         
         contentView.layout(skeuomorphismView)
-            .edges(top: 12, left: 12, bottom: 12, right: 12)
+            .edges(top: 18, left: 12, bottom: 18, right: 12)
         skeuomorphismView.contentView.backgroundColor = Color.grey.lighten4
         skeuomorphismView.cornerRadius = 12
         
@@ -71,13 +67,13 @@ class StopTableViewCell: UITableViewCell {
         
         contentView.layout(leftBorderView)
             .left(12)
-            .top(12)
-            .bottom(12)
+            .top(18)
+            .bottom(18)
             .width(12)
         leftBorderView.cornerRadius = 6
         
         contentView.layout(stopNameLabel)
-            .top(24)
+            .top(32)
             .left(48)
             .right(112)
         stopNameLabel.font = RobotoFont.bold(with: 24)
@@ -88,7 +84,7 @@ class StopTableViewCell: UITableViewCell {
             .below(stopNameLabel, 8)
             .left(48)
             .right(112)
-            .bottom(24)
+            .bottom(32)
         stopLocationLabel.font = RobotoFont.light(with: 18)
         stopLocationLabel.textColor = Color.grey.darken2
         stopLocationLabel.numberOfLines = 0

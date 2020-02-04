@@ -49,7 +49,7 @@ class DepartureCollectionViewCell: UICollectionViewCell {
         skeuomorphismView.contentView.layout(lineNameLabel)
             .topLeft(top: 12, left: 12)
             .right(12)
-        lineNameLabel.font = RobotoFont.bold(with: 48)
+        lineNameLabel.font = RobotoFont.bold(with: 38)
         
         skeuomorphismView.contentView.layout(directionLabel)
             .below(lineNameLabel, 4)

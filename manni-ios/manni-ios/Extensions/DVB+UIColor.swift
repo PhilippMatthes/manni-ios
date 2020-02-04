@@ -10,11 +10,15 @@ import DVB
 
 class Colors {
     public static var all = [
-        UIColor("#4b7bec"),
-        UIColor("#26de81"),
-        UIColor("#45aaf2"),
-        UIColor("#a55eea"),
-        UIColor("#eb3b5a"),
+        UIColor("#2191FB"),
+        UIColor("#2364AA"),
+        UIColor("#33658A"),
+        UIColor("#86BBD8"),
+        UIColor("#2F4858"),
+        UIColor("#01295F"),
+        UIColor("#2364AA"),
+        UIColor("#054A91"),
+        UIColor("#3E7CB1"),
     ]
 }
 

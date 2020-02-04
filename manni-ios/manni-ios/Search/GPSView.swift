@@ -11,21 +11,18 @@ import Material
 
 class GPSView: SkeuomorphismView {
     
-    fileprivate var images = [UIImage]()
+    fileprivate let startImageView = UIImageView()
     fileprivate let animatingImageView = UIImageView()
     fileprivate let pullIcon = UIImageView(image: Icon.arrowDownward)
     
     override func prepare() {
         super.prepare()
-        
-        for i in 0...119 {
-            guard let image = UIImage(named: "satellit\(i).png") else {
-                fatalError()
-            }
-            images.append(image)
+        animatingImageView.animationImages = (0...119).map {
+            UIImage(named: "satellit\($0).png")!
         }
-        animatingImageView.animationImages = images
         animatingImageView.animationDuration = 4
+        
+        startImageView.image = UIImage(named: "satellit0.png")
     }
     
     override func layoutSubviews() {
@@ -33,11 +30,13 @@ class GPSView: SkeuomorphismView {
         
         contentView.backgroundColor = UIColor(patternImage: UIImage(named: "stars")!)
         
-        contentView.layout(animatingImageView)
-            .bottom(40)
-            .centerX()
-            .height(128)
-            .width(128)
+        for imageView in [startImageView, animatingImageView] {
+            contentView.layout(imageView)
+                .bottom(40)
+                .centerX()
+                .height(128)
+                .width(128)
+        }
         
         contentView.layout(pullIcon)
             .bottom(4)
@@ -48,10 +47,12 @@ class GPSView: SkeuomorphismView {
     }
     
     public func startAnimating() {
+        startImageView.alpha = 0.0
         animatingImageView.startAnimating()
     }
     
     public func stopAnimating() {
+        startImageView.alpha = 1.0
         animatingImageView.stopAnimating()
     }
     
