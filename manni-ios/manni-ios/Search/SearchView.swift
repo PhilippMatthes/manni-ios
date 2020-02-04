@@ -24,7 +24,7 @@ class SearchView: SkeuomorphismView {
             .width(64)
             .height(64)
         searchButton.pulseColor = Color.blue.base
-            
+        
         contentView.layout(textField)
             .left(24)
             .top(8)

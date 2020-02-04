@@ -28,17 +28,12 @@ class StopTableViewCell: UITableViewCell {
             if let stop = stop {
                 stopNameLabel.motionIdentifier = "stopNameLabel_\(stop.id)"
             }
-            
         }
     }
     
     public var location: CLLocation? {
         didSet {
-            if let destination = stop?.location, let location = location {
-                let latitude = destination.latitude
-                let longitude = destination.longitude
-                let coordinate = CLLocation(latitude: latitude, longitude: longitude)
-                let distance = Int(coordinate.distance(from: location))
+            if let location = location, let distance = stop?.distance(from: location) {
                 let distanceStr = distance > 1000 ? "\(distance / 1000) km" : "\(distance) m"
                 stopLocationLabel.text = "\(distanceStr) entfernt, in \(stop?.region ?? "Dresden")"
             }

@@ -16,6 +16,7 @@ class SkeuomorphismIconButton: IconButton {
         super.prepare()
         layout(skeuomorphismView).edges()
         skeuomorphismView.layer.zPosition = -1
+        skeuomorphismView.isUserInteractionEnabled = false
     }
     
 }

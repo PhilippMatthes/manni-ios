@@ -39,26 +39,30 @@ class SkeuomorphismView: View {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         lightShadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
-        lightShadowLayer.fillColor = UIColor.clear.cgColor
-        lightShadowLayer.shadowColor = lightColor.cgColor
         lightShadowLayer.shadowPath = lightShadowLayer.path
-        lightShadowLayer.shadowOffset = CGSize(width: -3.0, height: -3.0)
-        lightShadowLayer.shadowOpacity = 0.6
-        lightShadowLayer.shadowRadius = 4
-        layer.insertSublayer(lightShadowLayer, at: 0)
-        
+        if layer.sublayers?.contains(lightShadowLayer) == false {
+            lightShadowLayer.fillColor = UIColor.clear.cgColor
+            lightShadowLayer.shadowColor = lightColor.cgColor
+            lightShadowLayer.shadowOffset = CGSize(width: -3.0, height: -3.0)
+            lightShadowLayer.shadowOpacity = 0.6
+            lightShadowLayer.shadowRadius = 4
+            layer.insertSublayer(lightShadowLayer, at: 0)
+        }
         darkShadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
-        darkShadowLayer.fillColor = UIColor.clear.cgColor
-        darkShadowLayer.shadowColor = UIColor("#000033").cgColor
         darkShadowLayer.shadowPath = darkShadowLayer.path
-        darkShadowLayer.shadowOffset = CGSize(width: 3.0, height: 5.0)
-        darkShadowLayer.shadowOpacity = 0.2
-        darkShadowLayer.shadowRadius = 12
-        layer.insertSublayer(darkShadowLayer, at: 0)
+        if layer.sublayers?.contains(darkShadowLayer) == false {
+            darkShadowLayer.fillColor = UIColor.clear.cgColor
+            darkShadowLayer.shadowColor = UIColor("#000033").cgColor
+            darkShadowLayer.shadowOffset = CGSize(width: 3.0, height: 5.0)
+            darkShadowLayer.shadowOpacity = 0.2
+            darkShadowLayer.shadowRadius = 12
+            layer.insertSublayer(darkShadowLayer, at: 0)
+        }
         
-        layout(contentView).edges()
+        if !subviews.contains(contentView) {
+            layout(contentView).edges()
+        }
         contentView.layer.cornerRadius = cornerRadius
     }
     
