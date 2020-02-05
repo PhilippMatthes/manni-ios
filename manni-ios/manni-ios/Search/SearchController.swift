@@ -193,8 +193,7 @@ extension SearchController {
         searchViewBackground.contentView.layout(searchView)
             .edges(top: 24, left: 24, bottom: 24, right: 24)
                 
-        searchView.textField.delegate = self
-        searchView.searchButton.addTarget(self, action: #selector(searchStop), for: .touchUpInside)
+        searchView.delegate = self
     }
     
     fileprivate func prepareLocationManager() {
@@ -213,18 +212,8 @@ extension SearchController: ViewTapDelegate {
     }
 }
 
-extension SearchController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        searchStop()
-        return true
-    }
-    
-    @objc func searchStop() {
-        searchView.textField.resignFirstResponder()
-        guard let query = searchView.textField.text, query != "" else {
-            return
-        }
-        
+extension SearchController: SearchViewDelegate {    
+    func search(query: String) {
         Stop.find(query) {
             result in
             guard let success = result.success else {return}
