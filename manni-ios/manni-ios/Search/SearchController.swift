@@ -122,7 +122,7 @@ extension SearchController {
             .left(48)
             .right(48)
             .top(128)
-        greetingLabel.textColor = Color.blue.base
+        greetingLabel.textColor = UIColor("#0652DD")
         greetingLabel.font = RobotoFont.bold(with: 48)
         greetingLabel.numberOfLines = 0
         greetingLabel.text = [
