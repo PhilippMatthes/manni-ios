@@ -17,7 +17,9 @@ class SkeuomorphismView: View {
     
     public var lightColor: UIColor = Color.grey.lighten4 {
         didSet {
-            lightShadowLayer.shadowColor = lightColor.cgColor
+            lightShadowLayer.shadowColor = lightColor.interpolate(
+                to: Color.grey.lighten4, 0.7
+            )?.cgColor
             contentView.backgroundColor = lightColor
         }
     }
@@ -39,26 +41,31 @@ class SkeuomorphismView: View {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        lightShadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
-        lightShadowLayer.shadowPath = lightShadowLayer.path
-        if layer.sublayers?.contains(lightShadowLayer) == false {
-            lightShadowLayer.fillColor = UIColor.clear.cgColor
-            lightShadowLayer.shadowColor = lightColor.cgColor
-            lightShadowLayer.shadowOffset = CGSize(width: -3.0, height: -3.0)
-            lightShadowLayer.shadowOpacity = 0.6
-            lightShadowLayer.shadowRadius = 4
-            layer.insertSublayer(lightShadowLayer, at: 0)
-        }
+        
         darkShadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
         darkShadowLayer.shadowPath = darkShadowLayer.path
         if layer.sublayers?.contains(darkShadowLayer) == false {
             darkShadowLayer.fillColor = UIColor.clear.cgColor
             darkShadowLayer.shadowColor = UIColor("#000033").cgColor
             darkShadowLayer.shadowOffset = CGSize(width: 3.0, height: 5.0)
-            darkShadowLayer.shadowOpacity = 0.2
-            darkShadowLayer.shadowRadius = 12
+            darkShadowLayer.shadowOpacity = 0.05
+            darkShadowLayer.shadowRadius = 4
             layer.insertSublayer(darkShadowLayer, at: 0)
         }
+        
+        lightShadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
+        lightShadowLayer.shadowPath = lightShadowLayer.path
+        if layer.sublayers?.contains(lightShadowLayer) == false {
+            lightShadowLayer.fillColor = UIColor.clear.cgColor
+            lightShadowLayer.shadowColor = lightColor.interpolate(
+                to: Color.grey.lighten4, 0.7
+            )?.cgColor
+            lightShadowLayer.shadowOffset = CGSize(width: -3.0, height: -3.0)
+            lightShadowLayer.shadowOpacity = 1
+            lightShadowLayer.shadowRadius = 4
+            layer.insertSublayer(lightShadowLayer, at: 0)
+        }
+        
         
         if !subviews.contains(contentView) {
             layout(contentView).edges()

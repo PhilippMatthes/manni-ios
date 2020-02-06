@@ -14,10 +14,16 @@ protocol SearchViewDelegate {
 }
 
 
-class SearchView: SkeuomorphismView {
+class SearchView: View {
     
-    private let textField = UITextField()
-    private let placeholderTextField = UITextField()
+    private let suggestionBadge = SkeuomorphismView()
+    private let suggestionBadgeLabel = UILabel()
+    
+    private let suggestionView = SkeuomorphismView()
+    private let suggestionLabel = UILabel()
+    
+    private let queryFieldView = SkeuomorphismView()
+    private let queryField = UITextField()
     private let searchButton = SkeuomorphismIconButton(image: Icon.search, tintColor: Color.grey.darken4)
     
     public var delegate: SearchViewDelegate?
@@ -27,6 +33,8 @@ class SearchView: SkeuomorphismView {
     
     override func prepare() {
         super.prepare()
+        
+        backgroundColor = .clear
         
         DispatchQueue.global(qos: .background).async {
             guard
@@ -50,12 +58,60 @@ class SearchView: SkeuomorphismView {
                 }
             }
         }
+        
+        reloadSuggestion()
+    }
+    
+    func reloadSuggestion() {
+        let currentSuggestionLabelText = self.suggestionLabel.text
+        Search.predictQuery() {
+            query in
+            DispatchQueue.main.async {
+                guard let query = query, query != "" else {
+                    self.suggestionLabel.text = "Dresden, Hauptbahnhof"
+                    return
+                }
+                // If the text has changed, cancel the action
+                guard self.suggestionLabel.text == currentSuggestionLabelText else {return}
+                self.suggestionLabel.text = query
+            }
+        }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        contentView.layout(searchButton)
+        layout(suggestionView)
+            .top(12)
+            .left()
+            .right()
+        
+        suggestionView.contentView.layout(suggestionLabel)
+            .edges(top: 16, left: 24, bottom: 16, right: 24)
+        suggestionLabel.font = RobotoFont.light(with: 24)
+        suggestionLabel.textColor = Color.grey.darken3
+        suggestionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didSelectSuggestion)))
+        
+        layout(suggestionBadge)
+            .top()
+            .right(18)
+        suggestionBadge.lightColor = UIColor("#0652DD")
+        suggestionBadge.cornerRadius = 12
+        
+        suggestionBadge.contentView.layout(suggestionBadgeLabel)
+            .edges(top: 4, left: 8, bottom: 4, right: 8)
+        suggestionBadgeLabel.font = RobotoFont.light(with: 12)
+        suggestionBadgeLabel.textColor = .white
+        suggestionBadgeLabel.text = "Vorschlag"
+        
+        layout(queryFieldView)
+            .below(suggestionView, 12)
+            .left()
+            .right()
+            .bottom()
+        queryFieldView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectQueryField)))
+        
+        queryFieldView.contentView.layout(searchButton)
             .right()
             .top()
             .bottom()
@@ -64,20 +120,32 @@ class SearchView: SkeuomorphismView {
         searchButton.pulseColor = Color.blue.base
         searchButton.addTarget(self, action: #selector(searchStop), for: .touchUpInside)
         
-        contentView.layout(textField)
+        queryFieldView.contentView.layout(queryField)
             .left(24)
             .top(8)
             .bottom(8)
             .before(searchButton, 12)
             .height(48)
-        textField.delegate = self
-        textField.font = RobotoFont.light(with: 24)
-        textField.placeholder = "Haltestelle"
+        queryField.delegate = self
+        queryField.font = RobotoFont.light(with: 24)
+        queryField.placeholder = "Haltestelle"
+    }
+    
+    @objc func selectQueryField() {
+        queryField.becomeFirstResponder()
+    }
+    
+    @objc func didSelectSuggestion() {
+        queryField.text = suggestionLabel.text
+        queryField.resignFirstResponder()
+        if let query = queryField.text, query != "" {
+            delegate?.search(query: query)
+        }
     }
     
 }
 
-extension SearchView: UITextFieldDelegate {
+extension SearchView: UITextFieldDelegate {    
     func autoCompleteText( in textField: UITextField, using string: String, suggestions: [String]) -> Bool {
         if
             !string.isEmpty,
@@ -123,8 +191,8 @@ extension SearchView: UITextFieldDelegate {
     }
     
     @objc func searchStop() {
-        textField.resignFirstResponder()
-        if let query = textField.text, query != "" {
+        queryField.resignFirstResponder()
+        if let query = queryField.text, query != "" {
             delegate?.search(query: query)
         }
         return

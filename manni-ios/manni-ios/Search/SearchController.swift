@@ -69,6 +69,7 @@ class SearchController: ViewController {
     
     fileprivate var locationManager = CLLocationManager()
     fileprivate var stops = [Stop]()
+    fileprivate var query: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,12 +105,6 @@ class SearchController: ViewController {
         return .lightContent
     }
     
-    @available(iOS 11.0, *)
-    override func viewSafeAreaInsetsDidChange() {
-        super.viewSafeAreaInsetsDidChange()
-        
-        print(self.view.safeAreaInsets)
-    }
 }
 
 extension SearchController {
@@ -122,6 +117,7 @@ extension SearchController {
             .left(48)
             .right(48)
             .top(128)
+        greetingLabel.alpha = 0.0
         greetingLabel.textColor = UIColor("#0652DD")
         greetingLabel.font = RobotoFont.bold(with: 48)
         greetingLabel.numberOfLines = 0
@@ -141,6 +137,7 @@ extension SearchController {
             .left(48)
             .right(48)
             .below(greetingLabel, 8)
+        tutorialLabel.alpha = 0.0
         tutorialLabel.textColor = Color.grey.darken4
         tutorialLabel.font = RobotoFont.light(with: 24)
         tutorialLabel.numberOfLines = 0
@@ -191,7 +188,7 @@ extension SearchController {
     
     fileprivate func prepareSearchView() {
         searchViewBackground.contentView.layout(searchView)
-            .edges(top: 24, left: 24, bottom: 24, right: 24)
+            .edges(top: 16, left: 24, bottom: 24, right: 24)
                 
         searchView.delegate = self
     }
@@ -214,15 +211,30 @@ extension SearchController: ViewTapDelegate {
 
 extension SearchController: SearchViewDelegate {    
     func search(query: String) {
+        if let oldQuery = self.query, query == oldQuery, stops.count != 0 {
+            if #available(iOS 10.0, *) {
+                UINotificationFeedbackGenerator().notificationOccurred(.error)
+            }
+            return
+        }
+        self.query = query
+        self.searchView.reloadSuggestion()
         Stop.find(query) {
             result in
             guard let success = result.success else {return}
+            
+            let search = Search(query: query)
+            search.save()
+            
             self.stops = success.stops
             if let location = self.locationManager.location {
                 self.stops.sort {$0.distance(from: location) ?? 0 < $1.distance(from: location) ?? 0}
             }
+            if #available(iOS 10.0, *) {
+                UINotificationFeedbackGenerator().notificationOccurred(.success)
+            }
             DispatchQueue.main.async {
-                self.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
+                UIView.transition(with: self.tableView, duration: 0.2, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
             }
         }
     }
@@ -321,7 +333,7 @@ extension SearchController: CLLocationManagerDelegate {
                 self.stops.sort {$0.distance(from: location) ?? 0 < $1.distance(from: location) ?? 0}
             }
             DispatchQueue.main.async {
-                self.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
+                UIView.transition(with: self.tableView, duration: 0.2, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
             }
         }
         NotificationCenter.default.post(name: SearchController.didUpdateLocation, object: nil, userInfo: ["location": currentLocation])

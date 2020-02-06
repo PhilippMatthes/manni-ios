@@ -13,7 +13,6 @@ import CoreLocation
 class StopTableViewCell: UITableViewCell {
     fileprivate let leftBorderView = SkeuomorphismView()
     fileprivate let skeuomorphismView = SkeuomorphismView()
-    fileprivate let rightButton = SkeuomorphismIconButton(image: Icon.place, tintColor: Color.grey.darken4)
     fileprivate let stopNameLabel = UILabel()
     fileprivate let stopLocationLabel = UILabel()
     
@@ -58,14 +57,6 @@ class StopTableViewCell: UITableViewCell {
         skeuomorphismView.contentView.backgroundColor = Color.grey.lighten4
         skeuomorphismView.cornerRadius = 12
         
-        contentView.layout(rightButton)
-            .right(24)
-            .height(64)
-            .width(64)
-            .centerY()
-        rightButton.skeuomorphismView.lightColor = Color.grey.lighten5
-        rightButton.isUserInteractionEnabled = false
-        
         contentView.layout(leftBorderView)
             .left(12)
             .top(18)
@@ -76,7 +67,7 @@ class StopTableViewCell: UITableViewCell {
         contentView.layout(stopNameLabel)
             .top(32)
             .left(48)
-            .right(112)
+            .right(48)
         stopNameLabel.font = RobotoFont.bold(with: 24)
         stopNameLabel.textColor = Color.grey.darken4
         stopNameLabel.numberOfLines = 0
@@ -84,7 +75,7 @@ class StopTableViewCell: UITableViewCell {
         contentView.layout(stopLocationLabel)
             .below(stopNameLabel, 8)
             .left(48)
-            .right(112)
+            .right(48)
             .bottom(32)
         stopLocationLabel.font = RobotoFont.light(with: 18)
         stopLocationLabel.textColor = Color.grey.darken2
