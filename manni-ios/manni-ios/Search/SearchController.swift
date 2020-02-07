@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 import Material
+import Motion
 import DVB
 import AVFoundation
 
@@ -224,10 +225,24 @@ extension SearchController: SearchViewDelegate {
             }
             return
         }
+        
         self.query = query
+        searchView.startRefreshing()
         Stop.find(query) {
             result in
-            guard let success = result.success else {return}
+            DispatchQueue.main.async {
+                self.searchView.endRefreshing()
+            }
+            guard let success = result.success else {
+                if #available(iOS 10.0, *) {
+                    UINotificationFeedbackGenerator()
+                        .notificationOccurred(.error)
+                }
+                let alert = UIAlertController(title: "VVO-Schnittstelle nicht erreichbar.", message: "Bitte versuche es später erneut.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
             
             self.stops = success.stops
             if let location = self.locationManager.location {
@@ -321,7 +336,7 @@ extension SearchController: CLLocationManagerDelegate {
                     UINotificationFeedbackGenerator()
                         .notificationOccurred(.error)
                 }
-                let alert = UIAlertController(title: "Es gab einen Fehler bei der GPS-Ortung.", message: "Bitte versuche es später erneut.", preferredStyle: .alert)
+                let alert = UIAlertController(title: "VVO-Schnittstelle nicht erreichbar.", message: "Bitte versuche es später erneut.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default))
                 self.present(alert, animated: true, completion: nil)
                 return

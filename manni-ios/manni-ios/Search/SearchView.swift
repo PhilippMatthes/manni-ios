@@ -7,6 +7,7 @@
 //
 
 import Material
+import Motion
 
 
 protocol SearchViewDelegate {
@@ -19,6 +20,7 @@ class SearchView: View {
     private let queryFieldView = SkeuomorphismView()
     private let queryField = UITextField()
     private let searchButton = SkeuomorphismIconButton(image: Icon.search, tintColor: Color.grey.darken4)
+    private let searchButtonAnimatingImageView = UIImageView()
     
     public var delegate: SearchViewDelegate?
     
@@ -29,6 +31,11 @@ class SearchView: View {
         super.prepare()
         
         backgroundColor = .clear
+        
+        searchButtonAnimatingImageView.animationImages = (0...89).map {
+            UIImage(named: "animation000\($0).png")!
+        }
+        searchButtonAnimatingImageView.animationDuration = 3
         
         DispatchQueue.global(qos: .background).async {
             guard
@@ -52,7 +59,24 @@ class SearchView: View {
                 }
             }
         }
-        
+    }
+    
+    public func startRefreshing() {
+        searchButton.animate(MotionAnimation.rotate(x: 0, y: 180, z: 0), MotionAnimation.fadeOut)
+        searchButtonAnimatingImageView.animate([
+            MotionAnimation.rotate(x: 0, y: 180, z: 0),
+            MotionAnimation.scale(1.5)
+        ])
+        self.searchButtonAnimatingImageView.startAnimating()
+    }
+    
+    public func endRefreshing() {
+        searchButton.animate(MotionAnimation.rotate(x: 0, y: 0, z: 0), MotionAnimation.fadeIn)
+        searchButtonAnimatingImageView.animate([
+            MotionAnimation.rotate(x: 0, y: 180, z: 0),
+            MotionAnimation.scale(0.0)
+        ])
+        self.searchButtonAnimatingImageView.stopAnimating()
     }
     
     override func layoutSubviews() {
@@ -73,6 +97,13 @@ class SearchView: View {
             .height(64)
         searchButton.pulseColor = Color.blue.base
         searchButton.addTarget(self, action: #selector(searchStop), for: .touchUpInside)
+        
+        queryFieldView.contentView.layout(searchButtonAnimatingImageView)
+            .right()
+            .top()
+            .bottom()
+            .width(64)
+            .height(64)
         
         queryFieldView.contentView.layout(queryField)
             .left(24)
