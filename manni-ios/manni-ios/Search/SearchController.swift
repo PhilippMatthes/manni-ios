@@ -67,6 +67,7 @@ class SearchController: ViewController {
     fileprivate let tutorialLabel = UILabel()
     fileprivate let tableView = TableView()
     
+    fileprivate var routeGraph = RouteGraph.main
     fileprivate var locationManager = CLLocationManager()
     fileprivate var stops = [Stop]()
     fileprivate var query: String?
@@ -82,6 +83,13 @@ class SearchController: ViewController {
         prepareSearchViewBackground()
         prepareSearchView()
         prepareLocationManager()
+        
+        stops = routeGraph.getStopSuggestions()
+        if stops.count == 0 {
+            showsTutorial = true
+        } else {
+            UIView.transition(with: self.tableView, duration: 0.2, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -148,7 +156,6 @@ extension SearchController {
             "Fahrkarte nicht vergessen!"
         ].randomElement()!
         tutorialLabel.text = "Du kannst nach unten wischen, um Haltestellen in deiner Nähe zu finden. Alternativ gibt es unten eine Suchleiste. \(choice)"
-        showsTutorial = true
     }
     
     fileprivate func prepareTableView() {
@@ -188,7 +195,7 @@ extension SearchController {
     
     fileprivate func prepareSearchView() {
         searchViewBackground.contentView.layout(searchView)
-            .edges(top: 16, left: 24, bottom: 24, right: 24)
+            .edges(top: 24, left: 24, bottom: 24, right: 24)
                 
         searchView.delegate = self
     }
@@ -218,13 +225,9 @@ extension SearchController: SearchViewDelegate {
             return
         }
         self.query = query
-        self.searchView.reloadSuggestion()
         Stop.find(query) {
             result in
             guard let success = result.success else {return}
-            
-            let search = Search(query: query)
-            search.save()
             
             self.stops = success.stops
             if let location = self.locationManager.location {
@@ -361,6 +364,12 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let stop = stops[indexPath.row]
+        
+        routeGraph.visit(stop: stop)
+        DispatchQueue.global(qos: .background).async {
+            RouteGraph.main = self.routeGraph
+        }
+        
         let controller = DeparturesController()
         controller.stop = stop
         if let location = locationManager.location {

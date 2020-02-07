@@ -43,6 +43,8 @@ class DeparturesController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = UIColor("#ECE9E6")
+        
         view.layout(backButton)
             .topSafe(24)
             .left(24)

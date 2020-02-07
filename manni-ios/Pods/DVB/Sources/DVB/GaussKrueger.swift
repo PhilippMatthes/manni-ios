@@ -25,13 +25,18 @@ public struct GKCoordinate: Coordinate, Equatable, Hashable {
     }
 }
 
-public struct WGSCoordinate: Coordinate, Equatable, Hashable {
+public struct WGSCoordinate: Codable, Coordinate, Equatable, Hashable {
     public var latitude: Double
     public var longitude: Double
 
     public init(latitude: Double, longitude: Double) {
         self.latitude = latitude
         self.longitude = longitude
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case latitude
+        case longitude
     }
 
     public var asGK: GKCoordinate? {

@@ -16,12 +16,6 @@ protocol SearchViewDelegate {
 
 class SearchView: View {
     
-    private let suggestionBadge = SkeuomorphismView()
-    private let suggestionBadgeLabel = UILabel()
-    
-    private let suggestionView = SkeuomorphismView()
-    private let suggestionLabel = UILabel()
-    
     private let queryFieldView = SkeuomorphismView()
     private let queryField = UITextField()
     private let searchButton = SkeuomorphismIconButton(image: Icon.search, tintColor: Color.grey.darken4)
@@ -59,53 +53,13 @@ class SearchView: View {
             }
         }
         
-        reloadSuggestion()
-    }
-    
-    func reloadSuggestion() {
-        let currentSuggestionLabelText = self.suggestionLabel.text
-        Search.predictQuery() {
-            query in
-            DispatchQueue.main.async {
-                guard let query = query, query != "" else {
-                    self.suggestionLabel.text = "Dresden, Hauptbahnhof"
-                    return
-                }
-                // If the text has changed, cancel the action
-                guard self.suggestionLabel.text == currentSuggestionLabelText else {return}
-                self.suggestionLabel.text = query
-            }
-        }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        layout(suggestionView)
-            .top(12)
-            .left()
-            .right()
-        
-        suggestionView.contentView.layout(suggestionLabel)
-            .edges(top: 16, left: 24, bottom: 16, right: 24)
-        suggestionLabel.font = RobotoFont.light(with: 24)
-        suggestionLabel.textColor = Color.grey.darken3
-        suggestionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didSelectSuggestion)))
-        
-        layout(suggestionBadge)
-            .top()
-            .right(18)
-        suggestionBadge.lightColor = UIColor("#0652DD")
-        suggestionBadge.cornerRadius = 12
-        
-        suggestionBadge.contentView.layout(suggestionBadgeLabel)
-            .edges(top: 4, left: 8, bottom: 4, right: 8)
-        suggestionBadgeLabel.font = RobotoFont.light(with: 12)
-        suggestionBadgeLabel.textColor = .white
-        suggestionBadgeLabel.text = "Vorschlag"
-        
         layout(queryFieldView)
-            .below(suggestionView, 12)
+            .top()
             .left()
             .right()
             .bottom()
@@ -133,14 +87,6 @@ class SearchView: View {
     
     @objc func selectQueryField() {
         queryField.becomeFirstResponder()
-    }
-    
-    @objc func didSelectSuggestion() {
-        queryField.text = suggestionLabel.text
-        queryField.resignFirstResponder()
-        if let query = queryField.text, query != "" {
-            delegate?.search(query: query)
-        }
     }
     
 }

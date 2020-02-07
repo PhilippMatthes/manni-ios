@@ -24,7 +24,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   DVB:
-    :commit: 59a05489cd8c96f03f90de56949a40b47e951585
+    :commit: b089a585fe4e288eeda7dfbe08d6b8c122d4a296
     :git: https://github.com/manni-app/DVB.git
 
 SPEC CHECKSUMS:

@@ -1,7 +1,7 @@
 import Foundation
 
 /// A place where a bus, tram or whatever can stop.
-public struct Stop {
+public struct Stop: Encodable {
     public let id: String
     public let name: String
     public let region: String?
@@ -12,6 +12,13 @@ public struct Stop {
         self.name = name
         self.region = region
         self.location = location?.asWGS
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case region
+        case location
     }
 }
 

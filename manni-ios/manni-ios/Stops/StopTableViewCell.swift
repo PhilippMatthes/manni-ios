@@ -53,14 +53,14 @@ class StopTableViewCell: UITableViewCell {
         backgroundColor = .clear
         
         contentView.layout(skeuomorphismView)
-            .edges(top: 18, left: 12, bottom: 18, right: 12)
+            .edges(top: 12, left: 12, bottom: 12, right: 12)
         skeuomorphismView.contentView.backgroundColor = Color.grey.lighten4
         skeuomorphismView.cornerRadius = 12
         
         contentView.layout(leftBorderView)
             .left(12)
-            .top(18)
-            .bottom(18)
+            .top(12)
+            .bottom(12)
             .width(12)
         leftBorderView.cornerRadius = 6
         
