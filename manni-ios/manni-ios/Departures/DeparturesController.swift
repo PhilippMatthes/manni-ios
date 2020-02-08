@@ -128,6 +128,5 @@ extension DeparturesController: UICollectionViewDelegate, UICollectionViewDataSo
         UIView.animate(withDuration: 0.5, delay: 0, options: .allowUserInteraction, animations: {
             cell.layer.opacity = 1.0
         }, completion: nil)
-        
     }
 }

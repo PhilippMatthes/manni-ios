@@ -408,6 +408,13 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
         present(controller, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.layer.opacity = 0.0
+        UIView.animate(withDuration: 0.5, delay: 0, options: .allowUserInteraction, animations: {
+            cell.layer.opacity = 1.0
+        }, completion: nil)
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y < -gpsViewExpandedHeight && (gpsFetchWasTriggered == false || gpsFetchWasTriggered == nil) {
             gpsFetchWasTriggered = true
