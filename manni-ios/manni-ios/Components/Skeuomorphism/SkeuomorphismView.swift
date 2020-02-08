@@ -32,6 +32,18 @@ class SkeuomorphismView: View {
         }
     }
     
+    public var lightShadowOpacity: Float = 1 {
+        didSet {
+            lightShadowLayer.shadowOpacity = lightShadowOpacity
+        }
+    }
+    
+    public var darkShadowOpacity: Float = 0.05 {
+        didSet {
+            darkShadowLayer.shadowOpacity = darkShadowOpacity
+        }
+    }
+    
     public let contentView = View()
     
     override func prepare() {
@@ -48,7 +60,7 @@ class SkeuomorphismView: View {
             darkShadowLayer.fillColor = UIColor.clear.cgColor
             darkShadowLayer.shadowColor = UIColor("#000033").cgColor
             darkShadowLayer.shadowOffset = CGSize(width: 3.0, height: 5.0)
-            darkShadowLayer.shadowOpacity = 0.05
+            darkShadowLayer.shadowOpacity = darkShadowOpacity
             darkShadowLayer.shadowRadius = 4
             layer.insertSublayer(darkShadowLayer, at: 0)
         }
@@ -61,7 +73,7 @@ class SkeuomorphismView: View {
                 to: Color.grey.lighten4, 0.7
             )?.cgColor
             lightShadowLayer.shadowOffset = CGSize(width: -3.0, height: -3.0)
-            lightShadowLayer.shadowOpacity = 1
+            lightShadowLayer.shadowOpacity = lightShadowOpacity
             lightShadowLayer.shadowRadius = 4
             layer.insertSublayer(lightShadowLayer, at: 0)
         }

@@ -15,6 +15,7 @@
 		BE5AABFB23E756A9006EE1BD /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5AABFA23E756A9006EE1BD /* SearchController.swift */; };
 		BE6213F923E76EAA00FD638E /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6213F823E76EAA00FD638E /* StopTableViewCell.swift */; };
 		BE62CCB623EEFC7C00B9469E /* SuggestionInformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62CCB523EEFC7C00B9469E /* SuggestionInformationController.swift */; };
+		BE62CCB823EF207D00B9469E /* Departure+Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62CCB723EF207D00B9469E /* Departure+Icon.swift */; };
 		BE63EFD823E882480019C792 /* DeparturesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE63EFD723E882480019C792 /* DeparturesController.swift */; };
 		BEBA661523E75B6A00CA99CF /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA661423E75B6A00CA99CF /* SearchView.swift */; };
 		BEBA661A23E7639300CA99CF /* SkeuomorphismView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA661923E7639300CA99CF /* SkeuomorphismView.swift */; };
@@ -38,6 +39,7 @@
 		BE5AABFA23E756A9006EE1BD /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		BE6213F823E76EAA00FD638E /* StopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopTableViewCell.swift; sourceTree = "<group>"; };
 		BE62CCB523EEFC7C00B9469E /* SuggestionInformationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionInformationController.swift; sourceTree = "<group>"; };
+		BE62CCB723EF207D00B9469E /* Departure+Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Departure+Icon.swift"; sourceTree = "<group>"; };
 		BE63EFD723E882480019C792 /* DeparturesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesController.swift; sourceTree = "<group>"; };
 		BEBA661423E75B6A00CA99CF /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		BEBA661923E7639300CA99CF /* SkeuomorphismView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeuomorphismView.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				BE02038723E82D2E00E7D5DC /* UIColor+Tools.swift */,
 				BE02038C23E83FEE00E7D5DC /* DVB+UIColor.swift */,
 				BEC77FCC23E9BCED0042CD48 /* Stop+Distance.swift */,
+				BE62CCB723EF207D00B9469E /* Departure+Icon.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				BEE7EC6D23EDA63100B09877 /* RouteGraph.swift in Sources */,
 				BEDAA49023E7541900A25187 /* AppDelegate.swift in Sources */,
 				BEBA661523E75B6A00CA99CF /* SearchView.swift in Sources */,
+				BE62CCB823EF207D00B9469E /* Departure+Icon.swift in Sources */,
 				BE02039123E8597C00E7D5DC /* SkeuomorphismIconButton.swift in Sources */,
 				BE02038D23E83FEE00E7D5DC /* DVB+UIColor.swift in Sources */,
 				BEC77FCD23E9BCED0042CD48 /* Stop+Distance.swift in Sources */,

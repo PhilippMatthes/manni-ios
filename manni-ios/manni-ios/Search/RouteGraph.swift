@@ -118,6 +118,7 @@ struct RouteGraph: Codable {
     }
     
     public mutating func visit(stop: Stop) {
+        
         var newEdge: Edge
         if let endpoint = endpoint {
             newEdge = Edge(origin: endpoint, destination: stop)
@@ -125,12 +126,14 @@ struct RouteGraph: Codable {
             newEdge = Edge(origin: stop, destination: stop)
         }
         
-        if let index = edges.firstIndex(of: newEdge) {
-            edges[index].strengthen()
-        } else {
-            edges.append(newEdge)
+        for (i, edge) in edges.enumerated() {
+            if edge.origin == newEdge.origin && edge.destination == newEdge.destination {
+                edges[i].strengthen()
+                endpoint = stop
+                return
+            }
         }
-        
+        edges.append(newEdge)
         endpoint = stop
     }
     

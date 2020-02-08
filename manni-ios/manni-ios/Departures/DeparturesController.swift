@@ -19,6 +19,7 @@ class DeparturesController: ViewController {
             
             stopNameLabel.text = stop?.name
             stopLocationLabel.text = stop?.region ?? "Dresden"
+            colorBackgroundView.lightColor = stop?.color ?? .white
         }
     }
     
@@ -34,6 +35,7 @@ class DeparturesController: ViewController {
     fileprivate var departures = [Departure]()
     fileprivate var scheduledTimer: Timer?
     
+    fileprivate let colorBackgroundView = SkeuomorphismView()
     fileprivate let backButton = SkeuomorphismIconButton(image: Icon.arrowBack, tintColor: Color.grey.darken4)
     fileprivate let stopNameLabel = UILabel()
     fileprivate let stopLocationLabel = UILabel()
@@ -45,11 +47,20 @@ class DeparturesController: ViewController {
         
         view.backgroundColor = UIColor("#ECE9E6")
         
+        view.layout(colorBackgroundView)
+            .top()
+            .left()
+            .right()
+            .height(Screen.height / 3)
+        colorBackgroundView.cornerRadius = 10
+        
         view.layout(backButton)
             .topSafe(24)
             .left(24)
             .height(64)
             .width(64)
+        backButton.skeuomorphismView.lightShadowOpacity = 0.3
+        backButton.skeuomorphismView.darkShadowOpacity = 0.2
         backButton.pulseColor = Color.blue.base
         backButton.addTarget(self, action: #selector(backButtonTouched), for: .touchUpInside)
         
@@ -58,7 +69,7 @@ class DeparturesController: ViewController {
             .left(24)
             .right(24)
         stopNameLabel.font = RobotoFont.bold(with: 24)
-        stopNameLabel.textColor = Color.grey.darken4
+        stopNameLabel.textColor = .white
         stopNameLabel.numberOfLines = 1
         
         view.layout(stopLocationLabel)
@@ -66,7 +77,7 @@ class DeparturesController: ViewController {
             .left(24)
             .right(24)
         stopLocationLabel.font = RobotoFont.light(with: 18)
-        stopLocationLabel.textColor = Color.grey.darken2
+        stopLocationLabel.textColor = .white
         stopLocationLabel.numberOfLines = 1
         
         view.layout(collectionView)
@@ -76,7 +87,7 @@ class DeparturesController: ViewController {
             .height(238)
         flowLayout.estimatedItemSize = .init(width: 148, height: 188)
         flowLayout.scrollDirection = .horizontal
-        collectionView.contentInset = .init(top: 0, left: 24, bottom: 0, right: 0)
+        collectionView.contentInset = .init(top: 0, left: 24, bottom: 0, right: 24)
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.showsHorizontalScrollIndicator = false

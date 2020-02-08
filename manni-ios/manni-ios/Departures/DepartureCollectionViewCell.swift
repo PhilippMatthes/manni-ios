@@ -16,12 +16,16 @@ class DepartureCollectionViewCell: UICollectionViewCell {
         didSet {
             lineNameLabel.text = departure?.line
             lineNameLabel.textColor = departure?.color
+            lineNameLabel.sizeToFit()
             directionLabel.text = departure?.direction
             directionLabel.textColor = departure?.color
+            directionLabel.sizeToFit()
+            modeImageView.image = departure?.icon
             updateTimeResponsiveUI()
         }
     }
     
+    fileprivate let modeImageView = UIImageView()
     fileprivate let skeuomorphismView = SkeuomorphismView()
     fileprivate let lineNameLabel = UILabel()
     fileprivate let directionLabel = UILabel()
@@ -44,20 +48,31 @@ class DepartureCollectionViewCell: UICollectionViewCell {
             .height(188)
             .width(148)
             .edges()
+        skeuomorphismView.cornerRadius = 24
         skeuomorphismView.contentView.backgroundColor = Color.grey.lighten4
+        skeuomorphismView.lightShadowOpacity = 0.3
+        skeuomorphismView.darkShadowOpacity = 0.1
+        
+        skeuomorphismView.contentView.layout(modeImageView)
+            .edges()
+        modeImageView.contentMode = .scaleAspectFit
+        modeImageView.tintColor = .black
+        modeImageView.alpha = 0.03
         
         skeuomorphismView.contentView.layout(lineNameLabel)
             .topLeft(top: 12, left: 12)
             .right(12)
-        lineNameLabel.numberOfLines = 2
-        lineNameLabel.font = RobotoFont.bold(with: 28)
+        lineNameLabel.numberOfLines = 1
+        lineNameLabel.adjustsFontSizeToFitWidth = true
+        lineNameLabel.font = RobotoFont.bold(with: 38)
         
         skeuomorphismView.contentView.layout(directionLabel)
             .below(lineNameLabel, 4)
             .left(12)
             .right(12)
         directionLabel.numberOfLines = 2
-        directionLabel.font = RobotoFont.light(with: 18)
+        directionLabel.adjustsFontSizeToFitWidth = true
+        directionLabel.font = RobotoFont.regular(with: 18)
         
         skeuomorphismView.contentView.layout(etaLabel)
             .left(12)

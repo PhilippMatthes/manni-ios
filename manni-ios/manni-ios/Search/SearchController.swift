@@ -67,7 +67,7 @@ class SearchController: ViewController {
     fileprivate let searchView = SearchView()
     fileprivate let greetingLabel = UILabel()
     fileprivate let tutorialLabel = UILabel()
-    fileprivate let tableView = TableView(frame: .zero, style: .grouped)
+    fileprivate let tableView = TableView()
     
     fileprivate var routeGraph = RouteGraph.main
     fileprivate var locationManager = CLLocationManager()
@@ -165,7 +165,7 @@ extension SearchController {
             "Und los!",
             "Fahrkarte nicht vergessen!"
         ].randomElement()!
-        tutorialLabel.text = "Du kannst nach unten wischen, um Haltestellen in deiner Nähe zu finden. Alternativ gibt es unten eine Suchleiste. \(choice)"
+        tutorialLabel.text = "Du kannst nach unten wischen, um Haltestellen in Deiner Nähe zu finden. Alternativ gibt es unten eine Suchleiste. \(choice)"
     }
     
     fileprivate func prepareTableView() {
@@ -212,6 +212,12 @@ extension SearchController {
     
     fileprivate func prepareLocationManager() {
         locationManager.delegate = self
+    }
+}
+
+extension SearchController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
+        viewWillEnterForeground()
     }
 }
 
@@ -275,14 +281,14 @@ extension SearchController {
         else {return}
         let keyboardFrame = view.convert(keyboardFrameValue.cgRectValue, from: nil)
         view.frame.origin.y = -keyboardFrame.bounds.maxY
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.5) {
             self.searchViewBackground.layer.cornerRadius = 0.0
         }
     }
 
     @objc func keyboardWillHide(notification:NSNotification){
         view.frame.origin.y = 0
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.5) {
             self.searchViewBackground.layer.cornerRadius = 32.0
         }
     }
@@ -332,14 +338,15 @@ extension SearchController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let currentLocation = manager.location!
+        guard let currentLocation = manager.location else {return}
+        self.gpsFetchWasTriggered = false
+        
+        searchView.startRefreshing()
         Stop.findNear(coord: currentLocation.coordinate) {
             result in
-            
             DispatchQueue.main.async {
-                self.gpsFetchWasTriggered = false
+                self.searchView.endRefreshing()
             }
-            
             guard let success = result.success else {
                 if #available(iOS 10.0, *) {
                     UINotificationFeedbackGenerator()
@@ -376,6 +383,14 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
         return 2
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: StopTableViewCell.reuseIdentifier, for: indexPath
@@ -402,6 +417,7 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
         
         let controller = DeparturesController()
         controller.stop = stop
+        controller.presentationController?.delegate = self
         if let location = locationManager.location {
             controller.location = location
         }
