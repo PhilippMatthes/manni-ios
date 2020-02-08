@@ -10,11 +10,22 @@ import Material
 import DVB
 import CoreLocation
 
+
+protocol StopTableViewCellDelegate {
+    func didSelectSuggestionInfoButton()
+}
+
+
 class StopTableViewCell: UITableViewCell {
     fileprivate let leftBorderView = SkeuomorphismView()
     fileprivate let skeuomorphismView = SkeuomorphismView()
     fileprivate let stopNameLabel = UILabel()
     fileprivate let stopLocationLabel = UILabel()
+    fileprivate let suggestionBadgeView = SkeuomorphismView()
+    fileprivate let suggestionBadgeLabel = UILabel()
+    fileprivate let suggestionBadgeButton = SkeuomorphismIconButton(image: UIImage.fontAwesomeIcon(
+        name: .info, style: .solid, textColor: Color.grey.darken3, size: .init(width: 12, height: 12)
+    ))
     
     public static let reuseIdentifier = "StopTableViewCell"
     
@@ -26,6 +37,17 @@ class StopTableViewCell: UITableViewCell {
         }
     }
     
+    public var isSuggestion: Bool? {
+        didSet {
+            if isSuggestion == true {
+                suggestionBadgeView.isHidden = false
+            }
+            if isSuggestion == false {
+                suggestionBadgeView.isHidden = true
+            }
+        }
+    }
+    
     public var location: CLLocation? {
         didSet {
             if let location = location, let distance = stop?.distance(from: location) {
@@ -34,6 +56,8 @@ class StopTableViewCell: UITableViewCell {
             }
         }
     }
+    
+    public var delegate: StopTableViewCellDelegate?
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -53,13 +77,37 @@ class StopTableViewCell: UITableViewCell {
         backgroundColor = .clear
         
         contentView.layout(skeuomorphismView)
-            .edges(top: 12, left: 12, bottom: 12, right: 12)
+            .edges(top: 16, left: 12, bottom: 12, right: 12)
         skeuomorphismView.contentView.backgroundColor = Color.grey.lighten4
         skeuomorphismView.cornerRadius = 12
         
+        contentView.layout(suggestionBadgeView)
+            .right(24)
+            .top(12)
+        suggestionBadgeView.cornerRadius = 12
+        suggestionBadgeView.lightColor = Color.grey.lighten5
+        
+        suggestionBadgeView.contentView.layout(suggestionBadgeButton)
+            .right()
+            .top()
+            .bottom()
+            .height(24)
+            .width(24)
+        suggestionBadgeButton.skeuomorphismView.cornerRadius = 12
+        suggestionBadgeButton.addTarget(self, action: #selector(didSelectSuggestionInfoButton), for: .touchUpInside)
+        
+        suggestionBadgeView.contentView.layout(suggestionBadgeLabel)
+            .top(6)
+            .bottom(6)
+            .left(12)
+            .before(suggestionBadgeButton, 4)
+        suggestionBadgeLabel.font = RobotoFont.regular(with: 12)
+        suggestionBadgeLabel.textColor = Color.grey.darken3
+        suggestionBadgeLabel.text = "Vorschlag"
+        
         contentView.layout(leftBorderView)
             .left(12)
-            .top(12)
+            .top(16)
             .bottom(12)
             .width(12)
         leftBorderView.cornerRadius = 6
@@ -82,6 +130,10 @@ class StopTableViewCell: UITableViewCell {
         stopLocationLabel.numberOfLines = 0
         
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateLocation(_:)), name: SearchController.didUpdateLocation, object: nil)
+    }
+    
+    @objc func didSelectSuggestionInfoButton() {
+        delegate?.didSelectSuggestionInfoButton()
     }
     
     @objc func didUpdateLocation(_ notification: Notification) {

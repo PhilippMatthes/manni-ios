@@ -62,19 +62,17 @@ class SearchView: View {
     }
     
     public func startRefreshing() {
-        searchButton.animate(MotionAnimation.rotate(x: 0, y: 180, z: 0), MotionAnimation.fadeOut)
+        searchButton.animate(MotionAnimation.fadeOut)
         searchButtonAnimatingImageView.animate([
-            MotionAnimation.rotate(x: 0, y: 180, z: 0),
             MotionAnimation.scale(1.5)
         ])
         self.searchButtonAnimatingImageView.startAnimating()
     }
     
     public func endRefreshing() {
-        searchButton.animate(MotionAnimation.rotate(x: 0, y: 0, z: 0), MotionAnimation.fadeIn)
+        searchButton.animate(MotionAnimation.fadeIn)
         searchButtonAnimatingImageView.animate([
-            MotionAnimation.rotate(x: 0, y: 180, z: 0),
-            MotionAnimation.scale(0.0)
+            MotionAnimation.scale(1.0)
         ])
         self.searchButtonAnimatingImageView.stopAnimating()
     }
@@ -114,6 +112,8 @@ class SearchView: View {
         queryField.delegate = self
         queryField.font = RobotoFont.light(with: 24)
         queryField.placeholder = "Haltestelle"
+        queryField.clearButtonMode = .always
+        queryField.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectQueryField)))
     }
     
     @objc func selectQueryField() {

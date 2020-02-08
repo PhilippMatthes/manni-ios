@@ -39,7 +39,10 @@ extension Stop {
     
     public var color: UIColor {
         get {
-            return Colors.all[abs(self.id.hashValue) % Colors.all.count]
+            if let id = Int(self.id) {
+                return Colors.all[abs(id) % Colors.all.count]
+            }
+            return Colors.all[self.name.count % Colors.all.count]
         }
     }
     

@@ -13,7 +13,7 @@ import DVB
 struct Edge: Codable, Hashable {
     let origin: Stop
     let destination: Stop
-    var weight: Int = 0
+    var weight: Int = 1
     
     private enum CodingKeys: String, CodingKey {
         case originId
@@ -27,7 +27,7 @@ struct Edge: Codable, Hashable {
         case weight
     }
     
-    init(origin: Stop, destination: Stop, weight: Int = 0) {
+    init(origin: Stop, destination: Stop, weight: Int = 1) {
         self.origin = origin
         self.destination = destination
         self.weight = weight

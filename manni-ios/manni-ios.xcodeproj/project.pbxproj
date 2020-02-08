@@ -12,16 +12,15 @@
 		BE02038B23E835E800E7D5DC /* DepartureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02038A23E835E800E7D5DC /* DepartureCollectionViewCell.swift */; };
 		BE02038D23E83FEE00E7D5DC /* DVB+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02038C23E83FEE00E7D5DC /* DVB+UIColor.swift */; };
 		BE02039123E8597C00E7D5DC /* SkeuomorphismIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02039023E8597C00E7D5DC /* SkeuomorphismIconButton.swift */; };
-		BE12A39423EC654B00AD195D /* NaiveBayes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE12A39323EC654B00AD195D /* NaiveBayes.swift */; };
 		BE5AABFB23E756A9006EE1BD /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5AABFA23E756A9006EE1BD /* SearchController.swift */; };
 		BE6213F923E76EAA00FD638E /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6213F823E76EAA00FD638E /* StopTableViewCell.swift */; };
+		BE62CCB623EEFC7C00B9469E /* SuggestionInformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62CCB523EEFC7C00B9469E /* SuggestionInformationController.swift */; };
 		BE63EFD823E882480019C792 /* DeparturesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE63EFD723E882480019C792 /* DeparturesController.swift */; };
 		BEBA661523E75B6A00CA99CF /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA661423E75B6A00CA99CF /* SearchView.swift */; };
 		BEBA661A23E7639300CA99CF /* SkeuomorphismView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA661923E7639300CA99CF /* SkeuomorphismView.swift */; };
 		BEC77FCB23E9960E0042CD48 /* GPSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC77FCA23E9960E0042CD48 /* GPSView.swift */; };
 		BEC77FCD23E9BCED0042CD48 /* Stop+Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC77FCC23E9BCED0042CD48 /* Stop+Distance.swift */; };
 		BED040C723EB365200773E2A /* stations.json in Resources */ = {isa = PBXBuildFile; fileRef = BED040C623EB365200773E2A /* stations.json */; };
-		BED040CB23EB3BC500773E2A /* StringMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED040CA23EB3BC500773E2A /* StringMetric.swift */; };
 		BEDAA49023E7541900A25187 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDAA48F23E7541900A25187 /* AppDelegate.swift */; };
 		BEDAA49623E7541A00A25187 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEDAA49523E7541A00A25187 /* Assets.xcassets */; };
 		BEDAA49923E7541A00A25187 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEDAA49823E7541A00A25187 /* Preview Assets.xcassets */; };
@@ -36,16 +35,15 @@
 		BE02038A23E835E800E7D5DC /* DepartureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureCollectionViewCell.swift; sourceTree = "<group>"; };
 		BE02038C23E83FEE00E7D5DC /* DVB+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DVB+UIColor.swift"; sourceTree = "<group>"; };
 		BE02039023E8597C00E7D5DC /* SkeuomorphismIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeuomorphismIconButton.swift; sourceTree = "<group>"; };
-		BE12A39323EC654B00AD195D /* NaiveBayes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaiveBayes.swift; sourceTree = "<group>"; };
 		BE5AABFA23E756A9006EE1BD /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		BE6213F823E76EAA00FD638E /* StopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopTableViewCell.swift; sourceTree = "<group>"; };
+		BE62CCB523EEFC7C00B9469E /* SuggestionInformationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionInformationController.swift; sourceTree = "<group>"; };
 		BE63EFD723E882480019C792 /* DeparturesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesController.swift; sourceTree = "<group>"; };
 		BEBA661423E75B6A00CA99CF /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		BEBA661923E7639300CA99CF /* SkeuomorphismView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeuomorphismView.swift; sourceTree = "<group>"; };
 		BEC77FCA23E9960E0042CD48 /* GPSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSView.swift; sourceTree = "<group>"; };
 		BEC77FCC23E9BCED0042CD48 /* Stop+Distance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stop+Distance.swift"; sourceTree = "<group>"; };
 		BED040C623EB365200773E2A /* stations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stations.json; sourceTree = "<group>"; };
-		BED040CA23EB3BC500773E2A /* StringMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringMetric.swift; sourceTree = "<group>"; };
 		BEDAA48C23E7541900A25187 /* Manni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Manni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEDAA48F23E7541900A25187 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEDAA49523E7541A00A25187 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -119,9 +117,8 @@
 				BE5AABFA23E756A9006EE1BD /* SearchController.swift */,
 				BEBA661423E75B6A00CA99CF /* SearchView.swift */,
 				BEC77FCA23E9960E0042CD48 /* GPSView.swift */,
-				BED040CA23EB3BC500773E2A /* StringMetric.swift */,
-				BE12A39323EC654B00AD195D /* NaiveBayes.swift */,
 				BEE7EC6C23EDA63100B09877 /* RouteGraph.swift */,
+				BE62CCB523EEFC7C00B9469E /* SuggestionInformationController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -282,12 +279,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-manni-ios/Pods-manni-ios-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DVB/DVB.framework",
+				"${BUILT_PRODUCTS_DIR}/FontAwesome.swift/FontAwesome_swift.framework",
 				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
 				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DVB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontAwesome_swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
 			);
@@ -303,8 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BED040CB23EB3BC500773E2A /* StringMetric.swift in Sources */,
-				BE12A39423EC654B00AD195D /* NaiveBayes.swift in Sources */,
+				BE62CCB623EEFC7C00B9469E /* SuggestionInformationController.swift in Sources */,
 				BE63EFD823E882480019C792 /* DeparturesController.swift in Sources */,
 				BEC77FCB23E9960E0042CD48 /* GPSView.swift in Sources */,
 				BE02038823E82D2E00E7D5DC /* UIColor+Tools.swift in Sources */,

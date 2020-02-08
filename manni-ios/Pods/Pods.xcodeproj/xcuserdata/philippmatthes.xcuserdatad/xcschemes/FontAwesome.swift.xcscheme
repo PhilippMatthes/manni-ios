@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A2DA8F96EBB5ED324FB0C1874856C951"
-               BuildableName = "Pods_manni_ios.framework"
-               BlueprintName = "Pods-manni-ios"
+               BlueprintIdentifier = "29124FF4E0F9AB7495AA7588B0A1A107"
+               BuildableName = "FontAwesome_swift.framework"
+               BlueprintName = "FontAwesome.swift"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

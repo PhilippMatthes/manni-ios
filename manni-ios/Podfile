@@ -8,4 +8,5 @@ target 'manni-ios' do
   # Pods for manni-ios
   pod 'DVB', :git => 'https://github.com/manni-app/DVB.git', :branch => 'master'
   pod 'Material'
+  pod 'FontAwesome.swift'
 end

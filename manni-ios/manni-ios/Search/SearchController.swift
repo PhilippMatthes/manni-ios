@@ -12,6 +12,7 @@ import Material
 import Motion
 import DVB
 import AVFoundation
+import FontAwesome_swift
 
 
 class SearchController: ViewController {
@@ -66,11 +67,12 @@ class SearchController: ViewController {
     fileprivate let searchView = SearchView()
     fileprivate let greetingLabel = UILabel()
     fileprivate let tutorialLabel = UILabel()
-    fileprivate let tableView = TableView()
+    fileprivate let tableView = TableView(frame: .zero, style: .grouped)
     
     fileprivate var routeGraph = RouteGraph.main
     fileprivate var locationManager = CLLocationManager()
-    fileprivate var stops = [Stop]()
+    fileprivate var fetchedStops = [Stop]()
+    fileprivate var suggestedStops = [Stop]()
     fileprivate var query: String?
     
     override func viewDidLoad() {
@@ -85,9 +87,16 @@ class SearchController: ViewController {
         prepareSearchView()
         prepareLocationManager()
         
-        stops = routeGraph.getStopSuggestions()
-        if stops.count == 0 {
+        NotificationCenter.default.addObserver(self, selector:#selector(viewWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+
+    }
+    
+    @objc func viewWillEnterForeground() {
+        suggestedStops = routeGraph.getStopSuggestions()
+        
+        if suggestedStops.count == 0 && fetchedStops.count == 0 {
             showsTutorial = true
+            showsGreeting = true
         } else {
             UIView.transition(with: self.tableView, duration: 0.2, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
         }
@@ -95,6 +104,7 @@ class SearchController: ViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewWillEnterForeground()
         
         AppDelegate.viewTapDelegate = self
         
@@ -138,7 +148,6 @@ extension SearchController {
             "Hallo!",
             "Guten Tag!",
         ].randomElement()!
-        showsGreeting = true
     }
     
     fileprivate func prepareTutorial() {
@@ -219,7 +228,7 @@ extension SearchController: ViewTapDelegate {
 
 extension SearchController: SearchViewDelegate {    
     func search(query: String) {
-        if let oldQuery = self.query, query == oldQuery, stops.count != 0 {
+        if let oldQuery = self.query, query == oldQuery, fetchedStops.count != 0 {
             if #available(iOS 10.0, *) {
                 UINotificationFeedbackGenerator().notificationOccurred(.error)
             }
@@ -244,9 +253,9 @@ extension SearchController: SearchViewDelegate {
                 return
             }
             
-            self.stops = success.stops
+            self.fetchedStops = success.stops
             if let location = self.locationManager.location {
-                self.stops.sort {$0.distance(from: location) ?? 0 < $1.distance(from: location) ?? 0}
+                self.fetchedStops.sort {$0.distance(from: location) ?? 0 < $1.distance(from: location) ?? 0}
             }
             if #available(iOS 10.0, *) {
                 UINotificationFeedbackGenerator().notificationOccurred(.success)
@@ -346,9 +355,9 @@ extension SearchController: CLLocationManagerDelegate {
                 UINotificationFeedbackGenerator().notificationOccurred(.success)
             }
             
-            self.stops = success.stops
+            self.fetchedStops = success.stops
             if let location = self.locationManager.location {
-                self.stops.sort {$0.distance(from: location) ?? 0 < $1.distance(from: location) ?? 0}
+                self.fetchedStops.sort {$0.distance(from: location) ?? 0 < $1.distance(from: location) ?? 0}
             }
             DispatchQueue.main.async {
                 UIView.transition(with: self.tableView, duration: 0.2, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
@@ -360,25 +369,31 @@ extension SearchController: CLLocationManagerDelegate {
 
 extension SearchController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stops.count
+        return section == 0 ? fetchedStops.count : suggestedStops.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: StopTableViewCell.reuseIdentifier, for: indexPath
         ) as! StopTableViewCell
-        let stop = stops[indexPath.row]
+        let stop = indexPath.section == 0 ? fetchedStops[indexPath.row] : suggestedStops[indexPath.row]
         if cell.stop != stop {
             cell.stop = stop
         }
         if let location = locationManager.location {
             cell.location = location
         }
+        cell.isSuggestion = indexPath.section == 1
+        cell.delegate = self
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let stop = stops[indexPath.row]
+        let stop = indexPath.section == 0 ? fetchedStops[indexPath.row] : suggestedStops[indexPath.row]
         
         routeGraph.visit(stop: stop)
         DispatchQueue.global(qos: .background).async {
@@ -398,5 +413,12 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
             gpsFetchWasTriggered = true
             requestLocation()
         }
+    }
+}
+
+extension SearchController: StopTableViewCellDelegate {
+    func didSelectSuggestionInfoButton() {
+        let controller = SuggestionInformationController()
+        present(controller, animated: true)
     }
 }
