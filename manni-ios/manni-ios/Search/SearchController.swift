@@ -245,17 +245,16 @@ extension SearchController: SearchViewDelegate {
         searchView.startRefreshing()
         Stop.find(query) {
             result in
-            DispatchQueue.main.async {
-                self.searchView.endRefreshing()
-            }
             guard let success = result.success else {
-                if #available(iOS 10.0, *) {
-                    UINotificationFeedbackGenerator()
-                        .notificationOccurred(.error)
+                DispatchQueue.main.async {
+                    if #available(iOS 10.0, *) {
+                        UINotificationFeedbackGenerator()
+                            .notificationOccurred(.error)
+                    }
+                    let alert = UIAlertController(title: "VVO-Schnittstelle nicht erreichbar.", message: "Bitte versuche es später erneut.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
                 }
-                let alert = UIAlertController(title: "VVO-Schnittstelle nicht erreichbar.", message: "Bitte versuche es später erneut.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default))
-                self.present(alert, animated: true, completion: nil)
                 return
             }
             
@@ -348,13 +347,15 @@ extension SearchController: CLLocationManagerDelegate {
                 self.searchView.endRefreshing()
             }
             guard let success = result.success else {
-                if #available(iOS 10.0, *) {
-                    UINotificationFeedbackGenerator()
-                        .notificationOccurred(.error)
+                DispatchQueue.main.async {
+                    if #available(iOS 10.0, *) {
+                        UINotificationFeedbackGenerator()
+                            .notificationOccurred(.error)
+                    }
+                    let alert = UIAlertController(title: "VVO-Schnittstelle nicht erreichbar.", message: "Bitte versuche es später erneut.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
                 }
-                let alert = UIAlertController(title: "VVO-Schnittstelle nicht erreichbar.", message: "Bitte versuche es später erneut.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default))
-                self.present(alert, animated: true, completion: nil)
                 return
             }
 
