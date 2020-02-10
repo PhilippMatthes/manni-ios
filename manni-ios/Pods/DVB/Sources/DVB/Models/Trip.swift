@@ -2,7 +2,7 @@ import Foundation
 
 public struct TripsResponse: Decodable, Equatable {
     public let stops: [TripStop]
-    public let expirationTime: Date
+    public let expirationTime: Date?
 
     private enum CodingKeys: String, CodingKey {
         case stops = "Stops"

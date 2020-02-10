@@ -12,6 +12,10 @@
 		BE02038B23E835E800E7D5DC /* DepartureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02038A23E835E800E7D5DC /* DepartureCollectionViewCell.swift */; };
 		BE02038D23E83FEE00E7D5DC /* DVB+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02038C23E83FEE00E7D5DC /* DVB+UIColor.swift */; };
 		BE02039123E8597C00E7D5DC /* SkeuomorphismIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02039023E8597C00E7D5DC /* SkeuomorphismIconButton.swift */; };
+		BE0D0DEB23F1C168003DB75A /* Departure+ETA.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D0DEA23F1C168003DB75A /* Departure+ETA.swift */; };
+		BE0D0DED23F1DC77003DB75A /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D0DEC23F1DC77003DB75A /* TripView.swift */; };
+		BE0D0DF023F1DD49003DB75A /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D0DEF23F1DD49003DB75A /* TripTableViewCell.swift */; };
+		BE0D0DF223F1DEFF003DB75A /* VerticalProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D0DF123F1DEFF003DB75A /* VerticalProgressBarView.swift */; };
 		BE5AABFB23E756A9006EE1BD /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5AABFA23E756A9006EE1BD /* SearchController.swift */; };
 		BE6213F923E76EAA00FD638E /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6213F823E76EAA00FD638E /* StopTableViewCell.swift */; };
 		BE62CCB623EEFC7C00B9469E /* SuggestionInformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62CCB523EEFC7C00B9469E /* SuggestionInformationController.swift */; };
@@ -36,6 +40,10 @@
 		BE02038A23E835E800E7D5DC /* DepartureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureCollectionViewCell.swift; sourceTree = "<group>"; };
 		BE02038C23E83FEE00E7D5DC /* DVB+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DVB+UIColor.swift"; sourceTree = "<group>"; };
 		BE02039023E8597C00E7D5DC /* SkeuomorphismIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeuomorphismIconButton.swift; sourceTree = "<group>"; };
+		BE0D0DEA23F1C168003DB75A /* Departure+ETA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Departure+ETA.swift"; sourceTree = "<group>"; };
+		BE0D0DEC23F1DC77003DB75A /* TripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripView.swift; sourceTree = "<group>"; };
+		BE0D0DEF23F1DD49003DB75A /* TripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
+		BE0D0DF123F1DEFF003DB75A /* VerticalProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalProgressBarView.swift; sourceTree = "<group>"; };
 		BE5AABFA23E756A9006EE1BD /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		BE6213F823E76EAA00FD638E /* StopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopTableViewCell.swift; sourceTree = "<group>"; };
 		BE62CCB523EEFC7C00B9469E /* SuggestionInformationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionInformationController.swift; sourceTree = "<group>"; };
@@ -92,6 +100,7 @@
 				BE02038C23E83FEE00E7D5DC /* DVB+UIColor.swift */,
 				BEC77FCC23E9BCED0042CD48 /* Stop+Distance.swift */,
 				BE62CCB723EF207D00B9469E /* Departure+Icon.swift */,
+				BE0D0DEA23F1C168003DB75A /* Departure+ETA.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -103,6 +112,16 @@
 				BE63EFD723E882480019C792 /* DeparturesController.swift */,
 			);
 			path = Departures;
+			sourceTree = "<group>";
+		};
+		BE0D0DEE23F1DD2C003DB75A /* Trips */ = {
+			isa = PBXGroup;
+			children = (
+				BE0D0DEC23F1DC77003DB75A /* TripView.swift */,
+				BE0D0DEF23F1DD49003DB75A /* TripTableViewCell.swift */,
+				BE0D0DF123F1DEFF003DB75A /* VerticalProgressBarView.swift */,
+			);
+			path = Trips;
 			sourceTree = "<group>";
 		};
 		BE6213FA23E76FFD00FD638E /* Skeuomorphism */ = {
@@ -164,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				BED040C623EB365200773E2A /* stations.json */,
+				BE0D0DEE23F1DD2C003DB75A /* Trips */,
 				BE02038923E835DC00E7D5DC /* Departures */,
 				BE02038623E82D1900E7D5DC /* Extensions */,
 				BE6213FC23E7701C00FD638E /* Stops */,
@@ -310,15 +330,19 @@
 				BEC77FCB23E9960E0042CD48 /* GPSView.swift in Sources */,
 				BE02038823E82D2E00E7D5DC /* UIColor+Tools.swift in Sources */,
 				BEBA661A23E7639300CA99CF /* SkeuomorphismView.swift in Sources */,
+				BE0D0DEB23F1C168003DB75A /* Departure+ETA.swift in Sources */,
 				BE6213F923E76EAA00FD638E /* StopTableViewCell.swift in Sources */,
 				BE02038B23E835E800E7D5DC /* DepartureCollectionViewCell.swift in Sources */,
 				BEE7EC6D23EDA63100B09877 /* RouteGraph.swift in Sources */,
 				BEDAA49023E7541900A25187 /* AppDelegate.swift in Sources */,
+				BE0D0DED23F1DC77003DB75A /* TripView.swift in Sources */,
+				BE0D0DF023F1DD49003DB75A /* TripTableViewCell.swift in Sources */,
 				BEBA661523E75B6A00CA99CF /* SearchView.swift in Sources */,
 				BE62CCB823EF207D00B9469E /* Departure+Icon.swift in Sources */,
 				BE02039123E8597C00E7D5DC /* SkeuomorphismIconButton.swift in Sources */,
 				BE02038D23E83FEE00E7D5DC /* DVB+UIColor.swift in Sources */,
 				BEC77FCD23E9BCED0042CD48 /* Stop+Distance.swift in Sources */,
+				BE0D0DF223F1DEFF003DB75A /* VerticalProgressBarView.swift in Sources */,
 				BE5AABFB23E756A9006EE1BD /* SearchController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

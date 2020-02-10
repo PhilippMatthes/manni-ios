@@ -83,17 +83,17 @@ class StopTableViewCell: UITableViewCell {
         
         contentView.layout(suggestionBadgeView)
             .right(24)
-            .top(12)
-        suggestionBadgeView.cornerRadius = 12
+            .top(8)
+        suggestionBadgeView.cornerRadius = 16
         suggestionBadgeView.lightColor = Color.grey.lighten5
         
         suggestionBadgeView.contentView.layout(suggestionBadgeButton)
             .right()
             .top()
             .bottom()
-            .height(24)
-            .width(24)
-        suggestionBadgeButton.skeuomorphismView.cornerRadius = 12
+            .height(32)
+            .width(32)
+        suggestionBadgeButton.skeuomorphismView.cornerRadius = 16
         suggestionBadgeButton.addTarget(self, action: #selector(didSelectSuggestionInfoButton), for: .touchUpInside)
         
         suggestionBadgeView.contentView.layout(suggestionBadgeLabel)

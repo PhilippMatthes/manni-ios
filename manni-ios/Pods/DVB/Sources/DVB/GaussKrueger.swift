@@ -33,7 +33,7 @@ public struct WGSCoordinate: Codable, Coordinate, Equatable, Hashable {
         self.latitude = latitude
         self.longitude = longitude
     }
-
+    
     private enum CodingKeys: String, CodingKey {
         case latitude
         case longitude

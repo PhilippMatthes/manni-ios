@@ -14,57 +14,50 @@ class DepartureCollectionViewCell: UICollectionViewCell {
     
     public var departure: Departure? {
         didSet {
-            lineNameLabel.text = departure?.line
-            lineNameLabel.textColor = departure?.color
+            guard let departure = departure else {return}
+            lineNameLabel.text = departure.line
             lineNameLabel.sizeToFit()
-            directionLabel.text = departure?.direction
-            directionLabel.textColor = departure?.color
+            directionLabel.text = departure.direction
             directionLabel.sizeToFit()
-            modeImageView.image = departure?.icon
+            skeuomorphismView.lightColor = departure.color
+            
             updateTimeResponsiveUI()
         }
     }
-    
-    fileprivate let modeImageView = UIImageView()
+        
     fileprivate let skeuomorphismView = SkeuomorphismView()
     fileprivate let lineNameLabel = UILabel()
     fileprivate let directionLabel = UILabel()
     fileprivate let etaLabel = UILabel()
     
-    fileprivate var timer: Timer?
+    fileprivate var timeResponsiveRefreshTimer: Timer?
     
     public required init?(coder aDecoder: NSCoder) {
-      super.init(coder: aDecoder)
-      prepare()
+        super.init(coder: aDecoder)
+        prepare()
     }
     
     public override init(frame: CGRect) {
-      super.init(frame: frame)
-      prepare()
+        super.init(frame: frame)
+        prepare()
     }
     
     fileprivate func prepare() {        
         contentView.layout(skeuomorphismView)
-            .height(188)
+            .height(216)
             .width(148)
             .edges()
         skeuomorphismView.cornerRadius = 24
-        skeuomorphismView.contentView.backgroundColor = Color.grey.lighten4
-        skeuomorphismView.lightShadowOpacity = 0.3
+        skeuomorphismView.lightShadowOpacity = 0.9
         skeuomorphismView.darkShadowOpacity = 0.1
-        
-        skeuomorphismView.contentView.layout(modeImageView)
-            .edges()
-        modeImageView.contentMode = .scaleAspectFit
-        modeImageView.tintColor = .black
-        modeImageView.alpha = 0.03
         
         skeuomorphismView.contentView.layout(lineNameLabel)
             .topLeft(top: 12, left: 12)
             .right(12)
-        lineNameLabel.numberOfLines = 1
+        lineNameLabel.numberOfLines = 2
         lineNameLabel.adjustsFontSizeToFitWidth = true
         lineNameLabel.font = RobotoFont.bold(with: 38)
+        lineNameLabel.textColor = .white
         
         skeuomorphismView.contentView.layout(directionLabel)
             .below(lineNameLabel, 4)
@@ -73,25 +66,28 @@ class DepartureCollectionViewCell: UICollectionViewCell {
         directionLabel.numberOfLines = 2
         directionLabel.adjustsFontSizeToFitWidth = true
         directionLabel.font = RobotoFont.regular(with: 18)
+        directionLabel.textColor = .white
         
         skeuomorphismView.contentView.layout(etaLabel)
             .left(12)
             .right(12)
             .bottom(24)
-        etaLabel.font = RobotoFont.light(with: 18)
+        etaLabel.font = RobotoFont.light(with: 16)
+        etaLabel.textColor = .white
         
-        timer = .scheduledTimer(
+        timeResponsiveRefreshTimer = .scheduledTimer(
             timeInterval: 1.0,
             target: self,
             selector: #selector(updateTimeResponsiveUI),
             userInfo: nil,
             repeats: true
         )
+        RunLoop.main.add(timeResponsiveRefreshTimer!, forMode: .common)
     }
     
     @objc func updateTimeResponsiveUI() {
         guard let departure = departure else {return}
-        etaLabel.text = departure.localizedETA(for: .init(identifier: "de"))
+        etaLabel.text = departure.manniETA
     }
     
 }
