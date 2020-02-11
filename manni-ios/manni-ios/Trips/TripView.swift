@@ -14,28 +14,23 @@ class TripView: SkeuomorphismView {
     
     public var departure: Departure? {
         didSet {
-            departureLineLabel.text = departure?.line
-            departureDirectionLabel.text = departure?.direction
             lightColor = departure?.gradient.first ?? .white
             gradient = departure?.gradient
         }
     }
+    
     public var tripStops: [TripStop]? {
         didSet {
             tableView.reloadData()
             guard let tripStops = tripStops else {return}
             for (i, tripStop) in tripStops.enumerated() {
                 if tripStop.time.timeIntervalSinceNow >= 0 {
-                    tableView.scrollToRow(at: IndexPath(item: i, section: 0), at: .top, animated: false)
+                    tableView.scrollToRow(at: IndexPath(item: i, section: 0), at: .middle, animated: false)
                     return
                 }
             }
         }
     }
-    
-    fileprivate let departureBackground = UIVisualEffectView()
-    fileprivate let departureLineLabel = UILabel()
-    fileprivate let departureDirectionLabel = UILabel()
     
     fileprivate let tableView = TableView()
     
@@ -43,7 +38,6 @@ class TripView: SkeuomorphismView {
         super.prepare()
         
         prepareTableView()
-        prepareDepartureView()
     }
     
 }
@@ -58,31 +52,6 @@ extension TripView {
         tableView.layer.cornerRadius = 24
         tableView.isUserInteractionEnabled = false
         tableView.register(TripTableViewCell.self, forCellReuseIdentifier: TripTableViewCell.reuseIdentifier)
-    }
-    
-    fileprivate func prepareDepartureView() {
-        contentView.layout(departureBackground)
-            .bottom()
-            .left()
-            .right()
-        departureBackground.effect = UIBlurEffect(style: .light)
-        departureBackground.clipsToBounds = true
-        departureBackground.layer.cornerRadius = 32.0
-        
-        departureBackground.contentView.layout(departureLineLabel)
-            .top(24)
-            .left(24)
-            .right(24)
-        departureLineLabel.textColor = .white
-        departureLineLabel.font = RobotoFont.bold(with: 24)
-        
-        departureBackground.contentView.layout(departureDirectionLabel)
-            .below(departureLineLabel, 8)
-            .left(24)
-            .right(24)
-            .bottomSafe(24)
-        departureDirectionLabel.textColor = .white
-        departureDirectionLabel.font = RobotoFont.regular(with: 16)
     }
 }
 
@@ -110,10 +79,17 @@ extension TripView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tripStops?.count ?? 0
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.layer.opacity = 0.0
+        UIView.animate(withDuration: 0.5, delay: 0, options: .allowUserInteraction, animations: {
+            cell.layer.opacity = 1.0
+        }, completion: nil)
+    }
 }
 
 extension TripView: TripTableViewCellDelegate {
     func shouldScroll(to indexPath: IndexPath) {
-        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
     }
 }

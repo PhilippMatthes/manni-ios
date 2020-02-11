@@ -34,20 +34,17 @@ class DeparturesController: ViewController {
     fileprivate var departures = [Departure]()
     fileprivate var scheduledTimer: Timer?
     
-    fileprivate let colorBackgroundView = SkeuomorphismView()
     fileprivate let backButton = SkeuomorphismIconButton(image: Icon.arrowBack, tintColor: Color.grey.darken4)
     fileprivate let stopNameLabel = UILabel()
     fileprivate let stopLocationLabel = UILabel()
     fileprivate let collectionView = CollectionView()
     fileprivate let flowLayout = UICollectionViewFlowLayout()
-    fileprivate let tripView = TripView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor("#ECE9E6")
         
-        prepareTripView()
         prepareBackground()
         prepareBackButton()
         prepareStopNameLabel()
@@ -87,15 +84,11 @@ class DeparturesController: ViewController {
 
 extension DeparturesController {
     fileprivate func prepareBackground() {
-        view.layout(colorBackgroundView)
-            .top()
-            .left()
-            .right()
-            .height(444)
-        colorBackgroundView.cornerRadius = 10
-        colorBackgroundView.lightColor = Color.grey.lighten3
-        colorBackgroundView.contentView.backgroundColor = Color.grey.lighten3
-        colorBackgroundView.darkShadowOpacity = 0.2
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.colors = Gradients.clouds.map {$0.cgColor}
+        gradientLayer.frame = view.bounds
+        view.layer.addSublayer(gradientLayer)
     }
     
     fileprivate func prepareBackButton() {
@@ -149,14 +142,6 @@ extension DeparturesController {
         collectionView.register(DepartureCollectionViewCell.self, forCellWithReuseIdentifier: DepartureCollectionViewCell.identifier)
     }
     
-    fileprivate func prepareTripView() {
-        view.layout(tripView)
-            .top(424)
-            .bottom()
-            .left()
-            .right()
-        tripView.cornerRadius = 0
-    }
 }
 
 extension DeparturesController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -181,26 +166,10 @@ extension DeparturesController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let stop = self.stop else {return}
         let departure = departures[indexPath.row]
-        TripStop.get(forTripID: departure.id, stopID: stop.id, atTime: Date()) {
-            response in
-            guard let success = response.success else {
-                DispatchQueue.main.async {
-                    if #available(iOS 10.0, *) {
-                        UINotificationFeedbackGenerator()
-                            .notificationOccurred(.error)
-                    }
-                    let alert = UIAlertController(title: "VVO-Schnittstelle nicht erreichbar.", message: "Bitte versuche es später erneut.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default))
-                    self.present(alert, animated: true, completion: nil)
-                }
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self.tripView.tripStops = success.stops
-                self.tripView.departure = departure
-            }
-        }
+        let controller = TripController()
+        controller.departure = departure
+        controller.stop = stop
+        present(controller, animated: true)
     }
     
 }

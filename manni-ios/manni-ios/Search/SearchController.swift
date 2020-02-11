@@ -128,7 +128,11 @@ class SearchController: ViewController {
 
 extension SearchController {
     fileprivate func prepareBackground() {
-        view.backgroundColor = UIColor("#ECE9E6")
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.colors = Gradients.clouds.map {$0.cgColor}
+        gradientLayer.frame = view.bounds
+        view.layer.addSublayer(gradientLayer)
     }
     
     fileprivate func prepareGreeting() {

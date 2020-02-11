@@ -11,7 +11,6 @@ import Material
 
 class GPSView: SkeuomorphismView {
     
-    fileprivate let backgroundImageView = UIView()
     fileprivate let startImageView = UIImageView()
     fileprivate let animatingImageView = UIImageView()
     fileprivate let pullIcon = UIImageView(image: Icon.arrowDownward)

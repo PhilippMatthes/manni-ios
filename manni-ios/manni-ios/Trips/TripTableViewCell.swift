@@ -132,7 +132,7 @@ class TripTableViewCell: UITableViewCell {
             .right(24)
         stopNameLabel.font = RobotoFont.regular(with: 24)
         stopNameLabel.textColor = .white
-        stopNameLabel.numberOfLines = 0
+        stopNameLabel.numberOfLines = 1
         
         contentView.layout(etaLabel)
             .after(progressView, 24)
@@ -140,7 +140,7 @@ class TripTableViewCell: UITableViewCell {
             .right(24)
         etaLabel.font = RobotoFont.light(with: 12)
         etaLabel.textColor = .white
-        etaLabel.numberOfLines = 0
+        etaLabel.numberOfLines = 1
     }
     
     @objc func updateTimeResponsiveUI() {
