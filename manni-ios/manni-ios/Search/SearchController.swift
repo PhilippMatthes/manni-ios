@@ -245,6 +245,9 @@ extension SearchController: SearchViewDelegate {
         searchView.startRefreshing()
         Stop.find(query) {
             result in
+            DispatchQueue.main.async {
+                self.searchView.endRefreshing()
+            }
             guard let success = result.success else {
                 DispatchQueue.main.async {
                     if #available(iOS 10.0, *) {

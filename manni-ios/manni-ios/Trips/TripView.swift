@@ -26,7 +26,7 @@ class TripView: SkeuomorphismView {
             guard let tripStops = tripStops else {return}
             for (i, tripStop) in tripStops.enumerated() {
                 if tripStop.time.timeIntervalSinceNow >= 0 {
-                    tableView.scrollToRow(at: IndexPath(item: i, section: 0), at: .middle, animated: false)
+                    tableView.scrollToRow(at: IndexPath(item: i, section: 0), at: .top, animated: false)
                     return
                 }
             }
@@ -114,6 +114,6 @@ extension TripView: UITableViewDelegate, UITableViewDataSource {
 
 extension TripView: TripTableViewCellDelegate {
     func shouldScroll(to indexPath: IndexPath) {
-        tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
 }
