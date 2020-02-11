@@ -8,28 +8,26 @@
 
 import DVB
 
-class Colors {
+class Gradients {
     public static var all = [
-        UIColor("#3742fa"),
-        UIColor("#ff4757"),
-        UIColor("#ff6348"),
-        UIColor("#ffa502"),
-        UIColor("#2ed573"),
-        UIColor("#1e90ff"),
-        UIColor("#747d8c"),
-        UIColor("#2f3542"),
-        UIColor("#57606f"),
+        [UIColor("#56ab2f"), UIColor("#a8e063")],
+        [UIColor("#FF416C"), UIColor("#FF4B2B")],
+        [UIColor("#fc4a1a"), UIColor("#f7b733")],
+        [UIColor("#00c6ff"), UIColor("#0072ff")],
+        [UIColor("#396afc"), UIColor("#2948ff")],
+        [UIColor("#8E2DE2"), UIColor("#4A00E0")],
+        [UIColor("#ec008c"), UIColor("#fc6767")],
     ]
 }
 
 extension Departure {
     
-    public var color: UIColor {
+    public var gradient: [UIColor] {
         get {
             if let number = Int(line) {
-                return Colors.all[number % Colors.all.count]
+                return Gradients.all[number % Gradients.all.count]
             }
-            return Colors.all[self.line.count % Colors.all.count]
+            return Gradients.all[self.line.count % Gradients.all.count]
         }
     }
     
@@ -37,12 +35,12 @@ extension Departure {
 
 extension Stop {
     
-    public var color: UIColor {
+    public var gradient: [UIColor] {
         get {
             if let id = Int(self.id) {
-                return Colors.all[abs(id) % Colors.all.count]
+                return Gradients.all[abs(id) % Gradients.all.count]
             }
-            return Colors.all[self.name.count % Colors.all.count]
+            return Gradients.all[self.name.count % Gradients.all.count]
         }
     }
     

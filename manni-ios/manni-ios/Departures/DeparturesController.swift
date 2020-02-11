@@ -47,12 +47,12 @@ class DeparturesController: ViewController {
         
         view.backgroundColor = UIColor("#ECE9E6")
         
+        prepareTripView()
         prepareBackground()
         prepareBackButton()
         prepareStopNameLabel()
         prepareStopLocationLabel()
         prepareCollectionView()
-        prepareTripView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -91,9 +91,11 @@ extension DeparturesController {
             .top()
             .left()
             .right()
-            .height(Screen.height / 3)
+            .height(444)
         colorBackgroundView.cornerRadius = 10
         colorBackgroundView.lightColor = Color.grey.lighten3
+        colorBackgroundView.contentView.backgroundColor = Color.grey.lighten3
+        colorBackgroundView.darkShadowOpacity = 0.2
     }
     
     fileprivate func prepareBackButton() {
@@ -113,6 +115,7 @@ extension DeparturesController {
             .below(backButton, 24)
             .left(24)
             .right(24)
+            .height(32)
         stopNameLabel.font = RobotoFont.bold(with: 24)
         stopNameLabel.textColor = Color.grey.darken4
         stopNameLabel.numberOfLines = 1
@@ -122,6 +125,7 @@ extension DeparturesController {
         view.layout(stopLocationLabel)
             .below(stopNameLabel, 8)
             .left(24)
+            .height(32)
             .right(24)
         stopLocationLabel.font = RobotoFont.light(with: 18)
         stopLocationLabel.textColor = Color.grey.darken4
@@ -147,11 +151,11 @@ extension DeparturesController {
     
     fileprivate func prepareTripView() {
         view.layout(tripView)
+            .top(424)
             .bottom()
             .left()
             .right()
-            .height(256)
-        tripView.cornerRadius = 8
+        tripView.cornerRadius = 0
     }
 }
 
@@ -194,7 +198,7 @@ extension DeparturesController: UICollectionViewDelegate, UICollectionViewDataSo
             
             DispatchQueue.main.async {
                 self.tripView.tripStops = success.stops
-                self.tripView.lightColor = departure.color
+                self.tripView.departure = departure
             }
         }
     }

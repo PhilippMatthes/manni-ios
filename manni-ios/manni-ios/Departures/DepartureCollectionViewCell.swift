@@ -19,7 +19,8 @@ class DepartureCollectionViewCell: UICollectionViewCell {
             lineNameLabel.sizeToFit()
             directionLabel.text = departure.direction
             directionLabel.sizeToFit()
-            skeuomorphismView.lightColor = departure.color
+            skeuomorphismView.lightColor = departure.gradient.first ?? .white
+            skeuomorphismView.gradient = departure.gradient
             
             updateTimeResponsiveUI()
         }

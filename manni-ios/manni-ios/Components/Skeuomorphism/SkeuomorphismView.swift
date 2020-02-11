@@ -12,15 +12,22 @@ import Material
 
 class SkeuomorphismView: View {
     
+    fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let lightShadowLayer = CAShapeLayer()
     fileprivate let darkShadowLayer = CAShapeLayer()
+    
+    public var gradient: [UIColor]? {
+        didSet {
+            gradientLayer.colors = gradient?.map {$0.cgColor} ?? [UIColor.clear.cgColor]
+            contentView.backgroundColor = .clear
+        }
+    }
     
     public var lightColor: UIColor = Color.grey.lighten4 {
         didSet {
             lightShadowLayer.shadowColor = lightColor.interpolate(
                 to: Color.grey.lighten4, 0.7
             )?.cgColor
-            contentView.backgroundColor = lightColor
         }
     }
     
@@ -78,6 +85,13 @@ class SkeuomorphismView: View {
             layer.insertSublayer(lightShadowLayer, at: 0)
         }
         
+        gradientLayer.frame = bounds
+        gradientLayer.cornerRadius = cornerRadius
+        if layer.sublayers?.contains(gradientLayer) == false {
+            gradientLayer.locations = [0.0, 1.0]
+            gradientLayer.colors = gradient?.map {$0.cgColor} ?? [UIColor.clear.cgColor]
+            layer.addSublayer(gradientLayer)
+        }
         
         if !subviews.contains(contentView) {
             layout(contentView).edges()

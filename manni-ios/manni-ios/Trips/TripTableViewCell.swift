@@ -8,6 +8,7 @@
 
 import Material
 import DVB
+import Motion
 
 
 protocol TripTableViewCellDelegate {
@@ -24,17 +25,22 @@ class TripTableViewCell: UITableViewCell {
         didSet {
             guard let tripStop = tripStop else {return}
             stopNameLabel.text = tripStop.name
+            etaLabel.text = tripStop.manniETA
             
-            scrollTimer?.invalidate()
-            scrollTimer = Timer(
-                fireAt: tripStop.time,
-                interval: 0,
-                target: self,
-                selector: #selector(shouldScroll),
-                userInfo: nil,
-                repeats: false
-            )
-            RunLoop.main.add(scrollTimer!, forMode: .common)
+            if tripStop.time.timeIntervalSinceNow >= 0 {
+                scrollTimer?.invalidate()
+                scrollTimer = Timer(
+                    fireAt: tripStop.time,
+                    interval: 0,
+                    target: self,
+                    selector: #selector(shouldScroll),
+                    userInfo: nil,
+                    repeats: false
+                )
+                RunLoop.main.add(scrollTimer!, forMode: .common)
+            }
+            
+            updateTimeResponsiveUI()
         }
     }
     
@@ -43,12 +49,37 @@ class TripTableViewCell: UITableViewCell {
     public var indexPath: IndexPath?
     public var delegate: TripTableViewCellDelegate?
     
-    
     fileprivate let progressView = VerticalProgressBarView()
-    fileprivate let dotView = UIView()
+    fileprivate let dotButton = SkeuomorphismView()
     fileprivate var timeResponsiveRefreshTimer: Timer?
     fileprivate var scrollTimer: Timer?
     fileprivate let stopNameLabel = UILabel()
+    fileprivate let etaLabel = UILabel()
+    
+    fileprivate var progress: CGFloat {
+        get {
+            guard
+                let tripStop = tripStop
+                else {return 0.0}
+            
+            let previousSeconds = previousTripStop?.time.timeIntervalSince1970 ?? tripStop.time.timeIntervalSince1970
+            let targetSeconds = tripStop.time.timeIntervalSince1970
+            let seconds = Date().timeIntervalSince1970
+            let nextSeconds = nextTripStop?.time.timeIntervalSince1970 ?? tripStop.time.timeIntervalSince1970
+            
+            let fromSeconds = previousSeconds + ((targetSeconds - previousSeconds) / 2)
+            let toSeconds = targetSeconds + ((nextSeconds - targetSeconds) / 2)
+            
+            if fromSeconds > seconds {
+                return 0
+            } else if seconds > toSeconds {
+                return 100
+            } else {
+                let progress = (seconds - fromSeconds) / (toSeconds - fromSeconds)
+                return CGFloat(progress * 100)
+            }
+        }
+    }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -86,49 +117,52 @@ class TripTableViewCell: UITableViewCell {
         progressView.progressBackgroundColor = Color.white.withAlphaComponent(0.3)
         progressView.progressBarColor = Color.white
         
-        contentView.layout(dotView)
+        contentView.layout(dotButton)
             .left(24)
             .width(16)
             .height(16)
             .centerY()
-        dotView.layer.cornerRadius = 8
-        dotView.backgroundColor = .white
+        dotButton.cornerRadius = 8
+        dotButton.lightColor = Color.grey.lighten4
+        dotButton.lightShadowOpacity = 0.2
         
         contentView.layout(stopNameLabel)
             .after(progressView, 24)
             .centerY()
             .right(24)
-        stopNameLabel.font = RobotoFont.bold(with: 24)
+        stopNameLabel.font = RobotoFont.regular(with: 24)
         stopNameLabel.textColor = .white
         stopNameLabel.numberOfLines = 0
+        
+        contentView.layout(etaLabel)
+            .after(progressView, 24)
+            .below(stopNameLabel, 8)
+            .right(24)
+        etaLabel.font = RobotoFont.light(with: 12)
+        etaLabel.textColor = .white
+        etaLabel.numberOfLines = 0
     }
     
     @objc func updateTimeResponsiveUI() {
-        guard
-            let tripStop = tripStop
-        else {return}
+        let computedProgress = progress
+        progressView.progress = computedProgress
         
-        let previousSeconds = previousTripStop?.time.timeIntervalSince1970 ?? tripStop.time.timeIntervalSince1970
-        let targetSeconds = tripStop.time.timeIntervalSince1970
-        let seconds = Date().timeIntervalSince1970
-        let nextSeconds = nextTripStop?.time.timeIntervalSince1970 ?? tripStop.time.timeIntervalSince1970
+        etaLabel.text = "Abfahrt nach Fahrplan: \(tripStop?.manniETA ?? "Unbekannt")"
         
-        let fromSeconds = previousSeconds + ((targetSeconds - previousSeconds) / 2)
-        let toSeconds = targetSeconds + ((nextSeconds - targetSeconds) / 2)
-        
-        if fromSeconds > seconds {
-            progressView.progress = 0
-        } else if seconds > toSeconds {
-            progressView.progress = 100
+        if computedProgress == 100.0 || computedProgress >= 50.0 {
+            dotButton.transform = .init(scaleX: 1.0, y: 1.0)
         } else {
-            let progress = (seconds - fromSeconds) / (toSeconds - fromSeconds)
-            progressView.progress = CGFloat(progress * 100)
+            dotButton.transform = .init(scaleX: 0.5, y: 0.5)
         }
     }
     
     @objc func shouldScroll() {
         guard let indexPath = indexPath else {return}
         delegate?.shouldScroll(to: indexPath)
+        
+        UIView.animate(withDuration: 1.0) {
+            self.dotButton.transform = .init(scaleX: 0.5, y: 0.5)
+        }
     }
     
 }

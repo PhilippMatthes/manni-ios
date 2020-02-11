@@ -31,7 +31,8 @@ class StopTableViewCell: UITableViewCell {
     
     public var stop: Stop? {
         didSet {
-            leftBorderView.lightColor = stop?.color ?? .white
+            leftBorderView.lightColor = stop?.gradient.first ?? .white
+            leftBorderView.gradient = stop?.gradient ?? [.white, .white]
             stopNameLabel.text = stop?.name
             stopLocationLabel.text = stop?.region ?? "Dresden"
         }
@@ -86,6 +87,7 @@ class StopTableViewCell: UITableViewCell {
             .top(8)
         suggestionBadgeView.cornerRadius = 16
         suggestionBadgeView.lightColor = Color.grey.lighten5
+        suggestionBadgeView.contentView.backgroundColor = Color.grey.lighten5
         
         suggestionBadgeView.contentView.layout(suggestionBadgeButton)
             .right()
