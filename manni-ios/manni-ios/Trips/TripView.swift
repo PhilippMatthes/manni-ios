@@ -69,6 +69,8 @@ extension TripView: UITableViewDelegate, UITableViewDataSource {
             cell.nextTripStop = tripStops![indexPath.row + 1]
         }
         
+        cell.departure = departure
+        
         return cell
     }
     

@@ -20,12 +20,13 @@ class TripTableViewCell: UITableViewCell {
     
     public static let reuseIdentifier = "TripTableViewCell"
     
+    public var departure: Departure?
+    
     public var previousTripStop: TripStop?
     public var tripStop: TripStop? {
         didSet {
             guard let tripStop = tripStop else {return}
             stopNameLabel.text = tripStop.name
-            etaLabel.text = tripStop.manniETA
             
             if tripStop.time.timeIntervalSinceNow >= 0 {
                 scrollTimer?.invalidate()
@@ -49,14 +50,16 @@ class TripTableViewCell: UITableViewCell {
     public var indexPath: IndexPath?
     public var delegate: TripTableViewCellDelegate?
     
-    fileprivate let progressView = VerticalProgressBarView()
+    fileprivate let regularProgressView = VerticalProgressBarView()
+    fileprivate let offsetProgressView = VerticalProgressBarView()
     fileprivate let dotButton = SkeuomorphismView()
     fileprivate var timeResponsiveRefreshTimer: Timer?
     fileprivate var scrollTimer: Timer?
     fileprivate let stopNameLabel = UILabel()
-    fileprivate let etaLabel = UILabel()
+    fileprivate let plannedEtaLabel = UILabel()
+    fileprivate let realEtaLabel = UILabel()
     
-    fileprivate var progress: CGFloat {
+    fileprivate var regularProgress: CGFloat {
         get {
             guard
                 let tripStop = tripStop
@@ -65,6 +68,33 @@ class TripTableViewCell: UITableViewCell {
             let previousSeconds = previousTripStop?.time.timeIntervalSince1970 ?? tripStop.time.timeIntervalSince1970
             let targetSeconds = tripStop.time.timeIntervalSince1970
             let seconds = Date().timeIntervalSince1970
+            let nextSeconds = nextTripStop?.time.timeIntervalSince1970 ?? tripStop.time.timeIntervalSince1970
+            
+            let fromSeconds = previousSeconds + ((targetSeconds - previousSeconds) / 2)
+            let toSeconds = targetSeconds + ((nextSeconds - targetSeconds) / 2)
+            
+            if fromSeconds > seconds {
+                return 0
+            } else if seconds > toSeconds {
+                return 100
+            } else {
+                let progress = (seconds - fromSeconds) / (toSeconds - fromSeconds)
+                return CGFloat(progress * 100)
+            }
+        }
+    }
+    
+    fileprivate var offsetProgress: CGFloat {
+        get {
+            guard
+                let tripStop = tripStop,
+                let departure = departure,
+                let realtime = departure.realTime
+            else {return regularProgress}
+            
+            let previousSeconds = previousTripStop?.time.timeIntervalSince1970 ?? tripStop.time.timeIntervalSince1970
+            let targetSeconds = tripStop.time.timeIntervalSince1970
+            let seconds = Date().timeIntervalSince1970 - realtime.timeIntervalSince(departure.scheduledTime)
             let nextSeconds = nextTripStop?.time.timeIntervalSince1970 ?? tripStop.time.timeIntervalSince1970
             
             let fromSeconds = previousSeconds + ((targetSeconds - previousSeconds) / 2)
@@ -108,14 +138,23 @@ class TripTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        contentView.layout(progressView)
+        contentView.layout(regularProgressView)
             .left(30)
             .top()
             .width(4)
             .bottom()
-        progressView.transform = .init(rotationAngle: CGFloat.pi)
-        progressView.progressBackgroundColor = Color.white.withAlphaComponent(0.3)
-        progressView.progressBarColor = Color.white
+        regularProgressView.transform = .init(rotationAngle: CGFloat.pi)
+        regularProgressView.progressBackgroundColor = Color.white.withAlphaComponent(0.3)
+        regularProgressView.progressBarColor = Color.white.withAlphaComponent(0.5)
+        
+        contentView.layout(offsetProgressView)
+            .left(30)
+            .top()
+            .width(4)
+            .bottom()
+        offsetProgressView.transform = .init(rotationAngle: CGFloat.pi)
+        offsetProgressView.progressBackgroundColor = .clear
+        offsetProgressView.progressBarColor = Color.white
         
         contentView.layout(dotButton)
             .left(24)
@@ -127,29 +166,45 @@ class TripTableViewCell: UITableViewCell {
         dotButton.lightShadowOpacity = 0.2
         
         contentView.layout(stopNameLabel)
-            .after(progressView, 24)
+            .after(regularProgressView, 24)
             .centerY()
             .right(24)
         stopNameLabel.font = RobotoFont.regular(with: 24)
         stopNameLabel.textColor = .white
         stopNameLabel.numberOfLines = 1
         
-        contentView.layout(etaLabel)
-            .after(progressView, 24)
+        contentView.layout(plannedEtaLabel)
+            .after(regularProgressView, 24)
             .below(stopNameLabel, 8)
             .right(24)
-        etaLabel.font = RobotoFont.light(with: 12)
-        etaLabel.textColor = .white
-        etaLabel.numberOfLines = 1
+        plannedEtaLabel.font = RobotoFont.light(with: 12)
+        plannedEtaLabel.textColor = .white
+        plannedEtaLabel.numberOfLines = 1
+        
+        contentView.layout(realEtaLabel)
+            .after(regularProgressView, 24)
+            .below(plannedEtaLabel, 8)
+            .right(24)
+        realEtaLabel.font = RobotoFont.regular(with: 12)
+        realEtaLabel.textColor = .white
+        realEtaLabel.numberOfLines = 1
     }
     
     @objc func updateTimeResponsiveUI() {
-        let computedProgress = progress
-        progressView.progress = computedProgress
+        let computedRegularProgress = regularProgress
+        let computedOffsetProgress = offsetProgress
+        regularProgressView.progress = computedRegularProgress
+        offsetProgressView.progress = computedOffsetProgress
         
-        etaLabel.text = "Abfahrt nach Fahrplan: \(tripStop?.manniETA ?? "Unbekannt")"
+        plannedEtaLabel.text = "Abfahrt nach Fahrplan: \(tripStop?.manniETA ?? "Unbekannt")"
+        if let latency = departure?.manniLatency {
+            realEtaLabel.alpha = 1
+            realEtaLabel.text = "Voraussage: \(latency)"
+        } else {
+            realEtaLabel.alpha = 0
+        }
         
-        if computedProgress == 100.0 || computedProgress >= 50.0 {
+        if offsetProgress == 100.0 || offsetProgress >= 50.0 {
             dotButton.transform = .init(scaleX: 1.0, y: 1.0)
         } else {
             dotButton.transform = .init(scaleX: 0.5, y: 0.5)
