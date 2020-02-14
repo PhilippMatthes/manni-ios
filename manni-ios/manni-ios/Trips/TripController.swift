@@ -12,7 +12,11 @@ import DVB
 
 class TripController: ViewController {
     
-    public var stop: Stop?
+    public var stop: Stop? {
+        didSet {
+            tripView.stop = stop
+        }
+    }
     public var departure: Departure? {
         didSet {
             departureLineLabel.text = "Fahrplan für Linie \(departure?.line ?? "")"
@@ -20,10 +24,9 @@ class TripController: ViewController {
             tripView.departure = departure
             
             if let latency = departure?.manniLatency {
-                disclaimerBackgroundView.alpha = 1
                 disclaimerLabel.text = "Die Abfahrt an der aktuellen Haltestelle ist \(latency). Der gezeigte reguläre Fahrplan kann abweichen."
             } else {
-                disclaimerBackgroundView.alpha = 0
+                disclaimerLabel.text = "Der gezeigte reguläre Fahrplan kann von der tatsächlichen Abfahrtszeit abweichen."
             }
         }
     }
@@ -33,7 +36,7 @@ class TripController: ViewController {
     fileprivate let departureLineLabel = UILabel()
     fileprivate let departureDirectionLabel = UILabel()
     fileprivate let backButton = SkeuomorphismIconButton(image: Icon.arrowBack, tintColor: Color.grey.darken4)
-    fileprivate let disclaimerBackgroundView = SkeuomorphismView()
+    fileprivate let disclaimerBackgroundView = UIVisualEffectView()
     fileprivate let disclaimerLabel = UILabel()
     
     override func viewDidLoad() {
@@ -76,28 +79,31 @@ class TripController: ViewController {
 extension TripController {
     fileprivate func prepareTripView() {
         view.layout(tripView)
-            .top(208)
+            .top()
             .bottom()
             .left()
             .right()
         tripView.cornerRadius = 0
+        tripView.tableViewContentInset = .init(top: 218, left: 0, bottom: 128, right: 0)
     }
     
     fileprivate func prepareTopView() {
         view.layout(topView)
             .top()
-            .left()
+            .left(52)
             .right()
-            .height(218)
-        topView.cornerRadius = 10
+            .height(188)
         topView.gradient = Gradients.clouds
         topView.darkShadowOpacity = 0.1
+        topView.lightShadowOpacity = 0.3
+        topView.roundedCorners = .bottomLeft
+        topView.cornerRadius = 12
     }
     
     fileprivate func prepareBackButton() {
         topView.contentView.layout(backButton)
-            .top(24)
-            .left(24)
+            .top(12)
+            .left(12)
             .height(64)
             .width(64)
         backButton.skeuomorphismView.lightShadowOpacity = 0.3
@@ -109,8 +115,8 @@ extension TripController {
     fileprivate func prepareDepartureLineLabel() {
         topView.contentView.layout(departureLineLabel)
             .below(backButton, 24)
-            .left(24)
-            .right(24)
+            .left(12)
+            .right(12)
             .height(32)
         departureLineLabel.font = RobotoFont.bold(with: 24)
         departureLineLabel.textColor = Color.grey.darken4
@@ -120,9 +126,9 @@ extension TripController {
     fileprivate func prepareDepartureDirectionLabel() {
         topView.contentView.layout(departureDirectionLabel)
             .below(departureLineLabel, 8)
-            .left(24)
+            .left(12)
             .height(32)
-            .right(24)
+            .right(12)
         departureDirectionLabel.font = RobotoFont.light(with: 18)
         departureDirectionLabel.textColor = Color.grey.darken4
         departureDirectionLabel.numberOfLines = 1
@@ -131,15 +137,16 @@ extension TripController {
     fileprivate func prepareDisclaimerView() {
         view.layout(disclaimerBackgroundView)
             .bottomSafe(12)
-            .left(12)
+            .left(52)
             .right(12)
-        disclaimerBackgroundView.cornerRadius = 12
-        disclaimerBackgroundView.gradient = Gradients.clouds
-        disclaimerBackgroundView.lightShadowOpacity = 0.2
+        disclaimerBackgroundView.layer.cornerRadius = 12
+        disclaimerBackgroundView.clipsToBounds = true
+        disclaimerBackgroundView.effect = UIBlurEffect(style: .light)
         
         disclaimerBackgroundView.contentView.layout(disclaimerLabel)
             .edges(top: 12, left: 12, bottom: 12, right: 12)
         disclaimerLabel.font = RobotoFont.light(with: 14)
         disclaimerLabel.numberOfLines = 0
+        disclaimerLabel.textColor = .white
     }
 }

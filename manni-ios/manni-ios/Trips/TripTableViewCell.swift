@@ -21,6 +21,15 @@ class TripTableViewCell: UITableViewCell {
     public static let reuseIdentifier = "TripTableViewCell"
     
     public var departure: Departure?
+    public var stop: Stop? {
+        didSet {
+            if stop?.id == tripStop?.id {
+                locationIcon.alpha = 1
+            } else {
+                locationIcon.alpha = 0
+            }
+        }
+    }
     
     public var previousTripStop: TripStop?
     public var tripStop: TripStop? {
@@ -40,8 +49,6 @@ class TripTableViewCell: UITableViewCell {
                 )
                 RunLoop.main.add(scrollTimer!, forMode: .common)
             }
-            
-            updateTimeResponsiveUI()
         }
     }
     
@@ -50,6 +57,7 @@ class TripTableViewCell: UITableViewCell {
     public var indexPath: IndexPath?
     public var delegate: TripTableViewCellDelegate?
     
+    fileprivate let locationIcon = UIImageView(image: Icon.place?.withRenderingMode(.alwaysTemplate))
     fileprivate let regularProgressView = VerticalProgressBarView()
     fileprivate let offsetProgressView = VerticalProgressBarView()
     fileprivate let dotButton = SkeuomorphismView()
@@ -139,34 +147,38 @@ class TripTableViewCell: UITableViewCell {
         super.layoutSubviews()
         
         contentView.layout(regularProgressView)
-            .left(30)
+            .left(22)
             .top()
-            .width(4)
+            .width(8)
             .bottom()
         regularProgressView.transform = .init(rotationAngle: CGFloat.pi)
         regularProgressView.progressBackgroundColor = Color.white.withAlphaComponent(0.3)
         regularProgressView.progressBarColor = Color.white.withAlphaComponent(0.5)
         
         contentView.layout(offsetProgressView)
-            .left(30)
+            .left(22)
             .top()
-            .width(4)
+            .width(8)
             .bottom()
         offsetProgressView.transform = .init(rotationAngle: CGFloat.pi)
         offsetProgressView.progressBackgroundColor = .clear
         offsetProgressView.progressBarColor = Color.white
         
         contentView.layout(dotButton)
-            .left(24)
-            .width(16)
-            .height(16)
+            .left(14)
+            .width(24)
+            .height(24)
             .centerY()
-        dotButton.cornerRadius = 8
+        dotButton.cornerRadius = 12
         dotButton.lightColor = Color.grey.lighten4
         dotButton.lightShadowOpacity = 0.2
         
+        dotButton.contentView.layout(locationIcon)
+            .edges(top: 4, left: 4, bottom: 4, right: 4)
+        locationIcon.tintColor = Color.grey.darken1
+        
         contentView.layout(stopNameLabel)
-            .after(regularProgressView, 24)
+            .after(regularProgressView, 34)
             .centerY()
             .right(24)
         stopNameLabel.font = RobotoFont.regular(with: 24)
@@ -174,7 +186,7 @@ class TripTableViewCell: UITableViewCell {
         stopNameLabel.numberOfLines = 1
         
         contentView.layout(plannedEtaLabel)
-            .after(regularProgressView, 24)
+            .after(regularProgressView, 34)
             .below(stopNameLabel, 8)
             .right(24)
         plannedEtaLabel.font = RobotoFont.light(with: 12)
@@ -182,7 +194,7 @@ class TripTableViewCell: UITableViewCell {
         plannedEtaLabel.numberOfLines = 1
         
         contentView.layout(realEtaLabel)
-            .after(regularProgressView, 24)
+            .after(regularProgressView, 34)
             .below(plannedEtaLabel, 8)
             .right(24)
         realEtaLabel.font = RobotoFont.regular(with: 12)
@@ -191,15 +203,13 @@ class TripTableViewCell: UITableViewCell {
     }
     
     @objc func updateTimeResponsiveUI() {
-        let computedRegularProgress = regularProgress
-        let computedOffsetProgress = offsetProgress
-        regularProgressView.progress = computedRegularProgress
-        offsetProgressView.progress = computedOffsetProgress
+        regularProgressView.progress = regularProgress
+        offsetProgressView.progress = offsetProgress
         
         plannedEtaLabel.text = "Abfahrt nach Fahrplan: \(tripStop?.manniETA ?? "Unbekannt")"
         if let latency = departure?.manniLatency {
             realEtaLabel.alpha = 1
-            realEtaLabel.text = "Voraussage: \(latency)"
+            realEtaLabel.text = "\(latency)"
         } else {
             realEtaLabel.alpha = 0
         }

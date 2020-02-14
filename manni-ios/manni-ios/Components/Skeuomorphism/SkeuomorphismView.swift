@@ -33,9 +33,13 @@ class SkeuomorphismView: View {
     
     public var cornerRadius: CGFloat = 32 {
         didSet {
-            lightShadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
-            darkShadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
-            contentView.layer.cornerRadius = cornerRadius
+            layoutSubviews()
+        }
+    }
+    
+    public var roundedCorners: UIRectCorner? {
+        didSet {
+            layoutSubviews()
         }
     }
     
@@ -53,16 +57,23 @@ class SkeuomorphismView: View {
     
     public let contentView = View()
     
-    override func prepare() {
-        super.prepare()
-        layer.cornerRadius = cornerRadius
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        darkShadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
-        darkShadowLayer.shadowPath = darkShadowLayer.path
+        let roundedCorners: UIRectCorner = self.roundedCorners ?? UIRectCorner.allCorners
+        let path = UIBezierPath(
+            roundedRect: bounds,
+            byRoundingCorners: roundedCorners,
+            cornerRadii: .init(width: cornerRadius, height: cornerRadius)
+        ).cgPath
+        
+        let mask = CAShapeLayer()
+        mask.path = path
+        mask.frame = bounds
+        
+        darkShadowLayer.path = path
+        darkShadowLayer.shadowPath = path
+        
         if layer.sublayers?.contains(darkShadowLayer) == false {
             darkShadowLayer.fillColor = UIColor.clear.cgColor
             darkShadowLayer.shadowColor = UIColor("#000033").cgColor
@@ -72,8 +83,8 @@ class SkeuomorphismView: View {
             layer.insertSublayer(darkShadowLayer, at: 0)
         }
         
-        lightShadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
-        lightShadowLayer.shadowPath = lightShadowLayer.path
+        lightShadowLayer.path = path
+        lightShadowLayer.shadowPath = path
         if layer.sublayers?.contains(lightShadowLayer) == false {
             lightShadowLayer.fillColor = UIColor.clear.cgColor
             lightShadowLayer.shadowColor = lightColor.interpolate(
@@ -85,18 +96,24 @@ class SkeuomorphismView: View {
             layer.insertSublayer(lightShadowLayer, at: 0)
         }
         
-        gradientLayer.frame = bounds
-        gradientLayer.cornerRadius = cornerRadius
-        if layer.sublayers?.contains(gradientLayer) == false {
-            gradientLayer.locations = [0.0, 1.0]
-            gradientLayer.colors = gradient?.map {$0.cgColor} ?? [UIColor.clear.cgColor]
-            layer.addSublayer(gradientLayer)
+        if let gradient = gradient {
+            gradientLayer.frame = bounds
+            gradientLayer.mask = mask
+            if contentView.layer.sublayers?.contains(gradientLayer) == false {
+                gradientLayer.locations = [0.0, 1.0]
+                gradientLayer.colors = gradient.map {$0.cgColor}
+                contentView.layer.insertSublayer(gradientLayer, at: 0)
+            }
         }
         
         if !subviews.contains(contentView) {
             layout(contentView).edges()
         }
-        contentView.layer.cornerRadius = cornerRadius
+    
+        contentView.layer.mask = mask
+        contentView.clipsToBounds = true
+        
+        backgroundColor = .clear
     }
     
 }

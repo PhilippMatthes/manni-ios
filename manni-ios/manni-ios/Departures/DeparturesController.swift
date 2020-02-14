@@ -131,7 +131,7 @@ extension DeparturesController {
             .left(0)
             .right(0)
             .height(238)
-        flowLayout.estimatedItemSize = .init(width: 148, height: 188)
+        flowLayout.estimatedItemSize = .init(width: 148, height: 256)
         flowLayout.scrollDirection = .horizontal
         collectionView.contentInset = .init(top: 0, left: 24, bottom: 0, right: 24)
         collectionView.backgroundColor = .clear

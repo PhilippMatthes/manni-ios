@@ -85,7 +85,7 @@ class StopTableViewCell: UITableViewCell {
         contentView.layout(suggestionBadgeView)
             .right(24)
             .top(8)
-        suggestionBadgeView.cornerRadius = 16
+        suggestionBadgeView.cornerRadius = 12
         suggestionBadgeView.lightColor = Color.grey.lighten5
         suggestionBadgeView.contentView.backgroundColor = Color.grey.lighten5
         
@@ -112,7 +112,7 @@ class StopTableViewCell: UITableViewCell {
             .top(16)
             .bottom(12)
             .width(12)
-        leftBorderView.cornerRadius = 6
+        leftBorderView.cornerRadius = 24
         
         contentView.layout(stopNameLabel)
             .top(32)
