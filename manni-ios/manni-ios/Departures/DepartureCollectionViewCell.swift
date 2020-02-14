@@ -22,6 +22,14 @@ class DepartureCollectionViewCell: UICollectionViewCell {
             skeuomorphismView.lightColor = departure.gradient.first ?? .white
             skeuomorphismView.gradient = departure.gradient
             
+            if let latency = departure.manniLatency {
+                latencyBadgeBackground.alpha = 1
+                latencyBadgeLabel.text = latency
+            } else {
+                latencyBadgeBackground.alpha = 0
+                latencyBadgeLabel.text = "Pünktlich"
+            }
+            
             updateTimeResponsiveUI()
         }
     }
@@ -30,6 +38,8 @@ class DepartureCollectionViewCell: UICollectionViewCell {
     fileprivate let lineNameLabel = UILabel()
     fileprivate let directionLabel = UILabel()
     fileprivate let etaLabel = UILabel()
+    fileprivate let latencyBadgeBackground = SkeuomorphismView()
+    fileprivate let latencyBadgeLabel = UILabel()
     
     fileprivate var timeResponsiveRefreshTimer: Timer?
     
@@ -47,7 +57,7 @@ class DepartureCollectionViewCell: UICollectionViewCell {
         contentView.layout(skeuomorphismView)
             .height(216)
             .width(148)
-            .edges()
+            .edges(top: 8, right: 8)
         skeuomorphismView.cornerRadius = 24
         skeuomorphismView.lightShadowOpacity = 0.9
         skeuomorphismView.darkShadowOpacity = 0.1
@@ -75,6 +85,16 @@ class DepartureCollectionViewCell: UICollectionViewCell {
             .bottom(24)
         etaLabel.font = RobotoFont.light(with: 16)
         etaLabel.textColor = .white
+        etaLabel.numberOfLines = 1
+        
+        contentView.layout(latencyBadgeBackground)
+            .right()
+            .top()
+        latencyBadgeBackground.cornerRadius = 8
+        
+        latencyBadgeBackground.contentView.layout(latencyBadgeLabel)
+            .edges(top: 4, left: 8, bottom: 4, right: 8)
+        latencyBadgeLabel.font = RobotoFont.bold(with: 12)
         
         timeResponsiveRefreshTimer = .scheduledTimer(
             timeInterval: 1.0,

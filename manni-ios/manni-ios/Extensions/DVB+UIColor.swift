@@ -13,7 +13,7 @@ extension Departure {
     public var gradient: [UIColor] {
         get {
             if let number = Int(line) {
-                return Gradients.accentColors[number % Gradients.accentColors.count]
+                return Gradients.accentColors[abs(number) % Gradients.accentColors.count]
             }
             return Gradients.accentColors[self.line.count % Gradients.accentColors.count]
         }

@@ -10,6 +10,19 @@ import DVB
 
 extension Departure {
     
+    public var manniLatency: String? {
+        get {
+            guard let realTime = realTime else {return nil}
+            let diff = Int(realTime.timeIntervalSince(scheduledTime) / 60)
+            guard diff != 0 else {return nil}
+            if diff > 0 {
+                return "\(diff) Min. verspätet"
+            } else {
+                return "\(abs(diff)) Min. zu früh"
+            }
+        }
+    }
+    
     public var manniETA: String {
         get {
             let time = realTime ?? scheduledTime

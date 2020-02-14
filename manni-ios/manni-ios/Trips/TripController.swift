@@ -18,6 +18,13 @@ class TripController: ViewController {
             departureLineLabel.text = "Fahrplan für Linie \(departure?.line ?? "")"
             departureDirectionLabel.text = "Richtung \(departure?.direction ?? "")"
             tripView.departure = departure
+            
+            if let latency = departure?.manniLatency {
+                disclaimerBackgroundView.alpha = 1
+                disclaimerLabel.text = "Die Abfahrt an der aktuellen Haltestelle ist \(latency). Der gezeigte reguläre Fahrplan kann abweichen."
+            } else {
+                disclaimerBackgroundView.alpha = 0
+            }
         }
     }
     
@@ -26,6 +33,8 @@ class TripController: ViewController {
     fileprivate let departureLineLabel = UILabel()
     fileprivate let departureDirectionLabel = UILabel()
     fileprivate let backButton = SkeuomorphismIconButton(image: Icon.arrowBack, tintColor: Color.grey.darken4)
+    fileprivate let disclaimerBackgroundView = SkeuomorphismView()
+    fileprivate let disclaimerLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +44,7 @@ class TripController: ViewController {
         prepareBackButton()
         prepareDepartureLineLabel()
         prepareDepartureDirectionLabel()
+        prepareDisclaimerView()
         
         TripStop.get(forTripID: departure!.id, stopID: stop!.id, atTime: Date()) {
             response in
@@ -64,6 +74,15 @@ class TripController: ViewController {
 }
 
 extension TripController {
+    fileprivate func prepareTripView() {
+        view.layout(tripView)
+            .top(208)
+            .bottom()
+            .left()
+            .right()
+        tripView.cornerRadius = 0
+    }
+    
     fileprivate func prepareTopView() {
         view.layout(topView)
             .top()
@@ -109,12 +128,18 @@ extension TripController {
         departureDirectionLabel.numberOfLines = 1
     }
     
-    fileprivate func prepareTripView() {
-        view.layout(tripView)
-            .top(208)
-            .bottom()
-            .left()
-            .right()
-        tripView.cornerRadius = 0
+    fileprivate func prepareDisclaimerView() {
+        view.layout(disclaimerBackgroundView)
+            .bottomSafe(12)
+            .left(12)
+            .right(12)
+        disclaimerBackgroundView.cornerRadius = 12
+        disclaimerBackgroundView.gradient = Gradients.clouds
+        disclaimerBackgroundView.lightShadowOpacity = 0.2
+        
+        disclaimerBackgroundView.contentView.layout(disclaimerLabel)
+            .edges(top: 12, left: 12, bottom: 12, right: 12)
+        disclaimerLabel.font = RobotoFont.light(with: 14)
+        disclaimerLabel.numberOfLines = 0
     }
 }
