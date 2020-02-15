@@ -71,7 +71,7 @@ class TripController: ViewController {
     }
     
     @objc func backButtonTouched() {
-        self.dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
 }
@@ -84,39 +84,42 @@ extension TripController {
             .left()
             .right()
         tripView.cornerRadius = 0
-        tripView.tableViewContentInset = .init(top: 218, left: 0, bottom: 128, right: 0)
+        tripView.tableViewContentInset = .init(top: 232, left: 0, bottom: 128, right: 0)
+        tripView.transition(MotionModifier.fadeIn)
     }
     
     fileprivate func prepareTopView() {
         view.layout(topView)
             .top()
-            .left(52)
+            .left()
             .right()
-            .height(188)
+            .height(232)
         topView.gradient = Gradients.clouds
         topView.darkShadowOpacity = 0.1
         topView.lightShadowOpacity = 0.3
         topView.roundedCorners = .bottomLeft
-        topView.cornerRadius = 12
+        topView.cornerRadius = 24
+        topView.motionIdentifier = "TopView"
     }
     
     fileprivate func prepareBackButton() {
         topView.contentView.layout(backButton)
-            .top(12)
-            .left(12)
+            .topSafe(12)
+            .left(24)
             .height(64)
             .width(64)
         backButton.skeuomorphismView.lightShadowOpacity = 0.3
         backButton.skeuomorphismView.darkShadowOpacity = 0.2
         backButton.pulseColor = Color.blue.base
         backButton.addTarget(self, action: #selector(backButtonTouched), for: .touchUpInside)
+        backButton.motionIdentifier = "BackButton"
     }
     
     fileprivate func prepareDepartureLineLabel() {
         topView.contentView.layout(departureLineLabel)
             .below(backButton, 24)
-            .left(12)
-            .right(12)
+            .left(24)
+            .right(24)
             .height(32)
         departureLineLabel.font = RobotoFont.bold(with: 24)
         departureLineLabel.textColor = Color.grey.darken4
@@ -126,9 +129,9 @@ extension TripController {
     fileprivate func prepareDepartureDirectionLabel() {
         topView.contentView.layout(departureDirectionLabel)
             .below(departureLineLabel, 8)
-            .left(12)
+            .left(24)
             .height(32)
-            .right(12)
+            .right(24)
         departureDirectionLabel.font = RobotoFont.light(with: 18)
         departureDirectionLabel.textColor = Color.grey.darken4
         departureDirectionLabel.numberOfLines = 1
