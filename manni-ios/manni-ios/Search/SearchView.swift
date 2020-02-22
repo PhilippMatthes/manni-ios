@@ -43,7 +43,10 @@ class SearchView: View {
                 let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe),
                 let jsonResult = try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as? [String: Any],
                 let features = jsonResult["features"] as? [Any]
-            else {return}
+            else {
+                print("The stations file could not be read.")
+                return
+            }
             self.suggestions = []
             for feature in features {
                 guard

@@ -8,6 +8,7 @@
 
 import Foundation
 import DVB
+import Motion
 import Material
 import CoreLocation
 
@@ -101,6 +102,7 @@ extension DeparturesController {
         backButton.skeuomorphismView.darkShadowOpacity = 0.2
         backButton.pulseColor = Color.blue.base
         backButton.addTarget(self, action: #selector(backButtonTouched), for: .touchUpInside)
+        backButton.transition(.fadeIn)
     }
     
     fileprivate func prepareStopNameLabel() {
@@ -112,6 +114,7 @@ extension DeparturesController {
         stopNameLabel.font = RobotoFont.bold(with: 24)
         stopNameLabel.textColor = Color.grey.darken4
         stopNameLabel.numberOfLines = 1
+        stopNameLabel.transition(.fadeIn)
     }
     
     fileprivate func prepareStopLocationLabel() {
@@ -123,6 +126,7 @@ extension DeparturesController {
         stopLocationLabel.font = RobotoFont.light(with: 18)
         stopLocationLabel.textColor = Color.grey.darken4
         stopLocationLabel.numberOfLines = 1
+        stopLocationLabel.transition(.fadeIn)
     }
     
     fileprivate func prepareCollectionView() {
@@ -140,6 +144,7 @@ extension DeparturesController {
         collectionView.dataSource = self
         collectionView.collectionViewLayout = flowLayout
         collectionView.register(DepartureCollectionViewCell.self, forCellWithReuseIdentifier: DepartureCollectionViewCell.identifier)
+        collectionView.transition(.fadeIn)
     }
     
 }

@@ -84,8 +84,7 @@ extension TripController {
             .left()
             .right()
         tripView.cornerRadius = 0
-        tripView.tableViewContentInset = .init(top: 232, left: 0, bottom: 128, right: 0)
-        tripView.transition(MotionModifier.fadeIn)
+        tripView.tableViewContentInset = .init(top: 188, left: 0, bottom: 128, right: 0)
     }
     
     fileprivate func prepareTopView() {
@@ -93,7 +92,7 @@ extension TripController {
             .top()
             .left()
             .right()
-            .height(232)
+            .height(188)
         topView.gradient = Gradients.clouds
         topView.darkShadowOpacity = 0.1
         topView.lightShadowOpacity = 0.3
