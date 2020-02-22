@@ -216,6 +216,7 @@ extension SearchController {
     
     fileprivate func prepareLocationManager() {
         locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
     }
 }
 
@@ -247,6 +248,7 @@ extension SearchController: SearchViewDelegate {
         
         self.query = query
         searchView.startRefreshing()
+        
         Stop.find(query) {
             result in
             DispatchQueue.main.async {
