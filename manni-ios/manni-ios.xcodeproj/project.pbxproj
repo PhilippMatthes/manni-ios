@@ -16,6 +16,8 @@
 		BE0D0DED23F1DC77003DB75A /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D0DEC23F1DC77003DB75A /* TripView.swift */; };
 		BE0D0DF023F1DD49003DB75A /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D0DEF23F1DD49003DB75A /* TripTableViewCell.swift */; };
 		BE0D0DF223F1DEFF003DB75A /* VerticalProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D0DF123F1DEFF003DB75A /* VerticalProgressBarView.swift */; };
+		BE3A574A2406C44C0059E2DA /* StopItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3A57492406C44C0059E2DA /* StopItemProvider.swift */; };
+		BE3A574C2406D0EF0059E2DA /* RouteStopInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3A574B2406D0EF0059E2DA /* RouteStopInputView.swift */; };
 		BE5AABFB23E756A9006EE1BD /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5AABFA23E756A9006EE1BD /* SearchController.swift */; };
 		BE6213F923E76EAA00FD638E /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6213F823E76EAA00FD638E /* StopTableViewCell.swift */; };
 		BE62CCB623EEFC7C00B9469E /* SuggestionInformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62CCB523EEFC7C00B9469E /* SuggestionInformationController.swift */; };
@@ -46,6 +48,8 @@
 		BE0D0DEC23F1DC77003DB75A /* TripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripView.swift; sourceTree = "<group>"; };
 		BE0D0DEF23F1DD49003DB75A /* TripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
 		BE0D0DF123F1DEFF003DB75A /* VerticalProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalProgressBarView.swift; sourceTree = "<group>"; };
+		BE3A57492406C44C0059E2DA /* StopItemProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopItemProvider.swift; sourceTree = "<group>"; };
+		BE3A574B2406D0EF0059E2DA /* RouteStopInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteStopInputView.swift; sourceTree = "<group>"; };
 		BE5AABFA23E756A9006EE1BD /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		BE6213F823E76EAA00FD638E /* StopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopTableViewCell.swift; sourceTree = "<group>"; };
 		BE62CCB523EEFC7C00B9469E /* SuggestionInformationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionInformationController.swift; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				BE6213F823E76EAA00FD638E /* StopTableViewCell.swift */,
+				BE3A57492406C44C0059E2DA /* StopItemProvider.swift */,
+				BE3A574B2406D0EF0059E2DA /* RouteStopInputView.swift */,
 			);
 			path = Stops;
 			sourceTree = "<group>";
@@ -336,6 +342,7 @@
 				BE63EFD823E882480019C792 /* DeparturesController.swift in Sources */,
 				BEC77FCB23E9960E0042CD48 /* GPSView.swift in Sources */,
 				BE02038823E82D2E00E7D5DC /* UIColor+Tools.swift in Sources */,
+				BE3A574C2406D0EF0059E2DA /* RouteStopInputView.swift in Sources */,
 				BEBA661A23E7639300CA99CF /* SkeuomorphismView.swift in Sources */,
 				BE0D0DEB23F1C168003DB75A /* DVB+ManniETA.swift in Sources */,
 				BE6213F923E76EAA00FD638E /* StopTableViewCell.swift in Sources */,
@@ -353,6 +360,7 @@
 				BE0D0DF223F1DEFF003DB75A /* VerticalProgressBarView.swift in Sources */,
 				BE89198623F3085B0098A39B /* TripController.swift in Sources */,
 				BE5AABFB23E756A9006EE1BD /* SearchController.swift in Sources */,
+				BE3A574A2406C44C0059E2DA /* StopItemProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

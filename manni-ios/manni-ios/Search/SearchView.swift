@@ -8,35 +8,164 @@
 
 import Material
 import Motion
+import DVB
+import FontAwesome_swift
 
 
 protocol SearchViewDelegate {
     func search(query: String)
+    func search(routeFrom departureStop: Stop, to destinationStop: Stop)
 }
 
 
 class SearchView: View {
     
+    private let routeStopView = UIView()
+    private let routeStopDepartureInputView = RouteStopInputView()
+    private let routeStopDestinationInputView = RouteStopInputView()
+    private let routeStopDividerView = SkeuomorphismView()
+    private let searchRouteButton = SkeuomorphismIconButton(
+       image: UIImage.fontAwesomeIcon(name: .route, style: .solid, textColor: .white, size: .init(width: 32, height: 32)).withRenderingMode(.alwaysTemplate),
+       tintColor: Color.grey.darken4
+   )
     private let queryFieldView = SkeuomorphismView()
     private let queryField = UITextField()
-    private let searchButton = SkeuomorphismIconButton(image: Icon.search, tintColor: Color.grey.darken4)
+    private let searchButton = SkeuomorphismIconButton(image: UIImage.fontAwesomeIcon(name: .searchLocation, style: .solid, textColor: .white, size: .init(width: 32, height: 32)).withRenderingMode(.alwaysTemplate), tintColor: Color.grey.darken4)
     private let searchButtonAnimatingImageView = UIImageView()
     
     public var delegate: SearchViewDelegate?
     
     private var suggestions: [String]?
     private var computingQuery: String?
+    private var routeStops = [Stop]()
     
     override func prepare() {
         super.prepare()
         
         backgroundColor = .clear
         
+        prepareRouteStopInputViews()
+        prepareSearchRouteButton()
+        prepareSearchButtonAnimatingImageView()
+        prepareSuggestions()
+        prepareQueryFieldView()
+        prepareQueryField()
+        prepareSearchButton()
+    }
+    
+    public func startRefreshing() {
+        searchButton.animate(MotionAnimation.fadeOut)
+        searchButtonAnimatingImageView.animate([
+            MotionAnimation.scale(1.5)
+        ])
+        self.searchButtonAnimatingImageView.startAnimating()
+    }
+    
+    public func endRefreshing() {
+        searchButton.animate(MotionAnimation.fadeIn)
+        searchButtonAnimatingImageView.animate([
+            MotionAnimation.scale(1.0)
+        ])
+        self.searchButtonAnimatingImageView.stopAnimating()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        layout(searchRouteButton)
+            .right()
+            .height(64)
+            .width(64)
+            .top()
+        
+        layout(routeStopView)
+            .top()
+            .left()
+            .before(searchRouteButton, 12)
+            .height(64)
+        
+        routeStopView.layout(routeStopDividerView)
+            .top()
+            .centerX()
+            .width(4)
+            .bottom()
+        
+        routeStopView.layout(routeStopDepartureInputView)
+            .top()
+            .left()
+            .before(routeStopDividerView)
+            .bottom()
+        
+        routeStopView.layout(routeStopDestinationInputView)
+            .top()
+            .right()
+            .after(routeStopDividerView)
+            .bottom()
+        
+        layout(queryFieldView)
+            .below(routeStopDividerView, 24)
+            .left()
+            .right()
+            .bottom()
+        
+        queryFieldView.contentView.layout(searchButton)
+            .right()
+            .top()
+            .bottom()
+            .width(64)
+            .height(64)
+        
+        queryFieldView.contentView.layout(searchButtonAnimatingImageView)
+            .right()
+            .top()
+            .bottom()
+            .width(64)
+            .height(64)
+        
+        queryFieldView.contentView.layout(queryField)
+            .left(16)
+            .top(8)
+            .bottom(8)
+            .before(searchButton, 12)
+            .height(48)
+    }
+    
+    @objc func selectQueryField() {
+        queryField.becomeFirstResponder()
+    }
+    
+    @objc func searchRoute() {
+        guard
+            let departureStop = routeStopDepartureInputView.stop,
+            let destinationStop = routeStopDestinationInputView.stop
+        else {return}
+        delegate?.search(routeFrom: departureStop, to: destinationStop)
+    }
+    
+}
+
+extension SearchView {
+    
+    fileprivate func prepareRouteStopInputViews() {
+        routeStopDepartureInputView.roundedCorners = [.topLeft, .bottomLeft]
+        routeStopDestinationInputView.roundedCorners = [.topRight, .bottomRight]
+    }
+    
+    fileprivate func prepareSearchRouteButton() {
+        searchRouteButton.skeuomorphismView.cornerRadius = 32
+        searchRouteButton.skeuomorphismView.lightShadowOpacity = 0.3
+        searchRouteButton.pulseColor = Color.blue.base
+        searchRouteButton.addTarget(self, action: #selector(searchRoute), for: .touchUpInside)
+    }
+    
+    fileprivate func prepareSearchButtonAnimatingImageView() {
         searchButtonAnimatingImageView.animationImages = (0...89).map {
             UIImage(named: "animation000\($0).png")!
         }
         searchButtonAnimatingImageView.animationDuration = 3
-        
+    }
+    
+    fileprivate func prepareSuggestions() {
         DispatchQueue.global(qos: .background).async {
             guard
                 let path = Bundle.main.path(forResource: "stations", ofType: "json"),
@@ -64,65 +193,40 @@ class SearchView: View {
         }
     }
     
-    public func startRefreshing() {
-        searchButton.animate(MotionAnimation.fadeOut)
-        searchButtonAnimatingImageView.animate([
-            MotionAnimation.scale(1.5)
-        ])
-        self.searchButtonAnimatingImageView.startAnimating()
-    }
-    
-    public func endRefreshing() {
-        searchButton.animate(MotionAnimation.fadeIn)
-        searchButtonAnimatingImageView.animate([
-            MotionAnimation.scale(1.0)
-        ])
-        self.searchButtonAnimatingImageView.stopAnimating()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        layout(queryFieldView)
-            .top()
-            .left()
-            .right()
-            .bottom()
+    fileprivate func prepareQueryFieldView() {
         queryFieldView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectQueryField)))
-        
-        queryFieldView.contentView.layout(searchButton)
-            .right()
-            .top()
-            .bottom()
-            .width(64)
-            .height(64)
+    }
+    
+    fileprivate func prepareSearchButton() {
         searchButton.pulseColor = Color.blue.base
         searchButton.addTarget(self, action: #selector(searchStop), for: .touchUpInside)
-        
-        queryFieldView.contentView.layout(searchButtonAnimatingImageView)
-            .right()
-            .top()
-            .bottom()
-            .width(64)
-            .height(64)
-        
-        queryFieldView.contentView.layout(queryField)
-            .left(24)
-            .top(8)
-            .bottom(8)
-            .before(searchButton, 12)
-            .height(48)
+    }
+    
+    fileprivate func prepareQueryField() {
         queryField.delegate = self
-        queryField.font = RobotoFont.light(with: 24)
-        queryField.placeholder = "Haltestelle"
-        queryField.clearButtonMode = .always
         queryField.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectQueryField)))
+        queryField.font = RobotoFont.light(with: 24)
+        queryField.placeholder = "Nach Haltestelle suchen"
+        queryField.clearButtonMode = .always
+    }
+}
+
+extension SearchView: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return routeStops.count
     }
     
-    @objc func selectQueryField() {
-        queryField.becomeFirstResponder()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: StopTableViewCell.reuseIdentifier, for: indexPath
+        ) as! StopTableViewCell
+        let stop = routeStops[indexPath.row]
+        if cell.stop != stop {
+            cell.stop = stop
+        }
+        cell.isSuggestion = false
+        return cell
     }
-    
 }
 
 extension SearchView: UITextFieldDelegate {    

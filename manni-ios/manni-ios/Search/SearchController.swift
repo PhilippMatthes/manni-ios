@@ -183,6 +183,11 @@ extension SearchController {
         tableView.dataSource = self
         tableView.contentInset = .init(top: 32, left: 0, bottom: 128, right: 0)
         tableView.backgroundColor = .clear
+        
+        if #available(iOS 11.0, *) {
+            tableView.dragDelegate = self
+            tableView.dragInteractionEnabled = true
+        }
     }
     
     fileprivate func prepareGPSView() {
@@ -199,7 +204,7 @@ extension SearchController {
     
     fileprivate func prepareSearchViewBackground() {
         view.layout(searchViewBackground)
-            .bottom()
+            .bottom(12)
             .left()
             .right()
         searchViewBackground.effect = UIBlurEffect(style: .light)
@@ -220,6 +225,15 @@ extension SearchController {
     }
 }
 
+@available(iOS 11.0, *)
+extension SearchController: UITableViewDragDelegate {
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let stop = indexPath.section == 0 ? fetchedStops[indexPath.row] : suggestedStops[indexPath.row]
+        let itemProvider = NSItemProvider(object: StopItem(stop: stop))
+        return [UIDragItem(itemProvider: itemProvider)]
+    }
+}
+
 extension SearchController: UIAdaptivePresentationControllerDelegate {
     func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
         viewWillEnterForeground()
@@ -237,7 +251,14 @@ extension SearchController: ViewTapDelegate {
     }
 }
 
-extension SearchController: SearchViewDelegate {    
+extension SearchController: SearchViewDelegate {
+    func search(routeFrom departureStop: Stop, to destinationStop: Stop) {
+        Route.find(fromWithID: departureStop.id, toWithID: destinationStop.id) {
+            result in
+            print("Routen suche erfolgreich!")
+        }
+    }
+    
     func search(query: String) {
         if let oldQuery = self.query, query == oldQuery, fetchedStops.count != 0 {
             if #available(iOS 10.0, *) {
@@ -413,7 +434,7 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
             cell.location = location
         }
         cell.isSuggestion = indexPath.section == 1
-        cell.delegate = self
+        cell.suggestionButtonDelegate = self
         return cell
     }
     
@@ -449,7 +470,7 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension SearchController: StopTableViewCellDelegate {
+extension SearchController: SuggestionInfoButtonDelegate {
     func didSelectSuggestionInfoButton() {
         let controller = SuggestionInformationController()
         present(controller, animated: true)

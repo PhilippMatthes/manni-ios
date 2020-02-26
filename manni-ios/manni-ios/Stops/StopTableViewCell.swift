@@ -11,7 +11,7 @@ import DVB
 import CoreLocation
 
 
-protocol StopTableViewCellDelegate {
+protocol SuggestionInfoButtonDelegate {
     func didSelectSuggestionInfoButton()
 }
 
@@ -58,7 +58,7 @@ class StopTableViewCell: UITableViewCell {
         }
     }
     
-    public var delegate: StopTableViewCellDelegate?
+    public var suggestionButtonDelegate: SuggestionInfoButtonDelegate?
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -76,6 +76,7 @@ class StopTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         backgroundColor = .clear
+        layer.cornerRadius = 24
         
         contentView.layout(skeuomorphismView)
             .edges(top: 16, left: 12, bottom: 12, right: 12)
@@ -135,7 +136,7 @@ class StopTableViewCell: UITableViewCell {
     }
     
     @objc func didSelectSuggestionInfoButton() {
-        delegate?.didSelectSuggestionInfoButton()
+        suggestionButtonDelegate?.didSelectSuggestionInfoButton()
     }
     
     @objc func didUpdateLocation(_ notification: Notification) {
