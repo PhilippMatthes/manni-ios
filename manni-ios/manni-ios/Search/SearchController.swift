@@ -204,7 +204,7 @@ extension SearchController {
     
     fileprivate func prepareSearchViewBackground() {
         view.layout(searchViewBackground)
-            .bottom(12)
+            .bottom()
             .left()
             .right()
         searchViewBackground.effect = UIBlurEffect(style: .light)
