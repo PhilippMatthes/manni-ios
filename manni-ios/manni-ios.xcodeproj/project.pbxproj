@@ -127,7 +127,6 @@
 			children = (
 				BE0D0DEC23F1DC77003DB75A /* TripView.swift */,
 				BE0D0DEF23F1DD49003DB75A /* TripTableViewCell.swift */,
-				BE0D0DF123F1DEFF003DB75A /* VerticalProgressBarView.swift */,
 				BE89198523F3085B0098A39B /* TripController.swift */,
 			);
 			path = Trips;
@@ -167,6 +166,7 @@
 		BEBA661823E762E600CA99CF /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				BE0D0DF123F1DEFF003DB75A /* VerticalProgressBarView.swift */,
 				BE6213FA23E76FFD00FD638E /* Skeuomorphism */,
 			);
 			path = Components;
@@ -194,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				BED040C623EB365200773E2A /* stations.json */,
+				BEDAA48F23E7541900A25187 /* AppDelegate.swift */,
 				BE89198723F30DF80098A39B /* Gradients.swift */,
 				BE0D0DEE23F1DD2C003DB75A /* Trips */,
 				BE02038923E835DC00E7D5DC /* Departures */,
@@ -201,7 +202,6 @@
 				BE6213FC23E7701C00FD638E /* Stops */,
 				BE6213FB23E7701000FD638E /* Search */,
 				BEBA661823E762E600CA99CF /* Components */,
-				BEDAA48F23E7541900A25187 /* AppDelegate.swift */,
 				BEDAA49523E7541A00A25187 /* Assets.xcassets */,
 				BEDAA49A23E7541A00A25187 /* LaunchScreen.storyboard */,
 				BEDAA49D23E7541A00A25187 /* Info.plist */,

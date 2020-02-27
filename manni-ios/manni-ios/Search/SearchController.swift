@@ -21,12 +21,12 @@ class SearchController: ViewController {
             if gpsFetchWasTriggered == true {
                 gpsView.startAnimating()
                 UIView.animate(withDuration: 1.0) {
-                    self.tableView.contentInset = .init(top: self.gpsViewExpandedHeight, left: 0, bottom: 128, right: 0)
+                    self.tableView.contentInset = .init(top: self.gpsViewExpandedHeight, left: 0, bottom: 256, right: 0)
                 }
             } else if gpsFetchWasTriggered == false {
                 gpsView.stopAnimating()
                 UIView.animate(withDuration: 1.0) {
-                    self.tableView.contentInset = .init(top: self.gpsViewCollapsedHeight, left: 0, bottom: 128, right: 0)
+                    self.tableView.contentInset = .init(top: self.gpsViewCollapsedHeight, left: 0, bottom: 256, right: 0)
                 }
             }
         }
@@ -181,7 +181,7 @@ extension SearchController {
         )
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.contentInset = .init(top: 32, left: 0, bottom: 128, right: 0)
+        tableView.contentInset = .init(top: 32, left: 0, bottom: 256, right: 0)
         tableView.backgroundColor = .clear
         
         if #available(iOS 11.0, *) {
@@ -463,7 +463,9 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y < -gpsViewExpandedHeight && (gpsFetchWasTriggered == false || gpsFetchWasTriggered == nil) {
+        if scrollView.contentOffset.y < -gpsViewExpandedHeight - gpsViewCollapsedHeight && (
+            gpsFetchWasTriggered == false || gpsFetchWasTriggered == nil
+        ) {
             gpsFetchWasTriggered = true
             requestLocation()
         }

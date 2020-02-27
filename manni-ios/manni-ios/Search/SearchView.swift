@@ -148,10 +148,8 @@ class SearchView: View {
 extension SearchView {
     
     fileprivate func prepareRouteStopInputViews() {
-        routeStopDepartureInputView.cornerRadius = 8
         routeStopDepartureInputView.stopLabel.text = "Von"
         routeStopDepartureInputView.stopLabel.textColor = Color.grey.base
-        routeStopDestinationInputView.cornerRadius = 8
         routeStopDestinationInputView.stopLabel.text = "Nach"
         routeStopDestinationInputView.stopLabel.textColor = Color.grey.base
     }

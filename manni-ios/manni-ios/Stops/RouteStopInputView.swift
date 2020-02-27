@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Material
 import DVB
+import Motion
 
 
 class RouteStopInputView: SkeuomorphismView {
@@ -61,11 +62,16 @@ extension RouteStopInputView: UIDropInteractionDelegate {
         return UIDropProposal(operation: .copy)
     }
     
+    func dropInteraction(_ interaction: UIDropInteraction, sessionDidEnter session: UIDropSession) {
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+    }
+    
     func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
         session.loadObjects(ofClass: StopItem.self) {
             stopItems in
             guard let stopItem = stopItems.first as? StopItem else {return}
             self.stop = stopItem.stop
+            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         }
     }
 }
