@@ -214,7 +214,7 @@ extension SearchController {
     
     fileprivate func prepareSearchView() {
         searchViewBackground.contentView.layout(searchView)
-            .edges(top: 24, left: 24, bottom: 24, right: 24)
+            .edges(top: 24, left: 24, bottom: 32, right: 24)
                 
         searchView.delegate = self
     }
@@ -471,8 +471,9 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension SearchController: SuggestionInfoButtonDelegate {
-    func didSelectSuggestionInfoButton() {
+    func didSelectSuggestionInfoButton(on stop: Stop?) {
         let controller = SuggestionInformationController()
+        controller.stop = stop
         present(controller, animated: true)
     }
 }

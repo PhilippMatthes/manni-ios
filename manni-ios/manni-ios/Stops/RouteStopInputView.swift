@@ -20,11 +20,12 @@ class RouteStopInputView: SkeuomorphismView {
             lightColor = stop.gradient.first ?? .white
             gradient = stop.gradient
             stopLabel.text = stop.name
+            stopLabel.textColor = .white
             layoutSubviews()
         }
     }
     
-    private let stopLabel = UILabel()
+    public let stopLabel = UILabel()
     
     override func prepare() {
         super.prepare()
@@ -39,10 +40,9 @@ class RouteStopInputView: SkeuomorphismView {
         
         contentView.layout(stopLabel)
             .centerY()
-            .left(cornerRadius / 2)
-            .right(cornerRadius / 2)
+            .left(16)
+            .right(16)
         stopLabel.font = RobotoFont.light(with: 24)
-        stopLabel.textColor = .white
     }
     
 }

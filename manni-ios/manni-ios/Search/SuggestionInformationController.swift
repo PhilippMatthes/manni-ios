@@ -7,13 +7,17 @@
 //
 
 import Material
+import MapKit
+import DVB
 
 class SuggestionInformationController: ViewController {
     
     fileprivate let backButton = SkeuomorphismIconButton(image: Icon.arrowBack, tintColor: Color.grey.darken4)
     fileprivate let titleLabel = UILabel()
     fileprivate let explanationLabel = UILabel()
-    fileprivate let exampleLabel = UILabel()
+    fileprivate let mapView = MKMapView()
+    
+    public var stop: Stop?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,55 +51,92 @@ class SuggestionInformationController: ViewController {
         explanationLabel.numberOfLines = 0
         explanationLabel.lineBreakMode = .byWordWrapping
         explanationLabel.text = "Jedes Mal, wenn Du eine Haltestelle auswählst, " +
-                                "speichert Dein Gerät dies lokal ab. Du behältst " +
+                                "speichert Dein Gerät dies lokal in einem Graphen ab. Du behältst " +
                                 "also die volle Kontrolle über Deine Daten. " +
-                                "Die App <komplizierte Erklärung des Algorithmus hier einfügen> " +
-                                "sagt dann vorher, welche Haltestelle Du als nächstes anfragen " +
-                                "könntest."
+                                "Dein Graph um die Haltestelle \(stop?.name ?? "") sieht aktuell so aus:"
         
-        view.layout(exampleLabel)
+        view.layout(mapView)
             .below(explanationLabel, 16)
             .left(24)
             .right(24)
-        exampleLabel.font = RobotoFont.regular(with: 12)
-        exampleLabel.textColor = Color.grey.darken2
-        exampleLabel.numberOfLines = 0
-        exampleLabel.lineBreakMode = .byWordWrapping
-        exampleLabel.text = computeExampleText()
-    }
-    
-    func computeExampleText() -> String {
-        let graph = RouteGraph.main
-        if let lastStop = graph.endpoint {
-            var text = "Du warst zuletzt an der Haltestelle \(lastStop.name).\n"
-            let edges = graph.edges
-                .filter {$0.origin == lastStop}
-                .sorted {$0.weight > $1.weight}
-            if edges.count == 0 {
-                return text +   "Die App hat aber noch keine Informationen zu dieser Haltestelle und kann Dir " +
-                                "daher noch keine Vorschläge geben."
-            } else {
-                text += "Nachdem Du diese Haltestelle gesucht hast, suchtest Du "
-                if edges.count == 1 {
-                    text += "\(edges.first!.weight) mal nach der Haltestelle \(edges.first!.destination.name)."
-                } else {
-                    let firstEdges = edges.prefix(edges.count - 1)
-                    let lastEdge = edges.last!
-                    text += firstEdges
-                        .map {"\($0.weight) mal nach der Haltestelle \($0.destination.name)"}
-                        .joined(separator: ", ")
-                    text += " und \(lastEdge.weight) mal nach der Haltestelle \(lastEdge.destination.name)."
-                }
-                text += "\nDie App geht deshalb davon aus, dass Du am Wahrscheinlichsten als nächstes nach der Haltestelle \(edges.first!.destination.name) suchen wirst. Die App zeigt Dir deshalb diese Haltestelle als obersten Vorschlag an."
-                return text
-            }
-        } else {
-            return "Besuche ein paar Haltestellen und komm wieder, um Dir ein Beispiel anzeigen zu lassen!"
-        }
+            .bottomSafe()
+        mapView.delegate = self
+        mapView.layer.cornerRadius = 24
+        
+        prepareGraph()
     }
     
     @objc func backButtonTouched() {
         self.dismiss(animated: true)
     }
     
+}
+
+internal extension Stop {
+    var coordinate: CLLocationCoordinate2D? {
+        get {
+            guard let location = location else {return nil}
+            return CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+        }
+    }
+}
+
+
+internal class RouteGraphPolyline: MKPolyline {
+    var edge: Edge?
+}
+
+
+extension SuggestionInformationController: MKMapViewDelegate {
+    fileprivate func prepareGraph() {
+        if let stop = stop, let coordinate = stop.coordinate {
+            let coordinateRegion = MKCoordinateRegion(
+                center: coordinate, latitudinalMeters: 4000, longitudinalMeters: 4000
+            )
+            mapView.setRegion(coordinateRegion, animated: true)
+        }
+        
+        // Focus on the important things
+        mapView.showsTraffic = false
+        mapView.showsBuildings = false
+        if #available(iOS 11.0, *) {
+            mapView.mapType = .mutedStandard
+        }
+        
+        var stops = Set<Stop>()
+        
+        for edge in RouteGraph.main.edges {
+            
+            stops.insert(edge.origin)
+            stops.insert(edge.destination)
+            
+            guard
+                let originCoordinate = edge.origin.coordinate,
+                let destinationCoordinate = edge.destination.coordinate
+            else {continue}
+            
+            let polyLine = RouteGraphPolyline(coordinates: [originCoordinate, destinationCoordinate], count: 2)
+            polyLine.edge = edge
+            mapView.addOverlay(polyLine)
+        }
+        
+        for stop in stops {
+            guard let coordinate = stop.coordinate else {continue}
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = coordinate
+            annotation.title = stop.name
+            annotation.subtitle = stop.region
+            mapView.addAnnotation(annotation)
+        }
+    }
+        
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if let polyline = overlay as? RouteGraphPolyline {
+            let polylineRenderer = MKPolylineRenderer(overlay: polyline)
+            polylineRenderer.strokeColor = Color.black.withAlphaComponent(0.75)
+            polylineRenderer.lineWidth = CGFloat(min(polyline.edge?.weight ?? 1, 10))
+            return polylineRenderer
+        }
+        return MKOverlayRenderer(overlay: overlay)
+    }
 }

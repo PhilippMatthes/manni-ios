@@ -20,10 +20,10 @@ protocol SearchViewDelegate {
 
 class SearchView: View {
     
-    private let routeStopView = UIView()
+    private let routeStopView = SkeuomorphismView()
     private let routeStopDepartureInputView = RouteStopInputView()
     private let routeStopDestinationInputView = RouteStopInputView()
-    private let routeStopDividerView = SkeuomorphismView()
+    private let routeStopDividerView = UIView()
     private let searchRouteButton = SkeuomorphismIconButton(
        image: UIImage.fontAwesomeIcon(name: .route, style: .solid, textColor: .white, size: .init(width: 32, height: 32)).withRenderingMode(.alwaysTemplate),
        tintColor: Color.grey.darken4
@@ -81,29 +81,30 @@ class SearchView: View {
         layout(routeStopView)
             .top()
             .left()
-            .before(searchRouteButton, 12)
+            .before(searchRouteButton, 6)
             .height(64)
         
-        routeStopView.layout(routeStopDividerView)
+        // Center anchor point
+        routeStopView.contentView.layout(routeStopDividerView)
             .top()
             .centerX()
-            .width(4)
+            .width(0)
             .bottom()
         
-        routeStopView.layout(routeStopDepartureInputView)
+        routeStopView.contentView.layout(routeStopDepartureInputView)
             .top()
             .left()
-            .before(routeStopDividerView)
+            .before(routeStopDividerView, 3)
             .bottom()
         
-        routeStopView.layout(routeStopDestinationInputView)
+        routeStopView.contentView.layout(routeStopDestinationInputView)
             .top()
             .right()
-            .after(routeStopDividerView)
+            .after(routeStopDividerView, 3)
             .bottom()
         
         layout(queryFieldView)
-            .below(routeStopDividerView, 24)
+            .below(routeStopView, 24)
             .left()
             .right()
             .bottom()
@@ -147,8 +148,12 @@ class SearchView: View {
 extension SearchView {
     
     fileprivate func prepareRouteStopInputViews() {
-        routeStopDepartureInputView.roundedCorners = [.topLeft, .bottomLeft]
-        routeStopDestinationInputView.roundedCorners = [.topRight, .bottomRight]
+        routeStopDepartureInputView.cornerRadius = 8
+        routeStopDepartureInputView.stopLabel.text = "Von"
+        routeStopDepartureInputView.stopLabel.textColor = Color.grey.base
+        routeStopDestinationInputView.cornerRadius = 8
+        routeStopDestinationInputView.stopLabel.text = "Nach"
+        routeStopDestinationInputView.stopLabel.textColor = Color.grey.base
     }
     
     fileprivate func prepareSearchRouteButton() {
@@ -206,7 +211,7 @@ extension SearchView {
         queryField.delegate = self
         queryField.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectQueryField)))
         queryField.font = RobotoFont.light(with: 24)
-        queryField.placeholder = "Nach Haltestelle suchen"
+        queryField.placeholder = "Haltestelle suchen"
         queryField.clearButtonMode = .always
     }
 }

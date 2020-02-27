@@ -12,7 +12,7 @@ import CoreLocation
 
 
 protocol SuggestionInfoButtonDelegate {
-    func didSelectSuggestionInfoButton()
+    func didSelectSuggestionInfoButton(on stop: Stop?)
 }
 
 
@@ -136,7 +136,7 @@ class StopTableViewCell: UITableViewCell {
     }
     
     @objc func didSelectSuggestionInfoButton() {
-        suggestionButtonDelegate?.didSelectSuggestionInfoButton()
+        suggestionButtonDelegate?.didSelectSuggestionInfoButton(on: stop)
     }
     
     @objc func didUpdateLocation(_ notification: Notification) {
