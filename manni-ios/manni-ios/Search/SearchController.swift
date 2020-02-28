@@ -62,7 +62,7 @@ class SearchController: ViewController {
         }
     }
     
-    fileprivate let searchViewBackground = UIVisualEffectView()
+    fileprivate let searchViewBackground = UIView()
     fileprivate let gpsView = GPSView()
     fileprivate let searchView = SearchView()
     fileprivate let greetingLabel = UILabel()
@@ -204,17 +204,17 @@ extension SearchController {
     
     fileprivate func prepareSearchViewBackground() {
         view.layout(searchViewBackground)
-            .bottom()
-            .left()
-            .right()
-        searchViewBackground.effect = UIBlurEffect(style: .light)
+            .bottomSafe()
+            .left(12)
+            .right(12)
+        searchViewBackground.backgroundColor = .white
         searchViewBackground.clipsToBounds = true
-        searchViewBackground.layer.cornerRadius = 32.0
+        searchViewBackground.layer.cornerRadius = 16
     }
     
     fileprivate func prepareSearchView() {
-        searchViewBackground.contentView.layout(searchView)
-            .edges(top: 24, left: 24, bottom: 32, right: 24)
+        searchViewBackground.layout(searchView)
+            .edges(top: 16, left: 16, bottom: 16, right: 16)
                 
         searchView.delegate = self
     }
@@ -268,13 +268,9 @@ extension SearchController: SearchViewDelegate {
         }
         
         self.query = query
-        searchView.startRefreshing()
         
         Stop.find(query) {
             result in
-            DispatchQueue.main.async {
-                self.searchView.endRefreshing()
-            }
             guard let success = result.success else {
                 DispatchQueue.main.async {
                     if #available(iOS 10.0, *) {
@@ -370,12 +366,8 @@ extension SearchController: CLLocationManagerDelegate {
         guard let currentLocation = manager.location else {return}
         self.gpsFetchWasTriggered = false
         
-        searchView.startRefreshing()
         Stop.findNear(coord: currentLocation.coordinate) {
             result in
-            DispatchQueue.main.async {
-                self.searchView.endRefreshing()
-            }
             guard let success = result.success else {
                 DispatchQueue.main.async {
                     if #available(iOS 10.0, *) {

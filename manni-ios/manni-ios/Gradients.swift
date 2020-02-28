@@ -12,6 +12,7 @@ class Gradients {
     
     public static let clouds = [UIColor("#FFFFFF"), UIColor("#ECE9E6")]
     public static let moonlitAsteroids = [UIColor("#0F2027"), UIColor("#203A43"), UIColor("#2C5364")]
+    public static let blue = [UIColor("#396afc"), UIColor("#2948ff")]
     
     public static let accentColors = [
         [UIColor("#f5af19"), UIColor("#f12711")],

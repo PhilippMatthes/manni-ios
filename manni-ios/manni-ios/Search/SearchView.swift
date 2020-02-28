@@ -20,17 +20,17 @@ protocol SearchViewDelegate {
 
 class SearchView: View {
     
-    private let routeStopView = SkeuomorphismView()
+    private let routeStopView = UIView()
     private let routeStopDepartureInputView = RouteStopInputView()
     private let routeStopDestinationInputView = RouteStopInputView()
     private let routeStopDividerView = UIView()
     private let searchRouteButton = SkeuomorphismIconButton(
-       image: UIImage.fontAwesomeIcon(name: .route, style: .solid, textColor: .white, size: .init(width: 32, height: 32)).withRenderingMode(.alwaysTemplate),
-       tintColor: Color.grey.darken4
+       image: UIImage.fontAwesomeIcon(name: .route, style: .solid, textColor: .white, size: .init(width: 24, height: 24)).withRenderingMode(.alwaysTemplate),
+       tintColor: Color.grey.base
    )
     private let queryFieldView = SkeuomorphismView()
     private let queryField = UITextField()
-    private let searchButton = SkeuomorphismIconButton(image: UIImage.fontAwesomeIcon(name: .searchLocation, style: .solid, textColor: .white, size: .init(width: 32, height: 32)).withRenderingMode(.alwaysTemplate), tintColor: Color.grey.darken4)
+    private let searchButton = IconButton(image: UIImage.fontAwesomeIcon(name: .search, style: .solid, textColor: .white, size: .init(width: 24, height: 24)).withRenderingMode(.alwaysTemplate), tintColor: Color.grey.base)
     private let searchButtonAnimatingImageView = UIImageView()
     
     public var delegate: SearchViewDelegate?
@@ -44,91 +44,68 @@ class SearchView: View {
         
         backgroundColor = .clear
         
+        prepareRouteView()
         prepareRouteStopInputViews()
         prepareSearchRouteButton()
-        prepareSearchButtonAnimatingImageView()
         prepareSuggestions()
         prepareQueryFieldView()
         prepareQueryField()
         prepareSearchButton()
     }
     
-    public func startRefreshing() {
-        searchButton.animate(MotionAnimation.fadeOut)
-        searchButtonAnimatingImageView.animate([
-            MotionAnimation.scale(1.5)
-        ])
-        self.searchButtonAnimatingImageView.startAnimating()
-    }
-    
-    public func endRefreshing() {
-        searchButton.animate(MotionAnimation.fadeIn)
-        searchButtonAnimatingImageView.animate([
-            MotionAnimation.scale(1.0)
-        ])
-        self.searchButtonAnimatingImageView.stopAnimating()
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        layout(searchRouteButton)
-            .right()
-            .height(64)
-            .width(64)
-            .top()
         
         layout(routeStopView)
             .top()
             .left()
-            .before(searchRouteButton, 6)
-            .height(64)
+            .right()
+            .height(48)
+        
+        routeStopView.layout(searchRouteButton)
+            .left()
+            .height(48)
+            .width(48)
+            .top()
         
         // Center anchor point
-        routeStopView.contentView.layout(routeStopDividerView)
+        routeStopView.layout(routeStopDividerView)
             .top()
-            .centerX()
+            .centerX(24)
             .width(0)
             .bottom()
         
-        routeStopView.contentView.layout(routeStopDepartureInputView)
+        routeStopView.layout(routeStopDepartureInputView)
             .top()
-            .left()
-            .before(routeStopDividerView, 3)
+            .after(searchRouteButton, 8)
+            .before(routeStopDividerView, 4)
             .bottom()
         
-        routeStopView.contentView.layout(routeStopDestinationInputView)
+        routeStopView.layout(routeStopDestinationInputView)
             .top()
             .right()
-            .after(routeStopDividerView, 3)
+            .after(routeStopDividerView, 4)
             .bottom()
         
         layout(queryFieldView)
-            .below(routeStopView, 24)
+            .below(routeStopView, 16)
             .left()
             .right()
             .bottom()
         
         queryFieldView.contentView.layout(searchButton)
-            .right()
+            .left()
             .top()
             .bottom()
-            .width(64)
-            .height(64)
-        
-        queryFieldView.contentView.layout(searchButtonAnimatingImageView)
-            .right()
-            .top()
-            .bottom()
-            .width(64)
-            .height(64)
+            .width(48)
+            .height(48)
         
         queryFieldView.contentView.layout(queryField)
-            .left(16)
             .top(8)
             .bottom(8)
-            .before(searchButton, 12)
-            .height(48)
+            .after(searchButton)
+            .right(12)
+            .centerY()
     }
     
     @objc func selectQueryField() {
@@ -146,26 +123,26 @@ class SearchView: View {
 }
 
 extension SearchView {
+    fileprivate func prepareRouteView() {
+        routeStopView.layer.cornerRadius = 24
+        routeStopView.backgroundColor = Color.grey.lighten4
+    }
     
     fileprivate func prepareRouteStopInputViews() {
         routeStopDepartureInputView.stopLabel.text = "Von"
         routeStopDepartureInputView.stopLabel.textColor = Color.grey.base
+        routeStopDepartureInputView.contentView.backgroundColor = Color.grey.lighten4
         routeStopDestinationInputView.stopLabel.text = "Nach"
         routeStopDestinationInputView.stopLabel.textColor = Color.grey.base
+        routeStopDestinationInputView.contentView.backgroundColor = Color.grey.lighten4
     }
     
     fileprivate func prepareSearchRouteButton() {
         searchRouteButton.skeuomorphismView.cornerRadius = 32
         searchRouteButton.skeuomorphismView.lightShadowOpacity = 0.3
+        searchRouteButton.skeuomorphismView.contentView.backgroundColor = Color.grey.lighten4
         searchRouteButton.pulseColor = Color.blue.base
         searchRouteButton.addTarget(self, action: #selector(searchRoute), for: .touchUpInside)
-    }
-    
-    fileprivate func prepareSearchButtonAnimatingImageView() {
-        searchButtonAnimatingImageView.animationImages = (0...89).map {
-            UIImage(named: "animation000\($0).png")!
-        }
-        searchButtonAnimatingImageView.animationDuration = 3
     }
     
     fileprivate func prepareSuggestions() {
@@ -198,6 +175,10 @@ extension SearchView {
     
     fileprivate func prepareQueryFieldView() {
         queryFieldView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectQueryField)))
+        queryFieldView.contentView.backgroundColor = Color.grey.lighten4
+        queryFieldView.cornerRadius = 16
+        queryFieldView.lightShadowOpacity = 0
+        queryFieldView.darkShadowOpacity = 0
     }
     
     fileprivate func prepareSearchButton() {
@@ -208,7 +189,7 @@ extension SearchView {
     fileprivate func prepareQueryField() {
         queryField.delegate = self
         queryField.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectQueryField)))
-        queryField.font = RobotoFont.light(with: 24)
+        queryField.font = RobotoFont.regular(with: 22)
         queryField.placeholder = "Haltestelle suchen"
         queryField.clearButtonMode = .always
     }

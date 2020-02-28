@@ -32,9 +32,10 @@
 		BED040C723EB365200773E2A /* stations.json in Resources */ = {isa = PBXBuildFile; fileRef = BED040C623EB365200773E2A /* stations.json */; };
 		BEDAA49023E7541900A25187 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDAA48F23E7541900A25187 /* AppDelegate.swift */; };
 		BEDAA49623E7541A00A25187 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEDAA49523E7541A00A25187 /* Assets.xcassets */; };
-		BEDAA49923E7541A00A25187 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEDAA49823E7541A00A25187 /* Preview Assets.xcassets */; };
 		BEDAA49C23E7541A00A25187 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDAA49A23E7541A00A25187 /* LaunchScreen.storyboard */; };
 		BEE7EC6D23EDA63100B09877 /* RouteGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE7EC6C23EDA63100B09877 /* RouteGraph.swift */; };
+		BEF3062D24083490005AE8A2 /* RoutesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF3062C24083490005AE8A2 /* RoutesController.swift */; };
+		BEF30630240837BD005AE8A2 /* RouteOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF3062F240837BD005AE8A2 /* RouteOverviewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,10 +66,11 @@
 		BEDAA48C23E7541900A25187 /* Manni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Manni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEDAA48F23E7541900A25187 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEDAA49523E7541A00A25187 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BEDAA49823E7541A00A25187 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BEDAA49B23E7541A00A25187 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BEDAA49D23E7541A00A25187 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEE7EC6C23EDA63100B09877 /* RouteGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteGraph.swift; sourceTree = "<group>"; };
+		BEF3062C24083490005AE8A2 /* RoutesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesController.swift; sourceTree = "<group>"; };
+		BEF3062F240837BD005AE8A2 /* RouteOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteOverviewCell.swift; sourceTree = "<group>"; };
 		F6419AB9B161AD29027F159A /* Pods-manni-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-manni-ios/Pods-manni-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -196,6 +198,7 @@
 				BED040C623EB365200773E2A /* stations.json */,
 				BEDAA48F23E7541900A25187 /* AppDelegate.swift */,
 				BE89198723F30DF80098A39B /* Gradients.swift */,
+				BEF3062E240834A2005AE8A2 /* Routes */,
 				BE0D0DEE23F1DD2C003DB75A /* Trips */,
 				BE02038923E835DC00E7D5DC /* Departures */,
 				BE02038623E82D1900E7D5DC /* Extensions */,
@@ -205,17 +208,17 @@
 				BEDAA49523E7541A00A25187 /* Assets.xcassets */,
 				BEDAA49A23E7541A00A25187 /* LaunchScreen.storyboard */,
 				BEDAA49D23E7541A00A25187 /* Info.plist */,
-				BEDAA49723E7541A00A25187 /* Preview Content */,
 			);
 			path = "manni-ios";
 			sourceTree = "<group>";
 		};
-		BEDAA49723E7541A00A25187 /* Preview Content */ = {
+		BEF3062E240834A2005AE8A2 /* Routes */ = {
 			isa = PBXGroup;
 			children = (
-				BEDAA49823E7541A00A25187 /* Preview Assets.xcassets */,
+				BEF3062C24083490005AE8A2 /* RoutesController.swift */,
+				BEF3062F240837BD005AE8A2 /* RouteOverviewCell.swift */,
 			);
-			path = "Preview Content";
+			path = Routes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,7 +283,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEDAA49C23E7541A00A25187 /* LaunchScreen.storyboard in Resources */,
-				BEDAA49923E7541A00A25187 /* Preview Assets.xcassets in Resources */,
 				BED040C723EB365200773E2A /* stations.json in Resources */,
 				BEDAA49623E7541A00A25187 /* Assets.xcassets in Resources */,
 			);
@@ -360,7 +362,9 @@
 				BE0D0DF223F1DEFF003DB75A /* VerticalProgressBarView.swift in Sources */,
 				BE89198623F3085B0098A39B /* TripController.swift in Sources */,
 				BE5AABFB23E756A9006EE1BD /* SearchController.swift in Sources */,
+				BEF30630240837BD005AE8A2 /* RouteOverviewCell.swift in Sources */,
 				BE3A574A2406C44C0059E2DA /* StopItemProvider.swift in Sources */,
+				BEF3062D24083490005AE8A2 /* RoutesController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,7 +503,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"manni-ios/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = S36925NV4E;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "manni-ios/Info.plist";
@@ -524,7 +528,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"manni-ios/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = S36925NV4E;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "manni-ios/Info.plist";

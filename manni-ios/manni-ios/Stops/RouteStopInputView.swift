@@ -43,7 +43,27 @@ class RouteStopInputView: SkeuomorphismView {
             .centerY()
             .left(16)
             .right(16)
-        stopLabel.font = RobotoFont.light(with: 24)
+        stopLabel.font = RobotoFont.regular(with: 22)
+        
+        lightShadowOpacity = 0
+        darkShadowOpacity = 0
+        
+        let border = CAShapeLayer()
+        border.strokeColor = Color.grey.base.cgColor
+        border.lineDashPattern = [4, 4]
+        border.lineCap = .round
+        border.lineJoin = .round
+        border.frame = bounds
+        border.fillColor = nil
+        border.cornerRadius = cornerRadius
+        let roundedCorners: UIRectCorner = self.roundedCorners ?? UIRectCorner.allCorners
+        let path = UIBezierPath(
+            roundedRect: bounds,
+            byRoundingCorners: roundedCorners,
+            cornerRadii: .init(width: cornerRadius, height: cornerRadius)
+        ).cgPath
+        border.path = path
+        layer.addSublayer(border)
     }
     
 }
