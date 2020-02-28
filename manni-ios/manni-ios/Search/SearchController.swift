@@ -66,7 +66,7 @@ class SearchController: ViewController {
     fileprivate let searchView = SearchView()
     fileprivate let greetingLabel = UILabel()
     fileprivate let tutorialLabel = UILabel()
-    fileprivate let tableView = TableView()
+    fileprivate let tableView = TableView(frame: .zero, style: .grouped)
     
     fileprivate var routeGraph = RouteGraph.main
     fileprivate var locationManager = CLLocationManager()
@@ -189,18 +189,14 @@ extension SearchController {
         tableViewBackground.layer.zPosition = -1
         tableViewBackground.layer.cornerRadius = 24
         tableViewBackground.translatesAutoresizingMaskIntoConstraints = false
+        tableViewBackground.isUserInteractionEnabled = false
+        view.backgroundColor = Color.grey.lighten2
+        tableViewBackground.backgroundColor = view.backgroundColor
         
         NSLayoutConstraint(item: tableViewBackground, attribute: .height, relatedBy: .equal, toItem: tableView, attribute: .height, multiplier: 1.0, constant: 64).isActive = true
         NSLayoutConstraint(item: tableViewBackground, attribute: .width, relatedBy: .equal, toItem: tableView, attribute: .width, multiplier: 1.0, constant: 0.0).isActive = true
         NSLayoutConstraint(item: tableViewBackground, attribute: .top, relatedBy: .equal, toItem: tableView, attribute: .top, multiplier: 1.0, constant: -32).isActive = true
         NSLayoutConstraint(item: tableViewBackground, attribute: .centerX, relatedBy: .equal, toItem: tableView, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
-        
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.colors = Gradients.clouds.map {$0.cgColor}
-        gradientLayer.frame = view.bounds
-        gradientLayer.cornerRadius = 24
-        tableViewBackground.layer.addSublayer(gradientLayer)
     }
     
     fileprivate func prepareGPSView() {
@@ -259,10 +255,10 @@ extension SearchController: ViewTapDelegate {
 
 extension SearchController: SearchViewDelegate {
     func search(routeFrom departureStop: Stop, to destinationStop: Stop) {
-        Route.find(fromWithID: departureStop.id, toWithID: destinationStop.id) {
-            result in
-            print("Routen suche erfolgreich!")
-        }
+        let controller = RoutesController()
+        controller.endpoints = (departureStop, destinationStop)
+        controller.presentationController?.delegate = self
+        present(controller, animated: true)
     }
     
     func search(query: String) {
@@ -410,14 +406,6 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
         return 2
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: StopTableViewCell.reuseIdentifier, for: indexPath
@@ -429,8 +417,6 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
         if let location = locationManager.location {
             cell.location = location
         }
-        cell.isSuggestion = indexPath.section == 1
-        cell.suggestionButtonDelegate = self
         return cell
     }
     
@@ -458,6 +444,35 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
         }, completion: nil)
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard section == 0 && fetchedStops.count != 0 || section == 1 && suggestedStops.count != 0 else {return UIView()}
+        let view = UIView()
+        if section == 0 {
+            let label = UILabel()
+            label.text = "Suchergebnisse"
+            label.font = RobotoFont.light(with: 24)
+            view.layout(label).edges(top: 8, left: 16, bottom: 8, right: 16)
+        } else {
+            let label = UILabel()
+            label.text = "Vorschläge"
+            label.font = RobotoFont.light(with: 24)
+            view.layout(label).edges(top: 8, left: 16, bottom: 8, right: 48)
+            
+            let suggestionBadgeButton = SkeuomorphismIconButton(image: UIImage.fontAwesomeIcon(
+                name: .info, style: .solid, textColor: Color.grey.base, size: .init(width: 18, height: 18)
+            ))
+            
+            view.layout(suggestionBadgeButton)
+                .right(16)
+                .centerY()
+                .height(32)
+                .width(32)
+            suggestionBadgeButton.skeuomorphismView.cornerRadius = 16
+            suggestionBadgeButton.addTarget(self, action: #selector(didSelectSuggestionInfoButton), for: .touchUpInside)
+        }
+        return view
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y < -gpsViewExpandedHeight - gpsViewCollapsedHeight && (
             gpsFetchWasTriggered == false || gpsFetchWasTriggered == nil
@@ -468,10 +483,9 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension SearchController: SuggestionInfoButtonDelegate {
-    func didSelectSuggestionInfoButton(on stop: Stop?) {
+extension SearchController {
+    @objc func didSelectSuggestionInfoButton() {
         let controller = SuggestionInformationController()
-        controller.stop = stop
         present(controller, animated: true)
     }
 }

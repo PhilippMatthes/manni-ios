@@ -1,6 +1,7 @@
 import Foundation
 
 public enum Mode {
+    case bus
     case tram
     case cityBus
     case intercityBus
@@ -19,6 +20,7 @@ public enum Mode {
 
     public var rawValue: String {
         switch self {
+        case .bus: return "bus"
         case .tram: return "tram"
         case .cityBus: return "citybus"
         case .intercityBus: return "intercitybus"
@@ -37,6 +39,7 @@ public enum Mode {
     /// All modes of transport relevant for requests to the VVO WebAPI.
     public static var allRequest: [Mode] {
         return [
+            .bus,
             .tram,
             .cityBus,
             .intercityBus,
@@ -45,7 +48,8 @@ public enum Mode {
             .train,
             .cableway,
             .ferry,
-            .hailedSharedTaxi
+            .hailedSharedTaxi,
+            .footpath,
         ]
     }
 

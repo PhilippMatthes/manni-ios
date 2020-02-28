@@ -68,12 +68,35 @@ class TripController: ViewController {
                 self.tripView.tripStops = success.stops
             }
         }
+        
+        prepareReveal()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        reveal {}
     }
     
     @objc func backButtonTouched() {
         navigationController?.popViewController(animated: true)
     }
     
+}
+
+extension TripController: Revealable {
+    func prepareReveal() {
+        disclaimerBackgroundView.transform = .init(translationX: 0, y: 128)
+    }
+    
+    func reveal(completion: @escaping (() -> ())) {
+        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+            self.disclaimerBackgroundView.transform = .identity
+        }, completion: {
+            _ in
+            completion()
+        })
+    }
 }
 
 extension TripController {

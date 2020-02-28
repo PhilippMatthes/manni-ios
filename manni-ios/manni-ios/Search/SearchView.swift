@@ -139,7 +139,7 @@ extension SearchView: Revealable {
     }
     
     func reveal(completion: @escaping (() -> ())) {
-        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
             self.searchRouteButton.alpha = 1
             self.searchButton.alpha = 1
             self.transform = CGAffineTransform
@@ -241,7 +241,6 @@ extension SearchView: UITableViewDataSource, UITableViewDelegate {
         if cell.stop != stop {
             cell.stop = stop
         }
-        cell.isSuggestion = false
         return cell
     }
 }

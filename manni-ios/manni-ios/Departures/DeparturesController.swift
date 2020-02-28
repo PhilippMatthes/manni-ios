@@ -16,10 +16,11 @@ class DeparturesController: ViewController {
     
     public var stop: Stop? {
         didSet {
+            guard let stop = stop else {return}
             loadDepartures()
             
-            stopNameLabel.text = stop?.name
-            stopLocationLabel.text = stop?.region ?? "Dresden"
+            stopNameLabel.text = stop.name
+            stopLocationLabel.text = stop.region ?? "Dresden"
         }
     }
     
@@ -35,6 +36,7 @@ class DeparturesController: ViewController {
     fileprivate var departures = [Departure]()
     fileprivate var scheduledTimer: Timer?
     
+    fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let backButton = SkeuomorphismIconButton(image: Icon.arrowBack, tintColor: Color.grey.darken4)
     fileprivate let stopNameLabel = UILabel()
     fileprivate let stopLocationLabel = UILabel()
@@ -85,7 +87,6 @@ class DeparturesController: ViewController {
 
 extension DeparturesController {
     fileprivate func prepareBackground() {
-        let gradientLayer = CAGradientLayer()
         gradientLayer.locations = [0.0, 1.0]
         gradientLayer.colors = Gradients.clouds.map {$0.cgColor}
         gradientLayer.frame = view.bounds

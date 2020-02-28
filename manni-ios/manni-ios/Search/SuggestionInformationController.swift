@@ -17,8 +17,6 @@ class SuggestionInformationController: ViewController {
     fileprivate let explanationLabel = UILabel()
     fileprivate let mapView = MKMapView()
     
-    public var stop: Stop?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,13 +51,13 @@ class SuggestionInformationController: ViewController {
         explanationLabel.text = "Jedes Mal, wenn Du eine Haltestelle auswählst, " +
                                 "speichert Dein Gerät dies lokal in einem Graphen ab. Du behältst " +
                                 "also die volle Kontrolle über Deine Daten. " +
-                                "Dein Graph um die Haltestelle \(stop?.name ?? "") sieht aktuell so aus:"
+                                "Dein Graph sieht aktuell so aus:"
         
         view.layout(mapView)
             .below(explanationLabel, 16)
-            .left(24)
-            .right(24)
-            .bottomSafe()
+            .left()
+            .right()
+            .bottom()
         mapView.delegate = self
         mapView.layer.cornerRadius = 24
         
@@ -89,13 +87,6 @@ internal class RouteGraphPolyline: MKPolyline {
 
 extension SuggestionInformationController: MKMapViewDelegate {
     fileprivate func prepareGraph() {
-        if let stop = stop, let coordinate = stop.coordinate {
-            let coordinateRegion = MKCoordinateRegion(
-                center: coordinate, latitudinalMeters: 4000, longitudinalMeters: 4000
-            )
-            mapView.setRegion(coordinateRegion, animated: true)
-        }
-        
         // Focus on the important things
         mapView.showsTraffic = false
         mapView.showsBuildings = false
@@ -128,6 +119,19 @@ extension SuggestionInformationController: MKMapViewDelegate {
             annotation.subtitle = stop.region
             mapView.addAnnotation(annotation)
         }
+        
+        zoomForAllOverlays()
+    }
+    
+    func zoomForAllOverlays() {
+        guard let initial = mapView.overlays.first?.boundingMapRect else { return }
+
+        let insets = UIEdgeInsets(top: 32, left: 32, bottom: 32, right: 32)
+        let mapRect = mapView.overlays
+            .dropFirst()
+            .reduce(initial) { $0.union($1.boundingMapRect) }
+
+        mapView.setVisibleMapRect(mapRect, edgePadding: insets, animated: true)
     }
         
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {

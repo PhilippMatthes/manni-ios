@@ -93,3 +93,40 @@ extension TripStop {
     }
     
 }
+
+extension Route {
+    
+    public var manniETA: String {
+        get {
+            guard let time = partialRoutes.first?.regularStops?.first?.departureTime else {return "n/a"}
+            let interval = Calendar.current.dateComponents([
+                .minute, .second
+            ], from: Date(), to: time)
+            
+            if let minutes = interval.minute, minutes >= 20 || minutes <= -20 {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "HH:mm"
+                return dateFormatter.string(from: time)
+            }
+            
+            if let minutes = interval.minute, minutes != 0 {
+                if minutes > 0 {
+                    return minutes == 1 ? "In 1 Minute" : "In \(minutes) Minuten"
+                } else {
+                    return minutes == -1 ? "Vor 1 Minute": "Vor \(abs(minutes)) Minuten"
+                }
+            }
+            
+            if let seconds = interval.second, seconds != 0 {
+                if seconds > 0 {
+                    return seconds == 1 ? "In 1 Sekunde" : "In \(seconds) Sekunden"
+                } else {
+                    return seconds == -1 ? "Vor 1 Sekunde": "Vor \(abs(seconds)) Sekunden"
+                }
+            }
+            
+            return "Jetzt"
+        }
+    }
+    
+}

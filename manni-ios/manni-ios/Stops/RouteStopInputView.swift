@@ -34,6 +34,7 @@ class RouteStopInputView: SkeuomorphismView {
         
         if #available(iOS 11.0, *) {
             prepareDropInteraction()
+            prepareDragInteraction()
         }
     }
     
@@ -71,27 +72,31 @@ class RouteStopInputView: SkeuomorphismView {
 
 extension RouteStopInputView: Revealable {
     func prepareReveal() {
-        borderLayer.strokeEnd = 0
-        
         stopLabel.alpha = 0
     }
     
     func reveal(completion: @escaping (() -> ())) {
-        let animation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.fromValue = CGFloat(0)
-        animation.toValue = CGFloat(1)
-        animation.duration = 1
-        animation.isRemovedOnCompletion = false
-        animation.fillMode = CAMediaTimingFillMode.forwards
-        animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
-        borderLayer.add(animation, forKey: "strokeAnimation")
-        
         UIView.animate(withDuration: 1, animations: {
             self.stopLabel.alpha = 1
         }, completion: {
             _ in
             completion()
         })
+    }
+}
+
+@available(iOS 11.0, *)
+extension RouteStopInputView: UIDragInteractionDelegate {
+    func prepareDragInteraction() {
+        isUserInteractionEnabled = true
+        addInteraction(UIDragInteraction(delegate: self))
+    }
+    
+        
+    func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
+        guard let stop = stop else {return []}
+        let itemProvider = NSItemProvider(object: StopItem(stop: stop))
+        return [UIDragItem(itemProvider: itemProvider)]
     }
 }
 

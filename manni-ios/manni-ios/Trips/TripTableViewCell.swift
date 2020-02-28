@@ -141,7 +141,6 @@ class TripTableViewCell: UITableViewCell {
         )
         RunLoop.main.add(timeResponsiveRefreshTimer!, forMode: .common)
     }
-
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -175,7 +174,7 @@ class TripTableViewCell: UITableViewCell {
         
         dotButton.contentView.layout(locationIcon)
             .edges(top: 4, left: 4, bottom: 4, right: 4)
-        locationIcon.tintColor = Color.grey.darken1
+        locationIcon.tintColor = Color.grey.base
         
         contentView.layout(stopNameLabel)
             .after(regularProgressView, 34)

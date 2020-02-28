@@ -29,11 +29,11 @@ class GPSView: SkeuomorphismView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        contentView.backgroundColor = UIColor(patternImage: UIImage(named: "stars")!)
+        contentView.backgroundColor = Color.blue.accent4
         
         for imageView in [startImageView, animatingImageView] {
             contentView.layout(imageView)
-                .bottom(40)
+                .bottom(56)
                 .centerX()
                 .height(128)
                 .width(128)

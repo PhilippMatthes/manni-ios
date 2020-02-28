@@ -1,5 +1,5 @@
 //
-//  Departure+Icon.swift
+//  Mode+Icon.swift
 //  manni-ios
 //
 //  Created by yaaarrrnnn on 08.02.20.
@@ -10,14 +10,14 @@ import DVB
 import FontAwesome_swift
 
 
-extension Departure {
+extension Mode {
     
     public var icon: UIImage {
         get {
+            print(self)
             let size = CGSize.init(width: 64, height: 64)
-            
             var image: UIImage
-            switch mode {
+            switch self {
             case .cableway:
                 image = UIImage.fontAwesomeIcon(
                     name: .tram,
@@ -26,6 +26,13 @@ extension Departure {
                     size: size
                 ).withRenderingMode(.alwaysTemplate)
             case .cityBus:
+                image = UIImage.fontAwesomeIcon(
+                    name: .bus,
+                    style: .solid,
+                    textColor: .white,
+                    size: size
+                ).withRenderingMode(.alwaysTemplate)
+            case .bus:
                 image = UIImage.fontAwesomeIcon(
                     name: .bus,
                     style: .solid,
@@ -95,7 +102,12 @@ extension Departure {
                     textColor: .white,
                     size: size
                 ).withRenderingMode(.alwaysTemplate)
-            default:
+            case .unknown(let value):
+                for mode in Mode.allRequest {
+                    if mode.rawValue == value {
+                        return mode.icon
+                    }
+                }
                 image = UIImage.fontAwesomeIcon(
                     name: .train,
                     style: .solid,

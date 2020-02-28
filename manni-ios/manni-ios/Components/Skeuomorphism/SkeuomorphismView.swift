@@ -43,7 +43,7 @@ class SkeuomorphismView: View {
         }
     }
     
-    public var lightShadowOpacity: Float = 1 {
+    public var lightShadowOpacity: Float = 0.5 {
         didSet {
             lightShadowLayer.shadowOpacity = lightShadowOpacity
         }
