@@ -135,6 +135,8 @@ extension SuggestionInformationController: MKMapViewDelegate {
             let polylineRenderer = MKPolylineRenderer(overlay: polyline)
             polylineRenderer.strokeColor = Color.black.withAlphaComponent(0.75)
             polylineRenderer.lineWidth = CGFloat(min(polyline.edge?.weight ?? 1, 10))
+            polylineRenderer.lineCap = .round
+            polylineRenderer.lineJoin = .round
             return polylineRenderer
         }
         return MKOverlayRenderer(overlay: overlay)

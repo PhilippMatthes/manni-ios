@@ -7,13 +7,14 @@
 //
 
 import Material
+import FontAwesome_swift
 
 
 class GPSView: SkeuomorphismView {
     
     fileprivate let startImageView = UIImageView()
     fileprivate let animatingImageView = UIImageView()
-    fileprivate let pullIcon = UIImageView(image: Icon.arrowDownward)
+    fileprivate let pullIcon = UIImageView(image: UIImage.fontAwesomeIcon(name: .chevronDown, style: .solid, textColor: .white, size: .init(width: 32, height: 32)))
     
     override func prepare() {
         super.prepare()
@@ -39,7 +40,7 @@ class GPSView: SkeuomorphismView {
         }
         
         contentView.layout(pullIcon)
-            .bottom(4)
+            .bottom(36)
             .centerX()
             .height(32)
             .width(32)
@@ -56,4 +57,19 @@ class GPSView: SkeuomorphismView {
         animatingImageView.stopAnimating()
     }
     
+}
+
+extension GPSView: Revealable {
+    func prepareReveal() {
+        pullIcon.transform = .init(translationX: 0, y: -64)
+    }
+    
+    func reveal(completion: @escaping (() -> ())) {
+        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+            self.pullIcon.transform = .identity
+        }, completion: {
+            _ in
+            completion()
+        })
+    }
 }

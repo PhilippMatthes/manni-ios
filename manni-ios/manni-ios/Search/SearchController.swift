@@ -32,7 +32,7 @@ class SearchController: ViewController {
         }
     }
     fileprivate var gpsViewExpandedHeight: CGFloat = 168
-    fileprivate let gpsViewCollapsedHeight: CGFloat = 32
+    fileprivate let gpsViewCollapsedHeight: CGFloat = 64
     
     fileprivate var showsGreeting: Bool? {
         didSet {
@@ -77,7 +77,6 @@ class SearchController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        prepareBackground()
         prepareGreeting()
         prepareTutorial()
         prepareTableView()
@@ -109,7 +108,11 @@ class SearchController: ViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        searchView.reveal {}
+        searchView.reveal {
+            self.gpsView.reveal {
+                
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -127,13 +130,6 @@ class SearchController: ViewController {
 }
 
 extension SearchController {
-    fileprivate func prepareBackground() {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.colors = Gradients.clouds.map {$0.cgColor}
-        gradientLayer.frame = view.bounds
-        view.layer.addSublayer(gradientLayer)
-    }
     
     fileprivate func prepareGreeting() {
         view.layout(greetingLabel)
@@ -181,19 +177,38 @@ extension SearchController {
         )
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.contentInset = .init(top: 32, left: 0, bottom: 256, right: 0)
+        tableView.contentInset = .init(top: gpsViewCollapsedHeight, left: 0, bottom: 256, right: 0)
         tableView.backgroundColor = .clear
-        
         if #available(iOS 11.0, *) {
             tableView.dragDelegate = self
             tableView.dragInteractionEnabled = true
         }
+        
+        let tableViewBackground = UIView()
+        tableView.insertSubview(tableViewBackground, at: 0)
+        tableViewBackground.layer.zPosition = -1
+        tableViewBackground.layer.cornerRadius = 24
+        tableViewBackground.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint(item: tableViewBackground, attribute: .height, relatedBy: .equal, toItem: tableView, attribute: .height, multiplier: 1.0, constant: 64).isActive = true
+        NSLayoutConstraint(item: tableViewBackground, attribute: .width, relatedBy: .equal, toItem: tableView, attribute: .width, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: tableViewBackground, attribute: .top, relatedBy: .equal, toItem: tableView, attribute: .top, multiplier: 1.0, constant: -32).isActive = true
+        NSLayoutConstraint(item: tableViewBackground, attribute: .centerX, relatedBy: .equal, toItem: tableView, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.colors = Gradients.clouds.map {$0.cgColor}
+        gradientLayer.frame = view.bounds
+        gradientLayer.cornerRadius = 24
+        tableViewBackground.layer.addSublayer(gradientLayer)
     }
     
     fileprivate func prepareGPSView() {
-        gpsView.cornerRadius = 32
         tableView.insertSubview(gpsView, at: 0)
         gpsView.translatesAutoresizingMaskIntoConstraints = false
+        gpsView.layer.zPosition = -2
+        gpsView.cornerRadius = 0
+        gpsView.prepareReveal()
         
         NSLayoutConstraint(item: gpsView, attribute: .height, relatedBy: .equal, toItem: tableView, attribute: .height, multiplier: 1.0, constant: 0.0).isActive = true
         NSLayoutConstraint(item: gpsView, attribute: .width, relatedBy: .equal, toItem: tableView, attribute: .width, multiplier: 1.0, constant: 0.0).isActive = true
@@ -296,11 +311,15 @@ extension SearchController {
             let keyboardFrameValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         else {return}
         let keyboardFrame = view.convert(keyboardFrameValue.cgRectValue, from: nil)
-        view.frame.origin.y = -keyboardFrame.bounds.maxY
+        UIView.animate(withDuration: 0.2) {
+            self.view.frame.origin.y = -keyboardFrame.bounds.maxY + 16
+        }
     }
 
     @objc func keyboardWillHide(notification:NSNotification){
-        view.frame.origin.y = 0
+        UIView.animate(withDuration: 0.2) {
+            self.view.frame.origin.y = 0
+        }
     }
 }
 

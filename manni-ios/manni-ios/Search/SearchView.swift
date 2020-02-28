@@ -60,7 +60,7 @@ class SearchView: View {
         layout(searchViewBackground).edges()
         searchViewBackground.backgroundColor = .white
         searchViewBackground.clipsToBounds = true
-        searchViewBackground.layer.cornerRadius = 16
+        searchViewBackground.layer.cornerRadius = 24
         
         searchViewBackground.layout(routeStopView)
             .top(16)
