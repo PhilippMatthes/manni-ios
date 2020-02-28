@@ -36,6 +36,7 @@
 		BEE7EC6D23EDA63100B09877 /* RouteGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE7EC6C23EDA63100B09877 /* RouteGraph.swift */; };
 		BEF3062D24083490005AE8A2 /* RoutesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF3062C24083490005AE8A2 /* RoutesController.swift */; };
 		BEF30630240837BD005AE8A2 /* RouteOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF3062F240837BD005AE8A2 /* RouteOverviewCell.swift */; };
+		BEF3063424091A52005AE8A2 /* Revealable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF3063324091A52005AE8A2 /* Revealable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		BEE7EC6C23EDA63100B09877 /* RouteGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteGraph.swift; sourceTree = "<group>"; };
 		BEF3062C24083490005AE8A2 /* RoutesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesController.swift; sourceTree = "<group>"; };
 		BEF3062F240837BD005AE8A2 /* RouteOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteOverviewCell.swift; sourceTree = "<group>"; };
+		BEF3063324091A52005AE8A2 /* Revealable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Revealable.swift; sourceTree = "<group>"; };
 		F6419AB9B161AD29027F159A /* Pods-manni-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-manni-ios/Pods-manni-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -168,6 +170,7 @@
 		BEBA661823E762E600CA99CF /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				BEF3063324091A52005AE8A2 /* Revealable.swift */,
 				BE0D0DF123F1DEFF003DB75A /* VerticalProgressBarView.swift */,
 				BE6213FA23E76FFD00FD638E /* Skeuomorphism */,
 			);
@@ -358,6 +361,7 @@
 				BE62CCB823EF207D00B9469E /* Departure+Icon.swift in Sources */,
 				BE02039123E8597C00E7D5DC /* SkeuomorphismIconButton.swift in Sources */,
 				BE02038D23E83FEE00E7D5DC /* DVB+UIColor.swift in Sources */,
+				BEF3063424091A52005AE8A2 /* Revealable.swift in Sources */,
 				BEC77FCD23E9BCED0042CD48 /* Stop+Distance.swift in Sources */,
 				BE0D0DF223F1DEFF003DB75A /* VerticalProgressBarView.swift in Sources */,
 				BE89198623F3085B0098A39B /* TripController.swift in Sources */,

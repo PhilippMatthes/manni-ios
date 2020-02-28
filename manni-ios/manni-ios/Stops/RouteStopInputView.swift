@@ -27,6 +27,7 @@ class RouteStopInputView: SkeuomorphismView {
     }
     
     public let stopLabel = UILabel()
+    public let borderLayer = CAShapeLayer()
     
     override func prepare() {
         super.prepare()
@@ -48,25 +49,52 @@ class RouteStopInputView: SkeuomorphismView {
         lightShadowOpacity = 0
         darkShadowOpacity = 0
         
-        let border = CAShapeLayer()
-        border.strokeColor = Color.grey.base.cgColor
-        border.lineDashPattern = [4, 4]
-        border.lineCap = .round
-        border.lineJoin = .round
-        border.frame = bounds
-        border.fillColor = nil
-        border.cornerRadius = cornerRadius
+        borderLayer.strokeColor = Color.grey.base.cgColor
+        borderLayer.lineDashPattern = [4, 4]
+        borderLayer.lineCap = .round
+        borderLayer.lineJoin = .round
+        borderLayer.frame = bounds
+        borderLayer.fillColor = nil
+        borderLayer.cornerRadius = cornerRadius
         let roundedCorners: UIRectCorner = self.roundedCorners ?? UIRectCorner.allCorners
         let path = UIBezierPath(
             roundedRect: bounds,
             byRoundingCorners: roundedCorners,
             cornerRadii: .init(width: cornerRadius, height: cornerRadius)
         ).cgPath
-        border.path = path
-        layer.addSublayer(border)
+        borderLayer.path = path
+        layer.addSublayer(borderLayer)
     }
     
 }
+
+
+extension RouteStopInputView: Revealable {
+    func prepareReveal() {
+        borderLayer.strokeEnd = 0
+        
+        stopLabel.alpha = 0
+    }
+    
+    func reveal(completion: @escaping (() -> ())) {
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.fromValue = CGFloat(0)
+        animation.toValue = CGFloat(1)
+        animation.duration = 1
+        animation.isRemovedOnCompletion = false
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        borderLayer.add(animation, forKey: "strokeAnimation")
+        
+        UIView.animate(withDuration: 1, animations: {
+            self.stopLabel.alpha = 1
+        }, completion: {
+            _ in
+            completion()
+        })
+    }
+}
+
 
 @available(iOS 11.0, *)
 extension RouteStopInputView: UIDropInteractionDelegate {

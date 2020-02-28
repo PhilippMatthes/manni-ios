@@ -20,6 +20,7 @@ protocol SearchViewDelegate {
 
 class SearchView: View {
     
+    private let searchViewBackground = UIView()
     private let routeStopView = UIView()
     private let routeStopDepartureInputView = RouteStopInputView()
     private let routeStopDestinationInputView = RouteStopInputView()
@@ -56,10 +57,15 @@ class SearchView: View {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        layout(routeStopView)
-            .top()
-            .left()
-            .right()
+        layout(searchViewBackground).edges()
+        searchViewBackground.backgroundColor = .white
+        searchViewBackground.clipsToBounds = true
+        searchViewBackground.layer.cornerRadius = 16
+        
+        searchViewBackground.layout(routeStopView)
+            .top(16)
+            .left(16)
+            .right(16)
             .height(48)
         
         routeStopView.layout(searchRouteButton)
@@ -87,11 +93,11 @@ class SearchView: View {
             .after(routeStopDividerView, 4)
             .bottom()
         
-        layout(queryFieldView)
+        searchViewBackground.layout(queryFieldView)
             .below(routeStopView, 16)
-            .left()
-            .right()
-            .bottom()
+            .left(16)
+            .right(16)
+            .bottom(16)
         
         queryFieldView.contentView.layout(searchButton)
             .left()
@@ -120,6 +126,33 @@ class SearchView: View {
         delegate?.search(routeFrom: departureStop, to: destinationStop)
     }
     
+}
+
+extension SearchView: Revealable {
+    func prepareReveal() {
+        transform = CGAffineTransform
+            .init(translationX: 0, y: 178)
+        searchButton.alpha = 0
+        searchRouteButton.alpha = 0
+        routeStopDepartureInputView.prepareReveal()
+        routeStopDestinationInputView.prepareReveal()
+    }
+    
+    func reveal(completion: @escaping (() -> ())) {
+        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+            self.searchRouteButton.alpha = 1
+            self.searchButton.alpha = 1
+            self.transform = CGAffineTransform
+                .init(translationX: 0, y: 0)
+        }, completion: {
+            _ in
+            self.routeStopDepartureInputView.reveal {
+                self.routeStopDestinationInputView.reveal {
+                    completion()
+                }
+            }
+        })
+    }
 }
 
 extension SearchView {

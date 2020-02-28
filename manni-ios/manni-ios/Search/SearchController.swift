@@ -62,7 +62,6 @@ class SearchController: ViewController {
         }
     }
     
-    fileprivate let searchViewBackground = UIView()
     fileprivate let gpsView = GPSView()
     fileprivate let searchView = SearchView()
     fileprivate let greetingLabel = UILabel()
@@ -83,7 +82,6 @@ class SearchController: ViewController {
         prepareTutorial()
         prepareTableView()
         prepareGPSView()
-        prepareSearchViewBackground()
         prepareSearchView()
         prepareLocationManager()
         
@@ -110,6 +108,8 @@ class SearchController: ViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        searchView.reveal {}
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -191,7 +191,6 @@ extension SearchController {
     }
     
     fileprivate func prepareGPSView() {
-        gpsView.contentView.backgroundColor = Color.blue.base
         gpsView.cornerRadius = 32
         tableView.insertSubview(gpsView, at: 0)
         gpsView.translatesAutoresizingMaskIntoConstraints = false
@@ -202,21 +201,13 @@ extension SearchController {
         NSLayoutConstraint(item: gpsView, attribute: .centerX, relatedBy: .equal, toItem: tableView, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
     }
     
-    fileprivate func prepareSearchViewBackground() {
-        view.layout(searchViewBackground)
+    fileprivate func prepareSearchView() {
+        view.layout(searchView)
             .bottomSafe()
             .left(12)
             .right(12)
-        searchViewBackground.backgroundColor = .white
-        searchViewBackground.clipsToBounds = true
-        searchViewBackground.layer.cornerRadius = 16
-    }
-    
-    fileprivate func prepareSearchView() {
-        searchViewBackground.layout(searchView)
-            .edges(top: 16, left: 16, bottom: 16, right: 16)
-                
         searchView.delegate = self
+        searchView.prepareReveal()
     }
     
     fileprivate func prepareLocationManager() {
@@ -306,16 +297,10 @@ extension SearchController {
         else {return}
         let keyboardFrame = view.convert(keyboardFrameValue.cgRectValue, from: nil)
         view.frame.origin.y = -keyboardFrame.bounds.maxY
-        UIView.animate(withDuration: 0.5) {
-            self.searchViewBackground.layer.cornerRadius = 0.0
-        }
     }
 
     @objc func keyboardWillHide(notification:NSNotification){
         view.frame.origin.y = 0
-        UIView.animate(withDuration: 0.5) {
-            self.searchViewBackground.layer.cornerRadius = 32.0
-        }
     }
 }
 
