@@ -21,8 +21,6 @@ class ModeChainCollectionViewCell: UICollectionViewCell {
             
             modeNameLabel.text = modeElement.name ?? "n/a"
             modeImage.image = modeElement.mode?.icon
-                .withRenderingMode(.alwaysTemplate)
-            modeImage.tintColor = .white
         }
     }
     
@@ -36,9 +34,10 @@ class ModeChainCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    fileprivate let skeuomorphismView = SkeuomorphismView()
     fileprivate let modeImage = UIImageView()
     fileprivate let modeNameLabel = UILabel()
-    fileprivate let nextChevron = UIImageView(image: UIImage.fontAwesomeIcon(name: .chevronRight, style: .solid, textColor: .white, size: .init(width: 12, height: 12)))
+    fileprivate let nextChevron = UIImageView(image: UIImage.fontAwesomeIcon(name: .chevronRight, style: .solid, textColor: Color.grey.darken4, size: .init(width: 12, height: 12)))
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -50,31 +49,28 @@ class ModeChainCollectionViewCell: UICollectionViewCell {
         prepare()
     }
     
-    fileprivate func prepare() {
-        
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        layout(modeImage)
+    fileprivate func prepare() {        
+        contentView.layout(modeImage)
             .left()
             .centerY()
             .height(32)
             .width(32)
+        modeImage.tintColor = Color.grey.darken4
         
-        layout(modeNameLabel)
-            .after(modeImage, 8)
+        contentView.layout(modeNameLabel)
+            .after(modeImage, 4)
             .centerY()
-            .width(32)
-        modeNameLabel.textColor = .white
+        modeNameLabel.textColor = Color.grey.darken4
         
-        layout(nextChevron)
-            .after(modeNameLabel, 8)
-            .right(8)
+        contentView.layout(nextChevron)
+            .after(modeNameLabel, 4)
+            .right(4)
             .width(24)
             .height(24)
             .centerY()
+        
+        modeNameLabel.sizeToFit()
+        layoutSubviews()
     }
     
 }

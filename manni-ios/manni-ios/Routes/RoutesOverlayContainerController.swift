@@ -9,14 +9,15 @@
 import Foundation
 import UIKit
 import Material
+import DVB
 
 
 private struct Constants {
-    static let minimumHeight: CGFloat = 200
-    static let maximumHeight: CGFloat = 500
+    static let minimumHeight: CGFloat = 128
+    static let maximumHeight: CGFloat = 356
     static let minimumVelocityConsideration: CGFloat = 50
-    static let defaultTranslationDuration: TimeInterval = 0.25
-    static let maximumTranslationDuration: TimeInterval = 0.4
+    static let defaultTranslationDuration: TimeInterval = 0.4
+    static let maximumTranslationDuration: TimeInterval = 0.6
 }
 
 enum OverlayPosition {
@@ -34,7 +35,8 @@ class RoutesOverlayContainerController: UIViewController {
     public let overlayViewController: RoutesOverlayController
     
     private lazy var translatedView = UIView()
-    private lazy var translatedViewHeightContraint = self.makeTranslatedViewHeightConstraint()
+    private lazy var translatedViewHeightContraint = translatedView.heightAnchor
+        .constraint(equalToConstant: Constants.minimumHeight)
     
     private var overlayPosition: OverlayPosition = .minimum
     
@@ -66,10 +68,6 @@ class RoutesOverlayContainerController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func loadView() {
-        view = PassThroughView()
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,11 +75,19 @@ class RoutesOverlayContainerController: UIViewController {
         view.addSubview(translatedView)
         translatedView.pinToSuperview(edges: [.left, .right, .bottom])
         translatedViewHeightContraint.isActive = true
+        translatedView.backgroundColor = Color.grey.lighten4
+        translatedView.layer.cornerRadius = 32
+        
         addChild(overlayViewController, in: translatedView, edges: [.right, .left, .top])
         overlayViewController.view.heightAnchor.constraint(equalToConstant: Constants.maximumHeight).isActive = true
-        translatedView.backgroundColor = .red
-        overlayViewController.tableView.backgroundColor = .red
         overlayViewController.delegate = self
+        overlayViewController.tableView.layer.cornerRadius = 32
+        overlayViewController.tableView.backgroundColor = Color.grey.lighten4
+        overlayViewController.tableView.contentInset = .init(
+            top: 0, left: 0, bottom: Constants.maximumHeight, right: 0
+        )
+        
+        moveOverlay(to: .maximum)
     }
 
     func moveOverlay(to position: OverlayPosition) {
@@ -149,10 +155,6 @@ class RoutesOverlayContainerController: UIViewController {
                 self.view.layoutIfNeeded()
         }, completion: nil)
     }
-
-    private func makeTranslatedViewHeightConstraint() -> NSLayoutConstraint {
-        return translatedView.heightAnchor.constraint(equalToConstant: Constants.minimumHeight)
-    }
     
 }
 
@@ -174,5 +176,9 @@ extension RoutesOverlayContainerController: RoutesOverlayControllerDelegate {
             targetContentOffset.pointee = .zero
         }
         animateTranslationEnd(following: scrollView, velocity: velocity)
+    }
+    
+    func didSelect(route: Route) {
+        moveOverlay(to: .minimum)
     }
 }

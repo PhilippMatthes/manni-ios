@@ -18,6 +18,7 @@ protocol RoutesOverlayControllerDelegate: class {
         willEndScrollingWithVelocity velocity: CGPoint,
         targetContentOffset: UnsafeMutablePointer<CGPoint>
     )
+    func didSelect(route: Route)
 }
 
 
@@ -33,14 +34,14 @@ class RoutesOverlayController: ViewController {
     
     public weak var delegate: RoutesOverlayControllerDelegate?
     
-    private(set) lazy var tableView = UITableView()
+    private(set) lazy var tableView = TableView()
     
     override func loadView() {
         view = tableView
         tableView.delegate = self
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = false
-        tableView.register(RouteOverViewCell.self, forCellReuseIdentifier: RouteOverViewCell.reuseIdentifier)
+        tableView.register(RouteOverviewCell.self, forCellReuseIdentifier: RouteOverviewCell.reuseIdentifier)
     }
     
 }
@@ -66,9 +67,38 @@ extension RoutesOverlayController: UITableViewDelegate, UITableViewDataSource {
         return routes?.count ?? 0
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 128
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: RouteOverViewCell.reuseIdentifier, for: indexPath) as! RouteOverViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: RouteOverviewCell.reuseIdentifier, for: indexPath) as! RouteOverviewCell
         cell.route = routes?[indexPath.row]
+        cell.delegate = self
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let route = routes?[indexPath.row] else {return}
+        didSelect(route: route)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.layer.opacity = 0.0
+        UIView.animate(withDuration: 0.5, delay: 0, options: .allowUserInteraction, animations: {
+            cell.layer.opacity = 1.0
+        }, completion: nil)
+    }
+}
+
+extension RoutesOverlayController: RouteOverviewCellDelegate {    
+    func didSelect(route: Route) {
+        guard
+            let routes = routes,
+            let index = routes.firstIndex(of: route)
+        else {return}
+        tableView.scrollToRow(at: IndexPath(row: index, section: 0), at: .top, animated: true)
+        
+        delegate?.didSelect(route: route)
     }
 }

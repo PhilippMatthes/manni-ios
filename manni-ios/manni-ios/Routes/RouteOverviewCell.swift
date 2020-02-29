@@ -12,9 +12,14 @@ import Material
 import DVB
 
 
-class RouteOverViewCell: UITableViewCell {
+protocol RouteOverviewCellDelegate {
+    func didSelect(route: Route)
+}
+
+
+class RouteOverviewCell: UITableViewCell {
     
-    public static let reuseIdentifier = "RouteOverViewCell"
+    public static let reuseIdentifier = "RouteOverviewCell"
     
     public var route: Route? {
         didSet {
@@ -27,10 +32,11 @@ class RouteOverViewCell: UITableViewCell {
         }
     }
     
+    public var delegate: RouteOverviewCellDelegate?
+    
+    fileprivate let skeuomorphismView = SkeuomorphismView()
     fileprivate let departureView = UIView()
-    fileprivate let departureOnLabel = UILabel()
     fileprivate let departureETALabel = UILabel()
-    fileprivate let travelView = UIView()
     fileprivate let travelTimeLabel = UILabel()
     fileprivate let flowLayout = UICollectionViewFlowLayout()
     fileprivate let collectionView = CollectionView()
@@ -48,17 +54,38 @@ class RouteOverViewCell: UITableViewCell {
     }
     
     fileprivate func prepare() {
-        backgroundColor = Color.grey.darken4
+        selectionStyle = .none
+        backgroundColor = .clear
         
         prepareTimeResponsiveUI()
         prepareTravelChainCollectionView()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
         
-        contentView.layout(collectionView)
-            .edges()
+        contentView.layout(skeuomorphismView)
+            .edges(top: 4, left: 4, bottom: 4, right: 4)
+        
+        skeuomorphismView.contentView.layout(departureView)
+            .top(16)
+            .height(16)
+            .left(24)
+            .right(24)
+        
+        departureView.layout(departureETALabel)
+            .left()
+            .top()
+            .bottom()
+        
+        departureView.layout(travelTimeLabel)
+            .after(departureETALabel, 4)
+            .right()
+            .top()
+            .bottom()
+        travelTimeLabel.textAlignment = .right
+                
+        skeuomorphismView.contentView.layout(collectionView)
+            .below(departureView, 8)
+            .left()
+            .right()
+            .bottom()
     }
     
     @objc func updateTimeResponsiveUI() {
@@ -68,7 +95,7 @@ class RouteOverViewCell: UITableViewCell {
     
 }
 
-extension RouteOverViewCell {
+extension RouteOverviewCell {
     func prepareTimeResponsiveUI() {
         timeResponsiveRefreshTimer = .scheduledTimer(
             timeInterval: 1.0,
@@ -85,25 +112,37 @@ extension RouteOverViewCell {
         collectionView.dataSource = self
         collectionView.register(ModeChainCollectionViewCell.self, forCellWithReuseIdentifier: ModeChainCollectionViewCell.reuseIdentifier)
         
-        flowLayout.estimatedItemSize = .init(width: 128, height: 32)
+        flowLayout.estimatedItemSize = .init(width: 128, height: 56)
         flowLayout.scrollDirection = .horizontal
-        collectionView.contentInset = .init(top: 0, left: 24, bottom: 0, right: 24)
+        collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
         collectionView.backgroundColor = .clear
+        collectionView.layer.cornerRadius = 32
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.collectionViewLayout = flowLayout
+        collectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapCollectionView)))
+    }
+    
+    @objc func didTapCollectionView() {
+        guard let route = route else {return}
+        delegate?.didSelect(route: route)
     }
 }
 
-extension RouteOverViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension RouteOverviewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ModeChainCollectionViewCell.reuseIdentifier, for: indexPath) as! ModeChainCollectionViewCell
         guard let route = route else {return cell}
         cell.modeElement = route.modeChain[indexPath.row]
-        cell.isDestination = indexPath.row == route.modeChain.count
+        cell.isDestination = indexPath.row == max(0, route.modeChain.count - 1)
         return cell
     }
         
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return route?.modeChain.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let route = route else {return}
+        delegate?.didSelect(route: route)
     }
 }

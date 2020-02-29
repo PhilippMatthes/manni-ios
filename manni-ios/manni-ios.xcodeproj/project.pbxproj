@@ -26,7 +26,6 @@
 		BE69C2502409831F00C036D3 /* ModeChainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69C24F2409831F00C036D3 /* ModeChainCollectionViewCell.swift */; };
 		BE69C254240A88B200C036D3 /* RoutesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69C253240A88B200C036D3 /* RoutesController.swift */; };
 		BE69C256240A97F600C036D3 /* RoutesOverlayContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69C255240A97F600C036D3 /* RoutesOverlayContainerController.swift */; };
-		BE69C258240A9E0800C036D3 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69C257240A9E0800C036D3 /* PassThroughView.swift */; };
 		BE69C25A240AA08300C036D3 /* UIViewController+Pinning.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69C259240AA08300C036D3 /* UIViewController+Pinning.swift */; };
 		BE89198623F3085B0098A39B /* TripController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89198523F3085B0098A39B /* TripController.swift */; };
 		BE89198823F30DF80098A39B /* Gradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89198723F30DF80098A39B /* Gradients.swift */; };
@@ -65,7 +64,6 @@
 		BE69C24F2409831F00C036D3 /* ModeChainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeChainCollectionViewCell.swift; sourceTree = "<group>"; };
 		BE69C253240A88B200C036D3 /* RoutesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesController.swift; sourceTree = "<group>"; };
 		BE69C255240A97F600C036D3 /* RoutesOverlayContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesOverlayContainerController.swift; sourceTree = "<group>"; };
-		BE69C257240A9E0800C036D3 /* PassThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassThroughView.swift; sourceTree = "<group>"; };
 		BE69C259240AA08300C036D3 /* UIViewController+Pinning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Pinning.swift"; sourceTree = "<group>"; };
 		BE89198523F3085B0098A39B /* TripController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripController.swift; sourceTree = "<group>"; };
 		BE89198723F30DF80098A39B /* Gradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradients.swift; sourceTree = "<group>"; };
@@ -234,7 +232,6 @@
 				BEF3062C24083490005AE8A2 /* RoutesOverlayController.swift */,
 				BE69C255240A97F600C036D3 /* RoutesOverlayContainerController.swift */,
 				BE69C253240A88B200C036D3 /* RoutesController.swift */,
-				BE69C257240A9E0800C036D3 /* PassThroughView.swift */,
 			);
 			path = Routes;
 			sourceTree = "<group>";
@@ -361,7 +358,6 @@
 				BE62CCB623EEFC7C00B9469E /* SuggestionInformationController.swift in Sources */,
 				BE63EFD823E882480019C792 /* DeparturesController.swift in Sources */,
 				BEC77FCB23E9960E0042CD48 /* GPSView.swift in Sources */,
-				BE69C258240A9E0800C036D3 /* PassThroughView.swift in Sources */,
 				BE02038823E82D2E00E7D5DC /* UIColor+Tools.swift in Sources */,
 				BE3A574C2406D0EF0059E2DA /* RouteStopInputView.swift in Sources */,
 				BEBA661A23E7639300CA99CF /* SkeuomorphismView.swift in Sources */,
