@@ -2,7 +2,7 @@
 //  RoutesController.swift
 //  manni-ios
 //
-//  Created by It's free real estate on 27.02.20.
+//  Created by It's free real estate on 29.02.20.
 //  Copyright © 2020 Philipp Matthes. All rights reserved.
 //
 
@@ -19,47 +19,21 @@ class RoutesController: ViewController {
             Route.find(fromWithID: endpoints.0.id, toWithID: endpoints.1.id) {
                 result in
                 guard let success = result.success else {return}
-                self.routes = success.routes
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+                self.overlayContainerController.overlayViewController.routes = success.routes
             }
         }
     }
     
-    fileprivate let tableView = TableView()
-    
-    private var routes = [Route]()
+    private var backgroundController = ViewController()
+    private var overlayContainerController = RoutesOverlayContainerController(
+        overlayViewController: RoutesOverlayController()
+    )
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        prepareTableView()
+        addChild(backgroundController, in: view)
+        addChild(overlayContainerController, in: view)
     }
     
-}
-
-extension RoutesController {
-    fileprivate func prepareTableView() {
-        view.layout(tableView)
-            .top()
-            .left()
-            .right()
-            .height(512)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(RouteOverViewCell.self, forCellReuseIdentifier: RouteOverViewCell.reuseIdentifier)
-    }
-}
-
-extension RoutesController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return routes.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: RouteOverViewCell.reuseIdentifier, for: indexPath) as! RouteOverViewCell
-        cell.route = routes[indexPath.row]
-        return cell
-    }
 }

@@ -14,7 +14,6 @@ extension Mode {
     
     public var icon: UIImage {
         get {
-            print(self)
             let size = CGSize.init(width: 64, height: 64)
             var image: UIImage
             switch self {

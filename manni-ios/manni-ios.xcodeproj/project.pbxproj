@@ -24,6 +24,10 @@
 		BE62CCB823EF207D00B9469E /* Mode+Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62CCB723EF207D00B9469E /* Mode+Icon.swift */; };
 		BE63EFD823E882480019C792 /* DeparturesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE63EFD723E882480019C792 /* DeparturesController.swift */; };
 		BE69C2502409831F00C036D3 /* ModeChainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69C24F2409831F00C036D3 /* ModeChainCollectionViewCell.swift */; };
+		BE69C254240A88B200C036D3 /* RoutesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69C253240A88B200C036D3 /* RoutesController.swift */; };
+		BE69C256240A97F600C036D3 /* RoutesOverlayContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69C255240A97F600C036D3 /* RoutesOverlayContainerController.swift */; };
+		BE69C258240A9E0800C036D3 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69C257240A9E0800C036D3 /* PassThroughView.swift */; };
+		BE69C25A240AA08300C036D3 /* UIViewController+Pinning.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69C259240AA08300C036D3 /* UIViewController+Pinning.swift */; };
 		BE89198623F3085B0098A39B /* TripController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89198523F3085B0098A39B /* TripController.swift */; };
 		BE89198823F30DF80098A39B /* Gradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89198723F30DF80098A39B /* Gradients.swift */; };
 		BEBA661523E75B6A00CA99CF /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA661423E75B6A00CA99CF /* SearchView.swift */; };
@@ -35,7 +39,7 @@
 		BEDAA49623E7541A00A25187 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEDAA49523E7541A00A25187 /* Assets.xcassets */; };
 		BEDAA49C23E7541A00A25187 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDAA49A23E7541A00A25187 /* LaunchScreen.storyboard */; };
 		BEE7EC6D23EDA63100B09877 /* RouteGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE7EC6C23EDA63100B09877 /* RouteGraph.swift */; };
-		BEF3062D24083490005AE8A2 /* RoutesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF3062C24083490005AE8A2 /* RoutesController.swift */; };
+		BEF3062D24083490005AE8A2 /* RoutesOverlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF3062C24083490005AE8A2 /* RoutesOverlayController.swift */; };
 		BEF30630240837BD005AE8A2 /* RouteOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF3062F240837BD005AE8A2 /* RouteOverviewCell.swift */; };
 		BEF3063424091A52005AE8A2 /* Revealable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF3063324091A52005AE8A2 /* Revealable.swift */; };
 /* End PBXBuildFile section */
@@ -59,6 +63,10 @@
 		BE62CCB723EF207D00B9469E /* Mode+Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mode+Icon.swift"; sourceTree = "<group>"; };
 		BE63EFD723E882480019C792 /* DeparturesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesController.swift; sourceTree = "<group>"; };
 		BE69C24F2409831F00C036D3 /* ModeChainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeChainCollectionViewCell.swift; sourceTree = "<group>"; };
+		BE69C253240A88B200C036D3 /* RoutesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesController.swift; sourceTree = "<group>"; };
+		BE69C255240A97F600C036D3 /* RoutesOverlayContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesOverlayContainerController.swift; sourceTree = "<group>"; };
+		BE69C257240A9E0800C036D3 /* PassThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassThroughView.swift; sourceTree = "<group>"; };
+		BE69C259240AA08300C036D3 /* UIViewController+Pinning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Pinning.swift"; sourceTree = "<group>"; };
 		BE89198523F3085B0098A39B /* TripController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripController.swift; sourceTree = "<group>"; };
 		BE89198723F30DF80098A39B /* Gradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradients.swift; sourceTree = "<group>"; };
 		BEBA661423E75B6A00CA99CF /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -72,7 +80,7 @@
 		BEDAA49B23E7541A00A25187 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BEDAA49D23E7541A00A25187 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEE7EC6C23EDA63100B09877 /* RouteGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteGraph.swift; sourceTree = "<group>"; };
-		BEF3062C24083490005AE8A2 /* RoutesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesController.swift; sourceTree = "<group>"; };
+		BEF3062C24083490005AE8A2 /* RoutesOverlayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesOverlayController.swift; sourceTree = "<group>"; };
 		BEF3062F240837BD005AE8A2 /* RouteOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteOverviewCell.swift; sourceTree = "<group>"; };
 		BEF3063324091A52005AE8A2 /* Revealable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Revealable.swift; sourceTree = "<group>"; };
 		F6419AB9B161AD29027F159A /* Pods-manni-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-manni-ios/Pods-manni-ios.release.xcconfig"; sourceTree = "<group>"; };
@@ -115,6 +123,7 @@
 				BEC77FCC23E9BCED0042CD48 /* Stop+Distance.swift */,
 				BE62CCB723EF207D00B9469E /* Mode+Icon.swift */,
 				BE0D0DEA23F1C168003DB75A /* DVB+ManniETA.swift */,
+				BE69C259240AA08300C036D3 /* UIViewController+Pinning.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -220,9 +229,12 @@
 		BEF3062E240834A2005AE8A2 /* Routes */ = {
 			isa = PBXGroup;
 			children = (
-				BEF3062C24083490005AE8A2 /* RoutesController.swift */,
-				BEF3062F240837BD005AE8A2 /* RouteOverviewCell.swift */,
 				BE69C24F2409831F00C036D3 /* ModeChainCollectionViewCell.swift */,
+				BEF3062F240837BD005AE8A2 /* RouteOverviewCell.swift */,
+				BEF3062C24083490005AE8A2 /* RoutesOverlayController.swift */,
+				BE69C255240A97F600C036D3 /* RoutesOverlayContainerController.swift */,
+				BE69C253240A88B200C036D3 /* RoutesController.swift */,
+				BE69C257240A9E0800C036D3 /* PassThroughView.swift */,
 			);
 			path = Routes;
 			sourceTree = "<group>";
@@ -349,9 +361,11 @@
 				BE62CCB623EEFC7C00B9469E /* SuggestionInformationController.swift in Sources */,
 				BE63EFD823E882480019C792 /* DeparturesController.swift in Sources */,
 				BEC77FCB23E9960E0042CD48 /* GPSView.swift in Sources */,
+				BE69C258240A9E0800C036D3 /* PassThroughView.swift in Sources */,
 				BE02038823E82D2E00E7D5DC /* UIColor+Tools.swift in Sources */,
 				BE3A574C2406D0EF0059E2DA /* RouteStopInputView.swift in Sources */,
 				BEBA661A23E7639300CA99CF /* SkeuomorphismView.swift in Sources */,
+				BE69C25A240AA08300C036D3 /* UIViewController+Pinning.swift in Sources */,
 				BE0D0DEB23F1C168003DB75A /* DVB+ManniETA.swift in Sources */,
 				BE6213F923E76EAA00FD638E /* StopTableViewCell.swift in Sources */,
 				BE02038B23E835E800E7D5DC /* DepartureCollectionViewCell.swift in Sources */,
@@ -365,6 +379,7 @@
 				BE62CCB823EF207D00B9469E /* Mode+Icon.swift in Sources */,
 				BE02039123E8597C00E7D5DC /* SkeuomorphismIconButton.swift in Sources */,
 				BE02038D23E83FEE00E7D5DC /* DVB+UIColor.swift in Sources */,
+				BE69C254240A88B200C036D3 /* RoutesController.swift in Sources */,
 				BEF3063424091A52005AE8A2 /* Revealable.swift in Sources */,
 				BEC77FCD23E9BCED0042CD48 /* Stop+Distance.swift in Sources */,
 				BE0D0DF223F1DEFF003DB75A /* VerticalProgressBarView.swift in Sources */,
@@ -372,7 +387,8 @@
 				BE5AABFB23E756A9006EE1BD /* SearchController.swift in Sources */,
 				BEF30630240837BD005AE8A2 /* RouteOverviewCell.swift in Sources */,
 				BE3A574A2406C44C0059E2DA /* StopItemProvider.swift in Sources */,
-				BEF3062D24083490005AE8A2 /* RoutesController.swift in Sources */,
+				BE69C256240A97F600C036D3 /* RoutesOverlayContainerController.swift in Sources */,
+				BEF3062D24083490005AE8A2 /* RoutesOverlayController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

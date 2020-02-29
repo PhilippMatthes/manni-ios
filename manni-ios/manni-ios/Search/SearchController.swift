@@ -257,6 +257,7 @@ extension SearchController: SearchViewDelegate {
     func search(routeFrom departureStop: Stop, to destinationStop: Stop) {
         let controller = RoutesController()
         controller.endpoints = (departureStop, destinationStop)
+        controller.modalPresentationStyle = .fullScreen
         controller.presentationController?.delegate = self
         present(controller, animated: true)
     }
