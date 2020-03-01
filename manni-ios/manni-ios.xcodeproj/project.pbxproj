@@ -42,6 +42,8 @@
 		BEF3062D24083490005AE8A2 /* RoutesOverlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF3062C24083490005AE8A2 /* RoutesOverlayController.swift */; };
 		BEF30630240837BD005AE8A2 /* RouteOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF3062F240837BD005AE8A2 /* RouteOverviewCell.swift */; };
 		BEF3063424091A52005AE8A2 /* Revealable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF3063324091A52005AE8A2 /* Revealable.swift */; };
+		BEFE77E5240C0FA100A0E1F1 /* RouteDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFE77E4240C0FA100A0E1F1 /* RouteDetailController.swift */; };
+		BEFE77E7240C108800A0E1F1 /* AnimatableMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFE77E6240C108800A0E1F1 /* AnimatableMapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +85,8 @@
 		BEF3062C24083490005AE8A2 /* RoutesOverlayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesOverlayController.swift; sourceTree = "<group>"; };
 		BEF3062F240837BD005AE8A2 /* RouteOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteOverviewCell.swift; sourceTree = "<group>"; };
 		BEF3063324091A52005AE8A2 /* Revealable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Revealable.swift; sourceTree = "<group>"; };
+		BEFE77E4240C0FA100A0E1F1 /* RouteDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailController.swift; sourceTree = "<group>"; };
+		BEFE77E6240C108800A0E1F1 /* AnimatableMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableMapView.swift; sourceTree = "<group>"; };
 		F6419AB9B161AD29027F159A /* Pods-manni-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-manni-ios/Pods-manni-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,6 +186,7 @@
 		BEBA661823E762E600CA99CF /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				BEFE77E6240C108800A0E1F1 /* AnimatableMapView.swift */,
 				BEF3063324091A52005AE8A2 /* Revealable.swift */,
 				BE0D0DF123F1DEFF003DB75A /* VerticalProgressBarView.swift */,
 				BE6213FA23E76FFD00FD638E /* Skeuomorphism */,
@@ -235,6 +240,7 @@
 				BEF3062C24083490005AE8A2 /* RoutesOverlayController.swift */,
 				BE69C255240A97F600C036D3 /* RoutesOverlayContainerController.swift */,
 				BE69C253240A88B200C036D3 /* RoutesController.swift */,
+				BEFE77E4240C0FA100A0E1F1 /* RouteDetailController.swift */,
 			);
 			path = Routes;
 			sourceTree = "<group>";
@@ -373,6 +379,7 @@
 				BE89198823F30DF80098A39B /* Gradients.swift in Sources */,
 				BE0D0DED23F1DC77003DB75A /* TripView.swift in Sources */,
 				BE0D0DF023F1DD49003DB75A /* TripTableViewCell.swift in Sources */,
+				BEFE77E7240C108800A0E1F1 /* AnimatableMapView.swift in Sources */,
 				BE69C2502409831F00C036D3 /* ModeChainCollectionViewCell.swift in Sources */,
 				BEBA661523E75B6A00CA99CF /* SearchView.swift in Sources */,
 				BE62CCB823EF207D00B9469E /* Mode+Icon.swift in Sources */,
@@ -386,6 +393,7 @@
 				BE5AABFB23E756A9006EE1BD /* SearchController.swift in Sources */,
 				BEF30630240837BD005AE8A2 /* RouteOverviewCell.swift in Sources */,
 				BE3A574A2406C44C0059E2DA /* StopItemProvider.swift in Sources */,
+				BEFE77E5240C0FA100A0E1F1 /* RouteDetailController.swift in Sources */,
 				BE69C256240A97F600C036D3 /* RoutesOverlayContainerController.swift in Sources */,
 				BE69C25C240B995000C036D3 /* LoadingView.swift in Sources */,
 				BEF3062D24083490005AE8A2 /* RoutesOverlayController.swift in Sources */,

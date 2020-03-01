@@ -15,17 +15,18 @@ class RoutesController: ViewController {
     
     public var endpoints: (Stop, Stop)? {
         didSet {
-            overlayContainerController.overlayViewController.endpoints = endpoints
+            overlayContainerController.overlayController.endpoints = endpoints
         }
     }
     
-    private var backgroundController = ViewController()
-    private var overlayContainerController = RoutesOverlayContainerController(
-        overlayViewController: RoutesOverlayController()
-    )
+    private let backgroundController = RouteDetailController()
+    private let overlayContainerController = RoutesOverlayContainerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // TODO: Refactor this transient delegate
+        overlayContainerController.routeSelectionDelegate = backgroundController
         
         backgroundController.view.backgroundColor = Color.blue.accent4
         addChild(backgroundController, in: view)

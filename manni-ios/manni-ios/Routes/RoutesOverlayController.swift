@@ -11,13 +11,16 @@ import Material
 import DVB
 
 
-protocol RoutesOverlayControllerDelegate: class {
+protocol RoutesOverlayControllerDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView)
     func scrollView(
         _ scrollView: UIScrollView,
         willEndScrollingWithVelocity velocity: CGPoint,
         targetContentOffset: UnsafeMutablePointer<CGPoint>
     )
+}
+
+protocol RouteSelectionDelegate {
     func didSelect(route: Route)
 }
 
@@ -29,7 +32,8 @@ class RoutesOverlayController: ViewController {
     fileprivate var routes = [Route]()
     fileprivate var isFetching = false
     
-    public weak var delegate: RoutesOverlayControllerDelegate?
+    public var overlayDelegate: RoutesOverlayControllerDelegate?
+    public var routeSelectionDelegate: RouteSelectionDelegate?
     
     private(set) lazy var tableView = TableView(frame: .zero, style: .grouped)
     
@@ -76,11 +80,15 @@ class RoutesOverlayController: ViewController {
                 UINotificationFeedbackGenerator()
                     .notificationOccurred(.success)
             }
-
+            
             for route in success.routes {
-                let isContained = self.routes.contains {
-                    containedRoute in
-                    return containedRoute.routeId == route.routeId
+                var isContained = false
+                for containedRoute in self.routes {
+                    if  containedRoute.departureTime == route.departureTime,
+                        containedRoute.modeChain == route.modeChain {
+                        isContained = true
+                        break
+                    }
                 }
                 if isContained {
                     continue
@@ -89,7 +97,7 @@ class RoutesOverlayController: ViewController {
             }
             
             self.routes.sort {$0.departureTime < $1.departureTime}
-
+            
             DispatchQueue.main.async {
                 UIView.transition(with: self.tableView, duration: 0.2, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
             }
@@ -108,7 +116,7 @@ internal extension Route {
 
 extension RoutesOverlayController: UITableViewDelegate, UITableViewDataSource {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        delegate?.scrollViewDidScroll(scrollView)
+        overlayDelegate?.scrollViewDidScroll(scrollView)
     }
 
     func scrollViewWillEndDragging(
@@ -116,7 +124,7 @@ extension RoutesOverlayController: UITableViewDelegate, UITableViewDataSource {
         withVelocity velocity: CGPoint,
         targetContentOffset: UnsafeMutablePointer<CGPoint>
     ) {
-        delegate?.scrollView(
+        overlayDelegate?.scrollView(
             scrollView,
             willEndScrollingWithVelocity: velocity,
             targetContentOffset: targetContentOffset
@@ -171,9 +179,6 @@ extension RoutesOverlayController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPathHitsLoadingCell(indexPath) && !isFetching {
             if let lastDepartureDate = routes.last?.departureTime {
-                for route in routes {
-                    print(route.departureTime)
-                }
                 loadRoutes(startingAt: lastDepartureDate)
             } else {
                 loadRoutes(startingAt: Date())
@@ -188,6 +193,6 @@ extension RoutesOverlayController: RouteOverviewCellDelegate {
         guard let index = routes.firstIndex(of: route) else {return}
         tableView.scrollToRow(at: IndexPath(row: index, section: 0), at: .top, animated: true)
         
-        delegate?.didSelect(route: route)
+        routeSelectionDelegate?.didSelect(route: route)
     }
 }
