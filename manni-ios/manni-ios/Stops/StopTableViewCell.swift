@@ -20,13 +20,15 @@ class StopTableViewCell: UITableViewCell {
     
     public var stop: Stop? {
         didSet {
-            guard let stop = stop else {return}
-            skeuomorphismView.motionIdentifier = "stop_\(stop.id)"
-            stopNameLabel.motionIdentifier = "stop_\(stop.id)_name"
-            stopLocationLabel.motionIdentifier = "stop_\(stop.id)_location"
-            
-            stopNameLabel.text = stop.name
-            stopLocationLabel.text = stop.region ?? "Dresden"
+            if let stop = stop {
+                stopNameLabel.text = stop.name
+                stopLocationLabel.text = stop.region ?? "Dresden"
+                skeuomorphismView.contentView.isLoading = false
+            } else {
+                stopNameLabel.text = " "
+                stopLocationLabel.text = " "
+                skeuomorphismView.contentView.isLoading = true
+            }
         }
     }
     
@@ -60,6 +62,8 @@ class StopTableViewCell: UITableViewCell {
         contentView.layout(skeuomorphismView)
             .edges(top: 16, left: 12, bottom: 12, right: 12)
         skeuomorphismView.contentView.backgroundColor = Color.grey.lighten4
+        skeuomorphismView.lightShadowOpacity = 1
+        skeuomorphismView.darkShadowOpacity = 0.07
         skeuomorphismView.cornerRadius = 16
         
         contentView.layout(stopNameLabel)
@@ -69,6 +73,8 @@ class StopTableViewCell: UITableViewCell {
         stopNameLabel.font = RobotoFont.bold(with: 24)
         stopNameLabel.textColor = Color.grey.darken4
         stopNameLabel.numberOfLines = 0
+        stopNameLabel.layer.cornerRadius = 8
+        stopNameLabel.clipsToBounds = true
         
         contentView.layout(stopLocationLabel)
             .below(stopNameLabel, 8)
@@ -78,8 +84,12 @@ class StopTableViewCell: UITableViewCell {
         stopLocationLabel.font = RobotoFont.light(with: 18)
         stopLocationLabel.textColor = Color.grey.darken2
         stopLocationLabel.numberOfLines = 0
+        stopLocationLabel.layer.cornerRadius = 8
+        stopLocationLabel.clipsToBounds = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateLocation(_:)), name: SearchController.didUpdateLocation, object: nil)
+        
+        skeuomorphismView.contentView.fakedViews = [stopNameLabel, stopLocationLabel]
     }
     
     @objc func didUpdateLocation(_ notification: Notification) {

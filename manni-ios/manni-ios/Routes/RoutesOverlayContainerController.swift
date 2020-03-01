@@ -13,7 +13,7 @@ import DVB
 
 
 private struct Constants {
-    static let minimumHeight: CGFloat = 128
+    static let minimumHeight: CGFloat = 158
     static let maximumHeight: CGFloat = 356
     static let minimumVelocityConsideration: CGFloat = 50
     static let defaultTranslationDuration: TimeInterval = 0.4
@@ -83,9 +83,6 @@ class RoutesOverlayContainerController: UIViewController {
         overlayViewController.delegate = self
         overlayViewController.tableView.layer.cornerRadius = 32
         overlayViewController.tableView.backgroundColor = Color.grey.lighten4
-        overlayViewController.tableView.contentInset = .init(
-            top: 0, left: 0, bottom: Constants.maximumHeight, right: 0
-        )
         
         moveOverlay(to: .maximum)
     }
@@ -181,4 +178,5 @@ extension RoutesOverlayContainerController: RoutesOverlayControllerDelegate {
     func didSelect(route: Route) {
         moveOverlay(to: .minimum)
     }
+    
 }

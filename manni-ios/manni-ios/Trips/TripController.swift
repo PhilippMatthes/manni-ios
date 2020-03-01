@@ -79,7 +79,7 @@ class TripController: ViewController {
     }
     
     @objc func backButtonTouched() {
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true)
     }
     
 }

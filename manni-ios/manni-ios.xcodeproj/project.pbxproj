@@ -27,6 +27,7 @@
 		BE69C254240A88B200C036D3 /* RoutesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69C253240A88B200C036D3 /* RoutesController.swift */; };
 		BE69C256240A97F600C036D3 /* RoutesOverlayContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69C255240A97F600C036D3 /* RoutesOverlayContainerController.swift */; };
 		BE69C25A240AA08300C036D3 /* UIViewController+Pinning.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69C259240AA08300C036D3 /* UIViewController+Pinning.swift */; };
+		BE69C25C240B995000C036D3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69C25B240B995000C036D3 /* LoadingView.swift */; };
 		BE89198623F3085B0098A39B /* TripController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89198523F3085B0098A39B /* TripController.swift */; };
 		BE89198823F30DF80098A39B /* Gradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89198723F30DF80098A39B /* Gradients.swift */; };
 		BEBA661523E75B6A00CA99CF /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA661423E75B6A00CA99CF /* SearchView.swift */; };
@@ -65,6 +66,7 @@
 		BE69C253240A88B200C036D3 /* RoutesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesController.swift; sourceTree = "<group>"; };
 		BE69C255240A97F600C036D3 /* RoutesOverlayContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesOverlayContainerController.swift; sourceTree = "<group>"; };
 		BE69C259240AA08300C036D3 /* UIViewController+Pinning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Pinning.swift"; sourceTree = "<group>"; };
+		BE69C25B240B995000C036D3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		BE89198523F3085B0098A39B /* TripController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripController.swift; sourceTree = "<group>"; };
 		BE89198723F30DF80098A39B /* Gradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradients.swift; sourceTree = "<group>"; };
 		BEBA661423E75B6A00CA99CF /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			children = (
 				BEBA661923E7639300CA99CF /* SkeuomorphismView.swift */,
 				BE02039023E8597C00E7D5DC /* SkeuomorphismIconButton.swift */,
+				BE69C25B240B995000C036D3 /* LoadingView.swift */,
 			);
 			path = Skeuomorphism;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				BEF30630240837BD005AE8A2 /* RouteOverviewCell.swift in Sources */,
 				BE3A574A2406C44C0059E2DA /* StopItemProvider.swift in Sources */,
 				BE69C256240A97F600C036D3 /* RoutesOverlayContainerController.swift in Sources */,
+				BE69C25C240B995000C036D3 /* LoadingView.swift in Sources */,
 				BEF3062D24083490005AE8A2 /* RoutesOverlayController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

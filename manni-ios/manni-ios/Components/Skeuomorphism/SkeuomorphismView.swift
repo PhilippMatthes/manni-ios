@@ -55,7 +55,7 @@ class SkeuomorphismView: View {
         }
     }
     
-    public let contentView = View()
+    public let contentView = LoadingView()
     
     override func layoutSubviews() {
         super.layoutSubviews()

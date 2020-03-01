@@ -96,7 +96,7 @@ extension TripStop {
 
 extension Route {
     
-    public var manniETA: String {
+    public var manniDepartureETA: String {
         get {
             guard let time = partialRoutes.first?.regularStops?.first?.departureTime else {return "n/a"}
             let interval = Calendar.current.dateComponents([
@@ -126,6 +126,15 @@ extension Route {
             }
             
             return "Jetzt"
+        }
+    }
+    
+    public var manniArrivalETA: String {
+        get {
+            guard let time = partialRoutes.last?.regularStops?.last?.arrivalTime else {return "n/a"}
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm"
+            return dateFormatter.string(from: time)
         }
     }
     

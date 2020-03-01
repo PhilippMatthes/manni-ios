@@ -62,6 +62,16 @@ class SearchController: ViewController {
         }
     }
     
+    fileprivate var showsLoading: Bool = false {
+        didSet {
+            let value = showsLoading
+            DispatchQueue.main.async {
+                guard value == self.showsLoading else {return}
+                UIView.transition(with: self.tableView, duration: 0.2, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+            }
+        }
+    }
+    
     fileprivate let gpsView = GPSView()
     fileprivate let searchView = SearchView()
     fileprivate let greetingLabel = UILabel()
@@ -108,11 +118,8 @@ class SearchController: ViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        searchView.reveal {
-            self.gpsView.reveal {
-                
-            }
-        }
+        searchView.reveal {}
+        gpsView.reveal {}
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -272,6 +279,7 @@ extension SearchController: SearchViewDelegate {
         
         self.query = query
         
+        showsLoading = true
         Stop.find(query) {
             result in
             guard let success = result.success else {
@@ -284,6 +292,7 @@ extension SearchController: SearchViewDelegate {
                     alert.addAction(UIAlertAction(title: "OK", style: .default))
                     self.present(alert, animated: true, completion: nil)
                 }
+                self.showsLoading = false
                 return
             }
             
@@ -294,9 +303,7 @@ extension SearchController: SearchViewDelegate {
             if #available(iOS 10.0, *) {
                 UINotificationFeedbackGenerator().notificationOccurred(.success)
             }
-            DispatchQueue.main.async {
-                UIView.transition(with: self.tableView, duration: 0.2, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
-            }
+            self.showsLoading = false
         }
     }
 }
@@ -367,6 +374,7 @@ extension SearchController: CLLocationManagerDelegate {
         guard let currentLocation = manager.location else {return}
         self.gpsFetchWasTriggered = false
         
+        showsLoading = true
         Stop.findNear(coord: currentLocation.coordinate) {
             result in
             guard let success = result.success else {
@@ -379,6 +387,7 @@ extension SearchController: CLLocationManagerDelegate {
                     alert.addAction(UIAlertAction(title: "OK", style: .default))
                     self.present(alert, animated: true, completion: nil)
                 }
+                self.showsLoading = false
                 return
             }
 
@@ -390,9 +399,7 @@ extension SearchController: CLLocationManagerDelegate {
             if let location = self.locationManager.location {
                 self.fetchedStops.sort {$0.distance(from: location) ?? 0 < $1.distance(from: location) ?? 0}
             }
-            DispatchQueue.main.async {
-                UIView.transition(with: self.tableView, duration: 0.2, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
-            }
+            self.showsLoading = false
         }
         NotificationCenter.default.post(name: SearchController.didUpdateLocation, object: nil, userInfo: ["location": currentLocation])
     }
@@ -400,7 +407,14 @@ extension SearchController: CLLocationManagerDelegate {
 
 extension SearchController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? fetchedStops.count : suggestedStops.count
+        if section == 0 {
+            if showsLoading {
+                return 3
+            } else {
+                return fetchedStops.count
+            }
+        }
+        return suggestedStops.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -411,17 +425,29 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: StopTableViewCell.reuseIdentifier, for: indexPath
         ) as! StopTableViewCell
-        let stop = indexPath.section == 0 ? fetchedStops[indexPath.row] : suggestedStops[indexPath.row]
-        if cell.stop != stop {
-            cell.stop = stop
+        
+        if indexPath.section == 0 {
+            if showsLoading {
+                cell.stop = nil
+            } else {
+                cell.stop = fetchedStops[indexPath.row]
+            }
+        } else {
+            cell.stop = suggestedStops[indexPath.row]
         }
+
         if let location = locationManager.location {
             cell.location = location
         }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Disallow clicks on cells without a stop (i.e., loading cells)
+        guard !(showsLoading && indexPath.section == 0) else {return}
+        
         let stop = indexPath.section == 0 ? fetchedStops[indexPath.row] : suggestedStops[indexPath.row]
         
         routeGraph.visit(stop: stop)
@@ -438,15 +464,8 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
         present(controller, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.layer.opacity = 0.0
-        UIView.animate(withDuration: 0.5, delay: 0, options: .allowUserInteraction, animations: {
-            cell.layer.opacity = 1.0
-        }, completion: nil)
-    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard section == 0 && fetchedStops.count != 0 || section == 1 && suggestedStops.count != 0 else {return UIView()}
+        guard section == 0 && (fetchedStops.count != 0 || showsLoading) || section == 1 && suggestedStops.count != 0 else {return UIView()}
         let view = UIView()
         if section == 0 {
             let label = UILabel()

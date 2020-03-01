@@ -33,6 +33,16 @@ class DeparturesController: ViewController {
         }
     }
     
+    fileprivate var showsLoading: Bool = true {
+        didSet {
+            let value = showsLoading
+            DispatchQueue.main.async {
+                guard value == self.showsLoading else {return}
+                UIView.transition(with: self.collectionView, duration: 0.2, options: .transitionCrossDissolve, animations: {self.collectionView.reloadData()}, completion: nil)
+            }
+        }
+    }
+    
     fileprivate var departures = [Departure]()
     fileprivate var scheduledTimer: Timer?
     
@@ -66,6 +76,13 @@ class DeparturesController: ViewController {
     
     @objc func loadDepartures() {
         guard let stop = stop else {return}
+        
+        // Do not set showsLoading to true here,
+        // to create a seamless experience when
+        // dynamically reloading departures.
+        // The load animation should only be
+        // shown, when the controller is opened first.
+        
         Departure.monitor(
             stopWithId: stop.id,
             dateType: .departure
@@ -73,9 +90,8 @@ class DeparturesController: ViewController {
             result in
             guard let success = result.success else {return}
             self.departures = success.departures
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
+            
+            self.showsLoading = false
             
             // Schedule next departure load
             self.scheduledTimer?.invalidate()
@@ -153,24 +169,27 @@ extension DeparturesController {
 extension DeparturesController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if showsLoading {
+            return 5
+        }
         return departures.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DepartureCollectionViewCell.identifier, for: indexPath) as! DepartureCollectionViewCell
-        cell.departure = departures[indexPath.row]
+        if showsLoading {
+            cell.departure = nil
+        } else {
+            cell.departure = departures[indexPath.row]
+        }
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        cell.layer.opacity = 0.0
-        UIView.animate(withDuration: 0.5, delay: 0, options: .allowUserInteraction, animations: {
-            cell.layer.opacity = 1.0
-        }, completion: nil)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let stop = self.stop else {return}
+        guard
+            !showsLoading,
+            let stop = self.stop
+        else {return}
         let departure = departures[indexPath.row]
         let controller = TripController()
         controller.departure = departure

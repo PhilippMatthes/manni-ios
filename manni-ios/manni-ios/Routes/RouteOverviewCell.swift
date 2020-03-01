@@ -23,12 +23,17 @@ class RouteOverviewCell: UITableViewCell {
     
     public var route: Route? {
         didSet {
-            guard let route = route else {return}
-            
-            travelTimeLabel.text = "Fahrtzeit: \(route.duration) min"
+            if let route = route {
+                travelTimeLabel.text = "Ankunft: \(route.manniArrivalETA)"
+                
+                updateTimeResponsiveUI()
+                skeuomorphismView.contentView.isLoading = false
+            } else {
+                travelTimeLabel.text = " "
+                departureETALabel.text = " "
+                skeuomorphismView.contentView.isLoading = true
+            }
             collectionView.reloadData()
-            
-            updateTimeResponsiveUI()
         }
     }
     
@@ -62,6 +67,7 @@ class RouteOverviewCell: UITableViewCell {
         
         contentView.layout(skeuomorphismView)
             .edges(top: 4, left: 4, bottom: 4, right: 4)
+        skeuomorphismView.cornerRadius = 30
         
         skeuomorphismView.contentView.layout(departureView)
             .top(16)
@@ -71,26 +77,36 @@ class RouteOverviewCell: UITableViewCell {
         
         departureView.layout(departureETALabel)
             .left()
+            .width(128)
             .top()
             .bottom()
+        departureETALabel.clipsToBounds = true
+        departureETALabel.layer.cornerRadius = 8
         
         departureView.layout(travelTimeLabel)
-            .after(departureETALabel, 4)
+            .width(128)
             .right()
             .top()
             .bottom()
         travelTimeLabel.textAlignment = .right
+        travelTimeLabel.clipsToBounds = true
+        travelTimeLabel.layer.cornerRadius = 8
                 
         skeuomorphismView.contentView.layout(collectionView)
-            .below(departureView, 8)
+            .height(64)
             .left()
             .right()
-            .bottom()
+            .bottom(12)
+        
+        skeuomorphismView.contentView.fakedViews = [
+            departureETALabel,
+            travelTimeLabel,
+        ]
     }
     
     @objc func updateTimeResponsiveUI() {
         guard let route = route else {return}
-        departureETALabel.text = route.manniETA
+        departureETALabel.text = route.manniDepartureETA
     }
     
 }

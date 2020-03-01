@@ -14,23 +14,32 @@ class DepartureCollectionViewCell: UICollectionViewCell {
     
     public var departure: Departure? {
         didSet {
-            guard let departure = departure else {return}
-            lineNameLabel.text = departure.line
-            lineNameLabel.sizeToFit()
-            directionLabel.text = departure.direction
-            directionLabel.sizeToFit()
-            skeuomorphismView.lightColor = departure.gradient.first ?? .white
-            skeuomorphismView.gradient = departure.gradient
-            
-            if let latency = departure.manniLatency {
-                latencyBadgeBackground.alpha = 1
-                latencyBadgeLabel.text = latency
+            if let departure = departure {
+                lineNameLabel.text = departure.line
+                lineNameLabel.sizeToFit()
+                directionLabel.text = departure.direction
+                directionLabel.sizeToFit()
+                skeuomorphismView.lightColor = departure.gradient.first ?? .white
+                skeuomorphismView.gradient = departure.gradient
+                
+                if let latency = departure.manniLatency {
+                    latencyBadgeBackground.alpha = 1
+                    latencyBadgeLabel.text = latency
+                } else {
+                    latencyBadgeBackground.alpha = 0
+                    latencyBadgeLabel.text = "Pünktlich"
+                }
+                
+                updateTimeResponsiveUI()
+                skeuomorphismView.contentView.isLoading = false
             } else {
+                lineNameLabel.text = " "
+                directionLabel.text = " "
+                etaLabel.text = " "
                 latencyBadgeBackground.alpha = 0
-                latencyBadgeLabel.text = "Pünktlich"
+                skeuomorphismView.contentView.isLoading = true
             }
-            
-            updateTimeResponsiveUI()
+            layoutSubviews()
         }
     }
         
@@ -69,6 +78,8 @@ class DepartureCollectionViewCell: UICollectionViewCell {
         lineNameLabel.adjustsFontSizeToFitWidth = true
         lineNameLabel.font = RobotoFont.bold(with: 38)
         lineNameLabel.textColor = .white
+        lineNameLabel.clipsToBounds = true
+        lineNameLabel.layer.cornerRadius = 8
         
         skeuomorphismView.contentView.layout(directionLabel)
             .below(lineNameLabel, 4)
@@ -78,6 +89,8 @@ class DepartureCollectionViewCell: UICollectionViewCell {
         directionLabel.adjustsFontSizeToFitWidth = true
         directionLabel.font = RobotoFont.regular(with: 18)
         directionLabel.textColor = .white
+        directionLabel.clipsToBounds = true
+        directionLabel.layer.cornerRadius = 8
         
         skeuomorphismView.contentView.layout(etaLabel)
             .left(12)
@@ -86,6 +99,8 @@ class DepartureCollectionViewCell: UICollectionViewCell {
         etaLabel.font = RobotoFont.light(with: 16)
         etaLabel.textColor = .white
         etaLabel.numberOfLines = 1
+        etaLabel.clipsToBounds = true
+        etaLabel.layer.cornerRadius = 8
         
         contentView.layout(latencyBadgeBackground)
             .right()
@@ -95,6 +110,12 @@ class DepartureCollectionViewCell: UICollectionViewCell {
         latencyBadgeBackground.contentView.layout(latencyBadgeLabel)
             .edges(top: 4, left: 8, bottom: 4, right: 8)
         latencyBadgeLabel.font = RobotoFont.bold(with: 12)
+        
+        skeuomorphismView.contentView.fakedViews = [
+            lineNameLabel,
+            directionLabel,
+            etaLabel
+        ]
         
         timeResponsiveRefreshTimer = .scheduledTimer(
             timeInterval: 1.0,
