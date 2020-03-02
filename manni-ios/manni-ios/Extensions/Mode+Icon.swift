@@ -101,6 +101,20 @@ extension Mode {
                     textColor: .white,
                     size: size
                 ).withRenderingMode(.alwaysTemplate)
+            case .mobilityStairsDown:
+                image = UIImage.fontAwesomeIcon(
+                    name: .sortAmountDownAlt,
+                    style: .solid,
+                    textColor: .white,
+                    size: size
+                ).withRenderingMode(.alwaysTemplate)
+            case .mobilityStairsUp:
+                image = UIImage.fontAwesomeIcon(
+                    name: .sortAmountUpAlt,
+                    style: .solid,
+                    textColor: .white,
+                    size: size
+                ).withRenderingMode(.alwaysTemplate)
             case .unknown(let value):
                 for mode in Mode.allRequest {
                     if mode.rawValue == value {

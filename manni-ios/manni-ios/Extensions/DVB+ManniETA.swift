@@ -8,6 +8,10 @@
 
 import DVB
 
+
+// Todo: refactor this pile of duplicated code
+
+
 extension Departure {
     
     public var manniLatency: String? {
@@ -93,6 +97,42 @@ extension TripStop {
     }
     
 }
+
+
+extension Date {
+    public var etaString: String {
+        get {
+            let interval = Calendar.current.dateComponents([
+                .minute, .second
+            ], from: Date(), to: self)
+            
+            if let minutes = interval.minute, minutes >= 20 || minutes <= -20 {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "HH:mm"
+                return dateFormatter.string(from: self)
+            }
+            
+            if let minutes = interval.minute, minutes != 0 {
+                if minutes > 0 {
+                    return minutes == 1 ? "In 1 Minute" : "In \(minutes) Minuten"
+                } else {
+                    return minutes == -1 ? "Vor 1 Minute": "Vor \(abs(minutes)) Minuten"
+                }
+            }
+            
+            if let seconds = interval.second, seconds != 0 {
+                if seconds > 0 {
+                    return seconds == 1 ? "In 1 Sekunde" : "In \(seconds) Sekunden"
+                } else {
+                    return seconds == -1 ? "Vor 1 Sekunde": "Vor \(abs(seconds)) Sekunden"
+                }
+            }
+            
+            return "Jetzt"
+        }
+    }
+}
+
 
 extension Route {
     

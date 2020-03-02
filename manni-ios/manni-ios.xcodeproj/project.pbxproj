@@ -30,6 +30,7 @@
 		BE69C25C240B995000C036D3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69C25B240B995000C036D3 /* LoadingView.swift */; };
 		BE89198623F3085B0098A39B /* TripController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89198523F3085B0098A39B /* TripController.swift */; };
 		BE89198823F30DF80098A39B /* Gradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89198723F30DF80098A39B /* Gradients.swift */; };
+		BEB1B754240D253300FF3122 /* RouteDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB1B753240D253300FF3122 /* RouteDetails.swift */; };
 		BEBA661523E75B6A00CA99CF /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA661423E75B6A00CA99CF /* SearchView.swift */; };
 		BEBA661A23E7639300CA99CF /* SkeuomorphismView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBA661923E7639300CA99CF /* SkeuomorphismView.swift */; };
 		BEC77FCB23E9960E0042CD48 /* GPSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC77FCA23E9960E0042CD48 /* GPSView.swift */; };
@@ -71,6 +72,7 @@
 		BE69C25B240B995000C036D3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		BE89198523F3085B0098A39B /* TripController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripController.swift; sourceTree = "<group>"; };
 		BE89198723F30DF80098A39B /* Gradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradients.swift; sourceTree = "<group>"; };
+		BEB1B753240D253300FF3122 /* RouteDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetails.swift; sourceTree = "<group>"; };
 		BEBA661423E75B6A00CA99CF /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		BEBA661923E7639300CA99CF /* SkeuomorphismView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeuomorphismView.swift; sourceTree = "<group>"; };
 		BEC77FCA23E9960E0042CD48 /* GPSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSView.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				BE69C255240A97F600C036D3 /* RoutesOverlayContainerController.swift */,
 				BE69C253240A88B200C036D3 /* RoutesController.swift */,
 				BEFE77E4240C0FA100A0E1F1 /* RouteDetailController.swift */,
+				BEB1B753240D253300FF3122 /* RouteDetails.swift */,
 			);
 			path = Routes;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				BE3A574A2406C44C0059E2DA /* StopItemProvider.swift in Sources */,
 				BEFE77E5240C0FA100A0E1F1 /* RouteDetailController.swift in Sources */,
 				BE69C256240A97F600C036D3 /* RoutesOverlayContainerController.swift in Sources */,
+				BEB1B754240D253300FF3122 /* RouteDetails.swift in Sources */,
 				BE69C25C240B995000C036D3 /* LoadingView.swift in Sources */,
 				BEF3062D24083490005AE8A2 /* RoutesOverlayController.swift in Sources */,
 			);
