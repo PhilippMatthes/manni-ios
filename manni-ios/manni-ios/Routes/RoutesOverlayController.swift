@@ -56,7 +56,6 @@ class RoutesOverlayController: ViewController {
         isFetching = true
         Route.find(fromWithID: endpoints.0.id, toWithID: endpoints.1.id, time: time) {
             result in
-            self.isFetching = false
             guard let success = result.success else {
                 DispatchQueue.main.async {
                     if #available(iOS 10.0, *) {
@@ -73,6 +72,7 @@ class RoutesOverlayController: ViewController {
                         self.loadRoutes(startingAt: Date())
                     }))
                     self.present(alert, animated: true, completion: nil)
+                    self.isFetching = false
                 }
                 return
             }
@@ -99,7 +99,10 @@ class RoutesOverlayController: ViewController {
             self.routes.sort {$0.departureTime < $1.departureTime}
             
             DispatchQueue.main.async {
-                UIView.transition(with: self.tableView, duration: 0.2, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+                UIView.transition(with: self.tableView, duration: 0.2, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: {
+                    _ in
+                    self.isFetching = false
+                })
             }
         }
     }

@@ -40,6 +40,8 @@ extension RouteDetailController {
             RouteArrival.Cell.self,
             RouteDeparture.Cell.self,
             RouteKeyStop.Cell.self,
+            RoutePassedByStop.Cell.self,
+            RouteStairsTransition.Cell.self,
         ] {
             tableView.register(routeDetailCellType, forCellReuseIdentifier: routeDetailCellType.reuseIdentifier)
         }
@@ -66,6 +68,7 @@ extension RouteDetailController: UITableViewDelegate, UITableViewDataSource {
 
 extension RouteDetailController: RouteSelectionDelegate {
     func didSelect(route: Route) {
+        routeDetails = []
         collectRouteDetails(for: route)
         tableView.reloadData()
     }
@@ -74,11 +77,9 @@ extension RouteDetailController: RouteSelectionDelegate {
         // Descend the route details and extract all needed information
         for routePartial in route.partialRoutes {
             if routePartial.mode.mode == Mode.mobilityStairsUp {
-                // It is necessary to go down stairs
-                // TODO
+                routeDetails.append(RouteStairsTransition(direction: .up))
             } else if routePartial.mode.mode == Mode.mobilityStairsDown {
-                // It is necessary to go up stairs
-                // TODO
+                routeDetails.append(RouteStairsTransition(direction: .down))
             } else {
                 // Regular transit
                 if let regularStops = routePartial.regularStops, !regularStops.isEmpty {
@@ -87,8 +88,7 @@ extension RouteDetailController: RouteSelectionDelegate {
                             routeDetails.append(RouteKeyStop(routeStop: routeStop))
                             routeDetails.append(RouteDeparture(departureTime: routeStop.departureTime))
                         } else if i < regularStops.endIndex - 1 {
-                            // Passed by stops
-                            // TODO
+                            routeDetails.append(RoutePassedByStop(routeStop: routeStop))
                         } else {
                             routeDetails.append(RouteArrival(arrivalTime: routeStop.arrivalTime))
                             routeDetails.append(RouteKeyStop(routeStop: routeStop))
