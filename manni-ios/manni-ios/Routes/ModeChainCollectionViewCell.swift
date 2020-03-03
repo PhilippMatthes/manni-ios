@@ -18,8 +18,9 @@ class ModeChainCollectionViewCell: UICollectionViewCell {
     public var modeElement: Route.ModeElement? {
         didSet {
             guard let modeElement = modeElement else {return}
-            
-            modeNameLabel.text = modeElement.name ?? "n/a"
+            modeNameLabelBackground.gradient = modeElement.gradient
+            modeNameLabel.text = modeElement.name ?? ""
+            modeDirectionLabel.text = modeElement.direction ?? ""
             modeImage.image = modeElement.mode?.icon
         }
     }
@@ -34,10 +35,18 @@ class ModeChainCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    fileprivate let skeuomorphismView = SkeuomorphismView()
     fileprivate let modeImage = UIImageView()
+    fileprivate let modeNameLabelBackground = SkeuomorphismView()
     fileprivate let modeNameLabel = UILabel()
-    fileprivate let nextChevron = UIImageView(image: UIImage.fontAwesomeIcon(name: .chevronRight, style: .solid, textColor: Color.grey.darken4, size: .init(width: 12, height: 12)))
+    fileprivate let modeDirectionLabel = UILabel()
+    fileprivate let nextChevron = UIImageView(
+        image: UIImage.fontAwesomeIcon(
+            name: .chevronRight,
+            style: .solid,
+            textColor: .white,
+            size: .init(width: 12, height: 12)
+        ).withRenderingMode(.alwaysTemplate)
+    )
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -49,28 +58,46 @@ class ModeChainCollectionViewCell: UICollectionViewCell {
         prepare()
     }
     
-    fileprivate func prepare() {        
+    fileprivate func prepare() {
+        
+        layer.cornerRadius = 32
+        
         contentView.layout(modeImage)
             .left()
             .centerY()
             .height(32)
             .width(32)
-        modeImage.tintColor = Color.grey.darken4
+        modeImage.tintColor = Color.grey.base
         
-        contentView.layout(modeNameLabel)
+        contentView.layout(modeNameLabelBackground)
             .after(modeImage, 4)
             .centerY()
-        modeNameLabel.textColor = Color.grey.darken4
+            .height(32)
+        modeNameLabelBackground.cornerRadius = 8
+        
+        modeNameLabelBackground.contentView.layout(modeNameLabel)
+            .left(8)
+            .top(4)
+            .bottom(4)
+        modeNameLabel.font = RobotoFont.bold(with: 16)
+        modeNameLabel.textColor = .white
+        
+        modeNameLabelBackground.contentView.layout(modeDirectionLabel)
+            .after(modeNameLabel, 4)
+            .top(4)
+            .bottom(4)
+            .right(8)
+        modeDirectionLabel.font = RobotoFont.regular(with: 16)
+        modeDirectionLabel.textColor = .white
         
         contentView.layout(nextChevron)
-            .after(modeNameLabel, 4)
-            .right(4)
-            .width(24)
-            .height(24)
+            .after(modeNameLabelBackground, 12)
+            .right()
+            .width(16)
+            .height(16)
             .centerY()
+        nextChevron.tintColor = Color.grey.base
         
-        modeNameLabel.sizeToFit()
-        layoutSubviews()
     }
     
 }

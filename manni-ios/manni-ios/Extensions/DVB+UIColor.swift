@@ -8,6 +8,8 @@
 
 import DVB
 
+// TODO: Refactor duplicated code
+
 extension Departure {
     
     public var gradient: [UIColor] {
@@ -29,6 +31,20 @@ extension Stop {
                 return Gradients.accentColors[abs(id) % Gradients.accentColors.count]
             }
             return Gradients.accentColors[self.name.count % Gradients.accentColors.count]
+        }
+    }
+    
+}
+
+extension Route.ModeElement {
+    
+    public var gradient: [UIColor] {
+        get {
+            guard let name = name else {return Gradients.accentColors.first!}
+            if let number = Int(name) {
+                return Gradients.accentColors[abs(number) % Gradients.accentColors.count]
+            }
+            return Gradients.accentColors[name.count % Gradients.accentColors.count]
         }
     }
     

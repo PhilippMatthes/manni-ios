@@ -16,6 +16,8 @@ import MapKit
 
 
 class RouteDetailController: ViewController {
+    fileprivate let topView = SkeuomorphismView()
+    fileprivate let backButton = SkeuomorphismIconButton(image: Icon.arrowBack, tintColor: Color.grey.darken4)
     fileprivate let tableView = TableView()
     
     private var routeDetails = [RouteDetail]()
@@ -24,24 +26,53 @@ class RouteDetailController: ViewController {
         view.backgroundColor = Color.blue.accent4
         
         prepareTableView()
+        prepareTopView()
+        prepareBackButton()
+    }
+    
+    @objc func backButtonTouched() {
+        dismiss(animated: true)
     }
 }
 
 
 extension RouteDetailController {
+    fileprivate func prepareTopView() {
+        view.layout(topView)
+            .top()
+            .left()
+            .right()
+            .height(140)
+        topView.gradient = Gradients.clouds
+        topView.darkShadowOpacity = 0.03
+        topView.lightShadowOpacity = 0.3
+        topView.roundedCorners = .bottomLeft
+        topView.cornerRadius = 24
+    }
+    
+    fileprivate func prepareBackButton() {
+        topView.contentView.layout(backButton)
+            .topSafe(12)
+            .left(24)
+            .height(64)
+            .width(64)
+        backButton.skeuomorphismView.lightShadowOpacity = 0.3
+        backButton.skeuomorphismView.darkShadowOpacity = 0.2
+        backButton.pulseColor = Color.blue.base
+        backButton.addTarget(self, action: #selector(backButtonTouched), for: .touchUpInside)
+    }
+    
     fileprivate func prepareTableView() {
         view.layout(tableView)
             .edges()
         
+        tableView.contentInset = .init(top: 140, left: 0, bottom: 128, right: 0)
         tableView.delegate = self
         tableView.dataSource = self
         
         for routeDetailCellType in [
-            RouteArrival.Cell.self,
-            RouteDeparture.Cell.self,
-            RouteKeyStop.Cell.self,
-            RoutePassedByStop.Cell.self,
-            RouteStairsTransition.Cell.self,
+            RouteByFoot.Cell.self,
+            RouteTransit.Cell.self,
         ] {
             tableView.register(routeDetailCellType, forCellReuseIdentifier: routeDetailCellType.reuseIdentifier)
         }
@@ -68,35 +99,28 @@ extension RouteDetailController: UITableViewDelegate, UITableViewDataSource {
 
 extension RouteDetailController: RouteSelectionDelegate {
     func didSelect(route: Route) {
-        routeDetails = []
         collectRouteDetails(for: route)
         tableView.reloadData()
     }
     
     fileprivate func collectRouteDetails(for route: Route) {
+        routeDetails = []
         // Descend the route details and extract all needed information
         for routePartial in route.partialRoutes {
             if routePartial.mode.mode == Mode.mobilityStairsUp {
-                routeDetails.append(RouteStairsTransition(direction: .up))
+                routeDetails.append(RouteStairsUp())
             } else if routePartial.mode.mode == Mode.mobilityStairsDown {
-                routeDetails.append(RouteStairsTransition(direction: .down))
+                routeDetails.append(RouteStairsDown())
+            } else if routePartial.mode.mode == Mode.footpath {
+                routeDetails.append(RouteWalk(walkDuration: routePartial.duration))
             } else {
-                // Regular transit
                 if let regularStops = routePartial.regularStops, !regularStops.isEmpty {
-                    for (i, routeStop) in regularStops.enumerated() {
-                        if i == 0 {
-                            routeDetails.append(RouteKeyStop(routeStop: routeStop))
-                            routeDetails.append(RouteDeparture(departureTime: routeStop.departureTime))
-                        } else if i < regularStops.endIndex - 1 {
-                            routeDetails.append(RoutePassedByStop(routeStop: routeStop))
-                        } else {
-                            routeDetails.append(RouteArrival(arrivalTime: routeStop.arrivalTime))
-                            routeDetails.append(RouteKeyStop(routeStop: routeStop))
-                        }
-                    }
+                    routeDetails.append(RouteTransit(regularStops: regularStops, modeElement: routePartial.mode))
                 }
             }
         }
-        print(routeDetails)
+        
+        routeDetails.first?.position = .top
+        routeDetails.last?.position = .bottom
     }
 }

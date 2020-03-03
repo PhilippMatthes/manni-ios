@@ -21,22 +21,6 @@ class RouteOverviewCell: UITableViewCell {
     
     public static let reuseIdentifier = "RouteOverviewCell"
     
-    public var route: Route? {
-        didSet {
-            if let route = route {
-                travelTimeLabel.text = "Ankunft: \(route.manniArrivalETA)"
-                
-                updateTimeResponsiveUI()
-                skeuomorphismView.contentView.isLoading = false
-            } else {
-                travelTimeLabel.text = " "
-                departureETALabel.text = " "
-                skeuomorphismView.contentView.isLoading = true
-            }
-            collectionView.reloadData()
-        }
-    }
-    
     public var delegate: RouteOverviewCellDelegate?
     
     fileprivate let skeuomorphismView = SkeuomorphismView()
@@ -46,6 +30,7 @@ class RouteOverviewCell: UITableViewCell {
     fileprivate let flowLayout = UICollectionViewFlowLayout()
     fileprivate let collectionView = CollectionView()
     
+    private var route: Route?
     private var timeResponsiveRefreshTimer: Timer?
     
     public required init?(coder aDecoder: NSCoder) {
@@ -58,11 +43,24 @@ class RouteOverviewCell: UITableViewCell {
         prepare()
     }
     
+    public func prepare(for route: Route?) {
+        self.route = route
+        if let route = route {
+            travelTimeLabel.text = "\(route.duration) min"
+            departureETALabel.text = "\(route.manniDepartureETA) - \(route.manniArrivalETA)"
+            skeuomorphismView.contentView.isLoading = false
+        } else {
+            travelTimeLabel.text = " "
+            departureETALabel.text = " "
+            skeuomorphismView.contentView.isLoading = true
+        }
+        collectionView.reloadData()
+    }
+    
     fileprivate func prepare() {
         selectionStyle = .none
         backgroundColor = .clear
         
-        prepareTimeResponsiveUI()
         prepareTravelChainCollectionView()
         
         contentView.layout(skeuomorphismView)
@@ -72,31 +70,34 @@ class RouteOverviewCell: UITableViewCell {
         skeuomorphismView.contentView.layout(departureView)
             .top(16)
             .height(16)
-            .left(24)
-            .right(24)
+            .left(20)
+            .right(20)
         
         departureView.layout(departureETALabel)
             .left()
             .width(128)
             .top()
             .bottom()
+        departureETALabel.font = RobotoFont.regular(with: 16)
         departureETALabel.clipsToBounds = true
-        departureETALabel.layer.cornerRadius = 8
+        departureETALabel.layer.cornerRadius = 4
         
         departureView.layout(travelTimeLabel)
             .width(128)
             .right()
             .top()
             .bottom()
+        travelTimeLabel.font = RobotoFont.regular(with: 16)
         travelTimeLabel.textAlignment = .right
         travelTimeLabel.clipsToBounds = true
-        travelTimeLabel.layer.cornerRadius = 8
+        travelTimeLabel.layer.cornerRadius = 4
+        travelTimeLabel.textColor = Color.grey.base
                 
         skeuomorphismView.contentView.layout(collectionView)
             .height(64)
             .left()
             .right()
-            .bottom(12)
+            .bottom()
         
         skeuomorphismView.contentView.fakedViews = [
             departureETALabel,
@@ -104,25 +105,9 @@ class RouteOverviewCell: UITableViewCell {
         ]
     }
     
-    @objc func updateTimeResponsiveUI() {
-        guard let route = route else {return}
-        departureETALabel.text = route.manniDepartureETA
-    }
-    
 }
 
 extension RouteOverviewCell {
-    func prepareTimeResponsiveUI() {
-        timeResponsiveRefreshTimer = .scheduledTimer(
-            timeInterval: 1.0,
-            target: self,
-            selector: #selector(updateTimeResponsiveUI),
-            userInfo: nil,
-            repeats: true
-        )
-        RunLoop.main.add(timeResponsiveRefreshTimer!, forMode: .common)
-    }
-    
     func prepareTravelChainCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -132,7 +117,6 @@ extension RouteOverviewCell {
         flowLayout.scrollDirection = .horizontal
         collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
         collectionView.backgroundColor = .clear
-        collectionView.layer.cornerRadius = 32
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.collectionViewLayout = flowLayout
         collectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapCollectionView)))

@@ -152,7 +152,7 @@ extension RoutesOverlayController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 128
+        return 108
     }
     
     func indexPathHitsLoadingCell(_ indexPath: IndexPath) -> Bool {
@@ -165,9 +165,9 @@ extension RoutesOverlayController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RouteOverviewCell.reuseIdentifier, for: indexPath) as! RouteOverviewCell
         if indexPathHitsLoadingCell(indexPath) {
-            cell.route = nil
+            cell.prepare(for: nil)
         } else {
-            cell.route = routes[indexPath.row]
+            cell.prepare(for: routes[indexPath.row])
         }
         cell.delegate = self
         return cell

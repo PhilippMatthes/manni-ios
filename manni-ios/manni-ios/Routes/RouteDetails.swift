@@ -13,307 +13,299 @@ import DVB
 
 
 class RouteDetail {
-    class Cell: TableViewCell {
-        fileprivate let horizontalPadding: CGFloat = 24
-        fileprivate let verticalPadding: CGFloat = 12
-        fileprivate let barWidth: CGFloat = 4
-        
-        public class var reuseIdentifier: String {
-            get {
-                return "RouteDetail.Cell"
-            }
-        }
-        
-        public func prepare(for detail: RouteDetail) {}
-    }
+    public var position: Position?
     
     public var cellType: RouteDetail.Cell.Type {
-        get {
-            return Cell.self
+        return Cell.self
+    }
+    
+    enum Position {
+        case top, bottom
+    }
+    
+    class Cell: TableViewCell {
+        fileprivate let upperDotView = UIView()
+        fileprivate let lowerDotView = UIView()
+        fileprivate let innerView = UIView()
+        fileprivate let separatorView = UIView()
+        
+        public class var reuseIdentifier: String {
+            return "RouteDetail.Cell"
+        }
+        
+        override func prepare() {
+            super.prepare()
+            contentView.layout(separatorView)
+                .bottom()
+                .right()
+                .left(58)
+                .height(1)
+            separatorView.backgroundColor = Color.grey.lighten3
+            
+            contentView.layout(upperDotView)
+                .left(24)
+                .top(4)
+                .width(8)
+                .height(8)
+            upperDotView.backgroundColor = Color.grey.base
+            upperDotView.layer.cornerRadius = 4
+            
+            contentView.layout(innerView)
+                .below(upperDotView, 4)
+                .left()
+                .right()
+            
+            contentView.layout(lowerDotView)
+                .below(innerView, 4)
+                .left(24)
+                .bottom(4)
+                .width(8)
+                .height(8)
+            lowerDotView.backgroundColor = Color.grey.base
+            lowerDotView.layer.cornerRadius = 4
+        }
+        
+        public func prepare(for detail: RouteDetail) {
+            switch detail.position {
+            case .top:
+                upperDotView.isHidden = true
+                lowerDotView.isHidden = false
+            case .bottom:
+                upperDotView.isHidden = false
+                lowerDotView.isHidden = true
+            case .none:
+                upperDotView.isHidden = false
+                lowerDotView.isHidden = false
+            }
         }
     }
 }
 
 
-class RouteArrival: RouteDetail {
-    public let arrivalTime: Date
+class RouteByFoot: RouteDetail {
+    public let icon: UIImage
+    public let text: String
     
-    init(arrivalTime: Date) {
-        self.arrivalTime = arrivalTime
-    }
-    
-    class Cell: RouteDetail.Cell {
-        fileprivate let bar = UIView()
-        fileprivate let arrivalLabel = UILabel()
-
-        override class var reuseIdentifier: String {
-            get {
-                return "RouteArrival.Cell"
-            }
-        }
-        
-        override func prepare(for detail: RouteDetail) {
-            guard let detail = detail as? RouteArrival else {return}
-            arrivalLabel.text = "Ankunft: \(detail.arrivalTime.etaString)"
-        }
-        
-        override func prepare() {
-            super.prepare()
-            
-            contentView.layout(bar)
-                .left(horizontalPadding)
-                .width(barWidth)
-                .top()
-                .bottom()
-            bar.backgroundColor = Color.grey.lighten2
-            
-            contentView.layout(arrivalLabel)
-                .after(bar, horizontalPadding)
-                .right(horizontalPadding)
-                .top()
-                .bottom()
-            arrivalLabel.font = RobotoFont.light(with: 12)
-        }
+    init(icon: UIImage, text: String) {
+        self.icon = icon
+        self.text = text
     }
     
     override var cellType: RouteDetail.Cell.Type {
-        get {
-            return Cell.self
-        }
-    }
-}
-
-
-class RouteDeparture: RouteDetail {
-    public let departureTime: Date
-    
-    init(departureTime: Date) {
-        self.departureTime = departureTime
+        return Cell.self
     }
     
     class Cell: RouteDetail.Cell {
-        fileprivate let bar = UIView()
-        fileprivate let departureLabel = UILabel()
-        
-        override class var reuseIdentifier: String {
-            get {
-                return "RouteDeparture.Cell"
-            }
-        }
+        fileprivate let icon = UIImageView()
+        fileprivate let label = UILabel()
         
         override func prepare(for detail: RouteDetail) {
-            guard let detail = detail as? RouteDeparture else {return}
-            departureLabel.text = "Abfahrt: \(detail.departureTime.etaString)"
+            super.prepare(for: detail)
+            
+            guard let detail = detail as? RouteByFoot else {return}
+            icon.image = detail.icon
+            label.text = detail.text
         }
         
         override func prepare() {
             super.prepare()
             
-            contentView.layout(bar)
-                .left(horizontalPadding)
-                .width(barWidth)
-                .top()
-                .bottom()
-            bar.backgroundColor = Color.grey.lighten2
+            innerView.layout(icon)
+                .left(16)
+                .width(24)
+                .height(24)
+                .top(4)
+                .bottom(4)
+            icon.tintColor = Color.grey.base
             
-            contentView.layout(departureLabel)
-                .after(bar, horizontalPadding)
-                .right(horizontalPadding)
-                .top()
-                .bottom()
-            departureLabel.font = RobotoFont.light(with: 12)
-        }
-    }
-    
-    override var cellType: RouteDetail.Cell.Type {
-        get {
-            return Cell.self
-        }
-    }
-}
-
-
-class RouteKeyStop: RouteDetail {
-    public let routeStop: Route.RouteStop
-    
-    init(routeStop: Route.RouteStop) {
-        self.routeStop = routeStop
-    }
-    
-    class Cell: RouteDetail.Cell {
-        fileprivate let pointView = UIView()
-        fileprivate let stopNameLabel = UILabel()
-        fileprivate let platformLabel = UILabel()
-        
-        override class var reuseIdentifier: String {
-            get {
-                return "RouteKeyStop.Cell"
-            }
-        }
-        
-        override func prepare(for detail: RouteDetail) {
-            guard let detail = detail as? RouteKeyStop else {return}
-            stopNameLabel.text = detail.routeStop.name
-            platformLabel.text = "Plattform: \(detail.routeStop.platform?.name ?? "n/a")"
-        }
-        
-        override func prepare() {
-            super.prepare()
-            
-            contentView.layout(pointView)
-                .left(horizontalPadding)
+            innerView.layout(label)
+                .after(label, 24)
                 .centerY()
-                .width(12)
-                .height(12)
-            pointView.layer.cornerRadius = 6
-            pointView.backgroundColor = Color.blue.accent4
-            
-            contentView.layout(stopNameLabel)
-                .after(pointView, horizontalPadding)
-                .right(horizontalPadding)
-                .top(verticalPadding)
-            stopNameLabel.font = RobotoFont.bold(with: 18)
-            
-            contentView.layout(platformLabel)
-                .after(pointView, horizontalPadding)
-                .right(horizontalPadding)
-                .below(stopNameLabel, 4)
-                .bottom(verticalPadding)
-            platformLabel.font = RobotoFont.light(with: 12)
+                .right(24)
+            label.font = RobotoFont.bold(with: 16)
+            label.textColor = Color.grey.base
         }
-    }
-    
-    override var cellType: RouteDetail.Cell.Type {
-        get {
-            return Cell.self
+        
+        override class var reuseIdentifier: String {
+            return "RouteByFoot.Cell"
         }
     }
 }
 
 
-class RoutePassedByStop: RouteDetail {
-    public let routeStop: Route.RouteStop
-    
-    init(routeStop: Route.RouteStop) {
-        self.routeStop = routeStop
-    }
-    
-    class Cell: RouteDetail.Cell {
-        fileprivate let bar = UIView()
-        fileprivate let pointView = UIView()
-        fileprivate let stopNameLabel = UILabel()
-        
-        override class var reuseIdentifier: String {
-            get {
-                return "RoutePassedByStop.Cell"
-            }
-        }
-        
-        override func prepare(for detail: RouteDetail) {
-            guard let detail = detail as? RoutePassedByStop else {return}
-            stopNameLabel.text = detail.routeStop.name
-        }
-        
-        override func prepare() {
-            super.prepare()
-            
-            contentView.layout(bar)
-                .left(horizontalPadding)
-                .width(barWidth)
-                .top()
-                .bottom()
-            bar.backgroundColor = Color.grey.lighten2
-            
-            contentView.layout(pointView)
-                .left(horizontalPadding - barWidth / 2)
-                .centerY()
-                .width(12)
-                .height(12)
-            pointView.layer.cornerRadius = 3
-            pointView.backgroundColor = Color.grey.lighten2
-            
-            contentView.layout(stopNameLabel)
-                .after(pointView, horizontalPadding)
-                .right(horizontalPadding)
-                .top(verticalPadding)
-                .bottom(verticalPadding)
-            stopNameLabel.font = RobotoFont.light(with: 12)
-        }
-    }
-    
-    override var cellType: RouteDetail.Cell.Type {
-        get {
-            return Cell.self
-        }
+class RouteWalk: RouteByFoot {
+    init(walkDuration: Int?) {
+        let text = walkDuration == nil ? "Fußweg" : "\(walkDuration!) min Fußweg"
+        let icon = UIImage.fontAwesomeIcon(
+            name: .walking,
+            style: .solid,
+            textColor: .white,
+            size: .init(width: 24, height: 24)
+        ).withRenderingMode(.alwaysTemplate)
+        super.init(icon: icon, text: text)
     }
 }
 
 
-class RouteStairsTransition: RouteDetail {
-    enum Direction {
-        case up, down
+class RouteStairsUp: RouteByFoot {
+    init() {
+        let text = "Treppensteigen aufwärts"
+        let icon = UIImage.fontAwesomeIcon(
+            name: .sortAmountUpAlt,
+            style: .solid,
+            textColor: .white,
+            size: .init(width: 24, height: 24)
+        ).withRenderingMode(.alwaysTemplate)
+        super.init(icon: icon, text: text)
+    }
+}
+
+
+class RouteStairsDown: RouteByFoot {
+    init() {
+        let text = "Treppensteigen abwärts"
+        let icon = UIImage.fontAwesomeIcon(
+            name: .sortAmountDownAlt,
+            style: .solid,
+            textColor: .white,
+            size: .init(width: 24, height: 24)
+        ).withRenderingMode(.alwaysTemplate)
+        super.init(icon: icon, text: text)
+    }
+}
+
+
+class RouteTransit: RouteDetail {
+    public let regularStops: [Route.RouteStop]
+    public let modeElement: Route.ModeElement
+    
+    init(regularStops: [Route.RouteStop], modeElement: Route.ModeElement) {
+        self.regularStops = regularStops
+        self.modeElement = modeElement
+        super.init()
     }
     
-    public let direction: Direction
-    
-    init(direction: Direction) {
-        self.direction = direction
+    override var cellType: RouteDetail.Cell.Type {
+        return Cell.self
     }
     
     class Cell: RouteDetail.Cell {
-        fileprivate let iconView = UIImageView()
-        fileprivate let informationLabel = UILabel()
-        
-        override class var reuseIdentifier: String {
-            get {
-                return "RouteStairsTransition.Cell"
-            }
-        }
+        fileprivate let bar = SkeuomorphismView()
+        fileprivate let originDotView = UIView()
+        fileprivate let destinationDotView = UIView()
+        fileprivate let originStopNameLabel = UILabel()
+        fileprivate let originDepartureTimeLabel = UILabel()
+        fileprivate let destinationStopNameLabel = UILabel()
+        fileprivate let destinationArrivalTimeLabel = UILabel()
+        fileprivate let modeNameLabelBackground = SkeuomorphismView()
+        fileprivate let modeNameLabel = UILabel()
+        fileprivate let modeDirectionLabel = UILabel()
+        fileprivate let stopsBetweenLabel = UILabel()
         
         override func prepare(for detail: RouteDetail) {
-            guard let detail = detail as? RouteStairsTransition else {return}
-            switch detail.direction {
-            case .up:
-                iconView.image =  UIImage.fontAwesomeIcon(
-                    name: .sortAmountUpAlt,
-                    style: .solid,
-                    textColor: .white,
-                    size: .init(width: 32, height: 32)
-                ).withRenderingMode(.alwaysTemplate)
-                informationLabel.text = "Treppen aufwärts"
-            case .down:
-                iconView.image =  UIImage.fontAwesomeIcon(
-                    name: .sortAmountDownAlt,
-                    style: .solid,
-                    textColor: .white,
-                    size: .init(width: 32, height: 32)
-                ).withRenderingMode(.alwaysTemplate)
-                informationLabel.text = "Treppen abwärts"
+            super.prepare(for: detail)
+            
+            guard let detail = detail as? RouteTransit else {return}
+            bar.gradient = detail.modeElement.gradient
+            originStopNameLabel.text = detail.regularStops.first?.name
+            originDepartureTimeLabel.text = detail.regularStops.first?.departureTime.shortETAString
+            destinationStopNameLabel.text = detail.regularStops.last?.name
+            destinationArrivalTimeLabel.text = detail.regularStops.last?.arrivalTime.shortETAString
+            modeNameLabelBackground.gradient = detail.modeElement.gradient
+            modeNameLabel.text = detail.modeElement.name
+            modeDirectionLabel.text = detail.modeElement.direction
+            
+            if detail.regularStops.count > 2 {
+                stopsBetweenLabel.text = "\(detail.regularStops.count - 2) Zwischenstopps"
+            } else {
+                stopsBetweenLabel.text = "Direkter Transfer"
             }
         }
         
         override func prepare() {
             super.prepare()
+            innerView.layout(bar)
+                .left(22)
+                .width(12)
+                .top(4)
+                .bottom(4)
+            bar.cornerRadius = 6
             
-            contentView.layout(iconView)
-                .left(horizontalPadding)
-                .height(48)
-                .width(48)
-                .top(verticalPadding)
-                .bottom(verticalPadding)
+            innerView.layout(originDotView)
+                .left(24)
+                .top(6)
+                .width(8)
+                .height(8)
+            originDotView.layer.cornerRadius = 4
+            originDotView.backgroundColor = .white
             
-            contentView.layout(informationLabel)
-                .after(iconView, horizontalPadding)
-                .top(verticalPadding)
-                .bottom(verticalPadding)
-                .right(horizontalPadding)
+            innerView.layout(destinationDotView)
+                .left(24)
+                .bottom(6)
+                .width(8)
+                .height(8)
+            destinationDotView.layer.cornerRadius = 4
+            destinationDotView.backgroundColor = .white
             
+            innerView.layout(originStopNameLabel)
+                .top(4)
+                .after(bar, 24)
+            originStopNameLabel.font = RobotoFont.bold(with: 16)
+            
+            innerView.layout(originDepartureTimeLabel)
+                .top(4)
+                .after(originStopNameLabel, 8)
+                .right(24)
+            originDepartureTimeLabel.font = RobotoFont.regular(with: 16)
+            originDepartureTimeLabel.textColor = Color.grey.base
+            originDepartureTimeLabel.textAlignment = .right
+            
+            innerView.layout(modeNameLabelBackground)
+                .below(originStopNameLabel, 8)
+                .after(bar, 24)
+                .height(32)
+            modeNameLabelBackground.cornerRadius = 8
+            
+            modeNameLabelBackground.contentView.layout(modeNameLabel)
+                .left(8)
+                .top(4)
+                .bottom(4)
+            modeNameLabel.font = RobotoFont.bold(with: 16)
+            modeNameLabel.textColor = .white
+            
+            modeNameLabelBackground.contentView.layout(modeDirectionLabel)
+                .after(modeNameLabel, 4)
+                .top(4)
+                .bottom(4)
+                .right(8)
+            modeDirectionLabel.font = RobotoFont.regular(with: 16)
+            modeDirectionLabel.textColor = .white
+            
+            innerView.layout(stopsBetweenLabel)
+                .below(modeNameLabelBackground, 64)
+                .after(bar, 24)
+                .right(24)
+            stopsBetweenLabel.font = RobotoFont.regular(with: 16)
+            stopsBetweenLabel.textColor = Color.grey.base
+            
+            innerView.layout(destinationStopNameLabel)
+                .below(stopsBetweenLabel, 4)
+                .after(bar, 24)
+                .bottom(4)
+            destinationStopNameLabel.font = RobotoFont.bold(with: 16)
+            
+            innerView.layout(destinationArrivalTimeLabel)
+                .below(stopsBetweenLabel, 4)
+                .after(destinationStopNameLabel, 24)
+                .right(24)
+                .bottom(4)
+            destinationArrivalTimeLabel.font = RobotoFont.regular(with: 16)
+            destinationArrivalTimeLabel.textColor = Color.grey.base
+            destinationArrivalTimeLabel.textAlignment = .right
         }
-    }
-    
-    override var cellType: RouteDetail.Cell.Type {
-        get {
-            return Cell.self
+        
+        override class var reuseIdentifier: String {
+            return "RouteTransit.Cell"
         }
     }
 }
