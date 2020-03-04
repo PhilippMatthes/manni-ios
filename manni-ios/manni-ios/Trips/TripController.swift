@@ -31,6 +31,8 @@ class TripController: ViewController {
         }
     }
     
+    public var programmaticDismissDelegate: ProgrammaticDismissDelegate?
+    
     fileprivate let tripView = TripView()
     fileprivate let topView = SkeuomorphismView()
     fileprivate let departureLineLabel = UILabel()
@@ -75,11 +77,12 @@ class TripController: ViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        reveal {}
+        reveal(reverse: false) {}
     }
     
     @objc func backButtonTouched() {
         dismiss(animated: true)
+        programmaticDismissDelegate?.willDismissProgrammatically()
     }
     
 }
@@ -89,13 +92,22 @@ extension TripController: Revealable {
         disclaimerBackgroundView.transform = .init(translationX: 0, y: 128)
     }
     
-    func reveal(completion: @escaping (() -> ())) {
-        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
-            self.disclaimerBackgroundView.transform = .identity
-        }, completion: {
-            _ in
-            completion()
-        })
+    func reveal(reverse: Bool, completion: @escaping (() -> ())) {
+        if reverse {
+            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+                self.disclaimerBackgroundView.transform = .init(translationX: 0, y: 128)
+            }, completion: {
+                _ in
+                completion()
+            })
+        } else {
+            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+                self.disclaimerBackgroundView.transform = .identity
+            }, completion: {
+                _ in
+                completion()
+            })
+        }
     }
 }
 

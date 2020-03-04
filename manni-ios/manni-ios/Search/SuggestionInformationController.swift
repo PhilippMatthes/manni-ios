@@ -12,6 +12,8 @@ import DVB
 
 class SuggestionInformationController: ViewController {
     
+    public var programmaticDismissDelegate: ProgrammaticDismissDelegate?
+    
     fileprivate let backButton = SkeuomorphismIconButton(image: Icon.arrowBack, tintColor: Color.grey.darken4)
     fileprivate let titleLabel = UILabel()
     fileprivate let explanationLabel = UILabel()
@@ -66,6 +68,7 @@ class SuggestionInformationController: ViewController {
     
     @objc func backButtonTouched() {
         self.dismiss(animated: true)
+        programmaticDismissDelegate?.willDismissProgrammatically()
     }
     
 }

@@ -65,7 +65,7 @@ class RouteOverviewCell: UITableViewCell {
         
         contentView.layout(skeuomorphismView)
             .edges(top: 4, left: 4, bottom: 4, right: 4)
-        skeuomorphismView.cornerRadius = 30
+        skeuomorphismView.cornerRadius = 28
         
         skeuomorphismView.contentView.layout(departureView)
             .top(16)
@@ -113,7 +113,7 @@ extension RouteOverviewCell {
         collectionView.dataSource = self
         collectionView.register(ModeChainCollectionViewCell.self, forCellWithReuseIdentifier: ModeChainCollectionViewCell.reuseIdentifier)
         
-        flowLayout.estimatedItemSize = .init(width: 128, height: 56)
+        flowLayout.estimatedItemSize = .init(width: 64, height: 56)
         flowLayout.scrollDirection = .horizontal
         collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
         collectionView.backgroundColor = .clear

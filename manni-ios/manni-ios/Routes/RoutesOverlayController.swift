@@ -30,30 +30,33 @@ class RoutesOverlayController: ViewController {
     public var endpoints: (Stop, Stop)?
     
     fileprivate var routes = [Route]()
-    fileprivate var isFetching = false
+    fileprivate var lastFetchedDate: Date?
     
     public var overlayDelegate: RoutesOverlayControllerDelegate?
     public var routeSelectionDelegate: RouteSelectionDelegate?
     
     private(set) lazy var tableView = TableView(frame: .zero, style: .grouped)
     
-    override func loadView() {
-        view = tableView
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .clear
+        view.layout(tableView)
+            .edges()
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = false
         tableView.register(RouteOverviewCell.self, forCellReuseIdentifier: RouteOverviewCell.reuseIdentifier)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+        tableView.layer.cornerRadius = 32
+        tableView.backgroundColor = Color.grey.lighten3
+
         loadRoutes(startingAt: Date())
     }
     
     func loadRoutes(startingAt time: Date) {
         guard let endpoints = endpoints else {return}
-        isFetching = true
+        lastFetchedDate = time
         Route.find(fromWithID: endpoints.0.id, toWithID: endpoints.1.id, time: time) {
             result in
             guard let success = result.success else {
@@ -69,16 +72,14 @@ class RoutesOverlayController: ViewController {
                     })
                     alert.addAction(UIAlertAction(title: "Erneut versuchen", style: .default, handler: {
                         _ in
-                        self.loadRoutes(startingAt: Date())
+                        self.loadRoutes(startingAt: time)
                     }))
                     self.present(alert, animated: true, completion: nil)
-                    self.isFetching = false
                 }
                 return
             }
             if #available(iOS 10.0, *) {
-                UINotificationFeedbackGenerator()
-                    .notificationOccurred(.success)
+                UIImpactFeedbackGenerator(style: .light).impactOccurred()
             }
             
             for route in success.routes {
@@ -99,10 +100,7 @@ class RoutesOverlayController: ViewController {
             self.routes.sort {$0.departureTime < $1.departureTime}
             
             DispatchQueue.main.async {
-                UIView.transition(with: self.tableView, duration: 0.2, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: {
-                    _ in
-                    self.isFetching = false
-                })
+                self.tableView.reloadData()
             }
         }
     }
@@ -180,12 +178,26 @@ extension RoutesOverlayController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPathHitsLoadingCell(indexPath) && !isFetching {
-            if let lastDepartureDate = routes.last?.departureTime {
-                loadRoutes(startingAt: lastDepartureDate)
-            } else {
-                loadRoutes(startingAt: Date())
-            }
+        
+        // Only if the mocked loading cell is shown
+        // it is necessary to take further action
+        guard indexPathHitsLoadingCell(indexPath) else {return}
+        
+        // If there are no fetched routes and there is
+        // currently no fetch running, schedule one
+        if routes.isEmpty && lastFetchedDate == nil {
+            loadRoutes(startingAt: Date())
+            return
+        }
+        
+        // If there are fetched routes, fetch all
+        // routes that are later than the last route
+        if
+            !routes.isEmpty,
+            let lastDepartureDate = routes.last?.departureTime,
+            lastDepartureDate != lastFetchedDate
+        {
+            loadRoutes(startingAt: lastDepartureDate)
         }
     }
     

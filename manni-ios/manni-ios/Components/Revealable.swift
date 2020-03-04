@@ -11,5 +11,5 @@ import Foundation
 
 protocol Revealable {    
     func prepareReveal()
-    func reveal(completion: @escaping (() -> ()))
+    func reveal(reverse: Bool, completion: @escaping (() -> ()))
 }

@@ -11,6 +11,7 @@ import UIKit
 class Gradients {
     
     public static let clouds = [UIColor("#FFFFFF"), UIColor("#ECE9E6")]
+    public static let cloudsInverse = [UIColor("#ECE9E6"), UIColor("#FFFFFF")]
     public static let moonlitAsteroids = [UIColor("#0F2027"), UIColor("#203A43"), UIColor("#2C5364")]
     public static let blue = [UIColor("#396afc"), UIColor("#2948ff")]
     

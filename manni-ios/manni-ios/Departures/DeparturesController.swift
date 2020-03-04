@@ -33,6 +33,8 @@ class DeparturesController: ViewController {
         }
     }
     
+    public var programmaticDismissDelegate: ProgrammaticDismissDelegate?
+    
     fileprivate var showsLoading: Bool = true {
         didSet {
             let value = showsLoading
@@ -72,6 +74,7 @@ class DeparturesController: ViewController {
     
     @objc func backButtonTouched() {
         self.dismiss(animated: true)
+        self.programmaticDismissDelegate?.willDismissProgrammatically()
     }
     
     @objc func loadDepartures() {

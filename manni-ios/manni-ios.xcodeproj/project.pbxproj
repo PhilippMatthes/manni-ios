@@ -16,6 +16,7 @@
 		BE0D0DED23F1DC77003DB75A /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D0DEC23F1DC77003DB75A /* TripView.swift */; };
 		BE0D0DF023F1DD49003DB75A /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D0DEF23F1DD49003DB75A /* TripTableViewCell.swift */; };
 		BE0D0DF223F1DEFF003DB75A /* VerticalProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D0DF123F1DEFF003DB75A /* VerticalProgressBarView.swift */; };
+		BE20DA4D240FFDC100A9996F /* ProgrammaticDismissDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE20DA4C240FFDC100A9996F /* ProgrammaticDismissDelegate.swift */; };
 		BE3A574A2406C44C0059E2DA /* StopItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3A57492406C44C0059E2DA /* StopItemProvider.swift */; };
 		BE3A574C2406D0EF0059E2DA /* RouteStopInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3A574B2406D0EF0059E2DA /* RouteStopInputView.swift */; };
 		BE5AABFB23E756A9006EE1BD /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5AABFA23E756A9006EE1BD /* SearchController.swift */; };
@@ -58,6 +59,7 @@
 		BE0D0DEC23F1DC77003DB75A /* TripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripView.swift; sourceTree = "<group>"; };
 		BE0D0DEF23F1DD49003DB75A /* TripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
 		BE0D0DF123F1DEFF003DB75A /* VerticalProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalProgressBarView.swift; sourceTree = "<group>"; };
+		BE20DA4C240FFDC100A9996F /* ProgrammaticDismissDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgrammaticDismissDelegate.swift; sourceTree = "<group>"; };
 		BE3A57492406C44C0059E2DA /* StopItemProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopItemProvider.swift; sourceTree = "<group>"; };
 		BE3A574B2406D0EF0059E2DA /* RouteStopInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteStopInputView.swift; sourceTree = "<group>"; };
 		BE5AABFA23E756A9006EE1BD /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 		BEBA661823E762E600CA99CF /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				BE20DA4C240FFDC100A9996F /* ProgrammaticDismissDelegate.swift */,
 				BEFE77E6240C108800A0E1F1 /* AnimatableMapView.swift */,
 				BEF3063324091A52005AE8A2 /* Revealable.swift */,
 				BE0D0DF123F1DEFF003DB75A /* VerticalProgressBarView.swift */,
@@ -394,6 +397,7 @@
 				BE0D0DF223F1DEFF003DB75A /* VerticalProgressBarView.swift in Sources */,
 				BE89198623F3085B0098A39B /* TripController.swift in Sources */,
 				BE5AABFB23E756A9006EE1BD /* SearchController.swift in Sources */,
+				BE20DA4D240FFDC100A9996F /* ProgrammaticDismissDelegate.swift in Sources */,
 				BEF30630240837BD005AE8A2 /* RouteOverviewCell.swift in Sources */,
 				BE3A574A2406C44C0059E2DA /* StopItemProvider.swift in Sources */,
 				BEFE77E5240C0FA100A0E1F1 /* RouteDetailController.swift in Sources */,

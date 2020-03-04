@@ -19,11 +19,11 @@ protocol SearchViewDelegate {
 
 
 class SearchView: View {
+    public let routeStopDepartureInputView = RouteStopInputView()
+    public let routeStopDestinationInputView = RouteStopInputView()
     
     private let searchViewBackground = UIView()
     private let routeStopView = UIView()
-    private let routeStopDepartureInputView = RouteStopInputView()
-    private let routeStopDestinationInputView = RouteStopInputView()
     private let routeStopDividerView = UIView()
     private let searchRouteButton = SkeuomorphismIconButton(
        image: UIImage.fontAwesomeIcon(name: .route, style: .solid, textColor: .white, size: .init(width: 24, height: 24)).withRenderingMode(.alwaysTemplate),
@@ -138,20 +138,36 @@ extension SearchView: Revealable {
         routeStopDestinationInputView.prepareReveal()
     }
     
-    func reveal(completion: @escaping (() -> ())) {
-        UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
-            self.searchRouteButton.alpha = 1
-            self.searchButton.alpha = 1
-            self.transform = CGAffineTransform
-                .init(translationX: 0, y: 0)
-        }, completion: {
-            _ in
-            self.routeStopDepartureInputView.reveal {
-                self.routeStopDestinationInputView.reveal {
-                    completion()
+    func reveal(reverse: Bool, completion: @escaping (() -> ())) {
+        if reverse {
+            UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
+                self.searchRouteButton.alpha = 0
+                self.searchButton.alpha = 0
+                self.transform = CGAffineTransform
+                    .init(translationX: 0, y: 178)
+            }, completion: {
+                _ in
+                self.routeStopDepartureInputView.reveal(reverse: false) {
+                    self.routeStopDestinationInputView.reveal(reverse: false) {
+                        completion()
+                    }
                 }
-            }
-        })
+            })
+        } else {
+            UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
+                self.searchRouteButton.alpha = 1
+                self.searchButton.alpha = 1
+                self.transform = CGAffineTransform
+                    .init(translationX: 0, y: 0)
+            }, completion: {
+                _ in
+                self.routeStopDepartureInputView.reveal(reverse: false) {
+                    self.routeStopDestinationInputView.reveal(reverse: false) {
+                        completion()
+                    }
+                }
+            })
+        }
     }
 }
 

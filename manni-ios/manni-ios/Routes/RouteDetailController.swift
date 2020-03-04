@@ -16,58 +16,40 @@ import MapKit
 
 
 class RouteDetailController: ViewController {
-    fileprivate let topView = SkeuomorphismView()
+    
+    public var programmaticDismissDelegate: ProgrammaticDismissDelegate?
+    
     fileprivate let backButton = SkeuomorphismIconButton(image: Icon.arrowBack, tintColor: Color.grey.darken4)
     fileprivate let tableView = TableView()
     
     private var routeDetails = [RouteDetail]()
     
     override func viewDidLoad() {
-        view.backgroundColor = Color.blue.accent4
+        view.backgroundColor = .clear
         
         prepareTableView()
-        prepareTopView()
-        prepareBackButton()
     }
     
     @objc func backButtonTouched() {
         dismiss(animated: true)
+        programmaticDismissDelegate?.willDismissProgrammatically()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 
 
 extension RouteDetailController {
-    fileprivate func prepareTopView() {
-        view.layout(topView)
-            .top()
-            .left()
-            .right()
-            .height(140)
-        topView.gradient = Gradients.clouds
-        topView.darkShadowOpacity = 0.03
-        topView.lightShadowOpacity = 0.3
-        topView.roundedCorners = .bottomLeft
-        topView.cornerRadius = 24
-    }
-    
-    fileprivate func prepareBackButton() {
-        topView.contentView.layout(backButton)
-            .topSafe(12)
-            .left(24)
-            .height(64)
-            .width(64)
-        backButton.skeuomorphismView.lightShadowOpacity = 0.3
-        backButton.skeuomorphismView.darkShadowOpacity = 0.2
-        backButton.pulseColor = Color.blue.base
-        backButton.addTarget(self, action: #selector(backButtonTouched), for: .touchUpInside)
-    }
-    
     fileprivate func prepareTableView() {
         view.layout(tableView)
             .edges()
         
-        tableView.contentInset = .init(top: 140, left: 0, bottom: 128, right: 0)
+        tableView.contentInset = .init(top: 128, left: 0, bottom: 128, right: 0)
         tableView.delegate = self
+        tableView.showsVerticalScrollIndicator = false
+        tableView.backgroundColor = .clear
         tableView.dataSource = self
         
         for routeDetailCellType in [
@@ -76,6 +58,28 @@ extension RouteDetailController {
         ] {
             tableView.register(routeDetailCellType, forCellReuseIdentifier: routeDetailCellType.reuseIdentifier)
         }
+        
+        let tableViewBackground = SkeuomorphismView()
+        tableViewBackground.gradient = Gradients.clouds
+        tableView.insertSubview(tableViewBackground, at: 0)
+        tableViewBackground.layer.zPosition = -1
+        tableViewBackground.cornerRadius = 24
+        tableViewBackground.clipsToBounds = true
+        tableViewBackground.lightShadowOpacity = 0
+        tableViewBackground.darkShadowOpacity = 0
+        tableViewBackground.translatesAutoresizingMaskIntoConstraints = false
+        
+        tableViewBackground.contentView.layout(backButton)
+            .left(24)
+            .top(24)
+            .width(64)
+            .height(64)
+        backButton.addTarget(self, action: #selector(backButtonTouched), for: .touchUpInside)
+        
+        NSLayoutConstraint(item: tableViewBackground, attribute: .height, relatedBy: .equal, toItem: tableView, attribute: .height, multiplier: 1.0, constant: 64 + Screen.height).isActive = true
+        NSLayoutConstraint(item: tableViewBackground, attribute: .width, relatedBy: .equal, toItem: tableView, attribute: .width, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: tableViewBackground, attribute: .top, relatedBy: .equal, toItem: tableView, attribute: .top, multiplier: 1.0, constant: -96).isActive = true
+        NSLayoutConstraint(item: tableViewBackground, attribute: .centerX, relatedBy: .equal, toItem: tableView, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
         
     }
 }
@@ -94,6 +98,24 @@ extension RouteDetailController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return routeDetails.count
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {        
+        // Dismiss, if the user sufficiently pulls downwards
+        // while having the scroll view at least scrolled to the top
+        if velocity.y < -1 && scrollView.contentOffset.y < -scrollView.contentInset.top {
+            dismiss(animated: true)
+            programmaticDismissDelegate?.willDismissProgrammatically()
+            return
+        }
+        
+        // Dismiss, if the scroll view is pulled downwards sufficiently
+        // and if the user did not scroll upwards
+        if velocity.y <= 0 && scrollView.contentOffset.y < -scrollView.contentInset.top - 128 {
+            dismiss(animated: true)
+            programmaticDismissDelegate?.willDismissProgrammatically()
+            return
+        }
     }
 }
 
@@ -120,7 +142,11 @@ extension RouteDetailController: RouteSelectionDelegate {
             }
         }
         
-        routeDetails.first?.position = .top
-        routeDetails.last?.position = .bottom
+        if routeDetails.count != 1 {
+            routeDetails.first?.position = .top
+            routeDetails.last?.position = .bottom
+        } else {
+            routeDetails.first?.position = .both
+        }
     }
 }

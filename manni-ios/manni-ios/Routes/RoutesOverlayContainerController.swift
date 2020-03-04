@@ -14,7 +14,7 @@ import DVB
 
 private struct Constants {
     static let minimumHeight: CGFloat = 158
-    static let maximumHeight: CGFloat = 512
+    static let maximumHeight: CGFloat = Screen.height - 356
     static let minimumVelocityConsideration: CGFloat = 50
     static let defaultTranslationDuration: TimeInterval = 0.4
     static let maximumTranslationDuration: TimeInterval = 0.6
@@ -62,7 +62,7 @@ class RoutesOverlayContainerController: ViewController {
     
     public var routeSelectionDelegate: RouteSelectionDelegate?
     
-    private lazy var translatedView = PassThroughView()
+    private lazy var translatedView = UIView()
     private lazy var translatedViewHeightContraint = translatedView.heightAnchor
         .constraint(equalToConstant: Constants.minimumHeight)
     
@@ -87,6 +87,10 @@ class RoutesOverlayContainerController: ViewController {
             return .progressing
         }
     }
+    
+    override func loadView() {
+        view = PassThroughView()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,15 +100,12 @@ class RoutesOverlayContainerController: ViewController {
         view.addSubview(translatedView)
         translatedView.pinToSuperview(edges: [.left, .right, .bottom])
         translatedViewHeightContraint.isActive = true
-        translatedView.backgroundColor = Color.grey.lighten4
         translatedView.layer.cornerRadius = 32
         
         addChild(overlayController, in: translatedView, edges: [.right, .left, .top])
         overlayController.view.heightAnchor.constraint(equalToConstant: Constants.maximumHeight).isActive = true
         overlayController.overlayDelegate = self
         overlayController.routeSelectionDelegate = self
-        overlayController.tableView.layer.cornerRadius = 32
-        overlayController.tableView.backgroundColor = Color.grey.lighten4
         
         moveOverlay(to: .maximum)
     }

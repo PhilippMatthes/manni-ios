@@ -20,14 +20,15 @@ class RouteDetail {
     }
     
     enum Position {
-        case top, bottom
+        case top, bottom, both
     }
     
     class Cell: TableViewCell {
         fileprivate let upperDotView = UIView()
         fileprivate let lowerDotView = UIView()
         fileprivate let innerView = UIView()
-        fileprivate let separatorView = UIView()
+        fileprivate let bottomSeparatorView = UIView()
+        fileprivate let topSeparatorView = UIView()
         
         public class var reuseIdentifier: String {
             return "RouteDetail.Cell"
@@ -35,12 +36,21 @@ class RouteDetail {
         
         override func prepare() {
             super.prepare()
-            contentView.layout(separatorView)
+            backgroundColor = .clear
+            
+            contentView.layout(topSeparatorView)
+                .top()
+                .right()
+                .left(58)
+                .height(1)
+            topSeparatorView.backgroundColor = Color.grey.lighten2
+            
+            contentView.layout(bottomSeparatorView)
                 .bottom()
                 .right()
                 .left(58)
                 .height(1)
-            separatorView.backgroundColor = Color.grey.lighten3
+            bottomSeparatorView.backgroundColor = Color.grey.lighten2
             
             contentView.layout(upperDotView)
                 .left(24)
@@ -68,13 +78,24 @@ class RouteDetail {
         public func prepare(for detail: RouteDetail) {
             switch detail.position {
             case .top:
+                topSeparatorView.isHidden = true
                 upperDotView.isHidden = true
+                bottomSeparatorView.isHidden = false
                 lowerDotView.isHidden = false
             case .bottom:
+                topSeparatorView.isHidden = false
                 upperDotView.isHidden = false
+                bottomSeparatorView.isHidden = true
+                lowerDotView.isHidden = true
+            case .both:
+                topSeparatorView.isHidden = true
+                upperDotView.isHidden = true
+                bottomSeparatorView.isHidden = true
                 lowerDotView.isHidden = true
             case .none:
+                topSeparatorView.isHidden = false
                 upperDotView.isHidden = false
+                bottomSeparatorView.isHidden = false
                 lowerDotView.isHidden = false
             }
         }
@@ -119,7 +140,7 @@ class RouteByFoot: RouteDetail {
             icon.tintColor = Color.grey.base
             
             innerView.layout(label)
-                .after(label, 24)
+                .after(icon, 18)
                 .centerY()
                 .right(24)
             label.font = RobotoFont.bold(with: 16)

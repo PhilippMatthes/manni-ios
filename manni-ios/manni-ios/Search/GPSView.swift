@@ -64,12 +64,21 @@ extension GPSView: Revealable {
         pullIcon.transform = .init(translationX: 0, y: -64)
     }
     
-    func reveal(completion: @escaping (() -> ())) {
-        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
-            self.pullIcon.transform = .identity
-        }, completion: {
-            _ in
-            completion()
-        })
+    func reveal(reverse: Bool, completion: @escaping (() -> ())) {
+        if reverse {
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                self.pullIcon.transform = .init(translationX: 0, y: -64)
+            }, completion: {
+                _ in
+                completion()
+            })
+        } else {
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                self.pullIcon.transform = .identity
+            }, completion: {
+                _ in
+                completion()
+            })
+        }
     }
 }

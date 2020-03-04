@@ -27,6 +27,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window!.rootViewController = rootViewController
         window!.makeKeyAndVisible()
         
+        if #available(iOS 11.0, *) {
+            if let topInset = window?.safeAreaInsets.top, topInset > 0 {
+                // iPhone X
+                let frame = CGRect(x: 0, y: 0, width: Screen.width, height: topInset)
+                let nodgeView = UIView()
+                let gradientLayer = CAGradientLayer()
+                gradientLayer.colors = [
+                    UIColor.black.withAlphaComponent(0.5).cgColor,
+                    UIColor.clear.cgColor
+                ]
+                gradientLayer.startPoint = .init(x: 0, y: 0)
+                gradientLayer.endPoint = .init(x: 0, y: 1)
+                gradientLayer.frame = frame
+                nodgeView.layer.addSublayer(gradientLayer)
+                nodgeView.frame = frame
+                window!.addSubview(nodgeView)
+            }
+        }
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: nil)
         tapGesture.delegate = self
         window!.addGestureRecognizer(tapGesture)

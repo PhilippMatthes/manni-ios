@@ -94,6 +94,8 @@ class SearchController: ViewController {
         prepareSearchView()
         prepareLocationManager()
         
+        prepareReveal()
+        
         NotificationCenter.default.addObserver(self, selector:#selector(viewWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
 
     }
@@ -107,6 +109,8 @@ class SearchController: ViewController {
         } else {
             UIView.transition(with: self.tableView, duration: 0.2, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
         }
+        
+        reveal(reverse: false) {}
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,9 +121,6 @@ class SearchController: ViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        searchView.reveal {}
-        gpsView.reveal {}
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -135,6 +136,20 @@ class SearchController: ViewController {
     }
     
 }
+
+
+extension SearchController: Revealable {
+    func prepareReveal() {
+        searchView.prepareReveal()
+        gpsView.prepareReveal()
+    }
+    
+    func reveal(reverse: Bool, completion: @escaping (() -> ())) {
+        gpsView.reveal(reverse: reverse) {}
+        searchView.reveal(reverse: reverse) {completion()}
+    }
+}
+
 
 extension SearchController {
     
@@ -184,23 +199,25 @@ extension SearchController {
         )
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.contentInset = .init(top: gpsViewCollapsedHeight, left: 0, bottom: 256, right: 0)
+        tableView.contentInset = .init(top: gpsViewCollapsedHeight, left: 0, bottom: 128, right: 0)
         tableView.backgroundColor = .clear
+        tableView.showsVerticalScrollIndicator = false
         if #available(iOS 11.0, *) {
             tableView.dragDelegate = self
             tableView.dragInteractionEnabled = true
         }
         
-        let tableViewBackground = UIView()
+        let tableViewBackground = SkeuomorphismView()
+        tableViewBackground.gradient = Gradients.cloudsInverse
         tableView.insertSubview(tableViewBackground, at: 0)
         tableViewBackground.layer.zPosition = -1
-        tableViewBackground.layer.cornerRadius = 24
-        tableViewBackground.translatesAutoresizingMaskIntoConstraints = false
+        tableViewBackground.cornerRadius = 24
         tableViewBackground.isUserInteractionEnabled = false
-        view.backgroundColor = Color.grey.lighten2
-        tableViewBackground.backgroundColor = view.backgroundColor
+        tableViewBackground.lightShadowOpacity = 0
+        tableViewBackground.darkShadowOpacity = 0
+        tableViewBackground.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint(item: tableViewBackground, attribute: .height, relatedBy: .equal, toItem: tableView, attribute: .height, multiplier: 1.0, constant: 64).isActive = true
+        NSLayoutConstraint(item: tableViewBackground, attribute: .height, relatedBy: .equal, toItem: tableView, attribute: .height, multiplier: 1.0, constant: 64 + Screen.height).isActive = true
         NSLayoutConstraint(item: tableViewBackground, attribute: .width, relatedBy: .equal, toItem: tableView, attribute: .width, multiplier: 1.0, constant: 0.0).isActive = true
         NSLayoutConstraint(item: tableViewBackground, attribute: .top, relatedBy: .equal, toItem: tableView, attribute: .top, multiplier: 1.0, constant: -32).isActive = true
         NSLayoutConstraint(item: tableViewBackground, attribute: .centerX, relatedBy: .equal, toItem: tableView, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
@@ -211,7 +228,6 @@ extension SearchController {
         gpsView.translatesAutoresizingMaskIntoConstraints = false
         gpsView.layer.zPosition = -2
         gpsView.cornerRadius = 0
-        gpsView.prepareReveal()
         
         NSLayoutConstraint(item: gpsView, attribute: .height, relatedBy: .equal, toItem: tableView, attribute: .height, multiplier: 1.0, constant: 0.0).isActive = true
         NSLayoutConstraint(item: gpsView, attribute: .width, relatedBy: .equal, toItem: tableView, attribute: .width, multiplier: 1.0, constant: 0.0).isActive = true
@@ -225,7 +241,6 @@ extension SearchController {
             .left(12)
             .right(12)
         searchView.delegate = self
-        searchView.prepareReveal()
     }
     
     fileprivate func prepareLocationManager() {
@@ -243,8 +258,12 @@ extension SearchController: UITableViewDragDelegate {
     }
 }
 
-extension SearchController: UIAdaptivePresentationControllerDelegate {
+extension SearchController: UIAdaptivePresentationControllerDelegate, ProgrammaticDismissDelegate {
     func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
+        viewWillEnterForeground()
+    }
+    
+    func willDismissProgrammatically() {
         viewWillEnterForeground()
     }
 }
@@ -264,9 +283,12 @@ extension SearchController: SearchViewDelegate {
     func search(routeFrom departureStop: Stop, to destinationStop: Stop) {
         let controller = RoutesController()
         controller.endpoints = (departureStop, destinationStop)
-        controller.modalPresentationStyle = .fullScreen
+        controller.programmaticDismissDelegate = self
+        controller.modalPresentationStyle = .overFullScreen
         controller.presentationController?.delegate = self
-        present(controller, animated: true)
+        reveal(reverse: true) {
+            self.present(controller, animated: true)
+        }
     }
     
     func search(query: String) {
@@ -450,6 +472,24 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
         
         let stop = indexPath.section == 0 ? fetchedStops[indexPath.row] : suggestedStops[indexPath.row]
         
+        // If a search view stop input is focused, set the stop on that
+        var didSetStopOnInputs = false
+        if searchView.routeStopDepartureInputView.isSelected == true {
+            searchView.routeStopDepartureInputView.stop = stop
+            searchView.routeStopDepartureInputView.isSelected = false
+            didSetStopOnInputs = true
+        }
+        if searchView.routeStopDestinationInputView.isSelected == true {
+            searchView.routeStopDestinationInputView.stop = stop
+            searchView.routeStopDestinationInputView.isSelected = false
+            didSetStopOnInputs = true
+        }
+        
+        guard !didSetStopOnInputs else {return}
+        
+        // Otherwise, log the "visit" of this stop
+        // and open a departure controller
+        
         routeGraph.visit(stop: stop)
         DispatchQueue.global(qos: .background).async {
             RouteGraph.main = self.routeGraph
@@ -457,11 +497,14 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
         
         let controller = DeparturesController()
         controller.stop = stop
+        controller.programmaticDismissDelegate = self
         controller.presentationController?.delegate = self
         if let location = locationManager.location {
             controller.location = location
         }
-        present(controller, animated: true)
+        reveal(reverse: true) {
+            self.present(controller, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -506,6 +549,9 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
 extension SearchController {
     @objc func didSelectSuggestionInfoButton() {
         let controller = SuggestionInformationController()
-        present(controller, animated: true)
+        controller.presentationController?.delegate = self
+        reveal(reverse: true) {
+            self.present(controller, animated: true)
+        }
     }
 }

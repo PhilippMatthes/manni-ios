@@ -18,9 +18,16 @@ class ModeChainCollectionViewCell: UICollectionViewCell {
     public var modeElement: Route.ModeElement? {
         didSet {
             guard let modeElement = modeElement else {return}
-            modeNameLabelBackground.gradient = modeElement.gradient
-            modeNameLabel.text = modeElement.name ?? ""
-            modeDirectionLabel.text = modeElement.direction ?? ""
+            if modeElement.mode == Mode.footpath {
+                modeNameLabelBackground.alpha = 0
+                modeNameLabel.text = nil
+                modeDirectionLabel.text = nil
+            } else {
+                modeNameLabelBackground.alpha = 1
+                modeNameLabelBackground.gradient = modeElement.gradient
+                modeNameLabel.text = modeElement.name
+                modeDirectionLabel.text = modeElement.direction
+            }
             modeImage.image = modeElement.mode?.icon
         }
     }

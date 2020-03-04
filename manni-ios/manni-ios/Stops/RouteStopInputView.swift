@@ -18,11 +18,24 @@ class RouteStopInputView: SkeuomorphismView {
     public var stop: Stop? {
         didSet {
             guard let stop = stop else {return}
-            lightColor = stop.gradient.first ?? .white
-            gradient = stop.gradient
+            lightColor = Color.grey.lighten5
+            contentView.backgroundColor = .white
             stopLabel.text = stop.name
-            stopLabel.textColor = .white
-            layoutSubviews()
+            stopLabel.textColor = .black
+        }
+    }
+    
+    public var isSelected: Bool? {
+        didSet {
+            if isSelected == true {
+                self.borderLayer.lineDashPattern = nil
+                self.borderLayer.lineWidth = 3
+                self.borderLayer.strokeColor = Color.blue.accent4.cgColor
+            } else {
+                self.borderLayer.lineDashPattern = [4, 4]
+                self.borderLayer.lineWidth = 1
+                self.borderLayer.strokeColor = Color.grey.base.cgColor
+            }
         }
     }
     
@@ -36,6 +49,18 @@ class RouteStopInputView: SkeuomorphismView {
             prepareDropInteraction()
             prepareDragInteraction()
         }
+        
+        lightShadowOpacity = 0
+        darkShadowOpacity = 0
+        
+        stopLabel.font = RobotoFont.regular(with: 22)
+        
+        isSelected = false
+        borderLayer.fillColor = nil
+        borderLayer.lineCap = .round
+        borderLayer.lineJoin = .round
+        
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapView)))
     }
     
     override func layoutSubviews() {
@@ -45,17 +70,8 @@ class RouteStopInputView: SkeuomorphismView {
             .centerY()
             .left(16)
             .right(16)
-        stopLabel.font = RobotoFont.regular(with: 22)
-        
-        lightShadowOpacity = 0
-        darkShadowOpacity = 0
-        
-        borderLayer.strokeColor = Color.grey.base.cgColor
-        borderLayer.lineDashPattern = [4, 4]
-        borderLayer.lineCap = .round
-        borderLayer.lineJoin = .round
+
         borderLayer.frame = bounds
-        borderLayer.fillColor = nil
         borderLayer.cornerRadius = cornerRadius
         let roundedCorners: UIRectCorner = self.roundedCorners ?? UIRectCorner.allCorners
         let path = UIBezierPath(
@@ -67,6 +83,14 @@ class RouteStopInputView: SkeuomorphismView {
         layer.addSublayer(borderLayer)
     }
     
+    @objc func didTapView() {
+        if let isSelected = isSelected {
+            self.isSelected = !isSelected
+        } else {
+            self.isSelected = true
+        }
+    }
+    
 }
 
 
@@ -75,13 +99,22 @@ extension RouteStopInputView: Revealable {
         stopLabel.alpha = 0
     }
     
-    func reveal(completion: @escaping (() -> ())) {
-        UIView.animate(withDuration: 1, animations: {
-            self.stopLabel.alpha = 1
-        }, completion: {
-            _ in
-            completion()
-        })
+    func reveal(reverse: Bool, completion: @escaping (() -> ())) {
+        if reverse {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.stopLabel.alpha = 0
+            }, completion: {
+                _ in
+                completion()
+            })
+        } else {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.stopLabel.alpha = 1
+            }, completion: {
+                _ in
+                completion()
+            })
+        }
     }
 }
 
@@ -91,7 +124,6 @@ extension RouteStopInputView: UIDragInteractionDelegate {
         isUserInteractionEnabled = true
         addInteraction(UIDragInteraction(delegate: self))
     }
-    
         
     func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
         guard let stop = stop else {return []}
@@ -116,7 +148,16 @@ extension RouteStopInputView: UIDropInteractionDelegate {
     }
     
     func dropInteraction(_ interaction: UIDropInteraction, sessionDidEnter session: UIDropSession) {
+        isSelected = true
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
+    }
+    
+    func dropInteraction(_ interaction: UIDropInteraction, sessionDidExit session: UIDropSession) {
+        isSelected = false
+    }
+    
+    func dropInteraction(_ interaction: UIDropInteraction, sessionDidEnd session: UIDropSession) {
+        isSelected = false
     }
     
     func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
