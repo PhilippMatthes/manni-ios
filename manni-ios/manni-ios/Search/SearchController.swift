@@ -552,6 +552,7 @@ extension SearchController {
     @objc func didSelectSuggestionInfoButton() {
         let controller = SuggestionInformationController()
         controller.presentationController?.delegate = self
+        controller.programmaticDismissDelegate = self
         reveal(reverse: true) {
             self.present(controller, animated: true)
         }

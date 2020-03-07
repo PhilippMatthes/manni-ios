@@ -19,9 +19,31 @@ class RouteDetailController: ViewController {
     
     public var programmaticDismissDelegate: ProgrammaticDismissDelegate?
     
+    fileprivate let routeIcon = UIImageView(
+        image: UIImage.fontAwesomeIcon(
+            name: .route,
+            style: .solid,
+            textColor: .white,
+            size: .init(width: 128, height: 128)
+        ).withRenderingMode(.alwaysTemplate)
+    )
+    
     fileprivate let backButton = SkeuomorphismIconButton(image: Icon.arrowBack, tintColor: Color.grey.darken4)
     fileprivate let tableView = TableView()
     
+    private var showsRouteIcon: Bool = true {
+        didSet {
+            if showsRouteIcon {
+                UIView.animate(withDuration: 0.3) {
+                    self.routeIcon.alpha = 1
+                }
+            } else {
+                UIView.animate(withDuration: 0.3) {
+                    self.routeIcon.alpha = 0
+                }
+            }
+        }
+    }
     private var routeDetails = [RouteDetail]()
     
     override func viewDidLoad() {
@@ -76,6 +98,13 @@ extension RouteDetailController {
             .height(64)
         backButton.addTarget(self, action: #selector(backButtonTouched), for: .touchUpInside)
         
+        tableViewBackground.layout(routeIcon)
+            .below(backButton, 24)
+            .width(128)
+            .height(128)
+            .centerX()
+        routeIcon.tintColor = Color.grey.lighten4
+        
         NSLayoutConstraint(item: tableViewBackground, attribute: .height, relatedBy: .equal, toItem: tableView, attribute: .height, multiplier: 1.0, constant: 64 + Screen.height).isActive = true
         NSLayoutConstraint(item: tableViewBackground, attribute: .width, relatedBy: .equal, toItem: tableView, attribute: .width, multiplier: 1.0, constant: 0.0).isActive = true
         NSLayoutConstraint(item: tableViewBackground, attribute: .top, relatedBy: .equal, toItem: tableView, attribute: .top, multiplier: 1.0, constant: -96).isActive = true
@@ -122,6 +151,7 @@ extension RouteDetailController: UITableViewDelegate, UITableViewDataSource {
 extension RouteDetailController: RouteSelectionDelegate {
     func didSelect(route: Route) {
         collectRouteDetails(for: route)
+        showsRouteIcon = false
         tableView.reloadData()
     }
     
