@@ -331,21 +331,23 @@ extension SearchController: SearchViewDelegate {
 }
 
 extension SearchController {
-    @objc func keyboardWillShow(notification:NSNotification){
+    @objc func keyboardWillShow(notification: NSNotification){
         guard
             let userInfo = notification.userInfo,
             let keyboardFrameValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         else {return}
         let keyboardFrame = view.convert(keyboardFrameValue.cgRectValue, from: nil)
-        UIView.animate(withDuration: 0.2) {
-            self.view.frame.origin.y = -keyboardFrame.bounds.maxY + 16
+        if #available(iOS 11.0, *) {
+            let padding: CGFloat = 16
+            let addedSafeAreaInset = view.safeAreaInsets.bottom - padding
+            searchView.transform = .init(translationX: 0, y: -keyboardFrame.bounds.maxY + addedSafeAreaInset)
+        } else {
+            searchView.transform = .init(translationX: 0, y: -keyboardFrame.bounds.maxY)
         }
     }
 
-    @objc func keyboardWillHide(notification:NSNotification){
-        UIView.animate(withDuration: 0.2) {
-            self.view.frame.origin.y = 0
-        }
+    @objc func keyboardWillHide(notification: NSNotification){
+        searchView.transform = .identity
     }
 }
 
