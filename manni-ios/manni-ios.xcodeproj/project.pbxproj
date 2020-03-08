@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		601F991BF36BE67B31FCCE42 /* Pods_manni_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D4BBB96EF853D7F691F3047 /* Pods_manni_ios.framework */; };
+		983EBDC58627B44882BA2143 /* Pods_manni_watchos_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17EECC6CDFCFE01FC23F5C72 /* Pods_manni_watchos_Extension.framework */; };
 		BE02038823E82D2E00E7D5DC /* UIColor+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02038723E82D2E00E7D5DC /* UIColor+Tools.swift */; };
 		BE02038B23E835E800E7D5DC /* DepartureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02038A23E835E800E7D5DC /* DepartureCollectionViewCell.swift */; };
 		BE02038D23E83FEE00E7D5DC /* DVB+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02038C23E83FEE00E7D5DC /* DVB+UIColor.swift */; };
@@ -19,6 +20,15 @@
 		BE20DA4D240FFDC100A9996F /* ProgrammaticDismissDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE20DA4C240FFDC100A9996F /* ProgrammaticDismissDelegate.swift */; };
 		BE3A574A2406C44C0059E2DA /* StopItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3A57492406C44C0059E2DA /* StopItemProvider.swift */; };
 		BE3A574C2406D0EF0059E2DA /* RouteStopInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3A574B2406D0EF0059E2DA /* RouteStopInputView.swift */; };
+		BE52DC472413DDAC0025C323 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE52DC452413DDAC0025C323 /* Interface.storyboard */; };
+		BE52DC492413DDAF0025C323 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE52DC482413DDAF0025C323 /* Assets.xcassets */; };
+		BE52DC502413DDB00025C323 /* manni-watchos Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BE52DC4F2413DDB00025C323 /* manni-watchos Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BE52DC552413DDB00025C323 /* StopViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE52DC542413DDB00025C323 /* StopViews.swift */; };
+		BE52DC572413DDB00025C323 /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE52DC562413DDB00025C323 /* HostingController.swift */; };
+		BE52DC592413DDB00025C323 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE52DC582413DDB00025C323 /* ExtensionDelegate.swift */; };
+		BE52DC5B2413DDB00025C323 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE52DC5A2413DDB00025C323 /* Assets.xcassets */; };
+		BE52DC5E2413DDB00025C323 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE52DC5D2413DDB00025C323 /* Preview Assets.xcassets */; };
+		BE52DC622413DDB00025C323 /* manni-watchos.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BE52DC432413DDAC0025C323 /* manni-watchos.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BE5AABFB23E756A9006EE1BD /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5AABFA23E756A9006EE1BD /* SearchController.swift */; };
 		BE6213F923E76EAA00FD638E /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6213F823E76EAA00FD638E /* StopTableViewCell.swift */; };
 		BE62CCB623EEFC7C00B9469E /* SuggestionInformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62CCB523EEFC7C00B9469E /* SuggestionInformationController.swift */; };
@@ -29,6 +39,12 @@
 		BE69C256240A97F600C036D3 /* RoutesOverlayContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69C255240A97F600C036D3 /* RoutesOverlayContainerController.swift */; };
 		BE69C25A240AA08300C036D3 /* UIViewController+Pinning.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69C259240AA08300C036D3 /* UIViewController+Pinning.swift */; };
 		BE69C25C240B995000C036D3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69C25B240B995000C036D3 /* LoadingView.swift */; };
+		BE7856FA24150D1F003A4901 /* DepartureViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7856F924150D1F003A4901 /* DepartureViews.swift */; };
+		BE7856FB24151042003A4901 /* UIColor+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02038723E82D2E00E7D5DC /* UIColor+Tools.swift */; };
+		BE7856FC2415104A003A4901 /* Gradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89198723F30DF80098A39B /* Gradients.swift */; };
+		BE7856FD24151053003A4901 /* DVB+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02038C23E83FEE00E7D5DC /* DVB+UIColor.swift */; };
+		BE7856FE2415121B003A4901 /* DVB+ManniETA.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D0DEA23F1C168003DB75A /* DVB+ManniETA.swift */; };
+		BE78570124153B21003A4901 /* Stop+Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC77FCC23E9BCED0042CD48 /* Stop+Distance.swift */; };
 		BE89198623F3085B0098A39B /* TripController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89198523F3085B0098A39B /* TripController.swift */; };
 		BE89198823F30DF80098A39B /* Gradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89198723F30DF80098A39B /* Gradients.swift */; };
 		BEB1B754240D253300FF3122 /* RouteDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB1B753240D253300FF3122 /* RouteDetails.swift */; };
@@ -48,9 +64,54 @@
 		BEFE77E7240C108800A0E1F1 /* AnimatableMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFE77E6240C108800A0E1F1 /* AnimatableMapView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BE52DC512413DDB00025C323 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEDAA48423E7541900A25187 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BE52DC4E2413DDB00025C323;
+			remoteInfo = "manni-watchos Extension";
+		};
+		BE52DC602413DDB00025C323 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEDAA48423E7541900A25187 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BE52DC422413DDAC0025C323;
+			remoteInfo = "manni-watchos";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BE52DC632413DDB00025C323 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				BE52DC622413DDB00025C323 /* manni-watchos.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE52DC662413DDB00025C323 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BE52DC502413DDB00025C323 /* manni-watchos Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		17EECC6CDFCFE01FC23F5C72 /* Pods_manni_watchos_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_manni_watchos_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D4BBB96EF853D7F691F3047 /* Pods_manni_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_manni_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C386E87EF8C59FA3321A287 /* Pods-manni-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-manni-ios/Pods-manni-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		8298A1E81B318C4E23C1263B /* Pods_manni_watchos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_manni_watchos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A39B1FCC292503A5480A530E /* Pods-manni-watchos Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni-watchos Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-manni-watchos Extension/Pods-manni-watchos Extension.release.xcconfig"; sourceTree = "<group>"; };
 		BE02038723E82D2E00E7D5DC /* UIColor+Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Tools.swift"; sourceTree = "<group>"; };
 		BE02038A23E835E800E7D5DC /* DepartureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureCollectionViewCell.swift; sourceTree = "<group>"; };
 		BE02038C23E83FEE00E7D5DC /* DVB+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DVB+UIColor.swift"; sourceTree = "<group>"; };
@@ -62,6 +123,17 @@
 		BE20DA4C240FFDC100A9996F /* ProgrammaticDismissDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgrammaticDismissDelegate.swift; sourceTree = "<group>"; };
 		BE3A57492406C44C0059E2DA /* StopItemProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopItemProvider.swift; sourceTree = "<group>"; };
 		BE3A574B2406D0EF0059E2DA /* RouteStopInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteStopInputView.swift; sourceTree = "<group>"; };
+		BE52DC432413DDAC0025C323 /* manni-watchos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "manni-watchos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE52DC462413DDAC0025C323 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		BE52DC482413DDAF0025C323 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BE52DC4A2413DDAF0025C323 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE52DC4F2413DDB00025C323 /* manni-watchos Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "manni-watchos Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE52DC542413DDB00025C323 /* StopViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopViews.swift; sourceTree = "<group>"; };
+		BE52DC562413DDB00025C323 /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
+		BE52DC582413DDB00025C323 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		BE52DC5A2413DDB00025C323 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BE52DC5D2413DDB00025C323 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BE52DC5F2413DDB00025C323 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE5AABFA23E756A9006EE1BD /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		BE6213F823E76EAA00FD638E /* StopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopTableViewCell.swift; sourceTree = "<group>"; };
 		BE62CCB523EEFC7C00B9469E /* SuggestionInformationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionInformationController.swift; sourceTree = "<group>"; };
@@ -72,6 +144,7 @@
 		BE69C255240A97F600C036D3 /* RoutesOverlayContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesOverlayContainerController.swift; sourceTree = "<group>"; };
 		BE69C259240AA08300C036D3 /* UIViewController+Pinning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Pinning.swift"; sourceTree = "<group>"; };
 		BE69C25B240B995000C036D3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		BE7856F924150D1F003A4901 /* DepartureViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureViews.swift; sourceTree = "<group>"; };
 		BE89198523F3085B0098A39B /* TripController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripController.swift; sourceTree = "<group>"; };
 		BE89198723F30DF80098A39B /* Gradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradients.swift; sourceTree = "<group>"; };
 		BEB1B753240D253300FF3122 /* RouteDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetails.swift; sourceTree = "<group>"; };
@@ -91,10 +164,26 @@
 		BEF3063324091A52005AE8A2 /* Revealable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Revealable.swift; sourceTree = "<group>"; };
 		BEFE77E4240C0FA100A0E1F1 /* RouteDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailController.swift; sourceTree = "<group>"; };
 		BEFE77E6240C108800A0E1F1 /* AnimatableMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableMapView.swift; sourceTree = "<group>"; };
+		DD7ECC1D890DFD7F99C1D9AB /* Pods-manni-watchos Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni-watchos Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-manni-watchos Extension/Pods-manni-watchos Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		F6419AB9B161AD29027F159A /* Pods-manni-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manni-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-manni-ios/Pods-manni-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9A36075938C145E454AD0CBD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE52DC4C2413DDB00025C323 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				983EBDC58627B44882BA2143 /* Pods_manni_watchos_Extension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BEDAA48923E7541900A25187 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -110,6 +199,8 @@
 			isa = PBXGroup;
 			children = (
 				2D4BBB96EF853D7F691F3047 /* Pods_manni_ios.framework */,
+				8298A1E81B318C4E23C1263B /* Pods_manni_watchos.framework */,
+				17EECC6CDFCFE01FC23F5C72 /* Pods_manni_watchos_Extension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -119,6 +210,8 @@
 			children = (
 				5C386E87EF8C59FA3321A287 /* Pods-manni-ios.debug.xcconfig */,
 				F6419AB9B161AD29027F159A /* Pods-manni-ios.release.xcconfig */,
+				DD7ECC1D890DFD7F99C1D9AB /* Pods-manni-watchos Extension.debug.xcconfig */,
+				A39B1FCC292503A5480A530E /* Pods-manni-watchos Extension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -153,6 +246,38 @@
 				BE89198523F3085B0098A39B /* TripController.swift */,
 			);
 			path = Trips;
+			sourceTree = "<group>";
+		};
+		BE52DC442413DDAC0025C323 /* manni-watchos */ = {
+			isa = PBXGroup;
+			children = (
+				BE52DC452413DDAC0025C323 /* Interface.storyboard */,
+				BE52DC482413DDAF0025C323 /* Assets.xcassets */,
+				BE52DC4A2413DDAF0025C323 /* Info.plist */,
+			);
+			path = "manni-watchos";
+			sourceTree = "<group>";
+		};
+		BE52DC532413DDB00025C323 /* manni-watchos Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BE52DC542413DDB00025C323 /* StopViews.swift */,
+				BE7856F924150D1F003A4901 /* DepartureViews.swift */,
+				BE52DC562413DDB00025C323 /* HostingController.swift */,
+				BE52DC582413DDB00025C323 /* ExtensionDelegate.swift */,
+				BE52DC5A2413DDB00025C323 /* Assets.xcassets */,
+				BE52DC5F2413DDB00025C323 /* Info.plist */,
+				BE52DC5C2413DDB00025C323 /* Preview Content */,
+			);
+			path = "manni-watchos Extension";
+			sourceTree = "<group>";
+		};
+		BE52DC5C2413DDB00025C323 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				BE52DC5D2413DDB00025C323 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		BE6213FA23E76FFD00FD638E /* Skeuomorphism */ = {
@@ -203,6 +328,8 @@
 			isa = PBXGroup;
 			children = (
 				BEDAA48E23E7541900A25187 /* manni-ios */,
+				BE52DC442413DDAC0025C323 /* manni-watchos */,
+				BE52DC532413DDB00025C323 /* manni-watchos Extension */,
 				BEDAA48D23E7541900A25187 /* Products */,
 				A747C1C627FA09546CA9ECA2 /* Pods */,
 				9D0EA4BB0C1043A17C3F5731 /* Frameworks */,
@@ -213,6 +340,8 @@
 			isa = PBXGroup;
 			children = (
 				BEDAA48C23E7541900A25187 /* Manni.app */,
+				BE52DC432413DDAC0025C323 /* manni-watchos.app */,
+				BE52DC4F2413DDB00025C323 /* manni-watchos Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -254,6 +383,43 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		BE52DC422413DDAC0025C323 /* manni-watchos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE52DC6A2413DDB00025C323 /* Build configuration list for PBXNativeTarget "manni-watchos" */;
+			buildPhases = (
+				BE52DC412413DDAC0025C323 /* Resources */,
+				BE52DC662413DDB00025C323 /* Embed App Extensions */,
+				9A36075938C145E454AD0CBD /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BE52DC522413DDB00025C323 /* PBXTargetDependency */,
+			);
+			name = "manni-watchos";
+			productName = "manni-watchos";
+			productReference = BE52DC432413DDAC0025C323 /* manni-watchos.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		BE52DC4E2413DDB00025C323 /* manni-watchos Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE52DC692413DDB00025C323 /* Build configuration list for PBXNativeTarget "manni-watchos Extension" */;
+			buildPhases = (
+				C4182CAB687BAABDBB6FFF9D /* [CP] Check Pods Manifest.lock */,
+				BE52DC4B2413DDB00025C323 /* Sources */,
+				BE52DC4C2413DDB00025C323 /* Frameworks */,
+				BE52DC4D2413DDB00025C323 /* Resources */,
+				32FE287348560EE04588FCAE /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "manni-watchos Extension";
+			productName = "manni-watchos Extension";
+			productReference = BE52DC4F2413DDB00025C323 /* manni-watchos Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		BEDAA48B23E7541900A25187 /* manni-ios */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BEDAA4A023E7541A00A25187 /* Build configuration list for PBXNativeTarget "manni-ios" */;
@@ -263,10 +429,12 @@
 				BEDAA48923E7541900A25187 /* Frameworks */,
 				BEDAA48A23E7541900A25187 /* Resources */,
 				2880759BB3FDC8873853FAAE /* [CP] Embed Pods Frameworks */,
+				BE52DC632413DDB00025C323 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BE52DC612413DDB00025C323 /* PBXTargetDependency */,
 			);
 			name = "manni-ios";
 			productName = "manni-ios";
@@ -283,6 +451,12 @@
 				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Philipp Matthes";
 				TargetAttributes = {
+					BE52DC422413DDAC0025C323 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+					BE52DC4E2413DDB00025C323 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
 					BEDAA48B23E7541900A25187 = {
 						CreatedOnToolsVersion = 11.2.1;
 						LastSwiftMigration = 1120;
@@ -303,11 +477,31 @@
 			projectRoot = "";
 			targets = (
 				BEDAA48B23E7541900A25187 /* manni-ios */,
+				BE52DC422413DDAC0025C323 /* manni-watchos */,
+				BE52DC4E2413DDB00025C323 /* manni-watchos Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		BE52DC412413DDAC0025C323 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE52DC492413DDAF0025C323 /* Assets.xcassets in Resources */,
+				BE52DC472413DDAC0025C323 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE52DC4D2413DDB00025C323 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE52DC5E2413DDB00025C323 /* Preview Assets.xcassets in Resources */,
+				BE52DC5B2413DDB00025C323 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BEDAA48A23E7541900A25187 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -346,7 +540,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-manni-ios/Pods-manni-ios-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/DVB/DVB.framework",
+				"${BUILT_PRODUCTS_DIR}/DVB-iOS/DVB.framework",
 				"${BUILT_PRODUCTS_DIR}/FontAwesome.swift/FontAwesome_swift.framework",
 				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
 				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
@@ -363,9 +557,61 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-manni-ios/Pods-manni-ios-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		32FE287348560EE04588FCAE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-manni-watchos Extension/Pods-manni-watchos Extension-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DVB-watchOS/DVB.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DVB.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-manni-watchos Extension/Pods-manni-watchos Extension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C4182CAB687BAABDBB6FFF9D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-manni-watchos Extension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BE52DC4B2413DDB00025C323 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE52DC572413DDB00025C323 /* HostingController.swift in Sources */,
+				BE7856FE2415121B003A4901 /* DVB+ManniETA.swift in Sources */,
+				BE7856FB24151042003A4901 /* UIColor+Tools.swift in Sources */,
+				BE7856FA24150D1F003A4901 /* DepartureViews.swift in Sources */,
+				BE78570124153B21003A4901 /* Stop+Distance.swift in Sources */,
+				BE52DC552413DDB00025C323 /* StopViews.swift in Sources */,
+				BE7856FD24151053003A4901 /* DVB+UIColor.swift in Sources */,
+				BE52DC592413DDB00025C323 /* ExtensionDelegate.swift in Sources */,
+				BE7856FC2415104A003A4901 /* Gradients.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BEDAA48823E7541900A25187 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -410,7 +656,28 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		BE52DC522413DDB00025C323 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BE52DC4E2413DDB00025C323 /* manni-watchos Extension */;
+			targetProxy = BE52DC512413DDB00025C323 /* PBXContainerItemProxy */;
+		};
+		BE52DC612413DDB00025C323 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BE52DC422413DDAC0025C323 /* manni-watchos */;
+			targetProxy = BE52DC602413DDB00025C323 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		BE52DC452413DDAC0025C323 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE52DC462413DDAC0025C323 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		BEDAA49A23E7541A00A25187 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -422,6 +689,94 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		BE52DC642413DDB00025C323 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S36925NV4E;
+				IBSC_MODULE = manni_watchos_Extension;
+				INFOPLIST_FILE = "manni-watchos/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.philippmatthes.manni-ios.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Debug;
+		};
+		BE52DC652413DDB00025C323 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S36925NV4E;
+				IBSC_MODULE = manni_watchos_Extension;
+				INFOPLIST_FILE = "manni-watchos/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.philippmatthes.manni-ios.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Release;
+		};
+		BE52DC672413DDB00025C323 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD7ECC1D890DFD7F99C1D9AB /* Pods-manni-watchos Extension.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"manni-watchos Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = S36925NV4E;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "manni-watchos Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.philippmatthes.manni-ios.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Debug;
+		};
+		BE52DC682413DDB00025C323 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A39B1FCC292503A5480A530E /* Pods-manni-watchos Extension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"manni-watchos Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = S36925NV4E;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "manni-watchos Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.philippmatthes.manni-ios.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Release;
+		};
 		BEDAA49E23E7541A00A25187 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -588,6 +943,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BE52DC692413DDB00025C323 /* Build configuration list for PBXNativeTarget "manni-watchos Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE52DC672413DDB00025C323 /* Debug */,
+				BE52DC682413DDB00025C323 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE52DC6A2413DDB00025C323 /* Build configuration list for PBXNativeTarget "manni-watchos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE52DC642413DDB00025C323 /* Debug */,
+				BE52DC652413DDB00025C323 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BEDAA48723E7541900A25187 /* Build configuration list for PBXProject "manni-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

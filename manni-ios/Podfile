@@ -10,3 +10,9 @@ target 'manni-ios' do
   pod 'Material'
   pod 'FontAwesome.swift'
 end
+
+target 'manni-watchos Extension' do
+  use_frameworks!
+
+  pod 'DVB', :git => 'https://github.com/manni-app/DVB.git', :branch => 'master'
+end
