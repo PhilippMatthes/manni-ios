@@ -133,10 +133,13 @@ struct StopView: View {
                 VStack {
                     Text("Haltestellen laden")
                         .font(.footnote)
+                        .multilineTextAlignment(.center)
                     Text("Nach Haltestellen in der Umgebung suchen")
                         .font(.footnote)
                         .foregroundColor(Color.white.opacity(0.7))
+                        .multilineTextAlignment(.center)
                 }
+                .multilineTextAlignment(.center)
             }
             .alert(isPresented: self.$orchestrator.showAlert) {
                 switch self.orchestrator.alertType {
@@ -152,7 +155,7 @@ struct StopView: View {
                     return Alert(title: Text("Unbekannter Fehler."), dismissButton: .default(Text("OK")))
                 }
             }
-            .multilineTextAlignment(.leading)
+            .multilineTextAlignment(.center)
             .listRowBackground(
                 LinearGradient(
                     gradient: Gradient(

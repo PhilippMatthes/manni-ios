@@ -24,7 +24,7 @@ class DepartureListViewOrchestrator: NSObject, ObservableObject {
         willSet {objectWillChange.send()}
     }
     
-    @Published public var showsAlert: Bool = false {
+    @Published public var showAlert: Bool = false {
         willSet {objectWillChange.send()}
     }
     
@@ -44,14 +44,14 @@ class DepartureListViewOrchestrator: NSObject, ObservableObject {
     
     init(
         stop: Stop? = nil,
-        showsAlert: Bool = false,
+        showAlert: Bool = false,
         alertType: DepartureListViewAlert? = nil,
         showsLoading: Bool = true,
         departures: [Departure] = []
     ) {
         super.init()
         self.stop = stop
-        self.showsAlert = showsAlert
+        self.showAlert = showAlert
         self.alertType = alertType
         self.showsLoading = showsLoading
         self.departures = departures
@@ -60,6 +60,7 @@ class DepartureListViewOrchestrator: NSObject, ObservableObject {
     @objc func loadDepartures() {
         guard let stop = stop else {return}
         
+        print("Fetch triggered")
         Departure.monitor(
             stopWithId: stop.id,
             dateType: .departure
@@ -76,12 +77,14 @@ class DepartureListViewOrchestrator: NSObject, ObservableObject {
                 DispatchQueue.main.async {
                     WKInterfaceDevice.current().play(.failure)
                     self.alertType = .apiFailure
-                    self.showsAlert = true
+                    self.showAlert = true
+                    self.scheduledTimer?.invalidate()
                 }
                 return
             }
             
             DispatchQueue.main.async {
+                WKInterfaceDevice.current().play(.click)
                 self.departures = success.departures
             }
             
@@ -96,9 +99,59 @@ class DepartureListViewOrchestrator: NSObject, ObservableObject {
 
 struct DepartureListView: View {
     @EnvironmentObject var orchestrator: DepartureListViewOrchestrator
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
         List {
+            Button(action: {
+                DispatchQueue.main.async {
+                    WKInterfaceDevice.current().play(.click)
+                    self.orchestrator.showsLoading = true
+                }
+                self.orchestrator.loadDepartures()
+            }) {
+                VStack {
+                    Text("Ansicht aktualisiert sich automatisch")
+                        .font(.footnote)
+                }
+            }
+            .alert(isPresented: self.$orchestrator.showAlert) {
+                let retryButton = Alert.Button.default(Text("Erneut versuchen"), action: {})
+                
+                let dismissButton = Alert.Button.cancel(Text("Abfahrten schließen"), action: {
+                    self.mode.wrappedValue.dismiss()
+                })
+                
+                switch self.orchestrator.alertType {
+                case .apiFailure:
+                    return Alert(title: Text("Fehler mit der VVO-Schnittstelle."), message: Text("Die VVO-Schnittstelle konnte nicht kontaktiert werden oder es gab einen anderen Fehler. Bitte versuche es erneut."), primaryButton: retryButton, secondaryButton: dismissButton)
+                case .none:
+                    return Alert(title: Text("Unbekannter Fehler."), primaryButton: retryButton, secondaryButton: dismissButton)
+                }
+            }
+            .multilineTextAlignment(.leading)
+            .listRowBackground(
+                LinearGradient(
+                    gradient: Gradient(
+                        colors: Gradients.blue.map {
+                            Color($0)
+                        }
+                    ),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .cornerRadius(8)
+                .shadow(
+                    color: Color(
+                        Gradients.blue.first!
+                    ).opacity(0.3),
+                    radius: 4,
+                    x: 0,
+                    y: -4
+                )
+            )
+            .padding(EdgeInsets(top: 12, leading: 4, bottom: 12, trailing: 4))
+            
             if (orchestrator.showsLoading) {
                 DepartureRowView(departure: nil)
                 DepartureRowView(departure: nil)
@@ -147,7 +200,7 @@ struct DepartureRowView: View {
                 }
             } else {
                 HStack {
-                    Text("")
+                    Text(" ")
                         .font(.headline)
                     Spacer()
                 }
@@ -215,6 +268,12 @@ struct DepartureListView_Previews: PreviewProvider {
                     departures: (0...20).map {
                         Departure(id: "\($0)", line: "\($0)", direction: "Dresden", mode: .bus, scheduledTime: Date().addingTimeInterval(1000 * Double($0)))
                     }
+                )
+            )
+            DepartureListView().environmentObject(
+                DepartureListViewOrchestrator(
+                    showAlert: true,
+                    alertType: .apiFailure
                 )
             )
         }
