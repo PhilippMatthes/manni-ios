@@ -125,7 +125,7 @@ struct StopView: View {
                 VStack {
                     Text("Haltestellen laden")
                         .font(.headline)
-                    Text("Nach Haltestellen mit GPS nahe der aktuellen Position suchen")
+                    Text("Nach Haltestellen in der Umgebung suchen")
                         .font(.footnote)
                 }
             }
