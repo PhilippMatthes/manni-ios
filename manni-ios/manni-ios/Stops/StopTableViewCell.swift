@@ -34,7 +34,7 @@ class StopTableViewCell: UITableViewCell {
     
     public var location: CLLocation? {
         didSet {
-            if let location = location, let distance = stop?.distance(from: location) {
+            if let location = location, let distance = stop?.approximateDistance(from: location) {
                 let distanceStr = distance > 1000 ? "\(distance / 1000) km" : "\(distance) m"
                 stopLocationLabel.text = "\(distanceStr) entfernt, in \(stop?.region ?? "Dresden")"
             }

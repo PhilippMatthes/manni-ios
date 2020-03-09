@@ -320,7 +320,7 @@ extension SearchController: SearchViewDelegate {
             
             self.fetchedStops = success.stops
             if let location = self.locationManager.location {
-                self.fetchedStops.sort {$0.distance(from: location) ?? 0 < $1.distance(from: location) ?? 0}
+                self.fetchedStops.sort {$0.approximateDistance(from: location) ?? 0 < $1.approximateDistance(from: location) ?? 0}
             }
             if #available(iOS 10.0, *) {
                 UINotificationFeedbackGenerator().notificationOccurred(.success)
@@ -421,7 +421,7 @@ extension SearchController: CLLocationManagerDelegate {
             
             self.fetchedStops = success.stops
             if let location = self.locationManager.location {
-                self.fetchedStops.sort {$0.distance(from: location) ?? 0 < $1.distance(from: location) ?? 0}
+                self.fetchedStops.sort {$0.approximateDistance(from: location) ?? 0 < $1.approximateDistance(from: location) ?? 0}
             }
             self.showsLoading = false
         }

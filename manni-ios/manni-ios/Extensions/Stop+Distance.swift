@@ -11,12 +11,27 @@ import CoreLocation
 
 extension Stop {
     
-    public func distance(from currentLocation: CLLocation) -> Int? {
+    public func approximateDistance(
+        from currentLocation: CLLocation,
+        accuracy: Int = Int(kCLLocationAccuracyHundredMeters)
+    ) -> Int? {
         guard let destination = location else {return nil}
         let latitude = destination.latitude
         let longitude = destination.longitude
         let coordinate = CLLocation(latitude: latitude, longitude: longitude)
-        return Int(coordinate.distance(from: currentLocation))
+        return coordinate.approximateDistance(from: currentLocation, accuracy: accuracy)
+    }
+    
+}
+
+extension CLLocation {
+    
+    public func approximateDistance(
+        from currentLocation: CLLocation,
+        accuracy: Int = Int(kCLLocationAccuracyHundredMeters)
+    ) -> Int {
+        guard accuracy != 0 else {return Int(self.distance(from: currentLocation))}
+        return Int(self.distance(from: currentLocation) / Double(accuracy)) * accuracy
     }
     
 }

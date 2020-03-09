@@ -23,7 +23,7 @@ enum StopViewAlert {
 class StopViewOrchestrator: NSObject, ObservableObject, CLLocationManagerDelegate {
     public let objectWillChange = PassthroughSubject<Void, Never>()
     
-    @Published public var showAlert: Bool = true {
+    @Published public var showAlert: Bool = false {
         willSet {objectWillChange.send()}
     }
     
@@ -41,8 +41,17 @@ class StopViewOrchestrator: NSObject, ObservableObject, CLLocationManagerDelegat
     
     private let locationManager: CLLocationManager = CLLocationManager()
     
-    override init() {
+    init(
+        showAlert: Bool = false,
+        alertType: StopViewAlert? = nil,
+        stops: [Stop] = [],
+        location: CLLocation? = nil
+    ) {
         super.init()
+        self.showAlert = showAlert
+        self.alertType = alertType
+        self.stops = stops
+        self.location = location
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
@@ -78,6 +87,8 @@ class StopViewOrchestrator: NSObject, ObservableObject, CLLocationManagerDelegat
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = manager.location else {return}
         
+        self.location = currentLocation
+        
         Stop.findNear(coord: currentLocation.coordinate) {
             result in
             guard let success = result.success else {
@@ -94,7 +105,7 @@ class StopViewOrchestrator: NSObject, ObservableObject, CLLocationManagerDelegat
             
             var fetchedStops = success.stops
             if let location = self.locationManager.location {
-                fetchedStops.sort {$0.distance(from: location) ?? 0 < $1.distance(from: location) ?? 0}
+                fetchedStops.sort {$0.approximateDistance(from: location) ?? 0 < $1.approximateDistance(from: location) ?? 0}
             }
             
             DispatchQueue.main.async {
@@ -180,7 +191,7 @@ struct StopRowView: View {
                     .font(.subheadline)
                     .foregroundColor(Color.black.opacity(0.7))
                 if location != nil && stop.location != nil {
-                    Text("\(Int(location!.distance(from: CLLocation(latitude: stop.location!.latitude, longitude: stop.location!.longitude)))) m entfernt")
+                    Text("\(location!.approximateDistance(from: CLLocation(latitude: stop.location!.latitude, longitude: stop.location!.longitude))) m entfernt")
                         .font(.footnote)
                         .foregroundColor(Color.black.opacity(0.7))
                 }
@@ -209,3 +220,24 @@ struct StopRowView: View {
         .padding(EdgeInsets(top: 12, leading: 4, bottom: 12, trailing: 4))
     }
 }
+
+#if DEBUG
+
+struct StopView_Previews: PreviewProvider {
+    static var previews: some View {
+        StopView().environmentObject(StopViewOrchestrator(
+            showAlert: true,
+            alertType: .locationAccessDenied,
+            stops: (0...20).map {
+                Stop(id: "\($0)",
+                name: "Haltestelle \($0)",
+                region: nil,
+                location: CLLocation(latitude: 51.05089 + (Double($0) / 10000), longitude: 13.73832).coordinate)
+            },
+            location: CLLocation(latitude: 51.05089, longitude: 13.73832)
+        ))
+    }
+}
+
+#endif
+
