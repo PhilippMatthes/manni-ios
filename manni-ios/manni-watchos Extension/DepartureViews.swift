@@ -12,10 +12,27 @@ import CoreLocation
 import DVB
 
 
+enum DepartureListViewAlert {
+    case apiFailure
+}
+
+
 class DepartureListViewOrchestrator: NSObject, ObservableObject {
     public let objectWillChange = PassthroughSubject<Void, Never>()
     
-    @Published public var stop: Stop? = nil {
+    @Published public var stop: Stop? {
+        willSet {objectWillChange.send()}
+    }
+    
+    @Published public var showsAlert: Bool = false {
+        willSet {objectWillChange.send()}
+    }
+    
+    @Published public var alertType: DepartureListViewAlert? {
+        willSet {objectWillChange.send()}
+    }
+    
+    @Published public var showsLoading: Bool = true {
         willSet {objectWillChange.send()}
     }
     
@@ -25,9 +42,19 @@ class DepartureListViewOrchestrator: NSObject, ObservableObject {
     
     private var scheduledTimer: Timer?
     
-    init(stop: Stop) {
+    init(
+        stop: Stop,
+        showsAlert: Bool = false,
+        alertType: DepartureListViewAlert? = nil,
+        showsLoading: Bool = true,
+        departures: [Departure] = []
+    ) {
         super.init()
         self.stop = stop
+        self.showsAlert = showsAlert
+        self.alertType = alertType
+        self.showsLoading = showsLoading
+        self.departures = departures
     }
     
     @objc func loadDepartures() {
@@ -38,7 +65,21 @@ class DepartureListViewOrchestrator: NSObject, ObservableObject {
             dateType: .departure
         ) {
             result in
-            guard let success = result.success else {return}
+            
+            DispatchQueue.main.async {
+                // Set showsLoading only once to
+                // provide a seamless experience
+                self.showsLoading = false
+            }
+            
+            guard let success = result.success else {
+                DispatchQueue.main.async {
+                    WKInterfaceDevice.current().play(.failure)
+                    self.alertType = .apiFailure
+                    self.showsAlert = true
+                }
+                return
+            }
             
             DispatchQueue.main.async {
                 self.departures = success.departures
@@ -58,9 +99,15 @@ struct DepartureListView: View {
     
     var body: some View {
         List {
-            ForEach(orchestrator.departures, id: \.id) {
-                departure in
-                DepartureRowView(departure: departure)
+            if (orchestrator.showsLoading) {
+                DepartureRowView(departure: nil)
+                DepartureRowView(departure: nil)
+                DepartureRowView(departure: nil)
+            } else {
+                ForEach(orchestrator.departures, id: \.id) {
+                    departure in
+                    DepartureRowView(departure: departure)
+                }
             }
         }
         .navigationBarTitle("Abfahrten")
@@ -70,17 +117,18 @@ struct DepartureListView: View {
 }
 
 struct DepartureRowView: View {
-    var departure: Departure
+    var departure: Departure?
     
     var body: some View {
-            VStack(alignment: HorizontalAlignment.leading, spacing: 4) {
-                Text("\(departure.line) \(departure.direction)")
+        VStack(alignment: HorizontalAlignment.leading, spacing: 4) {
+            if departure != nil {
+                Text("\(departure!.line) \(departure!.direction)")
                     .font(.headline)
-                Text("\(departure.realTime?.shortETAString ?? departure.scheduledTime.shortETAString)")
+                Text("\(departure!.realTime?.shortETAString ?? departure!.scheduledTime.shortETAString)")
                     .font(.subheadline)
-                if (departure.manniLatency != nil) {
+                if (departure!.manniLatency != nil) {
                     Spacer(minLength: 4)
-                    Text(departure.manniLatency!)
+                    Text(departure!.manniLatency!)
                         .font(.footnote)
                         .foregroundColor(Color.black)
                         .padding(4)
@@ -89,36 +137,72 @@ struct DepartureRowView: View {
                         .shadow(color: Color.white.opacity(0.3), radius: 4, x: -4, y: -4)
                         .shadow(color: Color.black.opacity(0.3), radius: 4, x: 4, y: 4)
                 }
+            } else {
+                HStack {
+                    Text("")
+                        .font(.headline)
+                    Spacer()
+                }
+                .background(Color.gray.opacity(0.3))
+                .cornerRadius(4)
+                HStack {
+                    Text(" ")
+                        .font(.subheadline)
+                    Spacer()
+                }
+                .background(Color.gray.opacity(0.3))
+                .cornerRadius(4)
             }
-            .listRowBackground(
-                LinearGradient(
-                    gradient: Gradient(
-                        colors: departure.gradient.map {
-                            Color($0)
-                        }
-                    ),
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-                .cornerRadius(8)
-                .shadow(
-                    color: Color(
-                        departure.gradient.first!
-                    ).opacity(0.3),
-                    radius: 4,
-                    x: 0,
-                    y: -4
-                )
-            )
-            .padding(EdgeInsets(top: 12, leading: 4, bottom: 12, trailing: 4))
         }
+        .listRowBackground(
+            LinearGradient(
+                gradient: Gradient(
+                    colors: departure?.gradient.map {
+                        Color($0)
+                    } ?? Gradients.clouds.map {
+                        Color($0)
+                    }
+                ),
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .cornerRadius(8)
+            .shadow(
+                color: Color(
+                    departure?.gradient.first ?? Gradients.clouds.first!
+                ).opacity(0.3),
+                radius: 4,
+                x: 0,
+                y: -4
+            )
+        )
+        .padding(EdgeInsets(top: 12, leading: 4, bottom: 12, trailing: 4))
+    }
 }
 
 #if DEBUG
 
+let stop = Stop(id: "33000028", name: "Hauptbahnhof", region: nil, location: nil)
+
 struct DepartureListView_Previews: PreviewProvider {
     static var previews: some View {
-        DepartureListView().environmentObject(DepartureListViewOrchestrator(stop: Stop(id: "33000028", name: "Hauptbahnhof", region: nil, location: nil)))
+        Group {
+            DepartureListView().environmentObject(
+                DepartureListViewOrchestrator(
+                    stop: stop,
+                    showsLoading: true
+                )
+            )
+            DepartureListView().environmentObject(
+                DepartureListViewOrchestrator(
+                    stop: stop,
+                    showsLoading: false,
+                    departures: (0...20).map {
+                        Departure(id: "\($0)", line: "\($0)", direction: "Dresden", mode: .bus, scheduledTime: Date().addingTimeInterval(1000 * Double($0)))
+                    }
+                )
+            )
+        }
     }
 }
 
