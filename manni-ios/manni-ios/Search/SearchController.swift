@@ -281,6 +281,12 @@ extension SearchController: ViewTapDelegate {
 
 extension SearchController: SearchViewDelegate {
     func search(routeFrom departureStop: Stop, to destinationStop: Stop) {
+        guard departureStop != destinationStop else {
+            let alert = UIAlertController(title: "Startpunkt und Endpunkt gleich.", message: "Wähle einen anderen Endpunkt oder einen anderen Startpunkt, um diese Route zu suchen.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
         let controller = RoutesController()
         controller.endpoints = (departureStop, destinationStop)
         controller.programmaticDismissDelegate = self
