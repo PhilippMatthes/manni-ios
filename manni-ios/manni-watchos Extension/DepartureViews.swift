@@ -97,6 +97,13 @@ class DepartureListViewOrchestrator: NSObject, ObservableObject {
 }
 
 
+internal extension Departure {
+    var identificator: String {
+        return "\(id) \(scheduledTime) \(String(describing: realTime))"
+    }
+}
+
+
 struct DepartureListView: View {
     @EnvironmentObject var orchestrator: DepartureListViewOrchestrator
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
@@ -157,7 +164,7 @@ struct DepartureListView: View {
                 DepartureRowView(departure: nil)
                 DepartureRowView(departure: nil)
             } else {
-                ForEach(orchestrator.departures, id: \.id) {
+                ForEach(orchestrator.departures, id: \.identificator) {
                     departure in
                     DepartureRowView(departure: departure)
                 }
