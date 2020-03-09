@@ -7,33 +7,65 @@
 //
 
 import SwiftUI
+import Combine
 import CoreLocation
 import DVB
 
 
+class DepartureListViewOrchestrator: NSObject, ObservableObject {
+    public let objectWillChange = PassthroughSubject<Void, Never>()
+    
+    @Published public var stop: Stop? = nil {
+        willSet {objectWillChange.send()}
+    }
+    
+    @Published public var departures: [Departure] = [] {
+        willSet {objectWillChange.send()}
+    }
+    
+    private var scheduledTimer: Timer?
+    
+    init(stop: Stop) {
+        super.init()
+        self.stop = stop
+    }
+    
+    @objc func loadDepartures() {
+        guard let stop = stop else {return}
+        
+        Departure.monitor(
+            stopWithId: stop.id,
+            dateType: .departure
+        ) {
+            result in
+            guard let success = result.success else {return}
+            
+            DispatchQueue.main.async {
+                self.departures = success.departures
+            }
+            
+            // Schedule next departure load
+            self.scheduledTimer?.invalidate()
+            self.scheduledTimer = Timer(fireAt: success.expirationTime, interval: 0, target: self, selector: #selector(self.loadDepartures), userInfo: nil, repeats: false)
+            RunLoop.main.add(self.scheduledTimer!, forMode: .common)
+        }
+    }
+}
+
+
 struct DepartureListView: View {
-    public var stop: Stop
-    @State private var departures = [Departure]()
+    @EnvironmentObject var orchestrator: DepartureListViewOrchestrator
     
     var body: some View {
         List {
-            ForEach(departures, id: \.id) {
+            ForEach(orchestrator.departures, id: \.id) {
                 departure in
                 DepartureRowView(departure: departure)
             }
         }
         .navigationBarTitle("Abfahrten")
         .listStyle(CarouselListStyle())
-        .onAppear(perform: loadDepartures)
-    }
-    
-    func loadDepartures() {
-        stop.monitor {
-            response in
-            if let success = response.success {
-                self.departures = success.departures
-            }
-        }
+        .onAppear(perform: orchestrator.loadDepartures)
     }
 }
 
@@ -86,7 +118,7 @@ struct DepartureRowView: View {
 
 struct DepartureListView_Previews: PreviewProvider {
     static var previews: some View {
-        DepartureListView(stop: Stop(id: "33000028", name: "Hauptbahnhof", region: nil, location: nil))
+        DepartureListView().environmentObject(DepartureListViewOrchestrator(stop: Stop(id: "33000028", name: "Hauptbahnhof", region: nil, location: nil)))
     }
 }
 

@@ -182,7 +182,9 @@ struct StopRowView: View {
     var location: CLLocation?
 
     var body: some View {
-        NavigationLink(destination: DepartureListView(stop: stop)) {
+        NavigationLink(destination: DepartureListView()
+            .environmentObject(DepartureListViewOrchestrator(stop: stop))
+        ) {
             VStack(alignment: HorizontalAlignment.leading) {
                 Text(stop.name)
                     .font(.headline)
