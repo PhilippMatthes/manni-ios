@@ -165,7 +165,10 @@ struct DepartureListView: View {
         }
         .navigationBarTitle("Abfahrten")
         .listStyle(CarouselListStyle())
-        .onAppear(perform: orchestrator.loadDepartures)
+        .onAppear {
+            WKInterfaceDevice.current().play(.click)
+            self.orchestrator.loadDepartures()
+        }
     }
 }
 

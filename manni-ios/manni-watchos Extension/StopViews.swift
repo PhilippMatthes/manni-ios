@@ -73,7 +73,7 @@ class StopViewOrchestrator: NSObject, ObservableObject, CLLocationManagerDelegat
             return
         }
         if authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse {
-            WKInterfaceDevice.current().play(.start)
+            WKInterfaceDevice.current().play(.click)
             self.showsLoading = true
             locationManager.requestLocation()
             return
@@ -108,7 +108,7 @@ class StopViewOrchestrator: NSObject, ObservableObject, CLLocationManagerDelegat
                 return
             }
 
-            WKInterfaceDevice.current().play(.success)
+            WKInterfaceDevice.current().play(.click)
             
             var fetchedStops = success.stops
             if let location = self.locationManager.location {
