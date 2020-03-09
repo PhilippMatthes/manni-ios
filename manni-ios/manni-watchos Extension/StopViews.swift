@@ -31,6 +31,10 @@ class StopViewOrchestrator: NSObject, ObservableObject, CLLocationManagerDelegat
         willSet {objectWillChange.send()}
     }
     
+    @Published public var showsLoading: Bool = true {
+        willSet {objectWillChange.send()}
+    }
+    
     @Published public var stops: [Stop] = [] {
         willSet {objectWillChange.send()}
     }
@@ -44,12 +48,14 @@ class StopViewOrchestrator: NSObject, ObservableObject, CLLocationManagerDelegat
     init(
         showAlert: Bool = false,
         alertType: StopViewAlert? = nil,
+        showsLoading: Bool = false,
         stops: [Stop] = [],
         location: CLLocation? = nil
     ) {
         super.init()
         self.showAlert = showAlert
         self.alertType = alertType
+        self.showsLoading = showsLoading
         self.stops = stops
         self.location = location
         
@@ -68,6 +74,7 @@ class StopViewOrchestrator: NSObject, ObservableObject, CLLocationManagerDelegat
         }
         if authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse {
             WKInterfaceDevice.current().play(.start)
+            self.showsLoading = true
             locationManager.requestLocation()
             return
         }
@@ -77,8 +84,7 @@ class StopViewOrchestrator: NSObject, ObservableObject, CLLocationManagerDelegat
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
-        
+        self.showsLoading = false
         WKInterfaceDevice.current().play(.failure)
         alertType = .gpsFailure
         showAlert = true
@@ -95,6 +101,7 @@ class StopViewOrchestrator: NSObject, ObservableObject, CLLocationManagerDelegat
                 DispatchQueue.main.async {
                     WKInterfaceDevice.current().play(.failure)
                     
+                    self.showsLoading = false
                     self.alertType = .apiFailure
                     self.showAlert = true
                 }
@@ -109,6 +116,7 @@ class StopViewOrchestrator: NSObject, ObservableObject, CLLocationManagerDelegat
             }
             
             DispatchQueue.main.async {
+                self.showsLoading = false
                 self.stops = fetchedStops
             }
         }
@@ -166,9 +174,13 @@ struct StopView: View {
             )
             .padding(EdgeInsets(top: 12, leading: 4, bottom: 12, trailing: 4))
             
-            ForEach(self.orchestrator.stops, id: \.id) {
-                stop in
-                StopRowView(stop: stop, location: self.orchestrator.location)
+            if (self.orchestrator.showsLoading) {
+                StopRowView(stop: nil)
+            } else {
+                ForEach(self.orchestrator.stops, id: \.id) {
+                    stop in
+                    StopRowView(stop: stop, location: self.orchestrator.location)
+                }
             }
         }
         .navigationBarTitle("Haltestellen")
@@ -178,24 +190,47 @@ struct StopView: View {
 
 
 struct StopRowView: View {
-    var stop: Stop
+    var stop: Stop?
     var location: CLLocation?
 
     var body: some View {
-        NavigationLink(destination: DepartureListView()
-            .environmentObject(DepartureListViewOrchestrator(stop: stop))
-        ) {
-            VStack(alignment: HorizontalAlignment.leading) {
-                Text(stop.name)
-                    .font(.headline)
-                    .foregroundColor(Color.black)
-                Text(stop.region ?? "Dresden")
-                    .font(.subheadline)
-                    .foregroundColor(Color.black.opacity(0.7))
-                if location != nil && stop.location != nil {
-                    Text("\(location!.approximateDistance(from: CLLocation(latitude: stop.location!.latitude, longitude: stop.location!.longitude))) m entfernt")
-                        .font(.footnote)
-                        .foregroundColor(Color.black.opacity(0.7))
+        Group {
+            if (stop != nil) {
+                NavigationLink(destination: DepartureListView()
+                    .environmentObject(DepartureListViewOrchestrator(stop: stop!))
+                ) {
+                    VStack(alignment: HorizontalAlignment.leading) {
+                        Text(stop!.name)
+                            .font(.headline)
+                            .foregroundColor(Color.black)
+                        Spacer(minLength: 4)
+                        Text(stop!.region ?? "Dresden")
+                            .font(.subheadline)
+                            .foregroundColor(Color.black.opacity(0.7))
+                        if location != nil && stop!.location != nil {
+                            Text("\(location!.approximateDistance(from: CLLocation(latitude: stop!.location!.latitude, longitude: stop!.location!.longitude))) m entfernt")
+                                .font(.footnote)
+                                .foregroundColor(Color.black.opacity(0.7))
+                        }
+                    }
+                }
+            } else {
+                VStack(alignment: HorizontalAlignment.leading) {
+                    HStack {
+                        Text(" ")
+                        .font(.headline)
+                        Spacer()
+                    }
+                    .background(Color.gray.opacity(0.3))
+                    .cornerRadius(4)
+                    Spacer(minLength: 4)
+                    HStack {
+                        Text(" ")
+                        .font(.subheadline)
+                        Spacer()
+                    }
+                    .background(Color.gray.opacity(0.3))
+                    .cornerRadius(4)
                 }
             }
         }
@@ -227,17 +262,18 @@ struct StopRowView: View {
 
 struct StopView_Previews: PreviewProvider {
     static var previews: some View {
-        StopView().environmentObject(StopViewOrchestrator(
-            showAlert: true,
-            alertType: .locationAccessDenied,
-            stops: (0...20).map {
-                Stop(id: "\($0)",
-                name: "Haltestelle \($0)",
-                region: nil,
-                location: CLLocation(latitude: 51.05089 + (Double($0) / 10000), longitude: 13.73832).coordinate)
-            },
-            location: CLLocation(latitude: 51.05089, longitude: 13.73832)
-        ))
+        Group {
+            StopView().environmentObject(StopViewOrchestrator(showsLoading: true))
+            StopView().environmentObject(StopViewOrchestrator(
+                stops: (0...20).map {
+                    Stop(id: "\($0)",
+                    name: "Haltestelle \($0)",
+                    region: nil,
+                    location: CLLocation(latitude: 51.05089 + (Double($0) / 10000), longitude: 13.73832).coordinate)
+                },
+                location: CLLocation(latitude: 51.05089, longitude: 13.73832)
+            ))
+        }
     }
 }
 
