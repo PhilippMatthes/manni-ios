@@ -192,6 +192,14 @@ struct StopView: View {
 struct StopRowView: View {
     var stop: Stop?
     var location: CLLocation?
+    
+    @State var loadingColor = Color.gray.opacity(0.3)
+    
+    var loadingAnimation: Animation {
+        return Animation
+            .easeInOut(duration: 0.5)
+            .repeatForever()
+    }
 
     var body: some View {
         Group {
@@ -221,16 +229,26 @@ struct StopRowView: View {
                         .font(.headline)
                         Spacer()
                     }
-                    .background(Color.gray.opacity(0.3))
+                    .background(loadingColor)
                     .cornerRadius(4)
+                    .onAppear {
+                        withAnimation(self.loadingAnimation) {
+                            self.loadingColor = Color.gray.opacity(0.5)
+                        }
+                    }
                     Spacer(minLength: 4)
                     HStack {
                         Text(" ")
                         .font(.subheadline)
                         Spacer()
                     }
-                    .background(Color.gray.opacity(0.3))
+                    .background(loadingColor)
                     .cornerRadius(4)
+                    .onAppear {
+                        withAnimation(self.loadingAnimation) {
+                            self.loadingColor = Color.gray.opacity(0.5)
+                        }
+                    }
                 }
             }
         }

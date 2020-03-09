@@ -43,7 +43,7 @@ class DepartureListViewOrchestrator: NSObject, ObservableObject {
     private var scheduledTimer: Timer?
     
     init(
-        stop: Stop,
+        stop: Stop? = nil,
         showsAlert: Bool = false,
         alertType: DepartureListViewAlert? = nil,
         showsLoading: Bool = true,
@@ -119,6 +119,14 @@ struct DepartureListView: View {
 struct DepartureRowView: View {
     var departure: Departure?
     
+    @State var loadingColor = Color.gray.opacity(0.3)
+    
+    var loadingAnimation: Animation {
+        return Animation
+            .easeInOut(duration: 0.5)
+            .repeatForever()
+    }
+    
     var body: some View {
         VStack(alignment: HorizontalAlignment.leading, spacing: 4) {
             if departure != nil {
@@ -143,15 +151,25 @@ struct DepartureRowView: View {
                         .font(.headline)
                     Spacer()
                 }
-                .background(Color.gray.opacity(0.3))
+                .background(loadingColor)
                 .cornerRadius(4)
+                .onAppear {
+                    withAnimation(self.loadingAnimation) {
+                        self.loadingColor = Color.gray.opacity(0.5)
+                    }
+                }
                 HStack {
                     Text(" ")
                         .font(.subheadline)
                     Spacer()
                 }
-                .background(Color.gray.opacity(0.3))
+                .background(loadingColor)
                 .cornerRadius(4)
+                .onAppear {
+                    withAnimation(self.loadingAnimation) {
+                        self.loadingColor = Color.gray.opacity(0.5)
+                    }
+                }
             }
         }
         .listRowBackground(
@@ -182,20 +200,17 @@ struct DepartureRowView: View {
 
 #if DEBUG
 
-let stop = Stop(id: "33000028", name: "Hauptbahnhof", region: nil, location: nil)
-
 struct DepartureListView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             DepartureListView().environmentObject(
                 DepartureListViewOrchestrator(
-                    stop: stop,
                     showsLoading: true
                 )
             )
             DepartureListView().environmentObject(
                 DepartureListViewOrchestrator(
-                    stop: stop,
+                    stop: Stop(id: "33000028", name: "Hauptbahnhof", region: nil, location: nil),
                     showsLoading: false,
                     departures: (0...20).map {
                         Departure(id: "\($0)", line: "\($0)", direction: "Dresden", mode: .bus, scheduledTime: Date().addingTimeInterval(1000 * Double($0)))
